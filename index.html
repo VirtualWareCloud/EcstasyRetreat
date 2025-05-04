@@ -53,9 +53,17 @@
       font-weight: bold;
     }
 
-    .slideshow-container img {
+    /* FIXED SLIDESHOW SECTION */
+    .slideshow-container {
+      width: 100%;
+      overflow: hidden;
+      position: relative;
+    }
+    .slide-img {
       width: 100%;
       height: auto;
+      display: block;
+      object-fit: cover;
     }
 
     main {
@@ -86,6 +94,7 @@
       justify-content: center;
       gap: 15px;
       margin-top: 10px;
+      flex-wrap: wrap;
     }
 
     .social-icons a {
