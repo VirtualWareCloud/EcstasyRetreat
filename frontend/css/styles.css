@@ -1,0 +1,41 @@
+body {
+    background-color: #0f1c2e;
+    color: #d4af37;
+    font-family: 'Georgia', serif;
+    margin: 0;
+    padding: 0;
+}
+header {
+    background-color: #1a2a47;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 15px 30px;
+}
+header nav a {
+    color: #d4af37;
+    text-decoration: none;
+    margin: 0 15px;
+}
+.logo {
+    width: 120px;
+    height: auto;
+}
+section {
+    padding: 40px;
+    text-align: center;
+}
+.hero {
+    background-image: url('../images/bg-texture.jpg');
+    background-size: cover;
+    background-position: center;
+    padding: 100px 20px;
+    color: #ffffff;
+}
+button {
+    background-color: #d4af37;
+    color: #0f1c2e;
+    padding: 10px 20px;
+    border: none;
+    cursor: pointer;
+}
