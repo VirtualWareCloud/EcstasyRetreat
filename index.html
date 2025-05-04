@@ -3,70 +3,138 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Ecstasy Retreat | Discover Your Oasis</title>
-  <link rel="stylesheet" href="css/styles.css">
-  <link rel="icon" type="image/png" href="images/logo.png">
+  <title>Ecstasy Retreat - Mobile Massage Therapists</title>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" crossorigin="anonymous" referrerpolicy="no-referrer" />
+  <style>
+    body {
+      margin: 0;
+      font-family: 'Segoe UI', sans-serif;
+      background-color: #0f0f0f;
+      background: url('https://www.transparenttextures.com/patterns/stardust.png'), linear-gradient(135deg, #000000 0%, #1f1f1f 100%);
+      background-blend-mode: overlay;
+      color: #d4af37;
+    }
+
+    header {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      background-color: #0f0f0f;
+      padding: 10px 20px;
+    }
+
+    .logo {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+    }
+
+    .logo img {
+      height: 50px;
+    }
+
+    .logo span {
+      font-size: 1.5rem;
+      font-weight: bold;
+      color: #d4af37;
+    }
+
+    nav ul {
+      display: flex;
+      gap: 20px;
+      list-style: none;
+      padding: 0;
+      margin: 0;
+    }
+
+    nav ul li a {
+      color: #ffffff;
+      text-decoration: none;
+      font-weight: bold;
+    }
+
+    .slideshow-container img {
+      width: 100%;
+      height: auto;
+    }
+
+    main {
+      text-align: center;
+      padding: 20px;
+    }
+
+    .animated-heading {
+      font-size: 2rem;
+      margin-top: 20px;
+      color: #d4af37;
+      animation: floatLeftRight 6s ease-in-out infinite alternate;
+    }
+
+    @keyframes floatLeftRight {
+      0% { transform: translateX(0); }
+      100% { transform: translateX(50px); }
+    }
+
+    footer {
+      background-color: #0f0f0f;
+      text-align: center;
+      padding: 20px;
+    }
+
+    .social-icons {
+      display: flex;
+      justify-content: center;
+      gap: 15px;
+      margin-top: 10px;
+    }
+
+    .social-icons a {
+      color: #d4af37;
+      font-size: 1.5rem;
+      text-decoration: none;
+    }
+  </style>
 </head>
 <body>
 
 <header>
-  <div class="logo-container">
-    <img src="images/logo.png" alt="Ecstasy Retreat Logo" class="logo">
+  <div class="logo">
+    <img src="Ekstase Toevlugte Logo.png" alt="Ecstasy Retreat Logo">
+    <span>Ecstasy Retreat</span>
   </div>
-  <div class="menu-toggle" id="menu-toggle">&#9776;</div>
-  <nav id="menu">
+  <nav>
     <ul>
-      <li><a href="index.html">Home</a></li>
-      <li><a href="therapists.html">Therapists</a></li>
-      <li><a href="bookings.html">Book</a></li>
-      <li><a href="join-therapist.html">Join Us</a></li>
-      <li><a href="gallery.html">Gallery</a></li>
+      <li><a href="#">Home</a></li>
+      <li><a href="#">About Us</a></li>
+      <li><a href="#">Services</a></li>
+      <li><a href="#">Therapists</a></li>
+      <li><a href="#">Book Now</a></li>
+      <li><a href="#">Gallery</a></li>
+      <li><a href="#">Contact</a></li>
     </ul>
   </nav>
 </header>
 
-<div class="slideshow-container">
-  <div class="mySlides fade">
-    <img src="images/slide1.jpg" style="width:100%">
+<main>
+  <div class="slideshow-container">
+    <img src="slide1.png" alt="Massage Slide 1">
+    <img src="slide2.png" alt="Massage Slide 2">
+    <img src="slide3.png" alt="Massage Slide 3">
   </div>
-  <div class="mySlides fade">
-    <img src="images/slide2.jpg" style="width:100%">
-  </div>
-  <div class="mySlides fade">
-    <img src="images/slide3.jpg" style="width:100%">
-  </div>
-  <div class="mySlides fade">
-    <img src="images/slide4.jpg" style="width:100%">
-  </div>
-  <div class="mySlides fade">
-    <img src="images/slide5.jpg" style="width:100%">
-  </div>
-  <div class="mySlides fade">
-    <img src="images/slide6.jpg" style="width:100%">
-  </div>
-  <a class="prev" onclick="plusSlides(-1)">❮</a>
-  <a class="next" onclick="plusSlides(1)">❯</a>
-</div>
-
-<section class="hero-section">
-  <h1>Welcome to <span>Ecstasy Retreat</span></h1>
-  <p>Discover, Relax, and Renew Your Spirit.</p>
-  <a href="bookings.html" class="btn-primary">Book Your Escape</a>
-</section>
+  <h1 class="animated-heading">Welcome to Ecstasy Retreat, Your Sanctuary of Serenity</h1>
+</main>
 
 <footer>
   <div class="social-icons">
-    <a href="#"><img src="images/whatsapp.png" alt="WhatsApp"></a>
-    <a href="#"><img src="images/email.png" alt="Email"></a>
-    <a href="#"><img src="images/instagram.png" alt="Instagram"></a>
-    <a href="#"><img src="images/facebook.png" alt="Facebook"></a>
-    <a href="#"><img src="images/twitter.png" alt="Twitter"></a>
-    <a href="#"><img src="images/tiktok.png" alt="TikTok"></a>
-    <a href="#"><img src="images/linkedin.png" alt="LinkedIn"></a>
+    <a href="https://www.facebook.com"><i class="fab fa-facebook"></i></a>
+    <a href="https://www.instagram.com"><i class="fab fa-instagram"></i></a>
+    <a href="https://www.x.com"><i class="fab fa-twitter"></i></a>
+    <a href="https://www.snapchat.com"><i class="fab fa-snapchat"></i></a>
+    <a href="https://www.youtube.com"><i class="fab fa-youtube"></i></a>
+    <a href="https://www.tiktok.com"><i class="fab fa-tiktok"></i></a>
   </div>
-  <p>© 2025 Ecstasy Retreat. All rights reserved.</p>
+  <p>&copy; 2025 Ecstasy Retreat</p>
 </footer>
 
-<script src="js/app.js"></script>
 </body>
 </html>
