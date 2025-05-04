@@ -53,17 +53,48 @@
       font-weight: bold;
     }
 
-    /* FIXED SLIDESHOW SECTION */
+    /* Updated Slideshow CSS */
     .slideshow-container {
-      width: 100%;
-      overflow: hidden;
       position: relative;
+      max-width: 100%;
+      margin: auto;
+      overflow: hidden;
     }
-    .slide-img {
+
+    .slide {
+      display: none;
       width: 100%;
       height: auto;
-      display: block;
       object-fit: cover;
+    }
+
+    .slide.active {
+      display: block;
+    }
+
+    .prev, .next {
+      cursor: pointer;
+      position: absolute;
+      top: 50%;
+      width: auto;
+      padding: 16px;
+      margin-top: -22px;
+      color: #d4af37;
+      font-weight: bold;
+      font-size: 18px;
+      transition: 0.3s;
+      border-radius: 0 3px 3px 0;
+      user-select: none;
+      background: rgba(0, 0, 0, 0.3);
+    }
+
+    .next {
+      right: 0;
+      border-radius: 3px 0 0 3px;
+    }
+
+    .prev:hover, .next:hover {
+      background-color: rgba(0, 0, 0, 0.6);
     }
 
     main {
@@ -126,9 +157,11 @@
 
 <main>
   <div class="slideshow-container">
-    <img class="slide-img" src="images/slide1.jpg" alt="Massage Slide 1">
-    <img class="slide-img" src="images/slide2.jpg" alt="Massage Slide 2">
-    <img class="slide-img" src="images/slide3.jpg" alt="Massage Slide 3">
+    <img class="slide active" src="images/slide1.jpg" alt="Massage Slide 1">
+    <img class="slide" src="images/slide2.jpg" alt="Massage Slide 2">
+    <img class="slide" src="images/slide3.jpg" alt="Massage Slide 3">
+    <a class="prev" onclick="changeSlide(-1)">&#10094;</a>
+    <a class="next" onclick="changeSlide(1)">&#10095;</a>
   </div>
   <h1 class="animated-heading">Welcome to Ecstasy Retreat, Your Sanctuary of Serenity</h1>
 </main>
@@ -144,6 +177,32 @@
   </div>
   <p>&copy; 2025 Ecstasy Retreat</p>
 </footer>
+
+<script>
+let currentSlide = 0;
+const slides = document.querySelectorAll('.slide');
+
+function showSlide(index) {
+  slides.forEach((slide, i) => {
+    slide.classList.remove('active');
+    if (i === index) {
+      slide.classList.add('active');
+    }
+  });
+}
+
+function changeSlide(direction) {
+  currentSlide += direction;
+  if (currentSlide >= slides.length) currentSlide = 0;
+  if (currentSlide < 0) currentSlide = slides.length - 1;
+  showSlide(currentSlide);
+}
+
+// Optional: Automatic slideshow every 5 seconds
+setInterval(() => {
+  changeSlide(1);
+}, 5000);
+</script>
 
 </body>
 </html>
