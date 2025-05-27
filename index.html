@@ -3,17 +3,14 @@
 <head>
   <meta charset="UTF-8" />
   <title>Ecstasy Retreat - Mobile Massage Therapists</title>
-
-  <!-- Font Awesome -->
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" crossorigin="anonymous" referrerpolicy="no-referrer" />
-
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" crossorigin="anonymous" referrerpolicy="no-referrer" />
 
   <style>
     body {
-      font-family: 'Segoe UI', sans-serif;
       margin: 0;
-      background-color: #18243D; /* Updated color */
+      font-family: 'Segoe UI', sans-serif;
+      background-color: #18243D;
       color: #d4af37;
       background: url('https://www.transparenttextures.com/patterns/stardust.png'),
                   linear-gradient(135deg, #18243D 0%, #1f1f1f 100%);
@@ -26,12 +23,11 @@
       100% { background-position: 100px 100px; }
     }
 
-    header
- {
+    header {
       display: flex;
       align-items: center;
       justify-content: space-between;
-      background: #18243D; /* Updated color */
+      background: #18243D;
       padding: 10px 20px;
       position: relative;
       z-index: 1000;
@@ -89,7 +85,7 @@
         display: none;
         flex-direction: column;
         align-items: center;
-        background: #18243D; /* Updated color */
+        background: #18243D;
         width: 100%;
         position: absolute;
         top: 70px;
@@ -109,68 +105,60 @@
       }
     }
 
-    .animated-heading {
-      text-align: center;
-      margin-top: 20px;
-      font-size: 2.2rem;
-      animation: floatLeftRight 6s ease-in-out infinite alternate;
-      color: #d4af37;
-    }
-
-    @keyframes floatLeftRight {
-      0% { transform: translateX(0); }
-      100% { transform: translateX(50px); }
-    }
-
     main {
-      padding: 10px;
+      padding: 0;
     }
 
-    .slideshow-container {
+    .hero-carousel {
       position: relative;
-      max-width: 100%;
-      margin: auto;
       overflow: hidden;
+      max-height: 80vh;
     }
 
-    .slide {
-      display: none;
+    .hero-carousel img {
       width: 100%;
-      height: auto;
+      height: 80vh;
       object-fit: cover;
+      animation: fadeZoom 10s ease-in-out infinite;
     }
 
-    .slide.active {
-      display: block;
+    @keyframes fadeZoom {
+      0% { opacity: 0.9; transform: scale(1); }
+      50% { opacity: 1; transform: scale(1.05); }
+      100% { opacity: 0.9; transform: scale(1); }
     }
 
-    .prev, .next {
-      cursor: pointer;
+    .hero-text {
       position: absolute;
       top: 50%;
-      width: auto;
-      padding: 16px;
-      margin-top: -22px;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      text-align: center;
+      color: #fff;
+      padding: 20px;
+      background-color: rgba(24,36,61,0.6);
+      border-radius: 12px;
+      animation: textFloat 8s ease-in-out infinite alternate;
+    }
+
+    .hero-text h1 {
+      font-size: 2.2rem;
+      margin: 0;
       color: #d4af37;
-      font-weight: bold;
-      font-size: 18px;
-      transition: 0.3s;
-      border-radius: 0 3px 3px 0;
-      user-select: none;
-      background: rgba(0, 0, 0, 0.3);
     }
 
-    .next {
-      right: 0;
-      border-radius: 3px 0 0 3px;
+    .hero-text p {
+      margin-top: 10px;
+      font-size: 1rem;
     }
 
-    .prev:hover, .next:hover {
-      background-color: rgba(0, 0, 0, 0.6);
+    @keyframes textFloat {
+      0% { transform: translate(-50%, -52%); }
+      100% { transform: translate(-50%, -48%); }
     }
 
     footer {
-      background: #18243D; /* Updated color */
+      background: #18243D;
       text-align: center;
       padding: 20px;
     }
@@ -212,18 +200,13 @@
 </header>
 
 <main>
-  <div class="slideshow-container">
-    <img class="slide active" src="images/slide1.jpg" alt="Massage Slide 1">
-    <img class="slide" src="images/slide2.jpg" alt="Massage Slide 2">
-    <img class="slide" src="images/slide3.jpg" alt="Massage Slide 3">
-    <img class="slide" src="images/slide4.jpg" alt="Massage Slide 4">
-
-    <a class="prev" onclick="changeSlide(-1)">❮</a>
-    <a class="next" onclick="changeSlide(1)">❯</a>
+  <div class="hero-carousel">
+    <img src="images/slide1.jpg" alt="Relaxing Massage">
+    <div class="hero-text">
+      <h1>Welcome to Ecstasy Retreat</h1>
+      <p>Experience Tranquility, Balance, and Bliss</p>
+    </div>
   </div>
-
-  <h1 class="animated-heading">Welcome to Ecstasy Retreat</h1>
-  <p style="text-align:center;">Experience Tranquility, Balance, and Bliss</p>
 </main>
 
 <footer>
@@ -244,23 +227,6 @@
     const navList = document.querySelector("nav ul");
     navList.classList.toggle("active");
   }
-
-  let slideIndex = 0;
-  const slides = document.querySelectorAll(".slide");
-
-  function showSlides() {
-    slides.forEach(slide => slide.classList.remove("active"));
-    slideIndex = (slideIndex + 1) % slides.length;
-    slides[slideIndex].classList.add("active");
-  }
-
-  function changeSlide(n) {
-    slides[slideIndex].classList.remove("active");
-    slideIndex = (slideIndex + n + slides.length) % slides.length;
-    slides[slideIndex].classList.add("active");
-  }
-
-  setInterval(showSlides, 4000); // Auto-change every 4 seconds
 </script>
 
 </body>
