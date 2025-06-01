@@ -1,25 +1,336 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Our Therapists</title>
-    <link rel="stylesheet" href="css/styles.css">
+  <meta charset="UTF-8" />
+  <title>Our Therapists - Ecstasy Retreat</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" crossorigin="anonymous" />
+  <style>
+    body {
+      margin: 0;
+      font-family: 'Segoe UI', sans-serif;
+      background-color: #18243D;
+      color: #d4af37;
+      background: url('https://www.transparenttextures.com/patterns/stardust.png'), linear-gradient(135deg, #18243D 0%, #1f1f1f 100%);
+      background-blend-mode: overlay;
+      animation: sparkle 10s linear infinite;
+    }
+
+    @keyframes sparkle {
+      0% { background-position: 0 0; }
+      100% { background-position: 100px 100px; }
+    }
+
+    header {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      background: #18243D;
+      padding: 10px 20px;
+      flex-wrap: wrap;
+      position: relative;
+      z-index: 1000;
+    }
+
+    .share-btn, .menu-toggle {
+      font-size: 1.5rem;
+      color: #d4af37;
+      cursor: pointer;
+    }
+
+    .logo {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      cursor: pointer;
+      animation: pulse 4s infinite;
+    }
+
+    .logo img {
+      height: 50px;
+      transition: transform 0.3s ease;
+    }
+
+    .logo:hover img {
+      transform: scale(1.1);
+    }
+
+    nav {
+      display: none;
+      flex-direction: column;
+      background: #18243D;
+      width: 100%;
+      position: absolute;
+      top: 60px;
+      right: 0;
+      text-align: right;
+      padding: 10px 20px;
+      z-index: 999;
+    }
+
+    nav ul {
+      list-style: none;
+      padding: 0;
+      margin: 0;
+    }
+
+    nav ul li {
+      margin: 10px 0;
+    }
+
+    nav ul li a {
+      color: #fff;
+      text-decoration: none;
+      font-weight: bold;
+    }
+
+    nav.active {
+      display: flex;
+    }
+
+    @media (min-width: 769px) {
+      nav {
+        display: flex !important;
+        position: static;
+        flex-direction: row;
+        width: auto;
+        background: none;
+      }
+
+      nav ul {
+        display: flex;
+        gap: 20px;
+      }
+
+      .menu-toggle {
+        display: none;
+      }
+    }
+
+    .therapist-section {
+      padding: 40px 20px;
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+      gap: 30px;
+    }
+
+    .card {
+      background: #1f1f1f;
+      border-radius: 20px;
+      padding: 20px;
+      text-align: center;
+      box-shadow: 0 8px 20px rgba(0,0,0,0.6);
+      transition: transform 0.3s ease, box-shadow 0.3s ease;
+    }
+
+    .card:hover {
+      transform: scale(1.03) rotateX(5deg);
+      box-shadow: 0 10px 30px rgba(212, 175, 55, 0.6);
+    }
+
+    .card img {
+      width: 120px;
+      height: 120px;
+      object-fit: cover;
+      border-radius: 50%;
+      margin-bottom: 15px;
+      border: 3px solid #d4af37;
+    }
+
+    .card h3 {
+      color: #fff;
+      margin: 10px 0 5px;
+    }
+
+    .card p {
+      font-size: 0.9rem;
+      color: #ccc;
+    }
+
+    .card a {
+      margin-top: 15px;
+      display: inline-block;
+      background-color: #18243D;
+      color: #d4af37;
+      padding: 10px 18px;
+      border-radius: 30px;
+      text-decoration: none;
+      transition: background 0.3s ease;
+      font-weight: bold;
+    }
+
+    .card a:hover {
+      background: #fff3a8;
+      color: #000;
+    }
+
+    footer {
+      background: #18243D;
+      padding: 20px;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 15px;
+    }
+
+    .social-icons {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: center;
+      gap: 25px;
+    }
+
+    .social-icons a {
+      color: #d4af37;
+      font-size: 1.5rem;
+      text-decoration: none;
+    }
+
+    .credit {
+      text-align: center;
+    }
+
+    .credit a {
+      color: #d4af37;
+      text-decoration: none;
+    }
+
+    @keyframes pulse {
+      0% { transform: scale(1); }
+      50% { transform: scale(1.05); }
+      100% { transform: scale(1); }
+    }
+  </style>
 </head>
 <body>
-<header>
-    <img src="images/logo.png" alt="Logo" class="logo">
-    <nav>
-        <a href="index.html">Home</a>
-        <a href="therapists.html">Therapists</a>
-        <a href="bookings.html">Book Now</a>
-        <a href="join-therapist.html">Join Us</a>
-        <a href="gallery-images.html">Gallery</a>
+  <!-- Header Section -->
+  <header>
+    <div class="share-btn" onclick="shareWebsite()"><i class="fas fa-share-square"></i></div>
+    <div class="logo" onclick="location.href='index.html'">
+      <img src="images/logo.png" alt="Ecstasy Retreat Logo">
+    </div>
+    <div class="menu-toggle" onclick="toggleMenu()">☰</div>
+    <nav id="mobileMenu">
+      <ul>
+        <li><a href="index.html">Home</a></li>
+        <li><a href="therapists.html">Therapists</a></li>
+        <li><a href="bookings.html">Bookings</a></li>
+        <li><a href="contact.html">Contact</a></li>
+      </ul>
     </nav>
-</header>
-<section>
-    <h1>Our Therapists</h1>
-</section>
-<script src="js/app.js"></script>
+  </header>
+
+  <!-- Therapists Grid Section -->
+  <section class="therapist-section">
+    <!-- Therapist Cards -->
+    <div class="card">
+      <img src="images/therapist1.jpg" alt="Therapist A" />
+      <h3>Amara Bliss</h3>
+      <p>Sandton</p>
+      <a href="profiles/amara.html">View Therapist</a>
+    </div>
+    <div class="card">
+      <img src="images/therapist2.jpg" alt="Therapist B" />
+      <h3>Thandi Zen</h3>
+      <p>Midrand</p>
+      <a href="profiles/thandi.html">View Therapist</a>
+    </div>
+    <div class="card">
+      <img src="images/therapist3.jpg" alt="Therapist C" />
+      <h3>Kayla Rose</h3>
+      <p>Fourways</p>
+      <a href="profiles/kayla.html">View Therapist</a>
+    </div>
+    <div class="card">
+      <img src="images/therapist4.jpg" alt="Therapist D" />
+      <h3>Naledi Sky</h3>
+      <p>Centurion</p>
+      <a href="profiles/naledi.html">View Therapist</a>
+    </div>
+    <div class="card">
+      <img src="images/therapist5.jpg" alt="Therapist E" />
+      <h3>Ayanda Peace</h3>
+      <p>Rosebank</p>
+      <a href="profiles/ayanda.html">View Therapist</a>
+    </div>
+    <div class="card">
+      <img src="images/therapist6.jpg" alt="Therapist F" />
+      <h3>Rina Flow</h3>
+      <p>Melrose Arch</p>
+      <a href="profiles/rina.html">View Therapist</a>
+    </div>
+    <div class="card">
+      <img src="images/therapist7.jpg" alt="Therapist G" />
+      <h3>Zoe Tranquil</h3>
+      <p>Parkhurst</p>
+      <a href="profiles/zoe.html">View Therapist</a>
+    </div>
+    <div class="card">
+      <img src="images/therapist8.jpg" alt="Therapist H" />
+      <h3>Thuli Serenity</h3>
+      <p>Randburg</p>
+      <a href="profiles/thuli.html">View Therapist</a>
+    </div>
+    <div class="card">
+      <img src="images/therapist9.jpg" alt="Therapist I" />
+      <h3>Leah Dream</h3>
+      <p>Bryanston</p>
+      <a href="profiles/leah.html">View Therapist</a>
+    </div>
+    <div class="card">
+      <img src="images/therapist10.jpg" alt="Therapist J" />
+      <h3>Mbali Grace</h3>
+      <p>Rivonia</p>
+      <a href="profiles/mbali.html">View Therapist</a>
+    </div>
+    <div class="card">
+      <img src="images/therapist11.jpg" alt="Therapist K" />
+      <h3>Jade Calm</h3>
+      <p>Bedfordview</p>
+      <a href="profiles/jade.html">View Therapist</a>
+    </div>
+    <div class="card">
+      <img src="images/therapist12.jpg" alt="Therapist L" />
+      <h3>Tasha Pure</h3>
+      <p>Northcliff</p>
+      <a href="profiles/tasha.html">View Therapist</a>
+    </div>
+  </section>
+
+  <!-- Footer Section -->
+  <footer>
+    <div class="social-icons">
+      <a href="#"><i class="fas fa-envelope"></i></a>
+      <a href="#"><i class="fab fa-whatsapp"></i></a>
+      <a href="#"><i class="fab fa-facebook"></i></a>
+      <a href="#"><i class="fab fa-instagram"></i></a>
+      <a href="#"><i class="fab fa-twitter"></i></a>
+      <a href="#"><i class="fab fa-tiktok"></i></a>
+      <a href="#"><i class="fab fa-linkedin"></i></a>
+    </div>
+    <div class="credit">
+      <a href="https://virtualwarecloud.github.io/services/" target="_blank">
+        <i class="fas fa-paper-plane"></i> Designed by VirtualWareCloud
+      </a>
+    </div>
+  </footer>
+
+  <script>
+    function toggleMenu() {
+      document.getElementById("mobileMenu").classList.toggle("active");
+    }
+
+    async function shareWebsite() {
+      if (navigator.share) {
+        await navigator.share({
+          title: 'Ecstasy Retreat',
+          text: 'Relax with premium mobile massage services',
+          url: window.location.href
+        });
+      } else {
+        alert("Sharing not supported on this device.");
+      }
+    }
+  </script>
 </body>
 </html>
