@@ -171,16 +171,17 @@
       font-size: 1rem;
     }
 
-.hero-text a {
-  background-color: #18243D;
-  color: #d4af37;
-  padding: 10px 20px;
-  border-radius: 30px;
-  text-decoration: none;
-  display: inline-block;
-  margin-top: 15px;
-  font-weight: bold;
-}
+    .hero-text a {
+      background-color: #18243D;
+      color: #d4af37;
+      padding: 10px 20px;
+      border-radius: 30px;
+      text-decoration: none;
+      display: inline-block;
+      margin-top: 15px;
+      font-weight: bold;
+    }
+
     .hero-text a:hover {
       background: #fff3a8;
     }
@@ -227,28 +228,54 @@
       50% { transform: scale(1.05); }
       100% { transform: scale(1); }
     }
+
+    .hero-title-typewriter {
+      text-align: center;
+      padding: 20px 10px 0;
+      background-color: transparent;
+    }
+
+    .hero-title-typewriter h1 {
+      color: #d4af37;
+      font-size: 1.6rem;
+      font-weight: bold;
+      overflow: hidden;
+      white-space: nowrap;
+      border-right: 2px solid #d4af37;
+      width: 0;
+      animation: typing 4s steps(30, end) forwards, blink 0.7s step-end infinite;
+    }
+
+    @keyframes typing {
+      from { width: 0 }
+      to { width: 100% }
+    }
+
+    @keyframes blink {
+      from, to { border-color: transparent }
+      50% { border-color: #d4af37 }
+    }
   </style>
 </head>
 <body>
 
 <header style="display: flex; justify-content: space-between; align-items: center; padding: 10px 20px;">
-  
-  <!-- Left: Share Button -->
   <div class="share-btn" onclick="shareWebsite()" style="flex: 1;">
     <i class="fas fa-share-square"></i>
   </div>
 
-  <!-- Center: Logo -->
   <div class="logo" onclick="location.href='index.html'" style="flex: 1; text-align: center;">
     <img src="images/logo.png" alt="Ecstasy Retreat Logo" style="height: 50px; cursor: pointer; transition: transform 0.3s;">
   </div>
 
-  <!-- Right: Hamburger Menu -->
   <div class="menu-toggle" onclick="toggleMenu()" style="flex: 1; text-align: right;">
     ☰
   </div>
-
 </header>
+
+<div class="hero-title-typewriter">
+  <h1 id="typewriter-text"></h1>
+</div>
 
 <main>
   <div class="hero-carousel">
@@ -267,9 +294,8 @@
   </div>
 </main>
 
-
 <footer>
-<div class="social-icons">
+  <div class="social-icons">
     <a href="mailto:someone@example.com"><i class="fas fa-envelope"></i></a>
     <a href="https://wa.me/"><i class="fab fa-whatsapp"></i></a>
     <a href="https://www.facebook.com/"><i class="fab fa-facebook"></i></a>
@@ -277,7 +303,7 @@
     <a href="https://twitter.com/"><i class="fab fa-twitter"></i></a>
     <a href="https://www.tiktok.com/"><i class="fab fa-tiktok"></i></a>
     <a href="https://www.linkedin.com/"><i class="fab fa-linkedin"></i></a>
-</div>
+  </div>
   <div class="credit">
     <a href="https://virtualwarecloud.github.io/services/" target="_blank">Designed by VirtualWareCloud</a>
   </div>
@@ -286,7 +312,7 @@
 <script>
   function toggleMenu() {
     const navList = document.querySelector("nav ul");
-    navList.classList.toggle("active");
+    if (navList) navList.classList.toggle("active");
   }
 
   async function shareWebsite() {
@@ -301,17 +327,9 @@
     }
   }
 
-  function prevSlide() {
-    const imgs = document.querySelectorAll('.hero-carousel img');
-    imgs.forEach(i => i.style.animationPlayState = 'paused');
-    imgs[0].parentElement.appendChild(imgs[0]);
-  }
-
-  function nextSlide() {
-    const imgs = document.querySelectorAll('.hero-carousel img');
-    imgs.forEach(i => i.style.animationPlayState = 'paused');
-    imgs[imgs.length - 1].parentElement.insertBefore(imgs[imgs.length - 1], imgs[0]);
-  }
+  document.addEventListener("DOMContentLoaded", function () {
+    document.getElementById("typewriter-text").textContent = "Welcome to Ecstasy Retreat";
+  });
 </script>
 
 </body>
