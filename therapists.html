@@ -115,17 +115,19 @@
     }
 
     .card {
-      background: #1f1f1f;
+      background: linear-gradient(145deg, #1c2b48, #101928);
       border-radius: 20px;
       padding: 20px;
       text-align: center;
-      box-shadow: 0 8px 20px rgba(0,0,0,0.6);
-      transition: transform 0.3s ease, box-shadow 0.3s ease;
+      box-shadow: 0 10px 20px rgba(0,0,0,0.8);
+      transition: transform 0.3s ease, box-shadow 0.3s ease, background 0.3s ease;
+      border: 1px solid rgba(212,175,55,0.15);
     }
 
     .card:hover {
-      transform: scale(1.03) rotateX(5deg);
-      box-shadow: 0 10px 30px rgba(212, 175, 55, 0.6);
+      transform: translateY(-10px) scale(1.03) rotateX(3deg);
+      box-shadow: 0 15px 40px rgba(212, 175, 55, 0.5);
+      background: linear-gradient(145deg, #212f4c, #0c111c);
     }
 
     .card img {
@@ -150,12 +152,12 @@
     .card a {
       margin-top: 15px;
       display: inline-block;
-      background-color: #18243D;
-      color: #d4af37;
+      background-color: #d4af37;
+      color: #18243D;
       padding: 10px 18px;
       border-radius: 30px;
       text-decoration: none;
-      transition: background 0.3s ease;
+      transition: all 0.3s ease;
       font-weight: bold;
     }
 
@@ -203,7 +205,6 @@
   </style>
 </head>
 <body>
-  <!-- Header Section -->
   <header>
     <div class="share-btn" onclick="shareWebsite()"><i class="fas fa-share-square"></i></div>
     <div class="logo" onclick="location.href='index.html'">
@@ -221,84 +222,21 @@
   </header>
 
   <!-- Therapists Grid Section -->
-<section class="therapist-section">
-  <!-- Therapist Cards -->
-  <div class="card">
-    <img src="images/amara-bliss.jpg" alt="Amara Bliss" />
-    <h3>Amara Bliss</h3>
-    <p>Sandton</p>
-    <a href="profiles/amara.html">View Therapist</a>
-  </div>
-  <div class="card">
-    <img src="images/thandi-zen.jpg" alt="Thandi Zen" />
-    <h3>Thandi Zen</h3>
-    <p>Midrand</p>
-    <a href="profiles/thandi.html">View Therapist</a>
-  </div>
-  <div class="card">
-    <img src="images/kayla-rose.jpg" alt="Kayla Rose" />
-    <h3>Kayla Rose</h3>
-    <p>Fourways</p>
-    <a href="profiles/kayla.html">View Therapist</a>
-  </div>
-  <div class="card">
-    <img src="images/naledi-sky.jpg" alt="Naledi Sky" />
-    <h3>Naledi Sky</h3>
-    <p>Centurion</p>
-    <a href="profiles/naledi.html">View Therapist</a>
-  </div>
-  <div class="card">
-    <img src="images/ayanda-peace.jpg" alt="Ayanda Peace" />
-    <h3>Ayanda Peace</h3>
-    <p>Rosebank</p>
-    <a href="profiles/ayanda.html">View Therapist</a>
-  </div>
-  <div class="card">
-    <img src="images/rina-flow.jpg" alt="Rina Flow" />
-    <h3>Rina Flow</h3>
-    <p>Melrose Arch</p>
-    <a href="profiles/rina.html">View Therapist</a>
-  </div>
-  <div class="card">
-    <img src="images/zoe-tranquil.jpg" alt="Zoe Tranquil" />
-    <h3>Zoe Tranquil</h3>
-    <p>Parkhurst</p>
-    <a href="profiles/zoe.html">View Therapist</a>
-  </div>
-  <div class="card">
-    <img src="images/thuli-serenity.jpg" alt="Thuli Serenity" />
-    <h3>Thuli Serenity</h3>
-    <p>Randburg</p>
-    <a href="profiles/thuli.html">View Therapist</a>
-  </div>
-  <div class="card">
-    <img src="images/leah-dream.jpg" alt="Leah Dream" />
-    <h3>Leah Dream</h3>
-    <p>Bryanston</p>
-    <a href="profiles/leah.html">View Therapist</a>
-  </div>
-  <div class="card">
-    <img src="images/mbali-grace.jpg" alt="Mbali Grace" />
-    <h3>Mbali Grace</h3>
-    <p>Rivonia</p>
-    <a href="profiles/mbali.html">View Therapist</a>
-  </div>
-  <div class="card">
-    <img src="images/jade-calm.jpg" alt="Jade Calm" />
-    <h3>Jade Calm</h3>
-    <p>Bedfordview</p>
-    <a href="profiles/jade.html">View Therapist</a>
-  </div>
-  <div class="card">
-    <img src="images/tasha-pure.jpg" alt="Tasha Pure" />
-    <h3>Tasha Pure</h3>
-    <p>Northcliff</p>
-    <a href="profiles/tasha.html">View Therapist</a>
-  </div>
-</section>
+  <section class="therapist-section">
+    <div class="card"><img src="images/amara-bliss.jpg" alt="Amara Bliss" /><h3>Amara Bliss</h3><p>Sandton</p><a href="profiles/amara.html">View Therapist</a></div>
+    <div class="card"><img src="images/thandi-zen.jpg" alt="Thandi Zen" /><h3>Thandi Zen</h3><p>Midrand</p><a href="profiles/thandi.html">View Therapist</a></div>
+    <div class="card"><img src="images/kayla-rose.jpg" alt="Kayla Rose" /><h3>Kayla Rose</h3><p>Fourways</p><a href="profiles/kayla.html">View Therapist</a></div>
+    <div class="card"><img src="images/naledi-sky.jpg" alt="Naledi Sky" /><h3>Naledi Sky</h3><p>Centurion</p><a href="profiles/naledi.html">View Therapist</a></div>
+    <div class="card"><img src="images/ayanda-peace.jpg" alt="Ayanda Peace" /><h3>Ayanda Peace</h3><p>Rosebank</p><a href="profiles/ayanda.html">View Therapist</a></div>
+    <div class="card"><img src="images/rina-flow.jpg" alt="Rina Flow" /><h3>Rina Flow</h3><p>Melrose Arch</p><a href="profiles/rina.html">View Therapist</a></div>
+    <div class="card"><img src="images/zoe-tranquil.jpg" alt="Zoe Tranquil" /><h3>Zoe Tranquil</h3><p>Parkhurst</p><a href="profiles/zoe.html">View Therapist</a></div>
+    <div class="card"><img src="images/thuli-serenity.jpg" alt="Thuli Serenity" /><h3>Thuli Serenity</h3><p>Randburg</p><a href="profiles/thuli.html">View Therapist</a></div>
+    <div class="card"><img src="images/leah-dream.jpg" alt="Leah Dream" /><h3>Leah Dream</h3><p>Bryanston</p><a href="profiles/leah.html">View Therapist</a></div>
+    <div class="card"><img src="images/mbali-grace.jpg" alt="Mbali Grace" /><h3>Mbali Grace</h3><p>Rivonia</p><a href="profiles/mbali.html">View Therapist</a></div>
+    <div class="card"><img src="images/jade-calm.jpg" alt="Jade Calm" /><h3>Jade Calm</h3><p>Bedfordview</p><a href="profiles/jade.html">View Therapist</a></div>
+    <div class="card"><img src="images/tasha-pure.jpg" alt="Tasha Pure" /><h3>Tasha Pure</h3><p>Northcliff</p><a href="profiles/tasha.html">View Therapist</a></div>
+  </section>
 
-
-  <!-- Footer Section -->
   <footer>
     <div class="social-icons">
       <a href="#"><i class="fas fa-envelope"></i></a>
