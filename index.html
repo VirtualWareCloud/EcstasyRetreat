@@ -1,10 +1,11 @@
-<!DOCTYPE html><html lang="en">
+<!DOCTYPE html>
+<html lang="en">
 <head>
   <meta charset="UTF-8" />
   <title>Ecstasy Retreat - Mobile Massage Therapists</title>
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" crossorigin="anonymous" />  <style>
-    /* Body Styling with Stardust Overlay */
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" crossorigin="anonymous" />
+  <style>
     body {
       margin: 0;
       font-family: 'Segoe UI', sans-serif;
@@ -20,7 +21,6 @@
       100% { background-position: 100px 100px; }
     }
 
-    /* Header Layout */
     header {
       display: flex;
       align-items: center;
@@ -44,6 +44,25 @@
       align-items: center;
       cursor: pointer;
       animation: pulse 4s infinite;
+      flex: 1 0 100%;
+    }
+
+    @media (min-width: 769px) {
+      header {
+        justify-content: center;
+        position: relative;
+      }
+      .share-btn {
+        position: absolute;
+        left: 20px;
+      }
+      .menu-toggle {
+        position: absolute;
+        right: 20px;
+      }
+      .logo {
+        flex: 0 0 auto;
+      }
     }
 
     .logo img {
@@ -107,7 +126,6 @@
       }
     }
 
-    /* Typewriter animation */
     .hero-title-typewriter {
       text-align: center;
       padding: 10px;
@@ -236,17 +254,15 @@
       50% { transform: scale(1.05); }
       100% { transform: scale(1); }
     }
-  </style></head><body>
+  </style>
+</head>
+<body>
   <header>
-    <div class="share-btn" onclick="shareWebsite()">
-      <i class="fas fa-share-square"></i>
-    </div>
+    <div class="share-btn" onclick="shareWebsite()"><i class="fas fa-share-square"></i></div>
     <div class="logo" onclick="location.href='index.html'">
       <img src="images/logo.png" alt="Ecstasy Retreat Logo">
     </div>
-    <div class="menu-toggle" onclick="toggleMenu()">
-      ☰
-    </div>
+    <div class="menu-toggle" onclick="toggleMenu()">☰</div>
     <nav id="mobileMenu">
       <ul>
         <li><a href="index.html">Home</a></li>
@@ -255,9 +271,13 @@
         <li><a href="contact.html">Contact</a></li>
       </ul>
     </nav>
-  </header>  <div class="hero-title-typewriter">
+  </header>
+
+  <div class="hero-title-typewriter">
     <h1>Welcome to Ecstasy Retreat</h1>
-  </div>  <main>
+  </div>
+
+  <main>
     <div class="hero-carousel">
       <img src="images/slide1.jpg" alt="Slide 1">
       <img src="images/slide2.jpg" alt="Slide 2">
@@ -269,7 +289,9 @@
         <a href="therapists.html">View Therapists</a>
       </div>
     </div>
-  </main>  <footer>
+  </main>
+
+  <footer>
     <div class="social-icons">
       <a href="#"><i class="fas fa-envelope"></i></a>
       <a href="#"><i class="fab fa-whatsapp"></i></a>
@@ -284,7 +306,9 @@
         <i class="fas fa-paper-plane"></i> Designed by VirtualWareCloud
       </a>
     </div>
-  </footer>  <script>
+  </footer>
+
+  <script>
     function toggleMenu() {
       document.getElementById("mobileMenu").classList.toggle("active");
     }
@@ -310,5 +334,6 @@
       const slides = document.querySelectorAll('.hero-carousel img');
       slides[slides.length - 1].parentNode.insertBefore(slides[slides.length - 1], slides[0]);
     }
-  </script></body>
+  </script>
+</body>
 </html>
