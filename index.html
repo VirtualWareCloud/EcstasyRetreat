@@ -22,47 +22,26 @@
     }
 
     header {
-      display: flex;
+      display: grid;
+      grid-template-columns: 1fr auto 1fr;
       align-items: center;
-      justify-content: space-between;
       background: #18243D;
       padding: 10px 20px;
-      flex-wrap: wrap;
       position: relative;
       z-index: 1000;
     }
 
-    .share-btn, .menu-toggle {
+    .share-btn {
       font-size: 1.5rem;
       color: #d4af37;
       cursor: pointer;
+      justify-self: start;
     }
 
     .logo {
-      display: flex;
-      justify-content: center;
-      align-items: center;
+      justify-self: center;
       cursor: pointer;
       animation: pulse 4s infinite;
-      flex: 1 0 100%;
-    }
-
-    @media (min-width: 769px) {
-      header {
-        justify-content: center;
-        position: relative;
-      }
-      .share-btn {
-        position: absolute;
-        left: 20px;
-      }
-      .menu-toggle {
-        position: absolute;
-        right: 20px;
-      }
-      .logo {
-        flex: 0 0 auto;
-      }
     }
 
     .logo img {
@@ -72,6 +51,13 @@
 
     .logo:hover img {
       transform: scale(1.1);
+    }
+
+    .menu-toggle {
+      font-size: 1.5rem;
+      color: #d4af37;
+      cursor: pointer;
+      justify-self: end;
     }
 
     nav {
@@ -257,8 +243,12 @@
   </style>
 </head>
 <body>
+
+  <!-- Header Section -->
   <header>
-    <div class="share-btn" onclick="shareWebsite()"><i class="fas fa-share-square"></i></div>
+    <div class="share-btn" onclick="shareWebsite()">
+      <i class="fas fa-share-square"></i>
+    </div>
     <div class="logo" onclick="location.href='index.html'">
       <img src="images/logo.png" alt="Ecstasy Retreat Logo">
     </div>
@@ -273,10 +263,12 @@
     </nav>
   </header>
 
+  <!-- Title -->
   <div class="hero-title-typewriter">
     <h1>Welcome to Ecstasy Retreat</h1>
   </div>
 
+  <!-- Hero Carousel -->
   <main>
     <div class="hero-carousel">
       <img src="images/slide1.jpg" alt="Slide 1">
@@ -291,6 +283,7 @@
     </div>
   </main>
 
+  <!-- Footer -->
   <footer>
     <div class="social-icons">
       <a href="#"><i class="fas fa-envelope"></i></a>
