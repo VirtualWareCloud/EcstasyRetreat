@@ -1,0 +1,121 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <title>Amara Bliss - Ecstasy Retreat Therapist</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <link rel="stylesheet" href="../css/styles.css" />
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" crossorigin="anonymous" />
+  <style>
+    .profile-container {
+      max-width: 800px;
+      margin: 40px auto;
+      background: #1f1f1f;
+      padding: 30px;
+      border-radius: 20px;
+      box-shadow: 0 10px 30px rgba(212, 175, 55, 0.3);
+      text-align: center;
+      color: #fff;
+    }
+
+    .profile-container img {
+      width: 140px;
+      height: 140px;
+      object-fit: cover;
+      border-radius: 50%;
+      border: 4px solid #d4af37;
+      margin-bottom: 20px;
+      transition: transform 0.3s ease;
+    }
+
+    .profile-container img:hover {
+      transform: scale(1.05);
+    }
+
+    .profile-container h2 {
+      margin-bottom: 10px;
+      font-size: 1.8rem;
+      color: #d4af37;
+    }
+
+    .profile-container p {
+      font-size: 1rem;
+      color: #ccc;
+      margin: 10px 0;
+    }
+
+    .back-button {
+      display: inline-block;
+      margin-top: 25px;
+      padding: 10px 20px;
+      background: #18243D;
+      color: #d4af37;
+      text-decoration: none;
+      border-radius: 30px;
+      font-weight: bold;
+      transition: background 0.3s ease;
+    }
+
+    .back-button:hover {
+      background: #fff3a8;
+      color: #000;
+    }
+
+    @media (max-width: 600px) {
+      .profile-container {
+        margin: 20px;
+        padding: 20px;
+      }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- Header (reused from main site) -->
+  <header>
+    <div class="share-btn" onclick="shareWebsite()"><i class="fas fa-share-square"></i></div>
+    <div class="logo" onclick="location.href='../index.html'">
+      <img src="../images/logo.png" alt="Ecstasy Retreat Logo" />
+    </div>
+    <div class="menu-toggle" onclick="toggleMenu()">☰</div>
+    <nav id="mobileMenu">
+      <ul>
+        <li><a href="../index.html">Home</a></li>
+        <li><a href="../therapists.html">Therapists</a></li>
+        <li><a href="../bookings.html">Bookings</a></li>
+        <li><a href="../contact.html">Contact</a></li>
+      </ul>
+    </nav>
+  </header>
+
+  <!-- Profile Section -->
+  <section class="profile-container">
+    <img src="../images/amara-bliss.jpg" alt="Amara Bliss" />
+    <h2>Amara Bliss</h2>
+    <p><strong>Area:</strong> Sandton</p>
+    <p><strong>Specialties:</strong> Deep Tissue Massage, Aromatherapy, Relaxation Techniques</p>
+    <p><strong>Bio:</strong> Amara is a certified mobile therapist with over 5 years of experience. Known for her intuitive touch and calming energy, she specializes in providing personalized massage experiences in the comfort of your space.</p>
+    <a href="../therapists.html" class="back-button">← Back to Therapists</a>
+  </section>
+
+  <!-- Footer -->
+  <footer>
+    <div class="social-icons">
+      <a href="#"><i class="fas fa-envelope"></i></a>
+      <a href="#"><i class="fab fa-whatsapp"></i></a>
+      <a href="#"><i class="fab fa-facebook"></i></a>
+      <a href="#"><i class="fab fa-instagram"></i></a>
+      <a href="#"><i class="fab fa-twitter"></i></a>
+      <a href="#"><i class="fab fa-tiktok"></i></a>
+      <a href="#"><i class="fab fa-linkedin"></i></a>
+    </div>
+    <div class="credit">
+      <a href="https://virtualwarecloud.github.io/services/" target="_blank">
+        <i class="fas fa-paper-plane"></i> Designed by VirtualWareCloud
+      </a>
+    </div>
+  </footer>
+
+  <script src="../js/scripts.js"></script>
+</body>
+</html>
