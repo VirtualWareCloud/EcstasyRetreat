@@ -1,37 +1,55 @@
-// Toggles the hamburger menu
+// === Toggle Mobile Menu ===
 function toggleMenu() {
   document.getElementById("mobileMenu").classList.toggle("active");
 }
 
-// Enables native share if available
+// === iOS Style Share Website Button ===
 async function shareWebsite() {
   if (navigator.share) {
-    await navigator.share({
-      title: 'Ecstasy Retreat',
-      text: 'Relax with premium mobile massage services',
-      url: window.location.href
-    });
+    try {
+      await navigator.share({
+        title: 'Ecstasy Retreat',
+        text: 'Relax with premium mobile massage services',
+        url: window.location.href
+      });
+    } catch (error) {
+      console.error('Sharing failed:', error);
+    }
   } else {
     alert("Sharing not supported on this device.");
   }
 }
 
-// Slideshow control
+// === Auto-Fading Carousel ===
 let currentSlide = 0;
-const slides = document.querySelectorAll(".slide");
+const slides = document.querySelectorAll('.hero-carousel img');
+const totalSlides = slides.length;
+const intervalTime = 4000;
 
 function showSlide(index) {
   slides.forEach((slide, i) => {
-    slide.classList.toggle("active", i === index);
+    slide.style.opacity = i === index ? '1' : '0';
   });
 }
 
-function prevSlide() {
-  currentSlide = (currentSlide - 1 + slides.length) % slides.length;
+function nextSlide() {
+  currentSlide = (currentSlide + 1) % totalSlides;
   showSlide(currentSlide);
 }
 
-function nextSlide() {
-  currentSlide = (currentSlide + 1) % slides.length;
+function previousSlide() {
+  currentSlide = (currentSlide - 1 + totalSlides) % totalSlides;
   showSlide(currentSlide);
 }
+
+// Manual nav arrows
+document.querySelector('.arrow.left')?.addEventListener('click', previousSlide);
+document.querySelector('.arrow.right')?.addEventListener('click', nextSlide);
+
+// Auto-slide every 4 seconds
+setInterval(nextSlide, intervalTime);
+
+// Initial slide on load
+document.addEventListener("DOMContentLoaded", () => {
+  showSlide(currentSlide);
+});
