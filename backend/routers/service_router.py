@@ -105,6 +105,7 @@ async def delete_service(
         )
     
     # Soft delete by setting is_active to False
+    from datetime import datetime
     await db.services.update_one(
         {"id": service_id},
         {"$set": {"is_active": False, "updated_at": datetime.utcnow()}}
