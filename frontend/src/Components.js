@@ -327,7 +327,7 @@ Special Preferences: ${formData.preferences}`;
           type="submit"
           className="w-full bg-[#18243D] text-[#d4af37] py-4 rounded-lg font-bold text-lg hover:bg-[#d4af37] hover:text-[#18243D] transition-all duration-300 flex items-center justify-center space-x-2"
         >
-          <WhatsApp size={20} />
+          <MessageCircle size={20} />
           <span>Book via WhatsApp</span>
         </motion.button>
       </form>
