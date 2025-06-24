@@ -3,7 +3,7 @@ import { motion, AnimatePresence } from 'framer-motion';
 import { 
   Menu, X, Share2, Calendar, MapPin, User, Phone, Mail, 
   Star, ChevronRight, Heart, Camera, Send, Instagram, 
-  Facebook, Twitter, WhatsApp, Clock, DollarSign, Award
+  Facebook, Twitter, Clock, DollarSign, Award
 } from 'lucide-react';
 
 // Hero Slideshow Component
