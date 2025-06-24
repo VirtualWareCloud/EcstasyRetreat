@@ -10,6 +10,17 @@ from typing import List
 import uuid
 from datetime import datetime
 
+# Import database functions
+from .database import startup_db_client, shutdown_db_client
+
+# Import routers
+from .routers.auth_router import router as auth_router
+from .routers.therapist_router import router as therapist_router
+from .routers.booking_router import router as booking_router
+from .routers.payment_router import router as payment_router
+from .routers.service_router import router as service_router
+from .routers.admin_router import router as admin_router
+
 
 ROOT_DIR = Path(__file__).parent
 load_dotenv(ROOT_DIR / '.env')
@@ -20,7 +31,11 @@ client = AsyncIOMotorClient(mongo_url)
 db = client[os.environ['DB_NAME']]
 
 # Create the main app without a prefix
-app = FastAPI()
+app = FastAPI(
+    title="Ecstasy Retreat API",
+    description="Mobile Massage Therapy Booking Platform",
+    version="1.0.0"
+)
 
 # Create a router with the /api prefix
 api_router = APIRouter(prefix="/api")
@@ -35,10 +50,19 @@ class StatusCheck(BaseModel):
 class StatusCheckCreate(BaseModel):
     client_name: str
 
-# Add your routes to the router instead of directly to app
+# Basic health check routes
 @api_router.get("/")
 async def root():
-    return {"message": "Hello World"}
+    return {"message": "Ecstasy Retreat API - Mobile Massage Therapy Platform"}
+
+@api_router.get("/health")
+async def health_check():
+    return {
+        "status": "healthy",
+        "service": "Ecstasy Retreat API",
+        "version": "1.0.0",
+        "timestamp": datetime.utcnow().isoformat()
+    }
 
 @api_router.post("/status", response_model=StatusCheck)
 async def create_status_check(input: StatusCheckCreate):
@@ -51,6 +75,14 @@ async def create_status_check(input: StatusCheckCreate):
 async def get_status_checks():
     status_checks = await db.status_checks.find().to_list(1000)
     return [StatusCheck(**status_check) for status_check in status_checks]
+
+# Include all routers
+api_router.include_router(auth_router)
+api_router.include_router(therapist_router)
+api_router.include_router(booking_router)
+api_router.include_router(payment_router)
+api_router.include_router(service_router)
+api_router.include_router(admin_router)
 
 # Include the router in the main app
 app.include_router(api_router)
@@ -70,6 +102,15 @@ logging.basicConfig(
 )
 logger = logging.getLogger(__name__)
 
+# Event handlers
+@app.on_event("startup")
+async def startup_event():
+    """Initialize the database connection and default data."""
+    await startup_db_client()
+    logger.info("Ecstasy Retreat API started successfully")
+
 @app.on_event("shutdown")
-async def shutdown_db_client():
-    client.close()
+async def shutdown_event():
+    """Close database connection."""
+    await shutdown_db_client()
+    logger.info("Ecstasy Retreat API shutdown completed")
