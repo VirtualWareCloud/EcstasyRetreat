@@ -1,135 +1,191 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Ecstasy Retreat | Therapists</title>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Ecstasy Retreat – Therapists</title>
 
-  <!-- Tailwind CSS CDN -->
-  <script src="https://cdn.tailwindcss.com"></script>
+<!-- TailwindCSS CDN -->
+<script src="https://cdn.tailwindcss.com"></script>
 
-  <style>
-    .glow:hover {
-      box-shadow: 0 0 20px #ff0080;
-      transform: scale(1.04);
-      transition: 0.25s ease;
-    }
-  </style>
+<style>
+  .card-hover {
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+  }
+  .card-hover:hover {
+    transform: scale(1.04);
+    box-shadow: 0 0 25px rgba(255, 0, 128, 0.4);
+  }
+</style>
 
 </head>
 
-<body class="bg-black text-white">
+<body class="bg-black text-white overflow-x-hidden">
 
 <!-- ================================================================================= -->
-<!--                                HEADER & MENU                                       -->
+<!--                                        HEADER                                      -->
 <!-- ================================================================================= -->
 
-<header class="fixed top-0 left-0 w-full z-50 bg-black/40 backdrop-blur-md border-b border-white/10 flex justify-between items-center px-5 py-4">
+<header id="mainHeader"
+  class="fixed top-0 left-0 w-full z-[999] flex justify-between items-center px-5 py-4
+         bg-black/50 backdrop-blur-md border-b border-white/10 transition-all duration-1000">
+
   <a href="index.html">
     <img src="logo.png" class="w-32" alt="Ecstasy Retreat Logo">
   </a>
 
-  <button id="menuBtn" class="text-white text-3xl">&#9776;</button>
+  <button id="menuBtn" class="text-white text-3xl z-[1001]">
+    &#9776;
+  </button>
 </header>
 
-<nav id="mobileMenu" class="hidden fixed top-16 right-4 bg-black/90 p-6 rounded-xl border border-white/10 space-y-4 text-lg z-50 w-56">
-  <a href="index.html" class="block hover:text-pink-400 menu-link">Home</a>
-  <a href="Therapists_List.html" class="block hover:text-pink-400 menu-link">View Therapists</a>
-  <a href="Join_Therapist.html" class="block hover:text-pink-400 menu-link">Join as Therapist</a>
-  <a href="Book_Therapist.html" class="block hover:text-pink-400 menu-link">Book Therapist</a>
-  <a href="Contact_Us.html" class="block hover:text-pink-400 menu-link">Contact Us</a>
+<!-- ================= MOBILE MENU ================= -->
+
+<nav id="mobileMenu"
+  class="hidden fixed top-16 right-4 bg-black/95 backdrop-blur-xl p-6 rounded-xl 
+         border border-pink-500/40 text-lg z-[1000] w-60 shadow-xl">
+  <a href="index.html" class="block py-2 hover:text-pink-400 menu-link">Home</a>
+  <a href="Therapists_List.html" class="block py-2 hover:text-pink-400 menu-link">View Therapists</a>
+  <a href="Join_Therapist.html" class="block py-2 hover:text-pink-400 menu-link">Join as Therapist</a>
+  <a href="Book_Therapist.html" class="block py-2 hover:text-pink-400 menu-link">Book Therapist</a>
+  <a href="Contact_Us.html" class="block py-2 hover:text-pink-400 menu-link">Contact Us</a>
 </nav>
 
-<div class="pt-24"></div>
+<div class="pt-36"></div>
 
 <!-- ================================================================================= -->
-<!--                           PAGE TITLE                                               -->
+<!--                                  PAGE TITLE                                        -->
 <!-- ================================================================================= -->
 
-<section class="text-center py-10">
-  <h1 class="text-4xl font-bold text-pink-500 tracking-wide">Our Therapists</h1>
-  <p class="text-white/70 mt-2">Browse and book from our elite selection</p>
+<section class="text-center mb-10">
+  <h1 class="text-4xl font-bold text-pink-500">Our Therapists</h1>
+  <p class="text-white/60 mt-2">Select your preferred companion for a relaxing, sensual experience.</p>
 </section>
 
 <!-- ================================================================================= -->
-<!--                       THERAPIST PROFILE CARD GRID                                   -->
+<!--                             THERAPIST PROFILE CARDS                                 -->
 <!-- ================================================================================= -->
 
-<section class="px-5 pb-24 grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+<div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8 px-6 pb-20">
 
-  <!-- SAMPLE THERAPIST CARDS (6 TOTAL) -->
-  <!-- CARD TEMPLATE -->
-  <script>
-    const therapists = [
-      { name: "Ariana Flame", area: "Sandton", img: "images/image01.jpg", services: ["Massage", "Tantric", "Companionship"] },
-      { name: "Luna Velvet", area: "Rosebank", img: "images/image02.jpg", services: ["Nuru", "Relaxation", "Bonding"] },
-      { name: "Sasha Noir", area: "Fourways", img: "images/image03.jpg", services: ["Deep Touch", "Energy Work"] },
-      { name: "Mia Blaze", area: "Bryanston", img: "images/image04.png", services: ["Full Body", "Sensual Therapy"] },
-      { name: "Chloe Ember", area: "Midrand", img: "images/image06.jpg", services: ["Tantric", "Relaxation"] },
-      { name: "Violet Storm", area: "Randburg", img: "images/image08.jpg", services: ["Massage", "Holistic Care"] },
-    ];
-  </script>
+  <!-- CARD TEMPLATE (repeated 6 times with different names/images) -->
+  <!-- CARD 1 -->
+  <div class="bg-black/60 border border-pink-500/40 rounded-2xl p-5 card-hover">
+    <img src="images/image01.jpg" class="w-40 h-40 rounded-full mx-auto object-cover" />
+    <h2 class="text-center text-2xl mt-4 font-semibold">Ariana Flame</h2>
+    <p class="text-center text-white/60">Sandton • Elite Companion</p>
 
-  <div id="cardsContainer" class="contents"></div>
+    <div class="mt-4 flex flex-col gap-3">
+      <a href="Therapist_Profile.html" class="bg-pink-600 py-3 rounded-full text-center font-bold hover:bg-pink-700 transition">
+        View Profile
+      </a>
+      <a href="Book_Therapist.html" class="border border-pink-500 py-3 rounded-full text-center font-bold text-pink-400 hover:bg-pink-500/20 transition">
+        Book Session
+      </a>
+    </div>
+  </div>
 
-</section>
+  <!-- CARD 2 -->
+  <div class="bg-black/60 border border-pink-500/40 rounded-2xl p-5 card-hover">
+    <img src="images/image02.jpg" class="w-40 h-40 rounded-full mx-auto object-cover" />
+    <h2 class="text-center text-2xl mt-4 font-semibold">Zara Bliss</h2>
+    <p class="text-center text-white/60">Rosebank • Sensual Specialist</p>
+
+    <div class="mt-4 flex flex-col gap-3">
+      <a href="Therapist_Profile.html" class="bg-pink-600 py-3 rounded-full text-center font-bold">View Profile</a>
+      <a href="Book_Therapist.html" class="border border-pink-500 py-3 rounded-full text-center font-bold text-pink-400">Book Session</a>
+    </div>
+  </div>
+
+  <!-- CARD 3 -->
+  <div class="bg-black/60 border border-pink-500/40 rounded-2xl p-5 card-hover">
+    <img src="images/image03.png" class="w-40 h-40 rounded-full mx-auto object-cover" />
+    <h2 class="text-center text-2xl mt-4 font-semibold">Mia Velvet</h2>
+    <p class="text-center text-white/60">Fourways • Massage Expert</p>
+
+    <div class="mt-4 flex flex-col gap-3">
+      <a href="Therapist_Profile.html" class="bg-pink-600 py-3 rounded-full text-center font-bold">View Profile</a>
+      <a href="Book_Therapist.html" class="border border-pink-500 py-3 rounded-full text-center font-bold text-pink-400">Book Session</a>
+    </div>
+  </div>
+
+  <!-- CARD 4 -->
+  <div class="bg-black/60 border border-pink-500/40 rounded-2xl p-5 card-hover">
+    <img src="images/image04.png" class="w-40 h-40 rounded-full mx-auto object-cover" />
+    <h2 class="text-center text-2xl mt-4 font-semibold">Jade Aurora</h2>
+    <p class="text-center text-white/60">Bryanston • Tantric Goddess</p>
+
+    <div class="mt-4 flex flex-col gap-3">
+      <a href="Therapist_Profile.html" class="bg-pink-600 py-3 rounded-full text-center font-bold">View Profile</a>
+      <a href="Book_Therapist.html" class="border border-pink-500 py-3 rounded-full text-center font-bold text-pink-400">Book Session</a>
+    </div>
+  </div>
+
+  <!-- CARD 5 -->
+  <div class="bg-black/60 border border-pink-500/40 rounded-2xl p-5 card-hover">
+    <img src="images/image06.jpg" class="w-40 h-40 rounded-full mx-auto object-cover" />
+    <h2 class="text-center text-2xl mt-4 font-semibold">Nala Storm</h2>
+    <p class="text-center text-white/60">Midrand • Sensual Healing</p>
+
+    <div class="mt-4 flex flex-col gap-3">
+      <a href="Therapist_Profile.html" class="bg-pink-600 py-3 rounded-full text-center font-bold">View Profile</a>
+      <a href="Book_Therapist.html" class="border border-pink-500 py-3 rounded-full text-center font-bold text-pink-400">Book Session</a>
+    </div>
+  </div>
+
+  <!-- CARD 6 -->
+  <div class="bg-black/60 border border-pink-500/40 rounded-2xl p-5 card-hover">
+    <img src="images/image08.jpg" class="w-40 h-40 rounded-full mx-auto object-cover" />
+    <h2 class="text-center text-2xl mt-4 font-semibold">Raven Noir</h2>
+    <p class="text-center text-white/60">Sandton • Private Muse</p>
+
+    <div class="mt-4 flex flex-col gap-3">
+      <a href="Therapist_Profile.html" class="bg-pink-600 py-3 rounded-full text-center font-bold">View Profile</a>
+      <a href="Book_Therapist.html" class="border border-pink-500 py-3 rounded-full text-center font-bold text-pink-400">Book Session</a>
+    </div>
+  </div>
+
+</div>
 
 <!-- ================================================================================= -->
-<!--                                   FOOTER                                            -->
+<!--                                      FOOTER                                        -->
 <!-- ================================================================================= -->
 
-<div class="w-full h-1 bg-gradient-to-r from-pink-500 to-fuchsia-600 opacity-80"></div>
-
-<footer class="text-center py-6">
-  <div class="flex justify-center gap-6 text-2xl mb-2">
+<footer class="text-center py-6 text-white/70">
+  <div class="flex justify-center gap-6 text-2xl mb-3">
     <a href="https://facebook.com" target="_blank">📘</a>
     <a href="https://instagram.com" target="_blank">📸</a>
     <a href="https://twitter.com" target="_blank">🐦</a>
     <a href="mailto:info@example.com">✉️</a>
-    <a href="https://wa.me/27829627848" target="_blank">📱</a>
+    <a href="https://wa.me/27829627848" target="_blank">📞</a>
   </div>
-  <p class="text-xs text-white/60">© 2025 Ecstasy Retreat — All rights reserved.</p>
+  <p class="text-xs">© 2025 Ecstasy Retreat — All rights reserved.</p>
 </footer>
 
 <!-- ================================================================================= -->
-<!--                                       JS                                            -->
+<!--                                        JS                                           -->
 <!-- ================================================================================= -->
 
 <script>
-  /* ----- MOBILE MENU ----- */
+  /* Fade header after 3 seconds */
+  const header = document.getElementById("mainHeader");
+  setTimeout(() => {
+    header.classList.remove("bg-black/50", "backdrop-blur-md", "border-white/10");
+    header.classList.add("bg-transparent", "border-transparent");
+  }, 3000);
+
+  /* Mobile menu toggle */
   const menuBtn = document.getElementById("menuBtn");
   const mobileMenu = document.getElementById("mobileMenu");
   const menuLinks = document.querySelectorAll(".menu-link");
 
-  menuBtn.onclick = () => mobileMenu.classList.toggle("hidden");
+  menuBtn.onclick = () => {
+    mobileMenu.classList.toggle("hidden");
+  };
 
   menuLinks.forEach(link => {
     link.onclick = () => mobileMenu.classList.add("hidden");
-  });
-
-  /* ----- THERAPIST CARDS RENDERING ----- */
-  const container = document.getElementById("cardsContainer");
-
-  therapists.forEach(t => {
-    container.innerHTML += `
-      <div class="bg-black/50 border border-white/10 rounded-xl p-5 text-center shadow-xl hover:border-pink-500 transition">
-        
-        <img src="${t.img}" class="w-32 h-32 object-cover rounded-full mx-auto mb-3 border-2 border-pink-500">
-
-        <h2 class="text-xl font-bold text-pink-400">${t.name}</h2>
-        <p class="text-white/60 text-sm">${t.area}</p>
-
-        <div class="flex flex-wrap justify-center gap-2 mt-3">
-          ${t.services.map(s => `<span class='text-xs bg-pink-600/30 border border-pink-500 px-2 py-1 rounded-full'>${s}</span>`).join("")}
-        </div>
-
-        <div class="mt-5 flex flex-col gap-3">
-          <a href="Therapist_Profile.html" class="glow bg-pink-600 text-white py-2 rounded-full font-bold">View Therapist</a>
-          <a href="Book_Therapist.html" class="glow bg-black border border-pink-500 text-pink-400 py-2 rounded-full font-bold">Book Therapist</a>
-        </div>
-
-      </div>
-    `;
   });
 </script>
 
