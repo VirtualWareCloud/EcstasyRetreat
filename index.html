@@ -1,145 +1,145 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Ecstasy Retreat | Exclusive Paradise</title>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Ecstasy Retreat</title>
 
-  <!-- Tailwind CSS CDN -->
-  <script src="https://cdn.tailwindcss.com"></script>
+<!-- Tailwind (CDN) -->
+<script src="https://cdn.tailwindcss.com"></script>
 
-  <style>
-    /* ============ SLIDER ANIMATION (Fade + Zoom) ============ */
-    .slide {
-      position: absolute;
-      width: 100%;
-      height: 100%;
-      object-fit: cover;
-      opacity: 0;
-      transform: scale(1.1);
-      transition: opacity 1.8s ease-in-out, transform 6s ease-out;
-    }
-    .slide.active {
-      opacity: 1;
-      transform: scale(1);
-    }
-
-    /* ============ BUTTON GLOW EFFECT ============ */
-    .glow:hover {
-      box-shadow: 0 0 20px #ff0080;
-      transform: scale(1.05);
-      transition: 0.3s ease;
-    }
-
-    /* Fix click interactions above slider */
-    .content-layer {
-      position: relative;
-      z-index: 50;
-    }
-  </style>
-
+<style>
+  .fade-image {
+    transition: opacity 1.5s ease-in-out;
+  }
+</style>
 </head>
 
-<body class="bg-black text-white overflow-hidden">
+<body class="bg-black text-white overflow-x-hidden">
 
 <!-- ================================================================================= -->
-<!--                                HEADER & MENU                                       -->
+<!--                                     HEADER                                        -->
 <!-- ================================================================================= -->
 
-<header class="fixed top-0 left-0 w-full z-50 bg-black/40 backdrop-blur-md border-b border-white/10 flex justify-between items-center px-5 py-4">
+<header id="mainHeader"
+  class="fixed top-0 left-0 w-full z-[999] flex justify-between items-center px-5 py-4
+         bg-black/50 backdrop-blur-md border-b border-white/10 transition-all duration-1000">
+
   <a href="index.html">
     <img src="logo.png" class="w-32" alt="Ecstasy Retreat Logo">
   </a>
 
-  <button id="menuBtn" class="text-white text-3xl">&#9776;</button>
+  <button id="menuBtn" class="text-white text-3xl z-[1001]">
+    &#9776;
+  </button>
 </header>
 
-<nav id="mobileMenu" class="hidden fixed top-16 right-4 bg-black/90 p-6 rounded-xl border border-white/10 space-y-4 text-lg z-50 w-56">
-  <a href="index.html" class="block hover:text-pink-400 menu-link">Home</a>
-  <a href="Therapists_List.html" class="block hover:text-pink-400 menu-link">View Therapists</a>
-  <a href="Join_Therapist.html" class="block hover:text-pink-400 menu-link">Join as Therapist</a>
-  <a href="Book_Therapist.html" class="block hover:text-pink-400 menu-link">Book Therapist</a>
-  <a href="Contact_Us.html" class="block hover:text-pink-400 menu-link">Contact Us</a>
+<!-- ================= MOBILE MENU ================= -->
+
+<nav id="mobileMenu"
+  class="hidden fixed top-16 right-4 bg-black/95 backdrop-blur-xl p-6 rounded-xl 
+         border border-pink-500/40 text-lg z-[1000] w-60 shadow-xl">
+  <a href="index.html" class="block py-2 hover:text-pink-400 menu-link">Home</a>
+  <a href="Therapists_List.html" class="block py-2 hover:text-pink-400 menu-link">View Therapists</a>
+  <a href="Join_Therapist.html" class="block py-2 hover:text-pink-400 menu-link">Join as Therapist</a>
+  <a href="Book_Therapist.html" class="block py-2 hover:text-pink-400 menu-link">Book Therapist</a>
+  <a href="Contact_Us.html" class="block py-2 hover:text-pink-400 menu-link">Contact Us</a>
 </nav>
 
+<div class="pt-40"></div>
+
 <!-- ================================================================================= -->
-<!--                               BACKGROUND SLIDER                                    -->
+<!--                           BACKGROUND FADE SLIDER                                   -->
 <!-- ================================================================================= -->
 
 <div id="slider" class="absolute inset-0 w-full h-full overflow-hidden -z-10">
-  <img src="images/image01.jpg" class="slide active">
-  <img src="images/image02.jpg" class="slide">
-  <img src="images/image03.jpg" class="slide">
-  <img src="images/image04.png" class="slide">
-  <img src="images/image06.jpg" class="slide">
-  <img src="images/image08.jpg" class="slide">
+  <img src="images/image01.jpg" class="absolute inset-0 w-full h-full object-cover brightness-75 fade-image opacity-100" />
+  <img src="images/image02.jpg" class="absolute inset-0 w-full h-full object-cover brightness-75 fade-image opacity-0" />
+  <img src="images/image03.png" class="absolute inset-0 w-full h-full object-cover brightness-75 fade-image opacity-0" />
+  <img src="images/image04.png" class="absolute inset-0 w-full h-full object-cover brightness-75 fade-image opacity-0" />
+  <img src="images/image06.jpg" class="absolute inset-0 w-full h-full object-cover brightness-75 fade-image opacity-0" />
+  <img src="images/image08.jpg" class="absolute inset-0 w-full h-full object-cover brightness-75 fade-image opacity-0" />
 </div>
 
 <!-- ================================================================================= -->
-<!--                          FLOATING BUTTONS (CTA)                                     -->
+<!--                                FLOATING BUTTONS                                    -->
 <!-- ================================================================================= -->
 
-<div class="content-layer absolute bottom-28 left-1/2 transform -translate-x-1/2 flex flex-col gap-5 w-full items-center">
+<div class="absolute bottom-28 left-1/2 -translate-x-1/2 z-40 flex flex-col gap-4 w-72">
 
-  <a href="Therapists_List.html" class="glow bg-pink-600 text-white text-center px-10 py-4 rounded-full text-lg font-bold w-60">
+  <a href="Therapists_List.html"
+     class="bg-pink-600 text-white px-10 py-4 rounded-full text-lg font-bold text-center shadow-lg
+            transition transform hover:scale-105 hover:shadow-pink-500/50">
     View Therapists
   </a>
 
-  <a href="Join_Therapist.html" class="glow bg-black/60 border border-pink-500 text-pink-400 text-center px-10 py-4 rounded-full text-lg font-bold w-60">
+  <a href="Join_Therapist.html"
+     class="bg-black/60 border border-pink-500 text-pink-400 px-10 py-4 rounded-full text-lg font-bold text-center
+            transition transform hover:scale-105 hover:shadow-pink-500/50">
     Join as Therapist
   </a>
 
 </div>
 
 <!-- ================================================================================= -->
-<!--                               DIVIDER                                              -->
+<!--                             SECTION SEPARATOR                                      -->
 <!-- ================================================================================= -->
 
-<div class="absolute bottom-20 left-0 w-full h-1 bg-gradient-to-r from-pink-500 to-fuchsia-600 opacity-80 z-40"></div>
+<div class="relative mt-[550px] mb-10 z-40">
+  <div class="w-full h-[2px] bg-pink-600/40"></div>
+</div>
 
 <!-- ================================================================================= -->
-<!--                                  FOOTER                                            -->
+<!--                                      FOOTER                                        -->
 <!-- ================================================================================= -->
 
-<footer class="absolute bottom-4 left-0 w-full text-center text-white/80 z-40">
-  <div class="flex justify-center gap-6 text-2xl mb-2">
+<footer class="text-center py-6 text-white/70 z-40 relative">
+
+  <div class="flex justify-center gap-6 text-2xl mb-3">
     <a href="https://facebook.com" target="_blank">📘</a>
     <a href="https://instagram.com" target="_blank">📸</a>
     <a href="https://twitter.com" target="_blank">🐦</a>
     <a href="mailto:info@example.com">✉️</a>
-    <a href="https://wa.me/27829627848" target="_blank">📱</a>
+    <a href="https://wa.me/27829627848" target="_blank">📞</a>
   </div>
+
   <p class="text-xs">© 2025 Ecstasy Retreat — All rights reserved.</p>
 </footer>
 
 <!-- ================================================================================= -->
-<!--                                 JAVASCRIPT                                          -->
+<!--                                      SCRIPTS                                        -->
 <!-- ================================================================================= -->
 
 <script>
-  /* ----- MOBILE MENU ----- */
+  /* ================= HEADER FADE AFTER 3 SEC ================= */
+  const header = document.getElementById("mainHeader");
+  setTimeout(() => {
+    header.classList.remove("bg-black/50", "backdrop-blur-md", "border-white/10");
+    header.classList.add("bg-transparent", "backdrop-blur-0", "border-transparent");
+  }, 3000);
+
+  /* ================== MENU TOGGLE ================== */
   const menuBtn = document.getElementById("menuBtn");
   const mobileMenu = document.getElementById("mobileMenu");
   const menuLinks = document.querySelectorAll(".menu-link");
 
-  menuBtn.onclick = () => mobileMenu.classList.toggle("hidden");
+  menuBtn.onclick = () => {
+    mobileMenu.classList.toggle("hidden");
+  };
 
-  // Close menu after clicking any item
   menuLinks.forEach(link => {
     link.onclick = () => mobileMenu.classList.add("hidden");
   });
 
-  /* ----- BACKGROUND SLIDER ----- */
-  const slides = document.querySelectorAll(".slide");
-  let index = 0;
+  /* ================== BACKGROUND SLIDER ================== */
+  const slides = document.querySelectorAll("#slider img");
+  let current = 0;
 
-  function changeSlide() {
-    slides[index].classList.remove("active");
-    index = (index + 1) % slides.length;
-    slides[index].classList.add("active");
-  }
-
-  setInterval(changeSlide, 3000);
+  setInterval(() => {
+    slides[current].style.opacity = 0;
+    current = (current + 1) % slides.length;
+    slides[current].style.opacity = 1;
+  }, 3000);
 </script>
 
 </body>
