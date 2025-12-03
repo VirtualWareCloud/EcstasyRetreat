@@ -30,20 +30,30 @@
       transform: scale(1.05);
       transition: 0.3s ease;
     }
+
+    /* Fix click interactions above slider */
+    .content-layer {
+      position: relative;
+      z-index: 50;
+    }
   </style>
 
 </head>
 
 <body class="bg-black text-white overflow-hidden">
 
-<!-- ================= HEADER ================= -->
+<!-- ================================================================================= -->
+<!--                                HEADER & MENU                                       -->
+<!-- ================================================================================= -->
+
 <header class="fixed top-0 left-0 w-full z-50 bg-black/40 backdrop-blur-md border-b border-white/10 flex justify-between items-center px-5 py-4">
-  <img src="logo.png" class="w-32" alt="Logo">
+  <a href="index.html">
+    <img src="logo.png" class="w-32" alt="Ecstasy Retreat Logo">
+  </a>
 
   <button id="menuBtn" class="text-white text-3xl">&#9776;</button>
 </header>
 
-<!-- ================= MOBILE MENU ================= -->
 <nav id="mobileMenu" class="hidden fixed top-16 right-4 bg-black/90 p-6 rounded-xl border border-white/10 space-y-4 text-lg z-50 w-56">
   <a href="index.html" class="block hover:text-pink-400 menu-link">Home</a>
   <a href="Therapists_List.html" class="block hover:text-pink-400 menu-link">View Therapists</a>
@@ -52,8 +62,11 @@
   <a href="Contact_Us.html" class="block hover:text-pink-400 menu-link">Contact Us</a>
 </nav>
 
-<!-- ================= BACKGROUND SLIDER ================= -->
-<div id="slider" class="absolute inset-0 w-full h-full overflow-hidden">
+<!-- ================================================================================= -->
+<!--                               BACKGROUND SLIDER                                    -->
+<!-- ================================================================================= -->
+
+<div id="slider" class="absolute inset-0 w-full h-full overflow-hidden -z-10">
   <img src="images/image01.jpg" class="slide active">
   <img src="images/image02.jpg" class="slide">
   <img src="images/image03.png" class="slide">
@@ -62,8 +75,11 @@
   <img src="images/image08.jpg" class="slide">
 </div>
 
-<!-- ================= FLOATING BUTTONS ================= -->
-<div class="absolute bottom-28 left-1/2 transform -translate-x-1/2 z-40 flex flex-col gap-5 w-full items-center">
+<!-- ================================================================================= -->
+<!--                          FLOATING BUTTONS (CTA)                                     -->
+<!-- ================================================================================= -->
+
+<div class="content-layer absolute bottom-28 left-1/2 transform -translate-x-1/2 flex flex-col gap-5 w-full items-center">
 
   <a href="Therapists_List.html" class="glow bg-pink-600 text-white text-center px-10 py-4 rounded-full text-lg font-bold w-60">
     View Therapists
@@ -75,10 +91,16 @@
 
 </div>
 
-<!-- ================= SECTION DIVIDER ================= -->
+<!-- ================================================================================= -->
+<!--                               DIVIDER                                              -->
+<!-- ================================================================================= -->
+
 <div class="absolute bottom-20 left-0 w-full h-1 bg-gradient-to-r from-pink-500 to-fuchsia-600 opacity-80 z-40"></div>
 
-<!-- ================= FOOTER ================= -->
+<!-- ================================================================================= -->
+<!--                                  FOOTER                                            -->
+<!-- ================================================================================= -->
+
 <footer class="absolute bottom-4 left-0 w-full text-center text-white/80 z-40">
   <div class="flex justify-center gap-6 text-2xl mb-2">
     <a href="https://facebook.com" target="_blank">📘</a>
@@ -90,22 +112,24 @@
   <p class="text-xs">© 2025 Ecstasy Retreat — All rights reserved.</p>
 </footer>
 
-<!-- ================= JAVASCRIPT ================= -->
+<!-- ================================================================================= -->
+<!--                                 JAVASCRIPT                                          -->
+<!-- ================================================================================= -->
+
 <script>
-  /* ----- MENU OPEN/CLOSE ----- */
+  /* ----- MOBILE MENU ----- */
   const menuBtn = document.getElementById("menuBtn");
   const mobileMenu = document.getElementById("mobileMenu");
   const menuLinks = document.querySelectorAll(".menu-link");
 
-  // Toggle menu
   menuBtn.onclick = () => mobileMenu.classList.toggle("hidden");
 
-  // Close menu on link click
+  // Close menu after clicking any item
   menuLinks.forEach(link => {
     link.onclick = () => mobileMenu.classList.add("hidden");
   });
 
-  /* ----- IMAGE SLIDER ----- */
+  /* ----- BACKGROUND SLIDER ----- */
   const slides = document.querySelectorAll(".slide");
   let index = 0;
 
