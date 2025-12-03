@@ -11,21 +11,23 @@
 
 <style>
   .fade-in {
-    animation: fadeIn 1.2s ease forwards;
+    animation: fadeIn 1s ease forwards;
   }
   @keyframes fadeIn {
-    from { opacity: 0; transform: translateY(10px); }
+    from { opacity: 0; transform: translateY(15px); }
     to { opacity: 1; transform: translateY(0); }
   }
   .card {
     background: rgba(255, 255, 255, 0.03);
-    backdrop-filter: blur(8px);
     border: 1px solid rgba(255, 0, 128, 0.3);
+    backdrop-filter: blur(6px);
     border-radius: 20px;
   }
-  .gallery-img:hover {
-    transform: scale(1.05);
+  .gallery-img, .gallery-video {
     transition: 0.3s ease;
+  }
+  .gallery-img:hover, .gallery-video:hover {
+    transform: scale(1.05);
   }
 </style>
 
@@ -48,7 +50,7 @@
   <button id="menuBtn" class="text-white text-3xl z-[1001]">&#9776;</button>
 </header>
 
-<!-- ================= MOBILE MENU ================= -->
+<!-- MOBILE MENU -->
 
 <nav id="mobileMenu"
   class="hidden fixed top-16 right-4 bg-black/95 backdrop-blur-xl p-6 rounded-xl 
@@ -63,14 +65,12 @@
 <div class="pt-36"></div>
 
 <!-- ================================================================================= -->
-<!--                                 PROFILE HERO AREA                                  -->
+<!--                                  HERO SECTION                                       -->
 <!-- ================================================================================= -->
 
 <section class="text-center fade-in">
-  <div class="flex justify-center">
-    <img src="images/image01.jpg"
-         class="w-56 h-56 rounded-full object-cover border-4 border-pink-500 shadow-xl" />
-  </div>
+  <img src="images/image01.jpg"
+       class="w-52 h-52 rounded-full object-cover border-4 border-pink-500 shadow-xl mx-auto" />
 
   <h1 class="text-4xl font-bold mt-6 text-pink-500">Ariana Flame</h1>
   <p class="text-white/70 mt-1 text-lg">Sandton • Elite Companion</p>
@@ -81,7 +81,7 @@
        Book a Session
     </a>
 
-    <a href="Gallery_Ariana.html"
+    <a href="#image-gallery"
        class="border border-pink-500 text-pink-400 py-3 rounded-full text-xl font-bold hover:bg-pink-500/20 transition">
        View Full Gallery
     </a>
@@ -94,12 +94,11 @@
 
 <section class="px-6 mt-10 fade-in">
   <div class="card p-6">
-    <h2 class="text-2xl font-bold text-pink-500 mb-3">About Ariana</h2>
+    <h2 class="text-2xl font-bold text-pink-500 mb-4">About Ariana</h2>
     <p class="text-white/70 leading-relaxed">
-      Ariana is a highly skilled and deeply intuitive tantric therapist with 5+ years of experience.
-      Her sessions combine sensuality, emotional connection, and full-body relaxation designed to take
-      you into a state of bliss. Known for her warm presence and magic touch, Ariana offers unforgettable
-      companionship and perfectly curated intimate experiences.
+      Ariana is one of the most requested companions at Ecstasy Retreat. With 5+ years of experience
+      in tantric and sensory therapy, she creates deeply intimate, energy-balanced sessions that
+      combine gentle touch, sensual relaxation, and emotional connection.
     </p>
   </div>
 </section>
@@ -113,17 +112,17 @@
     <h2 class="text-2xl font-bold text-pink-500 mb-4">Services</h2>
 
     <ul class="space-y-3 text-white/80">
-      <li>• Sensual Full-Body Massage</li>
-      <li>• Nuru Touch Experience</li>
-      <li>• Intimate Companion Sessions</li>
-      <li>• Emotional Connection Therapy</li>
-      <li>• Private VIP Relaxation Rituals</li>
+      <li>• Sensual Massage</li>
+      <li>• Nuru Body Slide</li>
+      <li>• Relaxation Therapy</li>
+      <li>• Emotional Intimacy Sessions</li>
+      <li>• VIP Private Experiences</li>
     </ul>
   </div>
 </section>
 
 <!-- ================================================================================= -->
-<!--                                    RATES SECTION                                    -->
+<!--                                     RATES SECTION                                   -->
 <!-- ================================================================================= -->
 
 <section class="px-6 mt-10 fade-in">
@@ -131,21 +130,21 @@
     <h2 class="text-2xl font-bold text-pink-500 mb-4">Rates</h2>
 
     <ul class="space-y-3 text-white/80">
-      <li>• 1 Hour Session — <span class="text-pink-400 font-semibold">R1200</span></li>
+      <li>• 60 Minutes — <span class="text-pink-400 font-semibold">R1200</span></li>
       <li>• 90 Minutes — <span class="text-pink-400 font-semibold">R1600</span></li>
-      <li>• 2 Hours Luxury Experience — <span class="text-pink-400 font-semibold">R2300</span></li>
-      <li>• Overnight Package — <span class="text-pink-400 font-semibold">R6000</span></li>
+      <li>• 2 Hours — <span class="text-pink-400 font-semibold">R2300</span></li>
+      <li>• Overnight — <span class="text-pink-400 font-semibold">R6000</span></li>
     </ul>
   </div>
 </section>
 
 <!-- ================================================================================= -->
-<!--                                   GALLERY PREVIEW                                  -->
+<!--                          IMAGE GALLERY PREVIEW SECTION                              -->
 <!-- ================================================================================= -->
 
-<section class="px-6 mt-10 fade-in pb-20">
+<section id="image-gallery" class="px-6 mt-12 fade-in">
   <div class="card p-6">
-    <h2 class="text-2xl font-bold text-pink-500 mb-4">Gallery Preview</h2>
+    <h2 class="text-2xl font-bold text-pink-500 mb-4">Image Gallery</h2>
 
     <div class="grid grid-cols-3 gap-3">
       <img src="images/image01.jpg" class="gallery-img rounded-xl object-cover h-28 w-full" />
@@ -153,9 +152,29 @@
       <img src="images/image03.png" class="gallery-img rounded-xl object-cover h-28 w-full" />
     </div>
 
-    <a href="Gallery_Ariana.html"
+    <a href="Gallery_Ariana_Images.html"
        class="mt-5 block text-center text-pink-400 font-semibold hover:text-pink-300">
-       View Full Gallery →
+       View Full Image Gallery →
+    </a>
+  </div>
+</section>
+
+<!-- ================================================================================= -->
+<!--                         VIDEO GALLERY PREVIEW SECTION                               -->
+<!-- ================================================================================= -->
+
+<section class="px-6 mt-12 fade-in pb-20">
+  <div class="card p-6">
+    <h2 class="text-2xl font-bold text-pink-500 mb-4">Video Gallery</h2>
+
+    <div class="grid grid-cols-2 gap-4">
+      <video src="vids/vid01.mp4" class="gallery-video rounded-xl h-32 w-full object-cover" muted></video>
+      <video src="vids/vid02.mp4" class="gallery-video rounded-xl h-32 w-full object-cover" muted></video>
+    </div>
+
+    <a href="Gallery_Ariana_Videos.html"
+       class="mt-5 block text-center text-pink-400 font-semibold hover:text-pink-300">
+       View Full Video Gallery →
     </a>
   </div>
 </section>
@@ -164,7 +183,7 @@
 <!--                                      FOOTER                                        -->
 <!-- ================================================================================= -->
 
-<footer class="text-center py-6 text-white/70 mt-10">
+<footer class="text-center py-6 text-white/70">
   <div class="flex justify-center gap-6 text-2xl mb-3">
     <a href="https://facebook.com" target="_blank">📘</a>
     <a href="https://instagram.com" target="_blank">📸</a>
@@ -176,7 +195,7 @@
 </footer>
 
 <!-- ================================================================================= -->
-<!--                                        JS                                          -->
+<!--                                      JS                                            -->
 <!-- ================================================================================= -->
 
 <script>
@@ -187,7 +206,7 @@
     header.classList.add("bg-transparent", "border-transparent");
   }, 3000);
 
-  // Mobile menu toggle
+  // Mobile menu
   const menuBtn = document.getElementById("menuBtn");
   const mobileMenu = document.getElementById("mobileMenu");
   const menuLinks = document.querySelectorAll(".menu-link");
