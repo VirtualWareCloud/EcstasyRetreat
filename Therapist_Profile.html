@@ -1,20 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Ecstasy Retreat – Therapist Profile</title>
+
+<!-- Tailwind CSS -->
+<script src="https://cdn.tailwindcss.com"></script>
+
+<style>
+  .fade-in {
+    animation: fadeIn 1.2s ease forwards;
+  }
+  @keyframes fadeIn {
+    from { opacity: 0; transform: translateY(10px); }
+    to { opacity: 1; transform: translateY(0); }
+  }
+  .card {
+    background: rgba(255, 255, 255, 0.03);
+    backdrop-filter: blur(8px);
+    border: 1px solid rgba(255, 0, 128, 0.3);
+    border-radius: 20px;
+  }
+  .gallery-img:hover {
+    transform: scale(1.05);
+    transition: 0.3s ease;
+  }
+</style>
+
+</head>
+
+<body class="bg-black text-white overflow-x-hidden">
+
 <!-- ================================================================================= -->
-<!--                                     HEADER                                        -->
+<!--                                      HEADER                                        -->
 <!-- ================================================================================= -->
 
-<header class="fixed top-0 left-0 w-full z-[999] bg-black/50 backdrop-blur-md border-b border-white/10 flex justify-between items-center px-5 py-4">
+<header id="mainHeader"
+  class="fixed top-0 left-0 w-full z-[999] flex justify-between items-center px-5 py-4
+         bg-black/50 backdrop-blur-md border-b border-white/10 transition-all duration-1000">
+
   <a href="index.html">
     <img src="logo.png" class="w-32" alt="Ecstasy Retreat Logo">
   </a>
 
-  <button id="menuBtn" class="text-white text-3xl z-[1001]">
-    &#9776;
-  </button>
+  <button id="menuBtn" class="text-white text-3xl z-[1001]">&#9776;</button>
 </header>
 
-<!-- MOBILE MENU -->
-<nav id="mobileMenu" class="hidden fixed top-16 right-4 bg-black/95 backdrop-blur-xl p-6 rounded-xl 
-border border-pink-500/40 text-lg z-[1000] w-60 shadow-xl">
+<!-- ================= MOBILE MENU ================= -->
+
+<nav id="mobileMenu"
+  class="hidden fixed top-16 right-4 bg-black/95 backdrop-blur-xl p-6 rounded-xl 
+         border border-pink-500/40 text-lg z-[1000] w-60 shadow-xl">
   <a href="index.html" class="block py-2 hover:text-pink-400 menu-link">Home</a>
   <a href="Therapists_List.html" class="block py-2 hover:text-pink-400 menu-link">View Therapists</a>
   <a href="Join_Therapist.html" class="block py-2 hover:text-pink-400 menu-link">Join as Therapist</a>
@@ -22,5 +60,141 @@ border border-pink-500/40 text-lg z-[1000] w-60 shadow-xl">
   <a href="Contact_Us.html" class="block py-2 hover:text-pink-400 menu-link">Contact Us</a>
 </nav>
 
-<!-- Push page below header -->
-<div class="pt-40"></div>
+<div class="pt-36"></div>
+
+<!-- ================================================================================= -->
+<!--                                 PROFILE HERO AREA                                  -->
+<!-- ================================================================================= -->
+
+<section class="text-center fade-in">
+  <div class="flex justify-center">
+    <img src="images/image01.jpg"
+         class="w-56 h-56 rounded-full object-cover border-4 border-pink-500 shadow-xl" />
+  </div>
+
+  <h1 class="text-4xl font-bold mt-6 text-pink-500">Ariana Flame</h1>
+  <p class="text-white/70 mt-1 text-lg">Sandton • Elite Companion</p>
+
+  <div class="mt-6 flex flex-col gap-3 px-10">
+    <a href="Book_Therapist.html"
+       class="bg-pink-600 py-3 rounded-full text-xl font-bold hover:bg-pink-700 transition">
+       Book a Session
+    </a>
+
+    <a href="Gallery_Ariana.html"
+       class="border border-pink-500 text-pink-400 py-3 rounded-full text-xl font-bold hover:bg-pink-500/20 transition">
+       View Full Gallery
+    </a>
+  </div>
+</section>
+
+<!-- ================================================================================= -->
+<!--                                     ABOUT SECTION                                  -->
+<!-- ================================================================================= -->
+
+<section class="px-6 mt-10 fade-in">
+  <div class="card p-6">
+    <h2 class="text-2xl font-bold text-pink-500 mb-3">About Ariana</h2>
+    <p class="text-white/70 leading-relaxed">
+      Ariana is a highly skilled and deeply intuitive tantric therapist with 5+ years of experience.
+      Her sessions combine sensuality, emotional connection, and full-body relaxation designed to take
+      you into a state of bliss. Known for her warm presence and magic touch, Ariana offers unforgettable
+      companionship and perfectly curated intimate experiences.
+    </p>
+  </div>
+</section>
+
+<!-- ================================================================================= -->
+<!--                                 SERVICES SECTION                                    -->
+<!-- ================================================================================= -->
+
+<section class="px-6 mt-10 fade-in">
+  <div class="card p-6">
+    <h2 class="text-2xl font-bold text-pink-500 mb-4">Services</h2>
+
+    <ul class="space-y-3 text-white/80">
+      <li>• Sensual Full-Body Massage</li>
+      <li>• Nuru Touch Experience</li>
+      <li>• Intimate Companion Sessions</li>
+      <li>• Emotional Connection Therapy</li>
+      <li>• Private VIP Relaxation Rituals</li>
+    </ul>
+  </div>
+</section>
+
+<!-- ================================================================================= -->
+<!--                                    RATES SECTION                                    -->
+<!-- ================================================================================= -->
+
+<section class="px-6 mt-10 fade-in">
+  <div class="card p-6">
+    <h2 class="text-2xl font-bold text-pink-500 mb-4">Rates</h2>
+
+    <ul class="space-y-3 text-white/80">
+      <li>• 1 Hour Session — <span class="text-pink-400 font-semibold">R1200</span></li>
+      <li>• 90 Minutes — <span class="text-pink-400 font-semibold">R1600</span></li>
+      <li>• 2 Hours Luxury Experience — <span class="text-pink-400 font-semibold">R2300</span></li>
+      <li>• Overnight Package — <span class="text-pink-400 font-semibold">R6000</span></li>
+    </ul>
+  </div>
+</section>
+
+<!-- ================================================================================= -->
+<!--                                   GALLERY PREVIEW                                  -->
+<!-- ================================================================================= -->
+
+<section class="px-6 mt-10 fade-in pb-20">
+  <div class="card p-6">
+    <h2 class="text-2xl font-bold text-pink-500 mb-4">Gallery Preview</h2>
+
+    <div class="grid grid-cols-3 gap-3">
+      <img src="images/image01.jpg" class="gallery-img rounded-xl object-cover h-28 w-full" />
+      <img src="images/image02.jpg" class="gallery-img rounded-xl object-cover h-28 w-full" />
+      <img src="images/image03.png" class="gallery-img rounded-xl object-cover h-28 w-full" />
+    </div>
+
+    <a href="Gallery_Ariana.html"
+       class="mt-5 block text-center text-pink-400 font-semibold hover:text-pink-300">
+       View Full Gallery →
+    </a>
+  </div>
+</section>
+
+<!-- ================================================================================= -->
+<!--                                      FOOTER                                        -->
+<!-- ================================================================================= -->
+
+<footer class="text-center py-6 text-white/70 mt-10">
+  <div class="flex justify-center gap-6 text-2xl mb-3">
+    <a href="https://facebook.com" target="_blank">📘</a>
+    <a href="https://instagram.com" target="_blank">📸</a>
+    <a href="https://twitter.com" target="_blank">🐦</a>
+    <a href="mailto:info@example.com">✉️</a>
+    <a href="https://wa.me/27829627848" target="_blank">📞</a>
+  </div>
+  <p class="text-xs">© 2025 Ecstasy Retreat — All rights reserved.</p>
+</footer>
+
+<!-- ================================================================================= -->
+<!--                                        JS                                          -->
+<!-- ================================================================================= -->
+
+<script>
+  // Fade header after 3 seconds
+  const header = document.getElementById("mainHeader");
+  setTimeout(() => {
+    header.classList.remove("bg-black/50", "backdrop-blur-md", "border-white/10");
+    header.classList.add("bg-transparent", "border-transparent");
+  }, 3000);
+
+  // Mobile menu toggle
+  const menuBtn = document.getElementById("menuBtn");
+  const mobileMenu = document.getElementById("mobileMenu");
+  const menuLinks = document.querySelectorAll(".menu-link");
+
+  menuBtn.onclick = () => mobileMenu.classList.toggle("hidden");
+  menuLinks.forEach(link => link.onclick = () => mobileMenu.classList.add("hidden"));
+</script>
+
+</body>
+</html>
