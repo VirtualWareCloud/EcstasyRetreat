@@ -5,170 +5,133 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Ecstasy Retreat | Therapists</title>
 
-  <!-- Tailwind CSS -->
+  <!-- Tailwind CSS CDN -->
   <script src="https://cdn.tailwindcss.com"></script>
 
   <style>
     .glow:hover {
-      box-shadow: 0 0 12px #ff0080;
-      transform: scale(1.05);
-      transition: 0.2s ease;
+      box-shadow: 0 0 20px #ff0080;
+      transform: scale(1.04);
+      transition: 0.25s ease;
     }
   </style>
+
 </head>
 
 <body class="bg-black text-white">
 
-<!-- HEADER -->
-<header class="w-full bg-black/40 backdrop-blur-md border-b border-white/10 py-4 px-5 flex justify-between items-center fixed top-0 left-0 z-50">
+<!-- ================================================================================= -->
+<!--                                HEADER & MENU                                       -->
+<!-- ================================================================================= -->
+
+<header class="fixed top-0 left-0 w-full z-50 bg-black/40 backdrop-blur-md border-b border-white/10 flex justify-between items-center px-5 py-4">
   <a href="index.html">
-    <img src="logo.png" class="w-28" alt="Logo">
+    <img src="logo.png" class="w-32" alt="Ecstasy Retreat Logo">
   </a>
-  <a href="index.html" class="text-pink-400 text-lg underline">Back</a>
+
+  <button id="menuBtn" class="text-white text-3xl">&#9776;</button>
 </header>
 
-<!-- PAGE TITLE -->
-<div class="pt-28 pb-6 text-center">
-  <h1 class="text-3xl font-bold text-pink-500 tracking-wide">Our Therapists</h1>
-  <p class="text-gray-400 text-sm mt-1">Discover premium therapists available near you</p>
-</div>
+<nav id="mobileMenu" class="hidden fixed top-16 right-4 bg-black/90 p-6 rounded-xl border border-white/10 space-y-4 text-lg z-50 w-56">
+  <a href="index.html" class="block hover:text-pink-400 menu-link">Home</a>
+  <a href="Therapists_List.html" class="block hover:text-pink-400 menu-link">View Therapists</a>
+  <a href="Join_Therapist.html" class="block hover:text-pink-400 menu-link">Join as Therapist</a>
+  <a href="Book_Therapist.html" class="block hover:text-pink-400 menu-link">Book Therapist</a>
+  <a href="Contact_Us.html" class="block hover:text-pink-400 menu-link">Contact Us</a>
+</nav>
 
-<!-- THERAPIST CARDS GRID -->
-<div class="grid grid-cols-1 md:grid-cols-2 gap-6 px-5 pb-20">
+<div class="pt-24"></div>
 
-  <!-- CARD TEMPLATE — Duplicate 6 Times -->
-  <!-- CARD 1 -->
-  <div class="bg-black/60 border border-pink-600 rounded-2xl p-4 backdrop-blur-md">
-    <div class="flex items-center gap-4">
-      <img src="images/image01.jpg" class="w-20 h-20 rounded-full object-cover border-2 border-pink-500">
-      <div>
-        <h2 class="text-xl font-bold text-white">Sofia</h2>
-        <p class="text-gray-400 text-sm">Sandton, Johannesburg</p>
-      </div>
-    </div>
+<!-- ================================================================================= -->
+<!--                           PAGE TITLE                                               -->
+<!-- ================================================================================= -->
 
-    <div class="flex flex-wrap gap-2 mt-4">
-      <span class="px-3 py-1 bg-pink-700/60 text-xs rounded-full">Massage</span>
-      <span class="px-3 py-1 bg-pink-700/60 text-xs rounded-full">Healing Touch</span>
-      <span class="px-3 py-1 bg-pink-700/60 text-xs rounded-full">Relaxation</span>
-    </div>
+<section class="text-center py-10">
+  <h1 class="text-4xl font-bold text-pink-500 tracking-wide">Our Therapists</h1>
+  <p class="text-white/70 mt-2">Browse and book from our elite selection</p>
+</section>
 
-    <div class="mt-5 flex gap-3">
-      <a href="Therapist_Profile.html" class="glow flex-1 text-center bg-pink-600 text-white py-2 rounded-full font-bold text-sm">
-        View Therapist
-      </a>
-      <a href="Book_Therapist.html" class="glow flex-1 text-center bg-black border border-pink-500 text-pink-400 py-2 rounded-full font-bold text-sm">
-        Book
-      </a>
-    </div>
+<!-- ================================================================================= -->
+<!--                       THERAPIST PROFILE CARD GRID                                   -->
+<!-- ================================================================================= -->
+
+<section class="px-5 pb-24 grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+
+  <!-- SAMPLE THERAPIST CARDS (6 TOTAL) -->
+  <!-- CARD TEMPLATE -->
+  <script>
+    const therapists = [
+      { name: "Ariana Flame", area: "Sandton", img: "images/image01.jpg", services: ["Massage", "Tantric", "Companionship"] },
+      { name: "Luna Velvet", area: "Rosebank", img: "images/image02.jpg", services: ["Nuru", "Relaxation", "Bonding"] },
+      { name: "Sasha Noir", area: "Fourways", img: "images/image03.png", services: ["Deep Touch", "Energy Work"] },
+      { name: "Mia Blaze", area: "Bryanston", img: "images/image04.png", services: ["Full Body", "Sensual Therapy"] },
+      { name: "Chloe Ember", area: "Midrand", img: "images/image06.jpg", services: ["Tantric", "Relaxation"] },
+      { name: "Violet Storm", area: "Randburg", img: "images/image08.jpg", services: ["Massage", "Holistic Care"] },
+    ];
+  </script>
+
+  <div id="cardsContainer" class="contents"></div>
+
+</section>
+
+<!-- ================================================================================= -->
+<!--                                   FOOTER                                            -->
+<!-- ================================================================================= -->
+
+<div class="w-full h-1 bg-gradient-to-r from-pink-500 to-fuchsia-600 opacity-80"></div>
+
+<footer class="text-center py-6">
+  <div class="flex justify-center gap-6 text-2xl mb-2">
+    <a href="https://facebook.com" target="_blank">📘</a>
+    <a href="https://instagram.com" target="_blank">📸</a>
+    <a href="https://twitter.com" target="_blank">🐦</a>
+    <a href="mailto:info@example.com">✉️</a>
+    <a href="https://wa.me/27829627848" target="_blank">📱</a>
   </div>
+  <p class="text-xs text-white/60">© 2025 Ecstasy Retreat — All rights reserved.</p>
+</footer>
 
-  <!-- CARD 2 -->
-  <div class="bg-black/60 border border-pink-600 rounded-2xl p-4 backdrop-blur-md">
-    <div class="flex items-center gap-4">
-      <img src="images/image02.jpg" class="w-20 h-20 rounded-full object-cover border-2 border-pink-500">
-      <div>
-        <h2 class="text-xl font-bold">Ava</h2>
-        <p class="text-gray-400 text-sm">Rosebank, Johannesburg</p>
+<!-- ================================================================================= -->
+<!--                                       JS                                            -->
+<!-- ================================================================================= -->
+
+<script>
+  /* ----- MOBILE MENU ----- */
+  const menuBtn = document.getElementById("menuBtn");
+  const mobileMenu = document.getElementById("mobileMenu");
+  const menuLinks = document.querySelectorAll(".menu-link");
+
+  menuBtn.onclick = () => mobileMenu.classList.toggle("hidden");
+
+  menuLinks.forEach(link => {
+    link.onclick = () => mobileMenu.classList.add("hidden");
+  });
+
+  /* ----- THERAPIST CARDS RENDERING ----- */
+  const container = document.getElementById("cardsContainer");
+
+  therapists.forEach(t => {
+    container.innerHTML += `
+      <div class="bg-black/50 border border-white/10 rounded-xl p-5 text-center shadow-xl hover:border-pink-500 transition">
+        
+        <img src="${t.img}" class="w-32 h-32 object-cover rounded-full mx-auto mb-3 border-2 border-pink-500">
+
+        <h2 class="text-xl font-bold text-pink-400">${t.name}</h2>
+        <p class="text-white/60 text-sm">${t.area}</p>
+
+        <div class="flex flex-wrap justify-center gap-2 mt-3">
+          ${t.services.map(s => `<span class='text-xs bg-pink-600/30 border border-pink-500 px-2 py-1 rounded-full'>${s}</span>`).join("")}
+        </div>
+
+        <div class="mt-5 flex flex-col gap-3">
+          <a href="Therapist_Profile.html" class="glow bg-pink-600 text-white py-2 rounded-full font-bold">View Therapist</a>
+          <a href="Book_Therapist.html" class="glow bg-black border border-pink-500 text-pink-400 py-2 rounded-full font-bold">Book Therapist</a>
+        </div>
+
       </div>
-    </div>
-
-    <div class="flex flex-wrap gap-2 mt-4">
-      <span class="px-3 py-1 bg-pink-700/60 text-xs rounded-full">Tantric</span>
-      <span class="px-3 py-1 bg-pink-700/60 text-xs rounded-full">Deep Calm</span>
-    </div>
-
-    <div class="mt-5 flex gap-3">
-      <a href="Therapist_Profile.html" class="glow flex-1 bg-pink-600 text-white text-center py-2 rounded-full font-bold text-sm">View Therapist</a>
-      <a href="Book_Therapist.html" class="glow flex-1 bg-black border border-pink-500 text-pink-400 text-center py-2 rounded-full font-bold text-sm">Book</a>
-    </div>
-  </div>
-
-  <!-- CARD 3 -->
-  <div class="bg-black/60 border border-pink-600 rounded-2xl p-4 backdrop-blur-md">
-    <div class="flex items-center gap-4">
-      <img src="images/image03.png" class="w-20 h-20 rounded-full object-cover border-2 border-pink-500">
-      <div>
-        <h2 class="text-xl font-bold">Zara</h2>
-        <p class="text-gray-400 text-sm">Pretoria East</p>
-      </div>
-    </div>
-
-    <div class="flex flex-wrap gap-2 mt-4">
-      <span class="px-3 py-1 bg-pink-700/60 text-xs rounded-full">Sensual</span>
-      <span class="px-3 py-1 bg-pink-700/60 text-xs rounded-full">Aromatherapy</span>
-    </div>
-
-    <div class="mt-5 flex gap-3">
-      <a href="Therapist_Profile.html" class="glow flex-1 bg-pink-600 text-white text-center py-2 rounded-full font-bold text-sm">View Therapist</a>
-      <a href="Book_Therapist.html" class="glow flex-1 bg-black border border-pink-500 text-pink-400 text-center py-2 rounded-full font-bold text-sm">Book</a>
-    </div>
-  </div>
-
-  <!-- CARD 4 -->
-  <div class="bg-black/60 border border-pink-600 rounded-2xl p-4 backdrop-blur-md">
-    <div class="flex items-center gap-4">
-      <img src="images/image04.png" class="w-20 h-20 rounded-full object-cover border-2 border-pink-500">
-      <div>
-        <h2 class="text-xl font-bold">Mia</h2>
-        <p class="text-gray-400 text-sm">Randburg, Johannesburg</p>
-      </div>
-    </div>
-
-    <div class="flex flex-wrap gap-2 mt-4">
-      <span class="px-3 py-1 bg-pink-700/60 text-xs rounded-full">Bodywork</span>
-      <span class="px-3 py-1 bg-pink-700/60 text-xs rounded-full">Energy Reset</span>
-    </div>
-
-    <div class="mt-5 flex gap-3">
-      <a href="Therapist_Profile.html" class="glow flex-1 bg-pink-600 text-white text-center py-2 rounded-full font-bold text-sm">View Therapist</a>
-      <a href="Book_Therapist.html" class="glow flex-1 bg-black border border-pink-500 text-pink-400 text-center py-2 rounded-full font-bold text-sm">Book</a>
-    </div>
-  </div>
-
-  <!-- CARD 5 -->
-  <div class="bg-black/60 border border-pink-600 rounded-2xl p-4 backdrop-blur-md">
-    <div class="flex items-center gap-4">
-      <img src="images/image06.jpg" class="w-20 h-20 rounded-full object-cover border-2 border-pink-500">
-      <div>
-        <h2 class="text-xl font-bold">Bella</h2>
-        <p class="text-gray-400 text-sm">Fourways, Johannesburg</p>
-      </div>
-    </div>
-
-    <div class="flex flex-wrap gap-2 mt-4">
-      <span class="px-3 py-1 bg-pink-700/60 text-xs rounded-full">Soft Touch</span>
-      <span class="px-3 py1 bg-pink-700/60 text-xs rounded-full">Relaxation</span>
-    </div>
-
-    <div class="mt-5 flex gap-3">
-      <a href="Therapist_Profile.html" class="glow flex-1 bg-pink-600 text-white text-center py-2 rounded-full font-bold text-sm">View Therapist</a>
-      <a href="Book_Therapist.html" class="glow flex-1 bg-black border border-pink-500 text-pink-400 text-center py-2 rounded-full font-bold text-sm">Book</a>
-    </div>
-  </div>
-
-  <!-- CARD 6 -->
-  <div class="bg-black/60 border border-pink-600 rounded-2xl p-4 backdrop-blur-md">
-    <div class="flex items-center gap-4">
-      <img src="images/image08.jpg" class="w-20 h-20 rounded-full object-cover border-2 border-pink-500">
-      <div>
-        <h2 class="text-xl font-bold">Luna</h2>
-        <p class="text-gray-400 text-sm">Midrand</p>
-      </div>
-    </div>
-
-    <div class="flex flex-wrap gap-2 mt-4">
-      <span class="px-3 py-1 bg-pink-700/60 text-xs rounded-full">Swedish</span>
-      <span class="px-3 py-1 bg-pink-700/60 text-xs rounded-full">Deep Relax</span>
-    </div>
-
-    <div class="mt-5 flex gap-3">
-      <a href="Therapist_Profile.html" class="glow flex-1 bg-pink-600 text-white text-center py-2 rounded-full font-bold text-sm">View Therapist</a>
-      <a href="Book_Therapist.html" class="glow flex-1 bg-black border border-pink-500 text-pink-400 text-center py-2 rounded-full font-bold text-sm">Book</a>
-    </div>
-  </div>
-
-</div>
+    `;
+  });
+</script>
 
 </body>
 </html>
