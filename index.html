@@ -1,154 +1,97 @@
 <!DOCTYPE html>
-<html lang="en" class="scroll-smooth">
+<html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Ecstasy Retreat | Exclusive Adult Paradise</title>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Ecstasy Retreat</title>
+
+  <!-- Tailwind CSS CDN -->
   <script src="https://cdn.tailwindcss.com"></script>
 
-  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@700&family=Cinzel:wght@900&family=Roboto:wght@300;400&display=swap" rel="stylesheet">
-
   <style>
-    .neon-text {
-      text-shadow:
-        0 0 10px #ff0066,
-        0 0 20px #ff0066,
-        0 0 40px #ff0066;
+    /* Slider Fade Animation */
+    .fade-image {
+      animation: fade 12s infinite;
     }
-    .bg-gradient-radial {
-      background: radial-gradient(circle at center, #1a0022 0%, #000000 70%);
+
+    @keyframes fade {
+      0% { opacity: 1; }
+      20% { opacity: 1; }
+      25% { opacity: 0; }
+      95% { opacity: 0; }
+      100% { opacity: 1; }
+    }
+
+    /* Mobile Menu Animation */
+    .menu-open { display: block !important; }
+
+    /* Floating glow buttons */
+    .glow:hover {
+      box-shadow: 0 0 20px #ff0080;
+      transform: scale(1.05);
+      transition: 0.3s ease;
     }
   </style>
+
 </head>
+<body class="bg-black text-white overflow-hidden">
 
-<body class="bg-black text-white overflow-x-hidden">
+<!-- HEADER -->
+<header class="fixed top-0 left-0 w-full z-50 bg-black/40 backdrop-blur-md border-b border-white/10 flex justify-between items-center px-5 py-4">
+  <img src="logo.png" class="w-32" alt="Logo">
 
-  <!-- Hero Section -->
-  <header class="relative min-h-screen flex items-center justify-center bg-gradient-radial">
+  <button id="menuBtn" class="text-white text-3xl">&#9776;</button>
+</header>
 
-    <!-- Background Image -->
-    <div
-      class="absolute inset-0 bg-cover bg-center opacity-50"
-      style="background-image: url('image03.png'); filter: brightness(0.6);">
-    </div>
+<!-- MOBILE MENU -->
+<nav id="mobileMenu" class="hidden fixed top-16 right-4 bg-black/90 p-6 rounded-xl border border-white/10 space-y-4 text-lg z-50 w-56">
+  <a href="#" class="block hover:text-pink-400">Home</a>
+  <a href="#" class="block hover:text-pink-400">View Therapists</a>
+  <a href="#" class="block hover:text-pink-400">Join as Therapist</a>
+  <a href="#" class="block hover:text-pink-400">Book Therapist</a>
+  <a href="#" class="block hover:text-pink-400">Contact Us</a>
+</nav>
 
-    <div class="relative z-10 text-center px-6">
+<!-- BACKGROUND SLIDER -->
+<div class="absolute inset-0 w-full h-full overflow-hidden">
+  <img src="images/image01.jpg" class="absolute inset-0 w-full h-full object-cover fade-image" style="animation-delay:0s;">
+  <img src="images/image02.jpg" class="absolute inset-0 w-full h-full object-cover fade-image" style="animation-delay:2s;">
+  <img src="images/image03.png" class="absolute inset-0 w-full h-full object-cover fade-image" style="animation-delay:4s;">
+  <img src="images/image04.png" class="absolute inset-0 w-full h-full object-cover fade-image" style="animation-delay:6s;">
+  <img src="images/image06.jpg" class="absolute inset-0 w-full h-full object-cover fade-image" style="animation-delay:8s;">
+  <img src="images/image08.jpg" class="absolute inset-0 w-full h-full object-cover fade-image" style="animation-delay:10s;">
+</div>
 
-      <!-- Neon Logo -->
-      <img
-        src="logo.png"
-        alt="Ecstasy Retreat Logo"
-        class="mx-auto w-80 md:w-96 mb-8 drop-shadow-2xl">
+<!-- FLOATING BUTTONS -->
+<div class="absolute bottom-24 left-1/2 transform -translate-x-1/2 z-40 flex flex-col gap-5 w-full items-center">
 
-      <h1
-        class="text-5xl md:text-7xl font-bold tracking-wider neon-text mb-6"
-        style="font-family: 'Cinzel', serif;">
-        Welcome to Paradise
-      </h1>
+  <a href="#" class="glow bg-pink-600 text-white text-center px-10 py-4 rounded-full text-lg font-bold w-60">
+    View Therapists
+  </a>
 
-      <p class="text-xl md:text-2xl font-light mb-10 max-w-2xl mx-auto opacity-90">
-        Exclusive • Sensual • 24/7 Access to premium neon-aesthetic adult content.
-      </p>
+  <a href="#" class="glow bg-black/60 border border-pink-500 text-pink-400 text-center px-10 py-4 rounded-full text-lg font-bold w-60">
+    Join as Therapist
+  </a>
 
-      <div class="flex flex-col sm:flex-row gap-6 justify-center items-center">
-        <a href="#join"
-           class="bg-red-600 hover:bg-red-700 neon-text text-white px-12 py-5 rounded-full text-xl font-bold uppercase tracking-wider shadow-2xl transform hover:scale-105 transition">
-          Join Now – Instant Access
-        </a>
+</div>
 
-        <a href="#preview"
-           class="border-2 border-red-600 text-red-500 hover:bg-red-600 hover:text-white px-12 py-5 rounded-full text-xl font-bold uppercase tracking-wider transition">
-          Free Preview
-        </a>
-      </div>
+<!-- FOOTER -->
+<footer class="absolute bottom-4 left-0 w-full text-center text-white/70 z-40">
+  <div class="flex justify-center gap-6 text-2xl mb-2">
+    <a href="https://facebook.com" target="_blank">📘</a>
+    <a href="https://instagram.com" target="_blank">📸</a>
+    <a href="https://twitter.com" target="_blank">🐦</a>
+    <a href="mailto:info@example.com">✉️</a>
+    <a href="https://wa.me/27829627848" target="_blank">📱</a>
+  </div>
+  <p class="text-xs">© 2025 Ecstasy Retreat — All rights reserved.</p>
+</footer>
 
-      <p class="mt-8 text-sm opacity-70">🔒 Discreet billing • Cancel anytime • 18+ only</p>
-
-    </div>
-
-    <!-- Scroll Indicator -->
-    <div class="absolute bottom-10 left-1/2 transform -translate-x-1/2 animate-bounce">
-      <svg class="w-10 h-10 text-red-500" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
-              d="M19 14l-7 7m0 0l-7-7m7 7V3" />
-      </svg>
-    </div>
-  </header>
-
-  <!-- Features -->
-  <section class="py-20 px-6 bg-black">
-    <div class="max-w-7xl mx-auto grid md:grid-cols-3 gap-10 text-center">
-
-      <div class="group">
-        <div class="text-6xl mb-4">🔥</div>
-        <h3 class="text-3xl font-bold neon-text mb-3">Daily New Content</h3>
-        <p class="text-gray-400">
-          Fresh photo & video drops released with a seductive neon-club aesthetic.
-        </p>
-      </div>
-
-      <div class="group">
-        <div class="text-6xl mb-4">💬</div>
-        <h3 class="text-3xl font-bold neon-text mb-3">Private Interaction</h3>
-        <p class="text-gray-400">
-          Member-only posts, updates, and secure private interactions.
-        </p>
-      </div>
-
-      <div class="group">
-        <div class="text-6xl mb-4">🎁</div>
-        <h3 class="text-3xl font-bold neon-text mb-3">VIP Benefits</h3>
-        <p class="text-gray-400">
-          Priority access to special releases, premium perks, and exclusive experiences.
-        </p>
-      </div>
-
-    </div>
-  </section>
-
-  <!-- Call To Action -->
-  <section id="join" class="py-32 bg-gradient-to-b from-black to-purple-900 text-center">
-
-    <h2
-      class="text-5xl md:text-7xl font-black neon-text mb-8"
-      style="font-family: 'Playfair Display', serif;">
-      One Click Away From Ecstasy
-    </h2>
-
-    <p class="text-2xl mb-12 opacity-90">
-      Secure your private access today.
-    </p>
-
-    <div class="max-w-md mx-auto bg-black bg-opacity-70 p-10 rounded-2xl border border-red-800">
-
-      <div class="text-6xl font-bold text-red-500 mb-4">
-        $9.99<span class="text-2xl">/month</span>
-      </div>
-
-      <ul class="text-left space-y-3 mb-10 text-gray-200">
-        <li>✓ Unlimited access to the full content library</li>
-        <li>✓ Premium neon-styled visual sets</li>
-        <li>✓ Member-only updates & posts</li>
-        <li>✓ Early access to new drops</li>
-        <li>✓ Cancel anytime</li>
-      </ul>
-
-      <a href="YOUR_CHECKOUT_LINK"
-         class="block w-full bg-red-600 hover:bg-red-700 text-white py-6 rounded-full text-2xl font-bold uppercase tracking-wider neon-text shadow-2xl transform hover:scale-105 transition">
-        Join Ecstasy Retreat
-      </a>
-
-    </div>
-  </section>
-
-  <!-- Footer -->
-  <footer class="py-12 bg-black border-t border-gray-900 text-center text-sm opacity-70">
-    <p>
-      © 2025 Ecstasy Retreat • All rights reserved • 18+ Only •
-      <a href="#" class="text-red-500 hover:underline">Terms</a> •
-      <a href="#" class="text-red-500 hover:underline">Privacy</a>
-    </p>
-  </footer>
+<!-- MENU TOGGLE SCRIPT -->
+<script>
+  document.getElementById("menuBtn").onclick = () =>
+    document.getElementById("mobileMenu").classList.toggle("hidden");
+</script>
 
 </body>
 </html>
