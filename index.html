@@ -3,80 +3,86 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Ecstasy Retreat</title>
+  <title>Ecstasy Retreat | Exclusive Paradise</title>
 
   <!-- Tailwind CSS CDN -->
   <script src="https://cdn.tailwindcss.com"></script>
 
   <style>
-    /* Slider Fade Animation */
-    .fade-image {
-      animation: fade 12s infinite;
+    /* ============ SLIDER ANIMATION (Fade + Zoom) ============ */
+    .slide {
+      position: absolute;
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      opacity: 0;
+      transform: scale(1.1);
+      transition: opacity 1.8s ease-in-out, transform 6s ease-out;
+    }
+    .slide.active {
+      opacity: 1;
+      transform: scale(1);
     }
 
-    @keyframes fade {
-      0% { opacity: 1; }
-      20% { opacity: 1; }
-      25% { opacity: 0; }
-      95% { opacity: 0; }
-      100% { opacity: 1; }
-    }
-
-    /* Mobile Menu Animation */
-    .menu-open { display: block !important; }
-
-    /* Floating glow buttons */
+    /* ============ BUTTON GLOW EFFECT ============ */
     .glow:hover {
       box-shadow: 0 0 20px #ff0080;
       transform: scale(1.05);
       transition: 0.3s ease;
     }
+
+    /* ============ MOBILE MENU OVERRIDE ============ */
+    .menu-open {
+      display: block !important;
+    }
   </style>
 
 </head>
+
 <body class="bg-black text-white overflow-hidden">
 
-<!-- HEADER -->
+<!-- ================= HEADER ================= -->
 <header class="fixed top-0 left-0 w-full z-50 bg-black/40 backdrop-blur-md border-b border-white/10 flex justify-between items-center px-5 py-4">
   <img src="logo.png" class="w-32" alt="Logo">
 
   <button id="menuBtn" class="text-white text-3xl">&#9776;</button>
 </header>
 
-<!-- MOBILE MENU -->
+<!-- ================= MOBILE MENU ================= -->
 <nav id="mobileMenu" class="hidden fixed top-16 right-4 bg-black/90 p-6 rounded-xl border border-white/10 space-y-4 text-lg z-50 w-56">
-  <a href="#" class="block hover:text-pink-400">Home</a>
-  <a href="#" class="block hover:text-pink-400">View Therapists</a>
-  <a href="#" class="block hover:text-pink-400">Join as Therapist</a>
-  <a href="#" class="block hover:text-pink-400">Book Therapist</a>
-  <a href="#" class="block hover:text-pink-400">Contact Us</a>
+  <a href="#home" class="block hover:text-pink-400 menu-link">Home</a>
+  <a href="#therapists" class="block hover:text-pink-400 menu-link">View Therapists</a>
+  <a href="#join" class="block hover:text-pink-400 menu-link">Join as Therapist</a>
+  <a href="#book" class="block hover:text-pink-400 menu-link">Book Therapist</a>
+  <a href="#contact" class="block hover:text-pink-400 menu-link">Contact Us</a>
 </nav>
 
-<!-- BACKGROUND SLIDER -->
-<div class="absolute inset-0 w-full h-full overflow-hidden">
-  <img src="images/image01.jpg" class="absolute inset-0 w-full h-full object-cover fade-image" style="animation-delay:0s;">
-  <img src="images/image02.jpg" class="absolute inset-0 w-full h-full object-cover fade-image" style="animation-delay:2s;">
-  <img src="images/image03.png" class="absolute inset-0 w-full h-full object-cover fade-image" style="animation-delay:4s;">
-  <img src="images/image04.png" class="absolute inset-0 w-full h-full object-cover fade-image" style="animation-delay:6s;">
-  <img src="images/image06.jpg" class="absolute inset-0 w-full h-full object-cover fade-image" style="animation-delay:8s;">
-  <img src="images/image08.jpg" class="absolute inset-0 w-full h-full object-cover fade-image" style="animation-delay:10s;">
+<!-- ================= BACKGROUND SLIDER ================= -->
+<div id="slider" class="absolute inset-0 w-full h-full overflow-hidden">
+  <img src="images/image01.jpg" class="slide active">
+  <img src="images/image02.jpg" class="slide">
+  <img src="images/image03.png" class="slide">
+  <img src="images/image04.png" class="slide">
+  <img src="images/image06.jpg" class="slide">
+  <img src="images/image08.jpg" class="slide">
 </div>
 
-<!-- FLOATING BUTTONS -->
-<div class="absolute bottom-24 left-1/2 transform -translate-x-1/2 z-40 flex flex-col gap-5 w-full items-center">
-
-  <a href="#" class="glow bg-pink-600 text-white text-center px-10 py-4 rounded-full text-lg font-bold w-60">
+<!-- ================= FLOATING BUTTONS ================= -->
+<div class="absolute bottom-28 left-1/2 transform -translate-x-1/2 z-40 flex flex-col gap-5 w-full items-center">
+  <a href="#therapists" class="glow bg-pink-600 text-white text-center px-10 py-4 rounded-full text-lg font-bold w-60">
     View Therapists
   </a>
 
-  <a href="#" class="glow bg-black/60 border border-pink-500 text-pink-400 text-center px-10 py-4 rounded-full text-lg font-bold w-60">
+  <a href="#join" class="glow bg-black/60 border border-pink-500 text-pink-400 text-center px-10 py-4 rounded-full text-lg font-bold w-60">
     Join as Therapist
   </a>
-
 </div>
 
-<!-- FOOTER -->
-<footer class="absolute bottom-4 left-0 w-full text-center text-white/70 z-40">
+<!-- ================= SECTION DIVIDER ================= -->
+<div class="absolute bottom-20 left-0 w-full h-1 bg-gradient-to-r from-pink-500 to-fuchsia-600 opacity-80 z-40"></div>
+
+<!-- ================= FOOTER ================= -->
+<footer class="absolute bottom-4 left-0 w-full text-center text-white/80 z-40">
   <div class="flex justify-center gap-6 text-2xl mb-2">
     <a href="https://facebook.com" target="_blank">📘</a>
     <a href="https://instagram.com" target="_blank">📸</a>
@@ -87,10 +93,32 @@
   <p class="text-xs">© 2025 Ecstasy Retreat — All rights reserved.</p>
 </footer>
 
-<!-- MENU TOGGLE SCRIPT -->
+<!-- ================= JAVASCRIPT ================= -->
 <script>
-  document.getElementById("menuBtn").onclick = () =>
-    document.getElementById("mobileMenu").classList.toggle("hidden");
+  /* ----- MENU OPEN/CLOSE ----- */
+  const menuBtn = document.getElementById("menuBtn");
+  const mobileMenu = document.getElementById("mobileMenu");
+  const menuLinks = document.querySelectorAll(".menu-link");
+
+  // Toggle menu
+  menuBtn.onclick = () => mobileMenu.classList.toggle("hidden");
+
+  // Close menu on link click
+  menuLinks.forEach(link => {
+    link.onclick = () => mobileMenu.classList.add("hidden");
+  });
+
+  /* ----- IMAGE SLIDER ----- */
+  const slides = document.querySelectorAll(".slide");
+  let index = 0;
+
+  function changeSlide() {
+    slides[index].classList.remove("active");
+    index = (index + 1) % slides.length;
+    slides[index].classList.add("active");
+  }
+
+  setInterval(changeSlide, 3000);
 </script>
 
 </body>
