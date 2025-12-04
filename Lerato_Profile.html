@@ -11,19 +11,41 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
 
     <style>
-        /* Custom Styles for Glassmorphism/Dark Theme */
+        /* ======================================= */
+        /* Custom Styles for Glassmorphism/Dark Theme and Contrast */
+        /* ======================================= */
+
         :root {
-            --pink-accent: 236 72% 51%; /* HSL for pink-500 */
+            /* WCAG AA contrast against black */
+            --color-pink: #ec4899; 
         }
 
-        /* Base Card Styling with Neon Border */
+        body {
+            background-color: #0a0a0a;
+            color: #ffffff;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            transition: background-color 0.5s; /* For Discreet Mode transition */
+        }
+
+        /* Base Card Styling with Neon Border & Separation */
         .card-glass {
-            background: rgba(18, 18, 18, 0.6); /* Darker, semi-transparent background */
-            border: 1px solid rgba(255, 0, 128, 0.15); /* Soft border */
+            background: rgba(18, 18, 18, 0.75);
+            border: 1px solid rgba(255, 0, 128, 0.15);
             backdrop-filter: blur(8px);
             border-radius: 20px;
-            box-shadow: 0 4px 60px rgba(255, 0, 128, 0.05), /* Subtle glow */
-                        0 1px 10px rgba(255, 0, 128, 0.03);
+            box-shadow: 0 4px 60px rgba(255, 0, 128, 0.05);
+            transition: all 0.5s ease;
+        }
+
+        /* --- 3D Hover Effect for Gallery/Buttons --- */
+        .cta-3d-hover {
+            transition: transform 0.4s cubic-bezier(0.25, 0.8, 0.25, 1), box-shadow 0.4s ease;
+            transform-style: preserve-3d;
+        }
+        .cta-3d-hover:hover {
+            /* Subtle lift and rotation for 3D effect */
+            transform: perspective(1000px) translateY(-5px) rotateX(1deg);
+            box-shadow: 0 15px 40px rgba(255, 0, 128, 0.4);
         }
 
         /* Scroll-Based Fade-In Animation */
@@ -32,96 +54,138 @@
             transform: translateY(20px);
             transition: opacity 0.8s ease-out, transform 0.8s ease-out;
         }
-
         .animate-on-scroll.is-visible {
             opacity: 1;
             transform: translateY(0);
         }
 
-        /* Interactive Elements Hover/Focus */
+        /* Gallery Item Hover */
         .gallery-item {
-            transition: transform 0.4s cubic-bezier(0.25, 0.8, 0.25, 1);
+            transition: transform 0.4s ease, box-shadow 0.4s ease;
             position: relative;
             overflow: hidden;
             cursor: pointer;
         }
         .gallery-item:hover {
-            transform: scale(1.05) translateY(-5px);
+            transform: scale(1.05);
             box-shadow: 0 10px 30px rgba(255, 0, 128, 0.3);
         }
 
-        /* Testimonial Carousel Dots */
-        .dot {
-            transition: background-color 0.3s;
+        /* Discreet Mode Styles (JS applies .discreet-mode to body) */
+        .discreet-mode {
+            background-color: #f7f7f7 !important;
+            color: #333333 !important;
         }
-
-        /* Lightbox Modal */
-        #lightbox-modal {
-            background-color: rgba(0, 0, 0, 0.95);
+        .discreet-mode .text-pink-500,
+        .discreet-mode .text-pink-400,
+        .discreet-mode .bg-pink-600 {
+            color: #6c757d !important; /* Muted Grey */
+            background-color: #e9ecef !important; /* Lighter background */
         }
-
+        .discreet-mode .card-glass {
+            background: rgba(255, 255, 255, 0.9) !important;
+            border-color: #ced4da !important;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1) !important;
+        }
+        .discreet-mode .text-white\/70, .discreet-mode .text-white\/80 {
+            color: #555555 !important;
+        }
+        .discreet-mode .header-logo, .discreet-mode .footer-logo {
+            display: none !important;
+        }
+        .discreet-mode .discreet-logo {
+            display: flex !important;
+            color: #495057 !important;
+        }
+        
     </style>
 
 </head>
 
-<body class="bg-[#0f0f0f] text-white overflow-x-hidden font-sans">
+<body class="font-sans">
 
 <header id="mainHeader"
     class="fixed top-0 left-0 w-full z-[999] flex justify-between items-center px-6 py-4
-           bg-[#0f0f0f]/80 backdrop-blur-md border-b border-white/5 transition-all duration-300">
+           bg-[#0a0a0a]/80 backdrop-blur-md border-b border-white/5 transition-all duration-300">
 
     <a href="index.html" class="flex items-center space-x-2">
-        <div class="text-2xl font-extrabold tracking-widest text-pink-500">ECSTASY</div>
+        <div class="text-2xl font-extrabold tracking-widest text-pink-500 header-logo">ECSTASY RETREAT</div>
+        <div class="text-2xl font-extrabold tracking-widest discreet-logo hidden">E.R.</div>
     </a>
 
-    <nav class="hidden md:flex space-x-8 text-sm font-medium">
-        <a href="index.html" class="hover:text-pink-400 transition">Home</a>
-        <a href="Therapists_List.html" class="hover:text-pink-400 transition">Therapists</a>
-        <a href="Join_Therapist.html" class="hover:text-pink-400 transition">Join Us</a>
-        <a href="Contact_Us.html" class="hover:text-pink-400 transition">Contact</a>
-        <a href="Book_Therapist.html" class="bg-pink-600 px-4 py-2 rounded-full text-white hover:bg-pink-700 transition">Book Now</a>
-    </nav>
+    <div class="flex items-center space-x-4">
+        <button id="discreetBtn" class="text-white/60 hover:text-pink-400 transition text-2xl" title="Toggle Discreet Mode">
+            <i class="fa-solid fa-ghost" id="discreetIcon"></i>
+        </button>
 
-    <button id="menuBtn" class="text-pink-500 text-3xl md:hidden z-[1001]">
-        <i class="fa-solid fa-bars" id="menuIcon"></i>
-    </button>
+        <button id="menuBtn" class="text-pink-500 text-3xl z-[1001]">
+            <i class="fa-solid fa-bars" id="menuIcon"></i>
+        </button>
+    </div>
 </header>
 
 <nav id="mobileMenu"
     class="hidden fixed top-[72px] right-4 bg-black/95 backdrop-blur-xl p-6 rounded-2xl
-           border border-pink-500/40 text-lg z-[1000] w-64 shadow-2xl md:hidden">
-    <a href="index.html" class="block py-3 hover:text-pink-400 menu-link transition duration-200">Home</a>
-    <a href="Therapists_List.html" class="block py-3 hover:text-pink-400 menu-link transition duration-200">View Therapists</a>
-    <a href="Join_Therapist.html" class="block py-3 hover:text-pink-400 menu-link transition duration-200">Join as Therapist</a>
-    <a href="Book_Therapist.html" class="block py-3 hover:text-pink-400 menu-link transition duration-200">Book Session</a>
-    <a href="Contact_Us.html" class="block py-3 hover:text-pink-400 menu-link transition duration-200">Contact Us</a>
+           border border-pink-500/40 text-lg z-[1000] w-64 shadow-2xl">
+    
+    <a href="index.html" class="block py-3 hover:text-pink-400 menu-link transition duration-200">
+        <i class="fa-solid fa-house w-6"></i> Home
+    </a>
+    <a href="Therapists_List.html" class="block py-3 hover:text-pink-400 menu-link transition duration-200">
+        <i class="fa-solid fa-users w-6"></i> View Therapists
+    </a>
+    <hr class="border-white/10 my-2">
+    <a href="Lerato_Profile.html" class="block py-3 text-pink-500 font-bold menu-link transition duration-200">
+        <i class="fa-solid fa-user-tie w-6"></i> Ariana Flame Profile
+    </a>
+    <a href="Gallery_Lerato_Images.html" class="block py-3 hover:text-pink-400 menu-link transition duration-200">
+        <i class="fa-solid fa-camera w-6"></i> Image Gallery
+    </a>
+    <a href="Gallery_Lerato_Videos.html" class="block py-3 hover:text-pink-400 menu-link transition duration-200">
+        <i class="fa-solid fa-video w-6"></i> Video Gallery
+    </a>
+    <hr class="border-white/10 my-2">
+    <a href="Join_Therapist.html" class="block py-3 hover:text-pink-400 menu-link transition duration-200">
+        <i class="fa-solid fa-handshake w-6"></i> Join as Therapist
+    </a>
+    <a href="Book_Therapist.html" class="block py-3 hover:text-pink-400 menu-link transition duration-200">
+        <i class="fa-solid fa-calendar-check w-6"></i> Book Session
+    </a>
+    <a href="Contact_Us.html" class="block py-3 hover:text-pink-400 menu-link transition duration-200">
+        <i class="fa-solid fa-envelope w-6"></i> Contact Us
+    </a>
 </nav>
 
 <div class="pt-24 md:pt-32"></div>
 
 <section class="text-center px-6 md:px-12 animate-on-scroll">
-    <div class="relative w-48 h-48 mx-auto">
+    <div class="relative w-52 h-52 mx-auto">
         
         <img src="images/lerato_image07.jpg"
-            class="w-48 h-48 rounded-full object-cover border-4 border-pink-500 shadow-[0_0_20px_rgba(236,72,157,0.5)] mx-auto"
-            alt="Ariana Flame Profile Image" />
+            class="w-52 h-52 rounded-full object-cover border-4 border-pink-500 shadow-[0_0_20px_rgba(236,72,157,0.5)] mx-auto"
+            alt="Ariana Flame Profile Image" loading="lazy" />
 
-        <span class="absolute bottom-2 right-2 flex items-center bg-green-500 text-xs font-bold px-3 py-1 rounded-full border border-white">
-            <i class="fa-solid fa-circle text-[8px] mr-1"></i> Available
+        <span class="absolute bottom-4 right-4 flex items-center bg-green-500/20 text-green-400 text-xs font-bold px-3 py-1 rounded-full border border-green-500/50">
+            <i class="fa-solid fa-circle text-[8px] mr-1"></i> Available Now
         </span>
     </div>
 
     <h1 class="text-5xl font-extrabold mt-8 text-pink-400 tracking-tight">Ariana Flame ✨</h1>
     <p class="text-white/70 mt-2 text-xl italic">The Sensual Muse of Sandton</p>
 
+    <div class="mt-4 flex justify-center space-x-6 text-sm">
+        <span class="text-yellow-400 text-lg font-bold">4.9/5.0 <span class="text-white/50">(350+ sessions)</span></span>
+        <span class="text-white/80 font-medium">VERIFIED <i class="fa-solid fa-shield-halved text-pink-500 ml-1"></i></span>
+    </div>
+
     <div class="mt-8 flex flex-col md:flex-row justify-center gap-4 px-4 md:px-10 max-w-xl mx-auto">
         <a href="Book_Therapist.html"
-           class="flex items-center justify-center bg-pink-600 w-full md:w-auto py-3 px-8 rounded-full text-xl font-bold hover:bg-pink-700 transition duration-300 transform hover:scale-[1.02] shadow-lg shadow-pink-500/30">
+           class="cta-3d-hover flex items-center justify-center bg-pink-600 w-full md:w-auto py-3 px-8 rounded-full text-xl font-bold text-white hover:bg-pink-700 transition duration-300 shadow-lg shadow-pink-500/30">
            <i class="fa-solid fa-calendar-check mr-2"></i> Book a Session
         </a>
 
         <button id="galleryBtn"
-           class="flex items-center justify-center border border-pink-500 text-pink-400 w-full md:w-auto py-3 px-8 rounded-full text-xl font-bold hover:bg-pink-500/20 transition duration-300 transform hover:scale-[1.02]">
+           class="cta-3d-hover flex items-center justify-center border border-pink-500 text-pink-400 w-full md:w-auto py-3 px-8 rounded-full text-xl font-bold hover:bg-pink-500/20 transition duration-300">
            <i class="fa-solid fa-image-polaroid mr-2"></i> View Full Gallery
         </button>
     </div>
@@ -260,24 +324,24 @@
         </h2>
 
         <div class="grid grid-cols-2 md:grid-cols-4 gap-4">
-            <div class="gallery-item rounded-xl" data-type="image" data-src="images/lerato_image07.jpg">
-                <img src="images/lerato_image07.jpg" class="rounded-xl object-cover h-40 w-full" alt="Gallery Image 1" />
+            <div class="gallery-item cta-3d-hover rounded-xl" data-type="image" data-src="images/lerato_image07.jpg">
+                <img src="images/lerato_image07.jpg" class="rounded-xl object-cover h-40 w-full" alt="Gallery Image 1" loading="lazy" />
             </div>
-            <div class="gallery-item rounded-xl" data-type="image" data-src="images/image02.jpg">
-                <img src="images/image02.jpg" class="rounded-xl object-cover h-40 w-full" alt="Gallery Image 2" />
+            <div class="gallery-item cta-3d-hover rounded-xl" data-type="image" data-src="images/image02.jpg">
+                <img src="images/image02.jpg" class="rounded-xl object-cover h-40 w-full" alt="Gallery Image 2" loading="lazy" />
             </div>
-            <div class="gallery-item rounded-xl relative" data-type="video" data-src="vids/vid01.mp4">
-                <video src="vids/vid01.mp4" class="rounded-xl h-40 w-full object-cover" muted loop></video>
+            <div class="gallery-item cta-3d-hover rounded-xl relative" data-type="video" data-src="vids/vid01.mp4">
+                <video src="vids/vid01.mp4" class="rounded-xl h-40 w-full object-cover" muted loop loading="lazy"></video>
                 <div class="absolute inset-0 bg-black/30 flex items-center justify-center transition opacity-0 hover:opacity-100">
                     <i class="fa-solid fa-play text-4xl text-white/90"></i>
                 </div>
             </div>
-            <a href="Gallery_Ariana_Images.html" class="gallery-item flex items-center justify-center bg-black/50 rounded-xl h-40 w-full border border-pink-500/30 text-pink-400 font-bold hover:text-white hover:border-pink-500 transition">
+            <a href="Gallery_Lerato_Images.html" class="gallery-item cta-3d-hover flex items-center justify-center bg-black/50 rounded-xl h-40 w-full border border-pink-500/30 text-pink-400 font-bold hover:text-white hover:border-pink-500 transition">
                 + 12 More
             </a>
         </div>
 
-        <a href="Gallery_Ariana_Videos.html"
+        <a href="Gallery_Lerato_Videos.html"
            class="mt-8 block text-center text-pink-400 font-semibold hover:text-pink-300 transition text-lg">
            View All Videos & Full Collection →
         </a>
@@ -307,27 +371,39 @@
     <p class="text-xs mt-3">© 2025 Ecstasy Retreat — Elite International Companionship.</p>
 </footer>
 
+<nav class="fixed bottom-0 left-0 w-full bg-[#0a0a0a]/90 backdrop-blur-md border-t border-white/10 z-[900] flex justify-around md:hidden py-2">
+    <a href="index.html" class="flex flex-col items-center text-white/70 hover:text-pink-500 transition text-xs">
+        <i class="fa-solid fa-house text-xl"></i> Home
+    </a>
+    <a href="Therapists_List.html" class="flex flex-col items-center text-pink-500 transition text-xs font-bold">
+        <i class="fa-solid fa-users text-xl"></i> Therapists
+    </a>
+    <a href="Book_Therapist.html" class="flex flex-col items-center text-white/70 hover:text-pink-500 transition text-xs">
+        <i class="fa-solid fa-calendar-check text-xl"></i> Book Now
+    </a>
+    <a href="Contact_Us.html" class="flex flex-col items-center text-white/70 hover:text-pink-500 transition text-xs">
+        <i class="fa-solid fa-envelope text-xl"></i> Contact
+    </a>
+</nav>
+
 <script>
-    // --- Header Scroll Effect ---
+    // --- Global Elements ---
+    const body = document.body;
     const header = document.getElementById("mainHeader");
     const mobileMenu = document.getElementById("mobileMenu");
     const menuIcon = document.getElementById("menuIcon");
-    const headerHeightBase = 96; // 6rem (pt-24/md:pt-32) from line 108
 
+    // --- Header Scroll Effect ---
     function handleHeaderScroll() {
-        const scrollY = window.scrollY;
-
-        // Sticky Header: Make it smaller and slightly more opaque on scroll
-        if (scrollY > headerHeightBase) {
-            header.classList.add("py-3", "bg-[#0f0f0f]");
-            header.classList.remove("py-4", "bg-[#0f0f0f]/80");
+        if (window.scrollY > 100) {
+            header.classList.add("py-3", "shadow-lg", "border-pink-500/10");
+            header.classList.remove("py-4");
         } else {
-            header.classList.remove("py-3", "bg-[#0f0f0f]");
-            header.classList.add("py-4", "bg-[#0f0f0f]/80");
+            header.classList.remove("py-3", "shadow-lg", "border-pink-500/10");
+            header.classList.add("py-4");
         }
     }
     window.addEventListener("scroll", handleHeaderScroll);
-    window.addEventListener("load", handleHeaderScroll); // Initialize on load
 
     // --- Mobile Menu Toggle ---
     const menuBtn = document.getElementById("menuBtn");
@@ -335,19 +411,31 @@
 
     menuBtn.onclick = () => {
         mobileMenu.classList.toggle("hidden");
-        // Animate Hamburger to Close icon
         menuIcon.classList.toggle("fa-bars");
         menuIcon.classList.toggle("fa-xmark");
     };
-    // Close menu when a link is clicked
     menuLinks.forEach(link => link.onclick = () => {
         mobileMenu.classList.add("hidden");
         menuIcon.classList.add("fa-bars");
         menuIcon.classList.remove("fa-xmark");
     });
 
+    // --- Discreet Mode Toggle Functionality ---
+    const discreetBtn = document.getElementById("discreetBtn");
+    const discreetIcon = document.getElementById("discreetIcon");
 
-    // --- Intersection Observer for Scroll Animations (Professional Feature) ---
+    discreetBtn.onclick = () => {
+        const isDiscreet = body.classList.toggle("discreet-mode");
+        if (isDiscreet) {
+            discreetIcon.classList.replace("fa-ghost", "fa-lock");
+            discreetBtn.title = "Exit Discreet Mode";
+        } else {
+            discreetIcon.classList.replace("fa-lock", "fa-ghost");
+            discreetBtn.title = "Toggle Discreet Mode";
+        }
+    };
+
+    // --- Intersection Observer for Scroll Animations ---
     const observerOptions = {
         root: null,
         rootMargin: "0px",
@@ -358,7 +446,7 @@
         entries.forEach(entry => {
             if (entry.isIntersecting) {
                 entry.target.classList.add("is-visible");
-                observer.unobserve(entry.target); // Stop observing once visible
+                observer.unobserve(entry.target);
             }
         });
     }, observerOptions);
@@ -378,7 +466,6 @@
             slide.style.opacity = 0;
             if (i === index) {
                 slide.classList.remove("hidden");
-                // Simple fade-in animation for slides
                 setTimeout(() => slide.style.opacity = 1, 10);
             }
         });
@@ -406,7 +493,7 @@
     setInterval(() => {
         let nextSlide = (currentSlide + 1) % slides.length;
         showSlide(nextSlide);
-    }, 8000); // Change slide every 8 seconds
+    }, 8000);
 
     showSlide(0); // Initialize first slide
 
@@ -427,13 +514,13 @@
     const galleryBtn = document.getElementById('galleryBtn');
 
     function openLightbox(type, src) {
-        lightboxContent.innerHTML = ''; // Clear previous content
+        lightboxContent.innerHTML = '';
 
         if (type === 'image') {
             const img = document.createElement('img');
             img.src = src;
             img.className = 'w-full h-auto max-h-[80vh] object-contain rounded-lg';
-            img.onclick = (e) => e.stopPropagation(); // Prevent modal close on image click
+            img.onclick = (e) => e.stopPropagation();
             lightboxContent.appendChild(img);
         } else if (type === 'video') {
             const video = document.createElement('video');
@@ -442,7 +529,7 @@
             video.controls = true;
             video.autoplay = true;
             video.loop = true;
-            video.onclick = (e) => e.stopPropagation(); // Prevent modal close on video click
+            video.onclick = (e) => e.stopPropagation();
             lightboxContent.appendChild(video);
         }
 
@@ -451,9 +538,7 @@
     }
 
     function closeLightbox(event) {
-        // Only close if clicked on the background or the close button
         if (!event || event.target === lightboxModal || event.target.tagName === 'BUTTON') {
-            // Pause any running videos before closing
             const video = lightboxContent.querySelector('video');
             if (video) video.pause();
 
@@ -462,231 +547,22 @@
         }
     }
 
-    // Attach click listener to gallery items
     galleryItems.forEach(item => {
         item.addEventListener('click', (e) => {
             e.preventDefault();
             const type = item.dataset.type;
-            const src = type === 'image' ? item.querySelector('img').src : item.querySelector('video').src;
-            if (type !== undefined) { // Ignore the +12 More link
+            const srcElement = item.querySelector('img') || item.querySelector('video');
+            if (srcElement && type !== undefined) {
+                const src = srcElement.getAttribute('src');
                 openLightbox(type, src);
             }
         });
     });
 
-    // Scroll to gallery section when 'View Full Gallery' is clicked
     galleryBtn.addEventListener('click', () => {
         document.getElementById('image-gallery-section').scrollIntoView({ behavior: 'smooth' });
     });
 
-</script>
-
-</body>
-</html>
-
-<!-- ================================================================================= -->
-<!--                                      HEADER                                        -->
-<!-- ================================================================================= -->
-
-<header id="mainHeader"
-  class="fixed top-0 left-0 w-full z-[999] flex justify-between items-center px-5 py-4
-         bg-black/50 backdrop-blur-md border-b border-white/10 transition-all duration-1000">
-
-  <a href="index.html">
-    <img src="logo.png" class="w-32" alt="Ecstasy Retreat Logo">
-  </a>
-
-  <button id="menuBtn" class="text-white text-3xl z-[1001]">&#9776;</button>
-</header>
-
-<!-- MOBILE MENU -->
-
-<nav id="mobileMenu"
-  class="hidden fixed top-16 right-4 bg-black/95 backdrop-blur-xl p-6 rounded-xl 
-         border border-pink-500/40 text-lg z-[1000] w-60 shadow-xl">
-  <a href="index.html" class="block py-2 hover:text-pink-400 menu-link">Home</a>
-  <a href="Therapists_List.html" class="block py-2 hover:text-pink-400 menu-link">View Therapists</a>
-  <a href="Join_Therapist.html" class="block py-2 hover:text-pink-400 menu-link">Join as Therapist</a>
-  <a href="Book_Therapist.html" class="block py-2 hover:text-pink-400 menu-link">Book Therapist</a>
-  <a href="Contact_Us.html" class="block py-2 hover:text-pink-400 menu-link">Contact Us</a>
-</nav>
-
-<!-- Space under header -->
-<div class="pt-36"></div>
-
-<!-- ================================================================================= -->
-<!--                                  HERO SECTION                                       -->
-<!-- ================================================================================= -->
-
-<section class="text-center fade-in">
-
-  <!-- LERATO MAIN IMAGE -->
-  <img src="images/lerato_image01.jpg"
-       class="w-52 h-52 rounded-full object-cover border-4 border-pink-500 shadow-xl mx-auto" />
-
-  <h1 class="text-4xl font-bold mt-6 text-pink-500">Lerato</h1>
-  <p class="text-white/70 mt-1 text-lg">Rosebank • Tantric Specialist</p>
-
-  <div class="mt-6 flex flex-col gap-3 px-10">
-
-    <!-- WhatsApp booking button -->
-    <a href="#"
-       id="bookWhatsApp"
-       class="bg-pink-600 py-3 rounded-full text-xl font-bold hover:bg-pink-700 transition">
-       Book a Session
-    </a>
-
-    <a href="#image-gallery"
-       class="border border-pink-500 text-pink-400 py-3 rounded-full text-xl font-bold hover:bg-pink-500/20 transition">
-       View Full Gallery
-    </a>
-
-  </div>
-</section>
-
-<!-- ================================================================================= -->
-<!--                                 ABOUT SECTION                                       -->
-<!-- ================================================================================= -->
-
-<section class="px-6 mt-10 fade-in">
-  <div class="card p-6">
-    <h2 class="text-2xl font-bold text-pink-500 mb-4">About Lerato</h2>
-    <p class="text-white/70 leading-relaxed">
-      Lerato is a deeply intuitive therapist who blends emotional awareness with ancient tantric
-      principles to create unforgettable healing experiences. Her presence is warm, grounding,
-      and spiritually awakening — perfect for clients seeking sensual connection and energy alignment.
-    </p>
-  </div>
-</section>
-
-<!-- ================================================================================= -->
-<!--                                 SERVICES SECTION                                    -->
-<!-- ================================================================================= -->
-
-<section class="px-6 mt-10 fade-in">
-  <div class="card p-6">
-    <h2 class="text-2xl font-bold text-pink-500 mb-4">Services</h2>
-
-    <p class="text-white/80 mb-3">Tantric Massage</p>
-    <p class="text-white/60 leading-relaxed">
-      Draws from ancient Indian practices to awaken sexual energy through slow, sensual touch,
-      breathwork, and full-body connection — fostering spiritual ecstasy without a focus on orgasm.
-    </p>
-  </div>
-</section>
-
-<!-- ================================================================================= -->
-<!--                                     RATES SECTION                                   -->
-<!-- ================================================================================= -->
-
-<section class="px-6 mt-10 fade-in">
-  <div class="card p-6">
-    <h2 class="text-2xl font-bold text-pink-500 mb-4">Rates</h2>
-
-    <ul class="space-y-3 text-white/80">
-      <li>• Tantric Session (60 Minutes) — <span class="text-pink-400 font-semibold">R1500</span></li>
-    </ul>
-  </div>
-</section>
-
-<!-- ================================================================================= -->
-<!--                          IMAGE GALLERY PREVIEW SECTION                              -->
-<!-- ================================================================================= -->
-
-<section id="image-gallery" class="px-6 mt-12 fade-in">
-  <div class="card p-6">
-    <h2 class="text-2xl font-bold text-pink-500 mb-4">Image Gallery</h2>
-
-    <div class="grid grid-cols-3 gap-3">
-
-      <!-- Correct paths -->
-      <img src="images/lerato_image01.jpg" class="gallery-img rounded-xl object-cover h-28 w-full" />
-      <img src="images/lerato_image02.jpg" class="gallery-img rounded-xl object-cover h-28 w-full" />
-      <img src="images/lerato_image03.jpg" class="gallery-img rounded-xl object-cover h-28 w-full" />
-
-    </div>
-
-    <a href="Gallery_Lerato_Images.html"
-       class="mt-5 block text-center text-pink-400 font-semibold hover:text-pink-300">
-       View Full Image Gallery →
-    </a>
-  </div>
-</section>
-
-<!-- ================================================================================= -->
-<!--                         VIDEO GALLERY PREVIEW SECTION                               -->
-<!-- ================================================================================= -->
-
-<section class="px-6 mt-12 fade-in pb-20">
-  <div class="card p-6">
-    <h2 class="text-2xl font-bold text-pink-500 mb-4">Video Gallery</h2>
-
-    <div class="grid grid-cols-2 gap-4">
-
-      <video src="vids/lerato_video01.mp4"
-             class="gallery-video rounded-xl h-32 w-full object-cover" muted></video>
-
-      <video src="vids/lerato_video02.mp4"
-             class="gallery-video rounded-xl h-32 w-full object-cover" muted></video>
-
-    </div>
-
-    <a href="Gallery_Lerato_Videos.html"
-       class="mt-5 block text-center text-pink-400 font-semibold hover:text-pink-300">
-       View Full Video Gallery →
-    </a>
-  </div>
-</section>
-
-<!-- ================================================================================= -->
-<!--                                      FOOTER                                        -->
-<!-- ================================================================================= -->
-
-<footer class="text-center py-6 text-white/70">
-  <div class="flex justify-center gap-6 text-2xl mb-3">
-    <a href="https://facebook.com" target="_blank">📘</a>
-    <a href="https://instagram.com" target="_blank">📸</a>
-    <a href="https://twitter.com" target="_blank">🐦</a>
-    <a href="mailto:info@example.com">✉️</a>
-    <a href="https://wa.me/27829627848" target="_blank">📞</a>
-  </div>
-  <p class="text-xs">© 2025 Ecstasy Retreat — All rights reserved.</p>
-</footer>
-
-<!-- ================================================================================= -->
-<!--                                      JS                                            -->
-<!-- ================================================================================= -->
-
-<script>
-  // Fade header after 3 seconds
-  const header = document.getElementById("mainHeader");
-  setTimeout(() => {
-    header.classList.remove("bg-black/50", "backdrop-blur-md", "border-white/10");
-    header.classList.add("bg-transparent", "border-transparent");
-  }, 3000);
-
-  // Mobile menu handling
-  const menuBtn = document.getElementById("menuBtn");
-  const mobileMenu = document.getElementById("mobileMenu");
-  const menuLinks = document.querySelectorAll(".menu-link");
-
-  menuBtn.onclick = () => mobileMenu.classList.toggle("hidden");
-
-  menuLinks.forEach(link => {
-    link.onclick = () => mobileMenu.classList.add("hidden");
-  });
-
-  // WhatsApp booking with automatic page link
-  const bookWhatsAppBtn = document.getElementById("bookWhatsApp");
-
-  bookWhatsAppBtn.onclick = (e) => {
-    e.preventDefault();
-    const pageUrl = window.location.href;
-    const message = `Hi, I would like to book a session with Lerato. Here is the profile link: ${pageUrl}`;
-    const encodedMessage = encodeURIComponent(message);
-    const whatsappUrl = `https://wa.me/27500204011?text=${encodedMessage}`;
-    window.open(whatsappUrl, "_blank");
-  };
 </script>
 
 </body>
