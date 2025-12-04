@@ -1,219 +1,487 @@
+<!-- end list -->
 <!DOCTYPE html>
 <html lang="en">
 
 <head>
-<meta charset="UTF-8" />
-<meta name="viewport" content="width=device-width, initial-scale=1.0" />
-<title>Ecstasy Retreat – Therapist Profile</title>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Ariana Flame – Elite Companion Profile | Ecstasy Retreat</title>
 
-<!-- Tailwind CSS -->
-<script src="https://cdn.tailwindcss.com"></script>
+    <script src="https://cdn.tailwindcss.com"></script>
 
-<style>
-  .fade-in {
-    animation: fadeIn 1s ease forwards;
-  }
-  @keyframes fadeIn {
-    from { opacity: 0; transform: translateY(15px); }
-    to { opacity: 1; transform: translateY(0); }
-  }
-  .card {
-    background: rgba(255, 255, 255, 0.03);
-    border: 1px solid rgba(255, 0, 128, 0.3);
-    backdrop-filter: blur(6px);
-    border-radius: 20px;
-  }
-  .gallery-img, .gallery-video {
-    transition: 0.3s ease;
-  }
-  .gallery-img:hover, .gallery-video:hover {
-    transform: scale(1.05);
-  }
-</style>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
+
+    <style>
+        /* Custom Styles for Glassmorphism/Dark Theme */
+        :root {
+            --pink-accent: 236 72% 51%; /* HSL for pink-500 */
+        }
+
+        /* Base Card Styling with Neon Border */
+        .card-glass {
+            background: rgba(18, 18, 18, 0.6); /* Darker, semi-transparent background */
+            border: 1px solid rgba(255, 0, 128, 0.15); /* Soft border */
+            backdrop-filter: blur(8px);
+            border-radius: 20px;
+            box-shadow: 0 4px 60px rgba(255, 0, 128, 0.05), /* Subtle glow */
+                        0 1px 10px rgba(255, 0, 128, 0.03);
+        }
+
+        /* Scroll-Based Fade-In Animation */
+        .animate-on-scroll {
+            opacity: 0;
+            transform: translateY(20px);
+            transition: opacity 0.8s ease-out, transform 0.8s ease-out;
+        }
+
+        .animate-on-scroll.is-visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        /* Interactive Elements Hover/Focus */
+        .gallery-item {
+            transition: transform 0.4s cubic-bezier(0.25, 0.8, 0.25, 1);
+            position: relative;
+            overflow: hidden;
+            cursor: pointer;
+        }
+        .gallery-item:hover {
+            transform: scale(1.05) translateY(-5px);
+            box-shadow: 0 10px 30px rgba(255, 0, 128, 0.3);
+        }
+
+        /* Testimonial Carousel Dots */
+        .dot {
+            transition: background-color 0.3s;
+        }
+
+        /* Lightbox Modal */
+        #lightbox-modal {
+            background-color: rgba(0, 0, 0, 0.95);
+        }
+
+    </style>
 
 </head>
 
-<body class="bg-black text-white overflow-x-hidden">
-
-<!-- ================================================================================= -->
-<!--                                      HEADER                                        -->
-<!-- ================================================================================= -->
+<body class="bg-[#0f0f0f] text-white overflow-x-hidden font-sans">
 
 <header id="mainHeader"
-  class="fixed top-0 left-0 w-full z-[999] flex justify-between items-center px-5 py-4
-         bg-black/50 backdrop-blur-md border-b border-white/10 transition-all duration-1000">
+    class="fixed top-0 left-0 w-full z-[999] flex justify-between items-center px-6 py-4
+           bg-[#0f0f0f]/80 backdrop-blur-md border-b border-white/5 transition-all duration-300">
 
-  <a href="index.html">
-    <img src="logo.png" class="w-32" alt="Ecstasy Retreat Logo">
-  </a>
+    <a href="index.html" class="flex items-center space-x-2">
+        <div class="text-2xl font-extrabold tracking-widest text-pink-500">ECSTASY</div>
+    </a>
 
-  <button id="menuBtn" class="text-white text-3xl z-[1001]">&#9776;</button>
+    <nav class="hidden md:flex space-x-8 text-sm font-medium">
+        <a href="index.html" class="hover:text-pink-400 transition">Home</a>
+        <a href="Therapists_List.html" class="hover:text-pink-400 transition">Therapists</a>
+        <a href="Join_Therapist.html" class="hover:text-pink-400 transition">Join Us</a>
+        <a href="Contact_Us.html" class="hover:text-pink-400 transition">Contact</a>
+        <a href="Book_Therapist.html" class="bg-pink-600 px-4 py-2 rounded-full text-white hover:bg-pink-700 transition">Book Now</a>
+    </nav>
+
+    <button id="menuBtn" class="text-pink-500 text-3xl md:hidden z-[1001]">
+        <i class="fa-solid fa-bars" id="menuIcon"></i>
+    </button>
 </header>
 
-<!-- MOBILE MENU -->
-
 <nav id="mobileMenu"
-  class="hidden fixed top-16 right-4 bg-black/95 backdrop-blur-xl p-6 rounded-xl 
-         border border-pink-500/40 text-lg z-[1000] w-60 shadow-xl">
-  <a href="index.html" class="block py-2 hover:text-pink-400 menu-link">Home</a>
-  <a href="Therapists_List.html" class="block py-2 hover:text-pink-400 menu-link">View Therapists</a>
-  <a href="Join_Therapist.html" class="block py-2 hover:text-pink-400 menu-link">Join as Therapist</a>
-  <a href="Book_Therapist.html" class="block py-2 hover:text-pink-400 menu-link">Book Therapist</a>
-  <a href="Contact_Us.html" class="block py-2 hover:text-pink-400 menu-link">Contact Us</a>
+    class="hidden fixed top-[72px] right-4 bg-black/95 backdrop-blur-xl p-6 rounded-2xl
+           border border-pink-500/40 text-lg z-[1000] w-64 shadow-2xl md:hidden">
+    <a href="index.html" class="block py-3 hover:text-pink-400 menu-link transition duration-200">Home</a>
+    <a href="Therapists_List.html" class="block py-3 hover:text-pink-400 menu-link transition duration-200">View Therapists</a>
+    <a href="Join_Therapist.html" class="block py-3 hover:text-pink-400 menu-link transition duration-200">Join as Therapist</a>
+    <a href="Book_Therapist.html" class="block py-3 hover:text-pink-400 menu-link transition duration-200">Book Session</a>
+    <a href="Contact_Us.html" class="block py-3 hover:text-pink-400 menu-link transition duration-200">Contact Us</a>
 </nav>
 
-<div class="pt-36"></div>
+<div class="pt-24 md:pt-32"></div>
 
-<!-- ================================================================================= -->
-<!--                                  HERO SECTION                                       -->
-<!-- ================================================================================= -->
+<section class="text-center px-6 md:px-12 animate-on-scroll">
+    <div class="relative w-48 h-48 mx-auto">
+        
+        <img src="images/lerato_image07.jpg"
+            class="w-48 h-48 rounded-full object-cover border-4 border-pink-500 shadow-[0_0_20px_rgba(236,72,157,0.5)] mx-auto"
+            alt="Ariana Flame Profile Image" />
 
-<section class="text-center fade-in">
-  <img src="images/lerato_image07.jpg"
-       class="w-52 h-52 rounded-full object-cover border-4 border-pink-500 shadow-xl mx-auto" />
-
-  <h1 class="text-4xl font-bold mt-6 text-pink-500">Ariana Flame</h1>
-  <p class="text-white/70 mt-1 text-lg">Sandton • Elite Companion</p>
-
-  <div class="mt-6 flex flex-col gap-3 px-10">
-    <a href="Book_Therapist.html"
-       class="bg-pink-600 py-3 rounded-full text-xl font-bold hover:bg-pink-700 transition">
-       Book a Session
-    </a>
-
-    <a href="#image-gallery"
-       class="border border-pink-500 text-pink-400 py-3 rounded-full text-xl font-bold hover:bg-pink-500/20 transition">
-       View Full Gallery
-    </a>
-  </div>
-</section>
-
-<!-- ================================================================================= -->
-<!--                                     ABOUT SECTION                                  -->
-<!-- ================================================================================= -->
-
-<section class="px-6 mt-10 fade-in">
-  <div class="card p-6">
-    <h2 class="text-2xl font-bold text-pink-500 mb-4">About Ariana</h2>
-    <p class="text-white/70 leading-relaxed">
-      Ariana is one of the most requested companions at Ecstasy Retreat. With 5+ years of experience
-      in tantric and sensory therapy, she creates deeply intimate, energy-balanced sessions that
-      combine gentle touch, sensual relaxation, and emotional connection.
-    </p>
-  </div>
-</section>
-
-<!-- ================================================================================= -->
-<!--                                 SERVICES SECTION                                    -->
-<!-- ================================================================================= -->
-
-<section class="px-6 mt-10 fade-in">
-  <div class="card p-6">
-    <h2 class="text-2xl font-bold text-pink-500 mb-4">Services</h2>
-
-    <ul class="space-y-3 text-white/80">
-      <li>• Sensual Massage</li>
-      <li>• Nuru Body Slide</li>
-      <li>• Relaxation Therapy</li>
-      <li>• Emotional Intimacy Sessions</li>
-      <li>• VIP Private Experiences</li>
-    </ul>
-  </div>
-</section>
-
-<!-- ================================================================================= -->
-<!--                                     RATES SECTION                                   -->
-<!-- ================================================================================= -->
-
-<section class="px-6 mt-10 fade-in">
-  <div class="card p-6">
-    <h2 class="text-2xl font-bold text-pink-500 mb-4">Rates</h2>
-
-    <ul class="space-y-3 text-white/80">
-      <li>• 60 Minutes — <span class="text-pink-400 font-semibold">R1200</span></li>
-      <li>• 90 Minutes — <span class="text-pink-400 font-semibold">R1600</span></li>
-      <li>• 2 Hours — <span class="text-pink-400 font-semibold">R2300</span></li>
-      <li>• Overnight — <span class="text-pink-400 font-semibold">R6000</span></li>
-    </ul>
-  </div>
-</section>
-
-<!-- ================================================================================= -->
-<!--                          IMAGE GALLERY PREVIEW SECTION                              -->
-<!-- ================================================================================= -->
-
-<section id="image-gallery" class="px-6 mt-12 fade-in">
-  <div class="card p-6">
-    <h2 class="text-2xl font-bold text-pink-500 mb-4">Image Gallery</h2>
-
-    <div class="grid grid-cols-3 gap-3">
-      <img src="images/lerato_image07.jpg" class="gallery-img rounded-xl object-cover h-28 w-full" />
-      <img src="images/image02.jpg" class="gallery-img rounded-xl object-cover h-28 w-full" />
-      <img src="images/image03.png" class="gallery-img rounded-xl object-cover h-28 w-full" />
+        <span class="absolute bottom-2 right-2 flex items-center bg-green-500 text-xs font-bold px-3 py-1 rounded-full border border-white">
+            <i class="fa-solid fa-circle text-[8px] mr-1"></i> Available
+        </span>
     </div>
 
-    <a href="Gallery_Ariana_Images.html"
-       class="mt-5 block text-center text-pink-400 font-semibold hover:text-pink-300">
-       View Full Image Gallery →
-    </a>
-  </div>
+    <h1 class="text-5xl font-extrabold mt-8 text-pink-400 tracking-tight">Ariana Flame ✨</h1>
+    <p class="text-white/70 mt-2 text-xl italic">The Sensual Muse of Sandton</p>
+
+    <div class="mt-8 flex flex-col md:flex-row justify-center gap-4 px-4 md:px-10 max-w-xl mx-auto">
+        <a href="Book_Therapist.html"
+           class="flex items-center justify-center bg-pink-600 w-full md:w-auto py-3 px-8 rounded-full text-xl font-bold hover:bg-pink-700 transition duration-300 transform hover:scale-[1.02] shadow-lg shadow-pink-500/30">
+           <i class="fa-solid fa-calendar-check mr-2"></i> Book a Session
+        </a>
+
+        <button id="galleryBtn"
+           class="flex items-center justify-center border border-pink-500 text-pink-400 w-full md:w-auto py-3 px-8 rounded-full text-xl font-bold hover:bg-pink-500/20 transition duration-300 transform hover:scale-[1.02]">
+           <i class="fa-solid fa-image-polaroid mr-2"></i> View Full Gallery
+        </button>
+    </div>
 </section>
 
-<!-- ================================================================================= -->
-<!--                         VIDEO GALLERY PREVIEW SECTION                               -->
-<!-- ================================================================================= -->
+<hr class="border-t border-pink-500/10 my-16 mx-6 md:mx-12" />
 
-<section class="px-6 mt-12 fade-in pb-20">
-  <div class="card p-6">
-    <h2 class="text-2xl font-bold text-pink-500 mb-4">Video Gallery</h2>
+<section class="px-6 md:px-12 mt-10 animate-on-scroll">
+    <div class="card-glass p-8">
+        <h2 class="text-3xl font-bold text-pink-500 mb-4 flex items-center">
+            <i class="fa-solid fa-circle-info mr-3"></i> About Ariana
+        </h2>
+        <p class="text-white/80 leading-relaxed text-lg">
+            Ariana is the embodiment of serene sensuality and emotional depth, making her one of the most
+            requested companions at Ecstasy Retreat. With **5+ years of specialized experience** in
+            authentic **Tantric** and **Sensory Therapy**, she curates profoundly intimate, energy-balanced
+            sessions. Her unique approach combines gentle, mindful touch, advanced sensual relaxation
+            techniques, and a genuine emotional connection that leaves you feeling rejuvenated, centered,
+            and deeply satisfied.
+        </p>
 
-    <div class="grid grid-cols-2 gap-4">
-      <video src="vids/vid01.mp4" class="gallery-video rounded-xl h-32 w-full object-cover" muted></video>
-      <video src="vids/vid02.mp4" class="gallery-video rounded-xl h-32 w-full object-cover" muted></video>
+        <div class="mt-6 pt-4 border-t border-white/10 grid grid-cols-2 md:grid-cols-4 gap-4 text-center">
+            <div>
+                <p class="text-pink-400 font-bold text-2xl">5+</p>
+                <p class="text-sm text-white/60">Years Experience</p>
+            </div>
+            <div>
+                <p class="text-pink-400 font-bold text-2xl">100%</p>
+                <p class="text-sm text-white/60">Verified Profile</p>
+            </div>
+            <div>
+                <p class="text-pink-400 font-bold text-2xl">JHB</p>
+                <p class="text-sm text-white/60">Location</p>
+            </div>
+            <div>
+                <p class="text-pink-400 font-bold text-2xl">29</p>
+                <p class="text-sm text-white/60">Age (est.)</p>
+            </div>
+        </div>
+    </div>
+</section>
+
+<section class="px-6 md:px-12 mt-10 grid grid-cols-1 md:grid-cols-2 gap-8">
+
+    <div class="animate-on-scroll">
+        <div class="card-glass p-8 h-full">
+            <h2 class="text-3xl font-bold text-pink-500 mb-6 flex items-center">
+                <i class="fa-solid fa-hand-holding-heart mr-3"></i> Premium Services
+            </h2>
+
+            <ul class="space-y-4 text-white/80 text-lg">
+                <li class="flex items-center"><i class="fa-solid fa-sparkles text-pink-400 w-5 mr-3"></i> **Sensual Massage** (Mindful & Relaxing)</li>
+                <li class="flex items-center"><i class="fa-solid fa-water text-pink-400 w-5 mr-3"></i> **Nuru Body Slide** (Full Body Connection)</li>
+                <li class="flex items-center"><i class="fa-solid fa-moon text-pink-400 w-5 mr-3"></i> **Tantric Flow** (Energy Focused)</li>
+                <li class="flex items-center"><i class="fa-solid fa-comments text-pink-400 w-5 mr-3"></i> **Emotional Intimacy Sessions** (Deep Connection)</li>
+                <li class="flex items-center"><i class="fa-solid fa-star text-pink-400 w-5 mr-3"></i> **VIP Private Experiences** (Custom Designed)</li>
+            </ul>
+        </div>
     </div>
 
-    <a href="Gallery_Ariana_Videos.html"
-       class="mt-5 block text-center text-pink-400 font-semibold hover:text-pink-300">
-       View Full Video Gallery →
-    </a>
-  </div>
+    <div class="animate-on-scroll">
+        <div class="card-glass p-8 h-full">
+            <h2 class="text-3xl font-bold text-pink-500 mb-6 flex items-center">
+                <i class="fa-solid fa-tags mr-3"></i> Exclusive Rates
+            </h2>
+
+            <ul class="space-y-4 text-white/80 text-lg">
+                <li class="flex justify-between items-center border-b border-white/5 pb-2">
+                    <span>60 Minutes</span> <span class="text-pink-400 font-semibold text-xl">R1,200</span>
+                </li>
+                <li class="flex justify-between items-center border-b border-white/5 pb-2">
+                    <span>90 Minutes</span> <span class="text-pink-400 font-semibold text-xl">R1,600</span>
+                </li>
+                <li class="flex justify-between items-center border-b border-white/5 pb-2">
+                    <span>2 Hours</span> <span class="text-pink-400 font-semibold text-xl">R2,300</span>
+                </li>
+                <li class="flex justify-between items-center pt-2">
+                    <span class="font-bold">Overnight (12h)</span> <span class="text-pink-400 font-bold text-2xl">R6,000</span>
+                </li>
+            </ul>
+
+            <p class="mt-6 text-sm text-white/50">*Rates are exclusive of travel/accommodation fees for out-of-call bookings.</p>
+        </div>
+    </div>
 </section>
 
-<!-- ================================================================================= -->
-<!--                                      FOOTER                                        -->
-<!-- ================================================================================= -->
+<section class="px-6 md:px-12 mt-16 animate-on-scroll">
+    <h2 class="text-3xl font-bold text-center text-pink-500 mb-8 flex items-center justify-center">
+        <i class="fa-solid fa-star-half-stroke mr-3"></i> What Clients Say
+    </h2>
 
-<footer class="text-center py-6 text-white/70">
-  <div class="flex justify-center gap-6 text-2xl mb-3">
-    <a href="https://facebook.com" target="_blank">📘</a>
-    <a href="https://instagram.com" target="_blank">📸</a>
-    <a href="https://twitter.com" target="_blank">🐦</a>
-    <a href="mailto:info@example.com">✉️</a>
-    <a href="https://wa.me/27829627848" target="_blank">📞</a>
-  </div>
-  <p class="text-xs">© 2025 Ecstasy Retreat — All rights reserved.</p>
+    <div class="card-glass p-8 max-w-3xl mx-auto relative">
+        <div id="testimonial-carousel" class="overflow-hidden">
+            <div class="testimonial-slide text-center p-4">
+                <blockquote class="italic text-lg text-white/90">
+                    "Ariana is truly exceptional. Her presence is calming, and her connection is profound.
+                    The 90-minute Tantra session was an absolute journey of pure bliss and energy alignment. Highly, highly recommended."
+                </blockquote>
+                <p class="mt-4 font-semibold text-pink-300">- Verified Client, Cape Town</p>
+                <div class="text-yellow-400 mt-2 text-xl">⭐⭐⭐⭐⭐</div>
+            </div>
+
+            <div class="testimonial-slide text-center p-4 hidden">
+                <blockquote class="italic text-lg text-white/90">
+                    "The best Nuru massage I've ever experienced. She is professional, discreet, and her touch is magical.
+                    An experience of total sensory immersion. I've already booked my next two sessions."
+                </blockquote>
+                <p class="mt-4 font-semibold text-pink-300">- M.K., Johannesburg</p>
+                <div class="text-yellow-400 mt-2 text-xl">⭐⭐⭐⭐⭐</div>
+            </div>
+
+            <div class="testimonial-slide text-center p-4 hidden">
+                <blockquote class="italic text-lg text-white/90">
+                    "From the moment I met Ariana, I felt completely at ease. She listened to my needs and customized our time perfectly.
+                    A truly transformative and intimate evening."
+                </blockquote>
+                <p class="mt-4 font-semibold text-pink-300">- International Visitor</p>
+                <div class="text-yellow-400 mt-2 text-xl">⭐⭐⭐⭐⭐</div>
+            </div>
+        </div>
+
+        <div id="carousel-dots" class="flex justify-center mt-6 space-x-2">
+            <span class="dot w-3 h-3 bg-pink-500 rounded-full cursor-pointer" data-slide="0"></span>
+            <span class="dot w-3 h-3 bg-white/30 rounded-full cursor-pointer" data-slide="1"></span>
+            <span class="dot w-3 h-3 bg-white/30 rounded-full cursor-pointer" data-slide="2"></span>
+        </div>
+    </div>
+</section>
+
+<hr class="border-t border-pink-500/10 my-16 mx-6 md:mx-12" />
+
+<section id="image-gallery-section" class="px-6 md:px-12 mt-12 animate-on-scroll pb-20">
+    <div class="card-glass p-8">
+        <h2 class="text-3xl font-bold text-pink-500 mb-8 flex items-center">
+            <i class="fa-solid fa-camera-retro mr-3"></i> Exclusive Gallery Preview
+        </h2>
+
+        <div class="grid grid-cols-2 md:grid-cols-4 gap-4">
+            <div class="gallery-item rounded-xl" data-type="image" data-src="images/lerato_image07.jpg">
+                <img src="images/lerato_image07.jpg" class="rounded-xl object-cover h-40 w-full" alt="Gallery Image 1" />
+            </div>
+            <div class="gallery-item rounded-xl" data-type="image" data-src="images/image02.jpg">
+                <img src="images/image02.jpg" class="rounded-xl object-cover h-40 w-full" alt="Gallery Image 2" />
+            </div>
+            <div class="gallery-item rounded-xl relative" data-type="video" data-src="vids/vid01.mp4">
+                <video src="vids/vid01.mp4" class="rounded-xl h-40 w-full object-cover" muted loop></video>
+                <div class="absolute inset-0 bg-black/30 flex items-center justify-center transition opacity-0 hover:opacity-100">
+                    <i class="fa-solid fa-play text-4xl text-white/90"></i>
+                </div>
+            </div>
+            <a href="Gallery_Ariana_Images.html" class="gallery-item flex items-center justify-center bg-black/50 rounded-xl h-40 w-full border border-pink-500/30 text-pink-400 font-bold hover:text-white hover:border-pink-500 transition">
+                + 12 More
+            </a>
+        </div>
+
+        <a href="Gallery_Ariana_Videos.html"
+           class="mt-8 block text-center text-pink-400 font-semibold hover:text-pink-300 transition text-lg">
+           View All Videos & Full Collection →
+        </a>
+    </div>
+</section>
+
+<div id="lightbox-modal" class="fixed inset-0 z-[1100] hidden items-center justify-center p-4" onclick="closeLightbox(event)">
+    <div class="relative max-w-4xl max-h-full">
+        <button class="absolute top-4 right-4 text-white text-4xl z-[1200] opacity-80 hover:opacity-100 transition" onclick="closeLightbox()">
+            &times;
+        </button>
+        <div id="lightbox-content" class="rounded-lg shadow-2xl relative">
+            </div>
+    </div>
+</div>
+
+<footer class="bg-black/70 border-t border-white/5 text-center py-8 text-white/70">
+    <div class="flex justify-center gap-8 text-2xl mb-4">
+        <a href="https://instagram.com" target="_blank" class="hover:text-pink-400 transition" aria-label="Instagram"><i class="fa-brands fa-instagram"></i></a>
+        <a href="mailto:info@example.com" class="hover:text-pink-400 transition" aria-label="Email"><i class="fa-solid fa-envelope"></i></a>
+        <a href="https://wa.me/27829627848" target="_blank" class="hover:text-pink-400 transition" aria-label="WhatsApp"><i class="fa-brands fa-whatsapp"></i></a>
+    </div>
+    <div class="space-y-1 text-sm">
+        <a href="#" class="hover:text-pink-400 transition block">Privacy Policy</a>
+        <a href="#" class="hover:text-pink-400 transition block">Terms of Service</a>
+    </div>
+    <p class="text-xs mt-3">© 2025 Ecstasy Retreat — Elite International Companionship.</p>
 </footer>
 
-<!-- ================================================================================= -->
-<!--                                      JS                                            -->
-<!-- ================================================================================= -->
-
 <script>
-  // Fade header after 3 seconds
-  const header = document.getElementById("mainHeader");
-  setTimeout(() => {
-    header.classList.remove("bg-black/50", "backdrop-blur-md", "border-white/10");
-    header.classList.add("bg-transparent", "border-transparent");
-  }, 3000);
+    // --- Header Scroll Effect ---
+    const header = document.getElementById("mainHeader");
+    const mobileMenu = document.getElementById("mobileMenu");
+    const menuIcon = document.getElementById("menuIcon");
+    const headerHeightBase = 96; // 6rem (pt-24/md:pt-32) from line 108
 
-  // Mobile menu
-  const menuBtn = document.getElementById("menuBtn");
-  const mobileMenu = document.getElementById("mobileMenu");
-  const menuLinks = document.querySelectorAll(".menu-link");
+    function handleHeaderScroll() {
+        const scrollY = window.scrollY;
 
-  menuBtn.onclick = () => mobileMenu.classList.toggle("hidden");
-  menuLinks.forEach(link => link.onclick = () => mobileMenu.classList.add("hidden"));
+        // Sticky Header: Make it smaller and slightly more opaque on scroll
+        if (scrollY > headerHeightBase) {
+            header.classList.add("py-3", "bg-[#0f0f0f]");
+            header.classList.remove("py-4", "bg-[#0f0f0f]/80");
+        } else {
+            header.classList.remove("py-3", "bg-[#0f0f0f]");
+            header.classList.add("py-4", "bg-[#0f0f0f]/80");
+        }
+    }
+    window.addEventListener("scroll", handleHeaderScroll);
+    window.addEventListener("load", handleHeaderScroll); // Initialize on load
+
+    // --- Mobile Menu Toggle ---
+    const menuBtn = document.getElementById("menuBtn");
+    const menuLinks = document.querySelectorAll(".menu-link");
+
+    menuBtn.onclick = () => {
+        mobileMenu.classList.toggle("hidden");
+        // Animate Hamburger to Close icon
+        menuIcon.classList.toggle("fa-bars");
+        menuIcon.classList.toggle("fa-xmark");
+    };
+    // Close menu when a link is clicked
+    menuLinks.forEach(link => link.onclick = () => {
+        mobileMenu.classList.add("hidden");
+        menuIcon.classList.add("fa-bars");
+        menuIcon.classList.remove("fa-xmark");
+    });
+
+
+    // --- Intersection Observer for Scroll Animations (Professional Feature) ---
+    const observerOptions = {
+        root: null,
+        rootMargin: "0px",
+        threshold: 0.1
+    };
+
+    const observer = new IntersectionObserver((entries, observer) => {
+        entries.forEach(entry => {
+            if (entry.isIntersecting) {
+                entry.target.classList.add("is-visible");
+                observer.unobserve(entry.target); // Stop observing once visible
+            }
+        });
+    }, observerOptions);
+
+    document.querySelectorAll(".animate-on-scroll").forEach(el => {
+        observer.observe(el);
+    });
+
+    // --- Testimonial Carousel Functionality ---
+    const slides = document.querySelectorAll(".testimonial-slide");
+    const dots = document.querySelectorAll(".dot");
+    let currentSlide = 0;
+
+    function showSlide(index) {
+        slides.forEach((slide, i) => {
+            slide.classList.add("hidden");
+            slide.style.opacity = 0;
+            if (i === index) {
+                slide.classList.remove("hidden");
+                // Simple fade-in animation for slides
+                setTimeout(() => slide.style.opacity = 1, 10);
+            }
+        });
+
+        dots.forEach((dot, i) => {
+            if (i === index) {
+                dot.classList.add("bg-pink-500");
+                dot.classList.remove("bg-white/30");
+            } else {
+                dot.classList.add("bg-white/30");
+                dot.classList.remove("bg-pink-500");
+            }
+        });
+        currentSlide = index;
+    }
+
+    dots.forEach(dot => {
+        dot.addEventListener("click", (e) => {
+            const index = parseInt(e.target.dataset.slide);
+            showSlide(index);
+        });
+    });
+
+    // Auto-advance carousel
+    setInterval(() => {
+        let nextSlide = (currentSlide + 1) % slides.length;
+        showSlide(nextSlide);
+    }, 8000); // Change slide every 8 seconds
+
+    showSlide(0); // Initialize first slide
+
+    // --- Video Hover/Play Functionality ---
+    document.querySelectorAll('.gallery-item[data-type="video"]').forEach(videoWrapper => {
+        const videoElement = videoWrapper.querySelector('video');
+        videoWrapper.addEventListener('mouseenter', () => videoElement.play());
+        videoWrapper.addEventListener('mouseleave', () => {
+            videoElement.pause();
+            videoElement.currentTime = 0;
+        });
+    });
+
+    // --- Modal Lightbox Functionality ---
+    const lightboxModal = document.getElementById('lightbox-modal');
+    const lightboxContent = document.getElementById('lightbox-content');
+    const galleryItems = document.querySelectorAll('.gallery-item');
+    const galleryBtn = document.getElementById('galleryBtn');
+
+    function openLightbox(type, src) {
+        lightboxContent.innerHTML = ''; // Clear previous content
+
+        if (type === 'image') {
+            const img = document.createElement('img');
+            img.src = src;
+            img.className = 'w-full h-auto max-h-[80vh] object-contain rounded-lg';
+            img.onclick = (e) => e.stopPropagation(); // Prevent modal close on image click
+            lightboxContent.appendChild(img);
+        } else if (type === 'video') {
+            const video = document.createElement('video');
+            video.src = src;
+            video.className = 'w-full h-auto max-h-[80vh] object-contain rounded-lg';
+            video.controls = true;
+            video.autoplay = true;
+            video.loop = true;
+            video.onclick = (e) => e.stopPropagation(); // Prevent modal close on video click
+            lightboxContent.appendChild(video);
+        }
+
+        lightboxModal.classList.remove('hidden');
+        lightboxModal.classList.add('flex');
+    }
+
+    function closeLightbox(event) {
+        // Only close if clicked on the background or the close button
+        if (!event || event.target === lightboxModal || event.target.tagName === 'BUTTON') {
+            // Pause any running videos before closing
+            const video = lightboxContent.querySelector('video');
+            if (video) video.pause();
+
+            lightboxModal.classList.add('hidden');
+            lightboxModal.classList.remove('flex');
+        }
+    }
+
+    // Attach click listener to gallery items
+    galleryItems.forEach(item => {
+        item.addEventListener('click', (e) => {
+            e.preventDefault();
+            const type = item.dataset.type;
+            const src = type === 'image' ? item.querySelector('img').src : item.querySelector('video').src;
+            if (type !== undefined) { // Ignore the +12 More link
+                openLightbox(type, src);
+            }
+        });
+    });
+
+    // Scroll to gallery section when 'View Full Gallery' is clicked
+    galleryBtn.addEventListener('click', () => {
+        document.getElementById('image-gallery-section').scrollIntoView({ behavior: 'smooth' });
+    });
+
 </script>
 
 </body>
 </html>
+
