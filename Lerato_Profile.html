@@ -18,7 +18,7 @@
     to { opacity: 1; transform: translateY(0); }
   }
   .card {
-    background: rgba(255, 255, 255, 0.025);
+    background: rgba(255, 255, 255, 0.03);
     border: 1px solid rgba(255, 0, 128, 0.35);
     backdrop-filter: blur(6px);
     border-radius: 20px;
@@ -62,6 +62,7 @@
   <a href="Contact_Us.html" class="block py-2 hover:text-pink-400 menu-link">Contact Us</a>
 </nav>
 
+<!-- Space under header -->
 <div class="pt-36"></div>
 
 <!-- ================================================================================= -->
@@ -70,7 +71,7 @@
 
 <section class="text-center fade-in">
 
-  <!-- FIXED HERO IMAGE PATH -->
+  <!-- LERATO MAIN IMAGE -->
   <img src="images/lerato_image01.jpg"
        class="w-52 h-52 rounded-full object-cover border-4 border-pink-500 shadow-xl mx-auto" />
 
@@ -78,6 +79,7 @@
   <p class="text-white/70 mt-1 text-lg">Rosebank • Tantric Specialist</p>
 
   <div class="mt-6 flex flex-col gap-3 px-10">
+
     <!-- WhatsApp booking button -->
     <a href="#"
        id="bookWhatsApp"
@@ -86,4 +88,157 @@
     </a>
 
     <a href="#image-gallery"
-       class="border border-pink-500 text-pink-400 py
+       class="border border-pink-500 text-pink-400 py-3 rounded-full text-xl font-bold hover:bg-pink-500/20 transition">
+       View Full Gallery
+    </a>
+
+  </div>
+</section>
+
+<!-- ================================================================================= -->
+<!--                                 ABOUT SECTION                                       -->
+<!-- ================================================================================= -->
+
+<section class="px-6 mt-10 fade-in">
+  <div class="card p-6">
+    <h2 class="text-2xl font-bold text-pink-500 mb-4">About Lerato</h2>
+    <p class="text-white/70 leading-relaxed">
+      Lerato is a deeply intuitive therapist who blends emotional awareness with ancient tantric
+      principles to create unforgettable healing experiences. Her presence is warm, grounding,
+      and spiritually awakening — perfect for clients seeking sensual connection and energy alignment.
+    </p>
+  </div>
+</section>
+
+<!-- ================================================================================= -->
+<!--                                 SERVICES SECTION                                    -->
+<!-- ================================================================================= -->
+
+<section class="px-6 mt-10 fade-in">
+  <div class="card p-6">
+    <h2 class="text-2xl font-bold text-pink-500 mb-4">Services</h2>
+
+    <p class="text-white/80 mb-3">Tantric Massage</p>
+    <p class="text-white/60 leading-relaxed">
+      Draws from ancient Indian practices to awaken sexual energy through slow, sensual touch,
+      breathwork, and full-body connection — fostering spiritual ecstasy without a focus on orgasm.
+    </p>
+  </div>
+</section>
+
+<!-- ================================================================================= -->
+<!--                                     RATES SECTION                                   -->
+<!-- ================================================================================= -->
+
+<section class="px-6 mt-10 fade-in">
+  <div class="card p-6">
+    <h2 class="text-2xl font-bold text-pink-500 mb-4">Rates</h2>
+
+    <ul class="space-y-3 text-white/80">
+      <li>• Tantric Session (60 Minutes) — <span class="text-pink-400 font-semibold">R1500</span></li>
+    </ul>
+  </div>
+</section>
+
+<!-- ================================================================================= -->
+<!--                          IMAGE GALLERY PREVIEW SECTION                              -->
+<!-- ================================================================================= -->
+
+<section id="image-gallery" class="px-6 mt-12 fade-in">
+  <div class="card p-6">
+    <h2 class="text-2xl font-bold text-pink-500 mb-4">Image Gallery</h2>
+
+    <div class="grid grid-cols-3 gap-3">
+
+      <!-- Correct paths -->
+      <img src="images/lerato_image01.jpg" class="gallery-img rounded-xl object-cover h-28 w-full" />
+      <img src="images/lerato_image02.jpg" class="gallery-img rounded-xl object-cover h-28 w-full" />
+      <img src="images/lerato_image03.jpg" class="gallery-img rounded-xl object-cover h-28 w-full" />
+
+    </div>
+
+    <a href="Gallery_Lerato_Images.html"
+       class="mt-5 block text-center text-pink-400 font-semibold hover:text-pink-300">
+       View Full Image Gallery →
+    </a>
+  </div>
+</section>
+
+<!-- ================================================================================= -->
+<!--                         VIDEO GALLERY PREVIEW SECTION                               -->
+<!-- ================================================================================= -->
+
+<section class="px-6 mt-12 fade-in pb-20">
+  <div class="card p-6">
+    <h2 class="text-2xl font-bold text-pink-500 mb-4">Video Gallery</h2>
+
+    <div class="grid grid-cols-2 gap-4">
+
+      <video src="vids/lerato_video01.mp4"
+             class="gallery-video rounded-xl h-32 w-full object-cover" muted></video>
+
+      <video src="vids/lerato_video02.mp4"
+             class="gallery-video rounded-xl h-32 w-full object-cover" muted></video>
+
+    </div>
+
+    <a href="Gallery_Lerato_Videos.html"
+       class="mt-5 block text-center text-pink-400 font-semibold hover:text-pink-300">
+       View Full Video Gallery →
+    </a>
+  </div>
+</section>
+
+<!-- ================================================================================= -->
+<!--                                      FOOTER                                        -->
+<!-- ================================================================================= -->
+
+<footer class="text-center py-6 text-white/70">
+  <div class="flex justify-center gap-6 text-2xl mb-3">
+    <a href="https://facebook.com" target="_blank">📘</a>
+    <a href="https://instagram.com" target="_blank">📸</a>
+    <a href="https://twitter.com" target="_blank">🐦</a>
+    <a href="mailto:info@example.com">✉️</a>
+    <a href="https://wa.me/27829627848" target="_blank">📞</a>
+  </div>
+  <p class="text-xs">© 2025 Ecstasy Retreat — All rights reserved.</p>
+</footer>
+
+<!-- ================================================================================= -->
+<!--                                      JS                                            -->
+<!-- ================================================================================= -->
+
+<script>
+  // Fade header after 3 seconds
+  const header = document.getElementById("mainHeader");
+  setTimeout(() => {
+    header.classList.remove("bg-black/50", "backdrop-blur-md", "border-white/10");
+    header.classList.add("bg-transparent", "border-transparent");
+  }, 3000);
+
+  // Mobile menu handling
+  const menuBtn = document.getElementById("menuBtn");
+  const mobileMenu = document.getElementById("mobileMenu");
+  const menuLinks = document.querySelectorAll(".menu-link");
+
+  menuBtn.onclick = () => mobileMenu.classList.toggle("hidden");
+
+  menuLinks.forEach(link => {
+    link.onclick = () => mobileMenu.classList.add("hidden");
+  });
+
+  // WhatsApp booking with automatic page link
+  const bookWhatsAppBtn = document.getElementById("bookWhatsApp");
+
+  bookWhatsAppBtn.onclick = (e) => {
+    e.preventDefault();
+    const pageUrl = window.location.href;
+    const message = `Hi, I would like to book a session with Lerato. Here is the profile link: ${pageUrl}`;
+    const encodedMessage = encodeURIComponent(message);
+    const whatsappUrl = `https://wa.me/27500204011?text=${encodedMessage}`;
+    window.open(whatsappUrl, "_blank");
+  };
+</script>
+
+</body>
+</html>
