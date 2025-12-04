@@ -15,12 +15,10 @@
 
     <style>
         /* ================= HEADER ================= */
-        /* Header starts with a semi-transparent bg, then fades to transparent only (icons stay) */
         #headerWrapper {
             background-color: rgba(0, 0, 0, 0.6);
             transition: background-color 1.5s ease-in-out;
         }
-
         #headerWrapper.fade-bg {
             background-color: transparent;
         }
@@ -28,6 +26,16 @@
         /* ================= PROFILE IMAGE GLOW ================= */
         .profile-glow-wrapper {
             box-shadow: 0 0 35px rgba(255, 20, 147, 0.85);
+            position: relative; /* Needed for badge positioning */
+        }
+
+        /* ================= AVAILABILITY BADGE FIX ================= */
+        .availability-badge {
+            position: absolute;
+            bottom: -12px; /* correct positioning into the circle */
+            left: 50%;
+            transform: translateX(-50%);
+            z-index: 20;
         }
 
         /* ================= SECTION BOXES ================= */
@@ -52,10 +60,7 @@
             align-items: center;
             box-shadow: 0 0 25px rgba(255, 20, 147, 0.8);
         }
-
-        .primary-btn i {
-            margin-right: 8px;
-        }
+        .primary-btn i { margin-right: 8px; }
 
         .outline-btn {
             border: 2px solid #ff1493;
@@ -68,10 +73,7 @@
             justify-content: center;
             align-items: center;
         }
-
-        .outline-btn i {
-            margin-right: 8px;
-        }
+        .outline-btn i { margin-right: 8px; }
 
         /* ================= BOTTOM NAV ================= */
         .bottom-nav {
@@ -83,7 +85,6 @@
             border-top: 1px solid #333;
             z-index: 50;
         }
-
         .bottom-nav a {
             flex: 1;
             text-align: center;
@@ -91,7 +92,6 @@
             color: #ffffff;
             font-size: 13px;
         }
-
         .bottom-nav a i {
             display: block;
             font-size: 18px;
@@ -105,14 +105,12 @@
     <!-- ================= HEADER ================= -->
     <header id="headerWrapper"
             class="fixed top-0 left-0 w-full z-40 py-3 px-4 flex items-center justify-between">
-        <!-- Logo (small, original size) -->
+
         <img src="images/logo.png" alt="Ecstasy Retreat Logo" class="w-14">
 
         <div class="flex items-center space-x-4">
-            <!-- Ghost icon as in your screenshot -->
             <i class="fa-solid fa-ghost text-pink-500 text-2xl"></i>
 
-            <!-- Hamburger -->
             <button id="menuBtn" class="text-pink-500 text-3xl">
                 <i class="fa-solid fa-bars"></i>
             </button>
@@ -138,7 +136,6 @@
                 <i class="fa-solid fa-users"></i><span>View Therapists</span>
             </a>
 
-            <!-- Active page -->
             <a class="flex items-center space-x-3 text-pink-400 font-semibold">
                 <i class="fa-solid fa-user"></i><span>Lerato Profile</span>
             </a>
@@ -168,25 +165,24 @@
     <!-- ================= MAIN CONTENT ================= -->
     <main class="pt-28 px-6">
 
-        <!-- PROFILE IMAGE WITH GLOW + OVERLAPPING AVAILABILITY BADGE (like second screenshot) -->
+        <!-- PROFILE IMAGE + FIXED AVAILABILITY BADGE -->
         <div class="flex justify-center mt-4">
-            <div class="relative profile-glow-wrapper rounded-full border-4 border-pink-500">
+            <div class="profile-glow-wrapper rounded-full border-4 border-pink-500">
+
                 <div class="w-40 h-40 md:w-48 md:h-48 rounded-full overflow-hidden">
-                    <img src="images/lerato_image01.jpg"
-                         alt="Lerato"
-                         class="w-full h-full object-cover">
+                    <img src="images/lerato_image01.jpg" class="w-full h-full object-cover">
                 </div>
 
-                <!-- Availability badge overlapping bottom of circle -->
-                <div
-                    class="absolute -bottom-4 left-1/2 -translate-x-1/2 bg-green-500 px-5 py-1.5 rounded-full flex items-center space-x-2 shadow-lg shadow-green-500/60">
+                <!-- FIXED BADGE POSITION -->
+                <div class="availability-badge bg-green-500 px-5 py-1.5 rounded-full flex items-center space-x-2 shadow-lg shadow-green-500/60">
                     <span class="w-3 h-3 bg-white rounded-full animate-pulse"></span>
                     <span class="text-xs md:text-sm font-semibold">Available Now</span>
                 </div>
+
             </div>
         </div>
 
-        <!-- NAME + SUBTITLE + RATING (styled like second screenshot) -->
+        <!-- NAME + SUBTITLE + RATING -->
         <section class="mt-10 text-center">
             <h1 class="text-4xl md:text-5xl font-extrabold text-pink-500">
                 Lerato ✨
@@ -196,8 +192,7 @@
                 Tantric Specialist in Rosebank
             </p>
 
-            <div
-                class="mt-4 flex flex-col md:flex-row items-center justify-center gap-3 text-sm md:text-base text-gray-200">
+            <div class="mt-4 flex flex-col md:flex-row items-center justify-center gap-3 text-sm md:text-base text-gray-200">
                 <div class="text-yellow-400 font-semibold">
                     4.9/5.0 <span class="text-gray-300">(200+ sessions)</span>
                 </div>
@@ -208,49 +203,42 @@
             </div>
         </section>
 
-        <!-- PRIMARY CTA BUTTONS (Book + Gallery) -->
+        <!-- CTA BUTTONS -->
         <section class="mt-8 space-y-4">
             <a href="booking.html" class="primary-btn">
                 <i class="fa-solid fa-calendar-check"></i>
                 <span>Book a Session</span>
             </a>
 
-            <a href="image_gallery.html" class="outline-btn">
-                <span>View Full Gallery</span>
-            </a>
+            <a href="image_gallery.html" class="outline-btn">View Full Gallery</a>
         </section>
 
-        <!-- ABOUT LERATO -->
+        <!-- ABOUT SECTION -->
         <section class="section-box mt-10">
             <h2 class="text-2xl text-pink-400 font-bold mb-2">About Lerato</h2>
             <p class="text-gray-300 leading-relaxed">
                 Lerato offers a deeply relaxing, sensual, unforgettable tantric experience designed to awaken your
-                energy and melt your stress away. Her touch is intuitive, healing, and uniquely tailored to your body’s
-                rhythm, creating a safe, warm space for you to fully let go.
+                energy and melt your stress away. Her touch is intuitive, healing, and uniquely tailored to your body’s rhythm.
             </p>
         </section>
 
-        <!-- JOIN + IMAGE GALLERY + VIDEO GALLERY (extra section you requested) -->
-        <section class="section-box mt-10 space-y-4">
-            <h2 class="text-xl text-pink-400 font-semibold mb-2 text-center">Explore More</h2>
+        <!-- EXPLORE MORE -->
+        <section class="section-box mt-10 space-y-4 text-center">
+            <h2 class="text-xl text-pink-400 font-semibold mb-2">Explore More</h2>
 
             <a href="join.html" class="outline-btn">
-                <i class="fa-solid fa-handshake"></i>
-                <span>Join as Therapist</span>
+                <i class="fa-solid fa-handshake"></i> Join as Therapist
             </a>
 
             <a href="image_gallery.html" class="outline-btn">
-                <i class="fa-solid fa-camera"></i>
-                <span>Image Gallery</span>
+                <i class="fa-solid fa-camera"></i> Image Gallery
             </a>
 
             <a href="video_gallery.html" class="outline-btn">
-                <i class="fa-solid fa-video"></i>
-                <span>Video Gallery</span>
+                <i class="fa-solid fa-video"></i> Video Gallery
             </a>
         </section>
 
-        <!-- (Optional) You can later use lerato_image02/03 + videos on dedicated pages -->
     </main>
 
     <!-- ================= FOOTER ================= -->
@@ -258,64 +246,27 @@
         © 2025 Ecstasy Retreat • Sensual Luxury Experience
     </footer>
 
-    <!-- ================= BOTTOM NAVIGATION ================= -->
+    <!-- ================= BOTTOM NAV ================= -->
     <nav class="bottom-nav flex justify-between">
-        <a href="index.html">
-            <i class="fa-solid fa-house"></i>
-            Home
-        </a>
-        <a href="therapists.html" class="text-pink-400">
-            <i class="fa-solid fa-users"></i>
-            Therapists
-        </a>
-        <a href="booking.html">
-            <i class="fa-solid fa-calendar-check"></i>
-            Book
-        </a>
-        <a href="contact.html">
-            <i class="fa-solid fa-envelope"></i>
-            Contact
-        </a>
+        <a href="index.html"><i class="fa-solid fa-house"></i>Home</a>
+        <a href="therapists.html" class="text-pink-400"><i class="fa-solid fa-users"></i>Therapists</a>
+        <a href="booking.html"><i class="fa-solid fa-calendar-check"></i>Book</a>
+        <a href="contact.html"><i class="fa-solid fa-envelope"></i>Contact</a>
     </nav>
 
     <!-- ================= JAVASCRIPT ================= -->
     <script>
-        // Fade only the header background after 3 seconds (icons stay)
-        setTimeout(function () {
-            var header = document.getElementById("headerWrapper");
-            if (header) {
-                header.classList.add("fade-bg");
-            }
+        setTimeout(() => {
+            document.getElementById("headerWrapper")?.classList.add("fade-bg");
         }, 3000);
 
-        // Mobile menu open/close
         const menuBtn = document.getElementById("menuBtn");
         const mobileMenu = document.getElementById("mobileMenu");
         const closeMenu = document.getElementById("closeMenu");
 
-        if (menuBtn && mobileMenu && closeMenu) {
-            menuBtn.addEventListener("click", function () {
-                mobileMenu.classList.remove("hidden");
-            });
-
-            closeMenu.addEventListener("click", function () {
-                mobileMenu.classList.add("hidden");
-            });
-        }
+        menuBtn?.addEventListener("click", () => mobileMenu.classList.remove("hidden"));
+        closeMenu?.addEventListener("click", () => mobileMenu.classList.add("hidden"));
     </script>
-
-    <!--
-        Additional media for Lerato (used on gallery/video pages):
-
-        Images:
-        - images/lerato_image01.jpg
-        - images/lerato_image02.jpg
-        - images/lerato_image03.jpg
-
-        Videos:
-        - vids/lerato_video01.mp4
-        - vids/lerato_video02.mp4
-    -->
 
 </body>
 
