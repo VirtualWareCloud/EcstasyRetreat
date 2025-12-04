@@ -1,34 +1,81 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Lerato Profile – Ecstasy Retreat</title>
 
-    <!-- Tailwind CSS -->
+    <!-- TailwindCSS -->
     <script src="https://cdn.tailwindcss.com"></script>
 
-    <!-- Icons -->
+    <!-- Font Awesome Icons -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
 
     <style>
-        /* Transparent Header Fade-Out */
+        /* Header fade-out */
         #headerWrapper {
             transition: opacity 2s ease-in-out;
         }
-        .fade-out {
+
+        #headerWrapper.fade-out {
             opacity: 0;
+            pointer-events: none;
         }
 
-        /* Mobile Menu */
-        #mobileMenu {
-            display: none;
+        /* Neon Glow Profile Bar */
+        .neon-bar {
+            border: 3px solid #ff1493;
+            border-radius: 999px;
+            padding: 6px;
+            box-shadow: 0 0 25px #ff1493;
+            background: #000;
+            display: flex;
+            align-items: center;
+            justify-content: flex-start;
+            overflow: hidden;
         }
-        #mobileMenu.active {
+
+        .neon-bar img {
+            width: 55px;
+            height: 55px;
+            border-radius: 50%;
+            object-fit: cover;
+            border: 2px solid #ff1493;
+        }
+
+        /* Section box styling */
+        .section-box {
+            border: 1px solid #ff149370;
+            border-radius: 20px;
+            padding: 20px;
+            background: #00000070;
+        }
+
+        /* Buttons */
+        .pink-btn {
+            background: #ff1493;
+            color: white;
+            padding: 12px;
+            border-radius: 999px;
+            font-weight: 600;
+            width: 100%;
             display: block;
+            text-align: center;
         }
 
-        /* Bottom Nav */
+        .pink-outline-btn {
+            border: 2px solid #ff1493;
+            color: #ff1493;
+            padding: 12px;
+            border-radius: 999px;
+            font-weight: 600;
+            width: 100%;
+            display: block;
+            text-align: center;
+        }
+
+        /* Bottom navigation */
         .bottom-nav {
             position: fixed;
             bottom: 0;
@@ -38,69 +85,41 @@
             border-top: 1px solid #333;
             z-index: 50;
         }
+
         .bottom-nav a {
             flex: 1;
             text-align: center;
             padding: 10px 0;
             color: #fff;
-            font-size: 14px;
+            font-size: 13px;
         }
+
         .bottom-nav a i {
             display: block;
             font-size: 18px;
-            margin-bottom: 4px;
-        }
-
-        /* Profile Glow Image */
-        .glow-frame {
-            box-shadow: 0 0 30px rgba(255, 20, 147, 0.6);
-            border: 3px solid rgba(255, 20, 147, 0.5);
-            border-radius: 20px;
-        }
-
-        /* Button Styles */
-        .pink-btn {
-            background: #ff1493;
-            color: white;
-            padding: 12px 20px;
-            border-radius: 999px;
-            display: inline-block;
-            font-weight: 600;
-            text-align: center;
-        }
-
-        .pink-outline-btn {
-            border: 2px solid #ff1493;
-            color: #ff1493;
-            padding: 10px 20px;
-            border-radius: 999px;
-            display: inline-block;
-            font-weight: 600;
-        }
-
-        /* Blur overlay behind menu */
-        .menu-overlay {
-            backdrop-filter: blur(12px);
-            background: rgba(0,0,0,0.75);
+            margin-bottom: 3px;
         }
     </style>
 </head>
 
 <body class="bg-black text-white pb-24">
 
-    <!-- Header Wrapper (fades out after 3 seconds) -->
-    <div id="headerWrapper" class="fixed top-0 left-0 w-full z-40 bg-black/60 py-3 px-4 flex items-center justify-between">
-        <!-- Logo small size -->
-        <img src="/images/logo.png" class="w-14" />
+    <!-- HEADER (transparent, fades out after 3 seconds) -->
+    <header id="headerWrapper"
+        class="fixed top-0 left-0 w-full z-40 bg-black/60 py-3 px-4 flex items-center justify-between">
+        <!-- Update logo path if needed -->
+        <img src="images/logo.png" alt="Ecstasy Retreat Logo" class="w-14" />
 
         <!-- Hamburger -->
         <button id="menuBtn" class="text-pink-500 text-3xl">
             <i class="fa-solid fa-bars"></i>
         </button>
-    </div>
+    </header>
 
-    <!-- Mobile Menu Panel -->
-    <div id="mobileMenu" class="fixed top-0 right-0 w-72 h-full menu-overlay p-6 z-50 rounded-l-2xl">
+    <!-- MOBILE MENU -->
+    <div id="mobileMenu"
+        class="hidden fixed top-0 right-0 w-72 h-full bg-black/90 backdrop-blur-xl p-6 z-50 rounded-l-2xl">
+
         <div class="flex justify-end mb-6">
             <button id="closeMenu" class="text-pink-500 text-3xl">
                 <i class="fa-solid fa-xmark"></i>
@@ -108,109 +127,160 @@
         </div>
 
         <nav class="space-y-5 text-lg">
-            <a href="index.html" class="flex items-center space-x-3"><i class="fa-solid fa-house"></i><span>Home</span></a>
-            <a href="therapists.html" class="flex items-center space-x-3"><i class="fa-solid fa-users"></i><span>View Therapists</span></a>
+            <a href="index.html" class="flex items-center space-x-3">
+                <i class="fa-solid fa-house"></i><span>Home</span>
+            </a>
+
+            <a href="therapists.html" class="flex items-center space-x-3">
+                <i class="fa-solid fa-users"></i><span>View Therapists</span>
+            </a>
 
             <a class="flex items-center space-x-3 text-pink-400 font-semibold">
                 <i class="fa-solid fa-user"></i><span>Lerato Profile</span>
             </a>
 
-            <a href="image_gallery.html" class="flex items-center space-x-3"><i class="fa-solid fa-camera"></i><span>Image Gallery</span></a>
-            <a href="video_gallery.html" class="flex items-center space-x-3"><i class="fa-solid fa-video"></i><span>Video Gallery</span></a>
+            <a href="image_gallery.html" class="flex items-center space-x-3">
+                <i class="fa-solid fa-camera"></i><span>Image Gallery</span>
+            </a>
 
-            <a href="join.html" class="flex items-center space-x-3"><i class="fa-solid fa-handshake"></i><span>Join as Therapist</span></a>
+            <a href="video_gallery.html" class="flex items-center space-x-3">
+                <i class="fa-solid fa-video"></i><span>Video Gallery</span>
+            </a>
 
-            <a href="booking.html" class="flex items-center space-x-3"><i class="fa-solid fa-calendar-check"></i><span>Book Session</span></a>
+            <a href="join.html" class="flex items-center space-x-3">
+                <i class="fa-solid fa-handshake"></i><span>Join as Therapist</span>
+            </a>
 
-            <a href="contact.html" class="flex items-center space-x-3"><i class="fa-solid fa-envelope"></i><span>Contact Us</span></a>
+            <a href="booking.html" class="flex items-center space-x-3">
+                <i class="fa-solid fa-calendar-check"></i><span>Book Session</span>
+            </a>
+
+            <a href="contact.html" class="flex items-center space-x-3">
+                <i class="fa-solid fa-envelope"></i><span>Contact Us</span>
+            </a>
         </nav>
     </div>
 
-    <!-- MAIN PROFILE CONTENT -->
-    <div class="pt-28 text-center px-6">
+    <!-- MAIN CONTENT -->
+    <main class="pt-28 px-6 text-center">
 
-        <!-- LERATO IMAGE -->
-        <img src="/images/lerato_main.jpg" class="w-64 mx-auto rounded-2xl glow-frame" />
+        <!-- NEON GLOW PROFILE IMAGE BAR -->
+        <div class="neon-bar mx-auto w-11/12">
+            <img src="images/lerato_image01.jpg" alt="Lerato main image">
+        </div>
 
-        <!-- Name -->
+        <!-- NAME -->
         <h1 class="text-4xl font-bold mt-6 text-pink-500">Lerato</h1>
 
-        <!-- Rating -->
+        <!-- RATING -->
         <p class="text-yellow-400 text-lg font-semibold mt-2">4.9 / 5.0 ★</p>
 
-        <!-- Subtitle -->
-        <p class="text-gray-300 italic text-lg mt-2">Tantric Sensual Specialist</p>
+        <!-- TITLE -->
+        <p class="text-gray-300 italic mt-1">Tantric Sensual Specialist</p>
 
-        <!-- Availability  Indicator -->
-        <div class="mt-4 inline-flex items-center space-x-2 bg-green-600 px-4 py-1 rounded-full">
-            <span class="w-3 h-3 bg-white rounded-full animate-pulse"></span>
-            <span class="font-semibold">Available Now</span>
+        <!-- AVAILABILITY BADGE -->
+        <div class="mt-5 flex justify-center">
+            <div
+                class="inline-flex items-center space-x-2 bg-green-500 px-6 py-2 rounded-full shadow-lg shadow-green-500/40">
+                <span class="w-3 h-3 bg-white rounded-full animate-pulse"></span>
+                <span class="font-semibold text-sm">Available Now</span>
+            </div>
         </div>
 
-        <!-- About Section -->
-        <div class="mt-8 text-left bg-black/40 rounded-2xl p-6 border border-pink-500/40">
-            <h2 class="text-2xl font-bold text-pink-400 mb-3">About Lerato</h2>
-            <p class="text-gray-300 leading-relaxed">
-                Lerato offers a deeply relaxing, sensual, unforgettable tantric experience designed to awaken your energy and melt your stress away. 
-                Her touch is intuitive, healing, and uniquely tailored to your body’s rhythm.  
-            </p>
-        </div>
-
-        <!-- Buttons -->
+        <!-- PRIMARY CTA BUTTONS -->
         <div class="mt-8 space-y-4">
-            <a href="booking.html" class="pink-btn w-full block text-center">Book Session</a>
-            <a href="image_gallery.html" class="pink-outline-btn w-full block text-center">View Full Gallery</a>
+            <a href="booking.html" class="pink-btn">Book Session</a>
+            <a href="image_gallery.html" class="pink-outline-btn">View Full Gallery</a>
         </div>
-    </div>
+
+        <!-- ABOUT SECTION -->
+        <section class="section-box mt-10 text-left">
+            <h2 class="text-2xl text-pink-400 font-bold mb-2">About Lerato</h2>
+            <p class="text-gray-300 leading-relaxed">
+                Lerato offers a deeply relaxing, sensual, unforgettable tantric experience designed to awaken your energy
+                and melt your stress away. Her touch is intuitive, healing, and uniquely tailored to your body’s rhythm.
+            </p>
+        </section>
+
+        <!-- QUICK ACCESS: JOIN / IMAGE GALLERY / VIDEO GALLERY -->
+        <section class="section-box mt-10 space-y-4 text-left">
+            <h2 class="text-xl text-pink-400 font-semibold mb-2 text-center">Explore More</h2>
+
+            <a href="join.html" class="pink-outline-btn text-center">
+                <i class="fa-solid fa-handshake mr-2"></i>Join as Therapist
+            </a>
+
+            <a href="image_gallery.html" class="pink-outline-btn text-center">
+                <i class="fa-solid fa-camera mr-2"></i>Image Gallery
+            </a>
+
+            <a href="video_gallery.html" class="pink-outline-btn text-center">
+                <i class="fa-solid fa-video mr-2"></i>Video Gallery
+            </a>
+        </section>
+
+    </main>
 
     <!-- FOOTER -->
-    <footer class="mt-12 py-10 text-center border-t border-pink-500/30">
-        <p class="text-gray-400">© 2025 Ecstasy Retreat</p>
-        <p class="text-pink-400 text-sm mt-2">Luxury. Relaxation. Sensual Energy.</p>
+    <footer class="mt-16 mb-24 text-center text-gray-400">
+        © 2025 Ecstasy Retreat • Sensual Luxury Experience
     </footer>
 
-    <!-- Bottom Navigation Bar -->
-    <div class="bottom-nav flex justify-between">
+    <!-- BOTTOM NAVIGATION BAR -->
+    <nav class="bottom-nav flex justify-between">
         <a href="index.html">
-            <i class="fa-solid fa-house"></i>
-            Home
+            <i class="fa-solid fa-house"></i>Home
         </a>
-
         <a href="therapists.html">
-            <i class="fa-solid fa-users"></i>
-            Therapists
+            <i class="fa-solid fa-users"></i>Therapists
         </a>
-
         <a href="booking.html">
-            <i class="fa-solid fa-calendar-check"></i>
-            Book
+            <i class="fa-solid fa-calendar-check"></i>Book
         </a>
-
         <a href="contact.html">
-            <i class="fa-solid fa-envelope"></i>
-            Contact
+            <i class="fa-solid fa-envelope"></i>Contact
         </a>
-    </div>
+    </nav>
 
     <!-- JAVASCRIPT -->
     <script>
-        // Header fade effect
-        setTimeout(() => {
-            document.getElementById("headerWrapper").classList.add("fade-out");
+        // Fade header after 3 seconds
+        setTimeout(function () {
+            var header = document.getElementById("headerWrapper");
+            if (header) {
+                header.classList.add("fade-out");
+            }
         }, 3000);
 
-        // Menu logic
+        // Mobile menu open/close
         const menuBtn = document.getElementById("menuBtn");
         const mobileMenu = document.getElementById("mobileMenu");
         const closeMenu = document.getElementById("closeMenu");
 
-        menuBtn.addEventListener("click", () => {
-            mobileMenu.classList.add("active");
-        });
+        if (menuBtn && mobileMenu && closeMenu) {
+            menuBtn.addEventListener("click", () => {
+                mobileMenu.classList.remove("hidden");
+            });
 
-        closeMenu.addEventListener("click", () => {
-            mobileMenu.classList.remove("active");
-        });
+            closeMenu.addEventListener("click", () => {
+                mobileMenu.classList.add("hidden");
+            });
+        }
     </script>
+
+    <!--
+        Lerato media files for use in gallery pages:
+
+        Images:
+        - images/lerato_image01.jpg
+        - images/lerato_image02.jpg
+        - images/lerato_image03.jpg
+
+        Videos:
+        - vids/lerato_video01.mp4
+        - vids/lerato_video02.mp4
+    -->
+
 </body>
+
 </html>
