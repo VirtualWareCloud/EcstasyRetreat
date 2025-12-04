@@ -69,14 +69,14 @@
 <!-- ================================================================================= -->
 
 <section class="text-center fade-in">
-  <img src="lerato_image01.jpg"
+  <img src="images/lerato_image01.jpg"
        class="w-52 h-52 rounded-full object-cover border-4 border-pink-500 shadow-xl mx-auto" />
 
   <h1 class="text-4xl font-bold mt-6 text-pink-500">Lerato</h1>
   <p class="text-white/70 mt-1 text-lg">Rosebank • Tantric Specialist</p>
 
   <div class="mt-6 flex flex-col gap-3 px-10">
-    <!-- UPDATED: WhatsApp booking button -->
+    <!-- WhatsApp booking button -->
     <a href="#"
        id="bookWhatsApp"
        class="bg-pink-600 py-3 rounded-full text-xl font-bold hover:bg-pink-700 transition">
@@ -91,7 +91,7 @@
 </section>
 
 <!-- ================================================================================= -->
-<!--                                     ABOUT SECTION                                  -->
+<!--                                 ABOUT SECTION                                       -->
 <!-- ================================================================================= -->
 
 <section class="px-6 mt-10 fade-in">
@@ -144,9 +144,9 @@
     <h2 class="text-2xl font-bold text-pink-500 mb-4">Image Gallery</h2>
 
     <div class="grid grid-cols-3 gap-3">
-      <img src="lerato_image01.jpg" class="gallery-img rounded-xl object-cover h-28 w-full" />
-      <img src="lerato_image02.jpg" class="gallery-img rounded-xl object-cover h-28 w-full" />
-      <img src="lerato_image03.jpg" class="gallery-img rounded-xl object-cover h-28 w-full" />
+      <img src="images/lerato_image01.jpg" class="gallery-img rounded-xl object-cover h-28 w-full" />
+      <img src="images/lerato_image02.jpg" class="gallery-img rounded-xl object-cover h-28 w-full" />
+      <img src="images/lerato_image03.jpg" class="gallery-img rounded-xl object-cover h-28 w-full" />
     </div>
 
     <a href="Gallery_Lerato_Images.html"
@@ -165,8 +165,8 @@
     <h2 class="text-2xl font-bold text-pink-500 mb-4">Video Gallery</h2>
 
     <div class="grid grid-cols-2 gap-4">
-      <video src="lerato_video01.mp4" class="gallery-video rounded-xl h-32 w-full object-cover" muted></video>
-      <video src="lerato_video02.mp4" class="gallery-video rounded-xl h-32 w-full object-cover" muted></video>
+      <video src="vids/lerato_video01.mp4" class="gallery-video rounded-xl h-32 w-full object-cover" muted></video>
+      <video src="vids/lerato_video02.mp4" class="gallery-video rounded-xl h-32 w-full object-cover" muted></video>
     </div>
 
     <a href="Gallery_Lerato_Videos.html"
@@ -196,14 +196,14 @@
 <!-- ================================================================================= -->
 
 <script>
-  // Fade header background after 3 seconds
+  // Fade header after 3 seconds
   const header = document.getElementById("mainHeader");
   setTimeout(() => {
     header.classList.remove("bg-black/50", "backdrop-blur-md", "border-white/10");
     header.classList.add("bg-transparent", "border-transparent");
   }, 3000);
 
-  // Mobile menu functionality
+  // Mobile menu handling
   const menuBtn = document.getElementById("menuBtn");
   const mobileMenu = document.getElementById("mobileMenu");
   const menuLinks = document.querySelectorAll(".menu-link");
@@ -213,8 +213,9 @@
     link.onclick = () => mobileMenu.classList.add("hidden");
   });
 
-  // WhatsApp booking button – sends page URL in message
+  // Auto WhatsApp booking with page link
   const bookWhatsAppBtn = document.getElementById("bookWhatsApp");
+
   bookWhatsAppBtn.onclick = (e) => {
     e.preventDefault();
     const pageUrl = window.location.href;
