@@ -4,27 +4,37 @@
 <head>
 <meta charset="UTF-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-<title>Ecstasy Retreat – Therapists</title>
+<title>Ecstasy Retreat – Therapists List</title>
 
-<!-- TailwindCSS CDN -->
+<!-- Tailwind -->
 <script src="https://cdn.tailwindcss.com"></script>
 
 <style>
-  .card-hover {
-    transition: transform 0.3s ease, box-shadow 0.3s ease;
+  .card {
+    background: rgba(255, 255, 255, 0.03);
+    border: 1px solid rgba(255, 0, 128, 0.35);
+    backdrop-filter: blur(6px);
+    border-radius: 20px;
+    transition: 0.3s ease;
   }
-  .card-hover:hover {
-    transform: scale(1.04);
-    box-shadow: 0 0 25px rgba(255, 0, 128, 0.4);
+  .card:hover {
+    transform: translateY(-4px);
+  }
+  .fade-in {
+    animation: fadeIn 0.8s ease forwards;
+  }
+  @keyframes fadeIn {
+    from { opacity: 0; transform: translateY(15px); }
+    to { opacity: 1; transform: translateY(0); }
   }
 </style>
 
 </head>
 
-<body class="bg-black text-white overflow-x-hidden">
+<body class="bg-black text-white">
 
 <!-- ================================================================================= -->
-<!--                                        HEADER                                      -->
+<!--                                      HEADER                                        -->
 <!-- ================================================================================= -->
 
 <header id="mainHeader"
@@ -35,12 +45,8 @@
     <img src="logo.png" class="w-32" alt="Ecstasy Retreat Logo">
   </a>
 
-  <button id="menuBtn" class="text-white text-3xl z-[1001]">
-    &#9776;
-  </button>
+  <button id="menuBtn" class="text-white text-3xl z-[1001]">&#9776;</button>
 </header>
-
-<!-- ================= MOBILE MENU ================= -->
 
 <nav id="mobileMenu"
   class="hidden fixed top-16 right-4 bg-black/95 backdrop-blur-xl p-6 rounded-xl 
@@ -55,98 +61,170 @@
 <div class="pt-36"></div>
 
 <!-- ================================================================================= -->
-<!--                                  PAGE TITLE                                        -->
+<!--                                THERAPISTS LIST                                     -->
 <!-- ================================================================================= -->
 
-<section class="text-center mb-10">
-  <h1 class="text-4xl font-bold text-pink-500">Our Therapists</h1>
-  <p class="text-white/60 mt-2">Select your preferred companion for a relaxing, sensual experience.</p>
+<section class="px-6 pb-20 fade-in">
+
+  <h1 class="text-4xl font-bold text-center text-pink-500 mb-10">Our Therapists</h1>
+
+  <div class="grid grid-cols-1 gap-6">
+
+    <!-- ===================================================== -->
+    <!--               LERATO — FIRST CARD                     -->
+    <!-- ===================================================== -->
+    <div class="card p-5 flex gap-5 items-center">
+      <img src="lerato_image01.jpg" class="w-28 h-28 rounded-full object-cover border-2 border-pink-500" />
+
+      <div class="flex-1">
+        <h2 class="text-xl font-bold text-pink-400">Lerato</h2>
+        <p class="text-white/70 text-sm">Rosebank • Tantric Specialist</p>
+
+        <p class="text-white/60 text-sm mt-2">
+          Expert in tantric energy, sensual healing & spiritual connection.
+        </p>
+
+        <div class="mt-4 flex gap-3">
+          <a href="Lerato_Profile.html"
+             class="bg-pink-600 px-4 py-2 rounded-full text-sm font-bold hover:bg-pink-700">
+             View Therapist
+          </a>
+
+          <a href="https://wa.me/27500204011?text=Hi%2C%20I%20would%20like%20to%20book%20Lerato."
+             target="_blank"
+             class="border border-pink-500 px-4 py-2 rounded-full text-sm font-bold text-pink-400 hover:bg-pink-500/20">
+             Book Now
+          </a>
+        </div>
+      </div>
+    </div>
+
+    <!-- ===================================================== -->
+    <!--                  SAMPLE THERAPIST 2                    -->
+    <!-- ===================================================== -->
+    <div class="card p-5 flex gap-5 items-center">
+      <img src="image01.jpg" class="w-28 h-28 rounded-full object-cover" />
+
+      <div class="flex-1">
+        <h2 class="text-xl font-bold text-pink-400">Thandi</h2>
+        <p class="text-white/70 text-sm">Sandton • Deep Tissue & Sensual Fusion</p>
+
+        <p class="text-white/60 text-sm mt-2">
+          Specialised sensual-deep tissue hybrid therapy.
+        </p>
+
+        <div class="mt-4 flex gap-3">
+          <a href="Therapist_Profile.html"
+             class="bg-pink-600 px-4 py-2 rounded-full text-sm font-bold hover:bg-pink-700">
+             View Therapist
+          </a>
+          <a href="https://wa.me/27500204011?text=I%20want%20to%20book%20Thandi."
+             target="_blank"
+             class="border border-pink-500 px-4 py-2 rounded-full text-sm font-bold text-pink-400 hover:bg-pink-500/20">
+             Book Now
+          </a>
+        </div>
+      </div>
+    </div>
+
+    <!-- ===================================================== -->
+    <!--                  SAMPLE THERAPIST 3                    -->
+    <!-- ===================================================== -->
+    <div class="card p-5 flex gap-5 items-center">
+      <img src="image02.jpg" class="w-28 h-28 rounded-full object-cover" />
+      <div class="flex-1">
+        <h2 class="text-xl font-bold text-pink-400">Nicole</h2>
+        <p class="text-white/70 text-sm">Fourways • Sensual Relaxation</p>
+        <p class="text-white/60 text-sm mt-2">Soft-touch & sensual full-body connection.</p>
+
+        <div class="mt-4 flex gap-3">
+          <a href="Therapist_Profile.html"
+             class="bg-pink-600 px-4 py-2 rounded-full text-sm font-bold hover:bg-pink-700">
+             View Therapist
+          </a>
+          <a href="https://wa.me/27500204011?text=I%20want%20to%20book%20Nicole."
+             target="_blank"
+             class="border border-pink-500 px-4 py-2 rounded-full text-sm font-bold text-pink-400 hover:bg-pink-500/20">
+             Book Now
+          </a>
+        </div>
+      </div>
+    </div>
+
+    <!-- ===================================================== -->
+    <!--                  SAMPLE THERAPIST 4                    -->
+    <!-- ===================================================== -->
+    <div class="card p-5 flex gap-5 items-center">
+      <img src="image03.png" class="w-28 h-28 rounded-full object-cover" />
+      <div class="flex-1">
+        <h2 class="text-xl font-bold text-pink-400">Zoe</h2>
+        <p class="text-white/70 text-sm">Randburg • Sensual Aromatherapy</p>
+        <p class="text-white/60 text-sm mt-2">Scent-driven sensual therapy.</p>
+
+        <div class="mt-4 flex gap-3">
+          <a href="Therapist_Profile.html"
+             class="bg-pink-600 px-4 py-2 rounded-full text-sm font-bold hover:bg-pink-700">
+             View Therapist
+          </a>
+          <a href="https://wa.me/27500204011?text=I%20want%20to%20book%20Zoe."
+             target="_blank"
+             class="border border-pink-500 px-4 py-2 rounded-full text-sm font-bold text-pink-400 hover:bg-pink-500/20">
+             Book Now
+          </a>
+        </div>
+      </div>
+    </div>
+
+    <!-- ===================================================== -->
+    <!--                  SAMPLE THERAPIST 5                    -->
+    <!-- ===================================================== -->
+    <div class="card p-5 flex gap-5 items-center">
+      <img src="image04.png" class="w-28 h-28 rounded-full object-cover" />
+      <div class="flex-1">
+        <h2 class="text-xl font-bold text-pink-400">Aisha</h2>
+        <p class="text-white/70 text-sm">Melrose • Erotic Relaxation</p>
+        <p class="text-white/60 text-sm mt-2">Gentle, intimate, calming touch therapy.</p>
+
+        <div class="mt-4 flex gap-3">
+          <a href="Therapist_Profile.html"
+             class="bg-pink-600 px-4 py-2 rounded-full text-sm font-bold hover:bg-pink-700">
+             View Therapist
+          </a>
+          <a href="https://wa.me/27500204011?text=I%20want%20to%20book%20Aisha."
+             target="_blank"
+             class="border border-pink-500 px-4 py-2 rounded-full text-sm font-bold text-pink-400 hover:bg-pink-500/20">
+             Book Now
+          </a>
+        </div>
+      </div>
+    </div>
+
+    <!-- ===================================================== -->
+    <!--                  SAMPLE THERAPIST 6                    -->
+    <!-- ===================================================== -->
+    <div class="card p-5 flex gap-5 items-center">
+      <img src="image06.jpg" class="w-28 h-28 rounded-full object-cover" />
+      <div class="flex-1">
+        <h2 class="text-xl font-bold text-pink-400">Bella</h2>
+        <p class="text-white/70 text-sm">Bedfordview • Exotic Tantra</p>
+        <p class="text-white/60 text-sm mt-2">High-energy tantric movement & touch.</p>
+
+        <div class="mt-4 flex gap-3">
+          <a href="Therapist_Profile.html"
+             class="bg-pink-600 px-4 py-2 rounded-full text-sm font-bold hover:bg-pink-700">
+             View Therapist
+          </a>
+          <a href="https://wa.me/27500204011?text=I%20want%20to%20book%20Bella."
+             target="_blank"
+             class="border border-pink-500 px-4 py-2 rounded-full text-sm font-bold text-pink-400 hover:bg-pink-500/20">
+             Book Now
+          </a>
+        </div>
+      </div>
+    </div>
+
+  </div>
 </section>
-
-<!-- ================================================================================= -->
-<!--                             THERAPIST PROFILE CARDS                                 -->
-<!-- ================================================================================= -->
-
-<div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8 px-6 pb-20">
-
-  <!-- CARD TEMPLATE (repeated 6 times with different names/images) -->
-  <!-- CARD 1 -->
-  <div class="bg-black/60 border border-pink-500/40 rounded-2xl p-5 card-hover">
-    <img src="images/image01.jpg" class="w-40 h-40 rounded-full mx-auto object-cover" />
-    <h2 class="text-center text-2xl mt-4 font-semibold">Ariana Flame</h2>
-    <p class="text-center text-white/60">Sandton • Elite Companion</p>
-
-    <div class="mt-4 flex flex-col gap-3">
-      <a href="Therapist_Profile.html" class="bg-pink-600 py-3 rounded-full text-center font-bold hover:bg-pink-700 transition">
-        View Profile
-      </a>
-      <a href="Book_Therapist.html" class="border border-pink-500 py-3 rounded-full text-center font-bold text-pink-400 hover:bg-pink-500/20 transition">
-        Book Session
-      </a>
-    </div>
-  </div>
-
-  <!-- CARD 2 -->
-  <div class="bg-black/60 border border-pink-500/40 rounded-2xl p-5 card-hover">
-    <img src="images/image02.jpg" class="w-40 h-40 rounded-full mx-auto object-cover" />
-    <h2 class="text-center text-2xl mt-4 font-semibold">Zara Bliss</h2>
-    <p class="text-center text-white/60">Rosebank • Sensual Specialist</p>
-
-    <div class="mt-4 flex flex-col gap-3">
-      <a href="Therapist_Profile.html" class="bg-pink-600 py-3 rounded-full text-center font-bold">View Profile</a>
-      <a href="Book_Therapist.html" class="border border-pink-500 py-3 rounded-full text-center font-bold text-pink-400">Book Session</a>
-    </div>
-  </div>
-
-  <!-- CARD 3 -->
-  <div class="bg-black/60 border border-pink-500/40 rounded-2xl p-5 card-hover">
-    <img src="images/image03.jpg" class="w-40 h-40 rounded-full mx-auto object-cover" />
-    <h2 class="text-center text-2xl mt-4 font-semibold">Mia Velvet</h2>
-    <p class="text-center text-white/60">Fourways • Massage Expert</p>
-
-    <div class="mt-4 flex flex-col gap-3">
-      <a href="Therapist_Profile.html" class="bg-pink-600 py-3 rounded-full text-center font-bold">View Profile</a>
-      <a href="Book_Therapist.html" class="border border-pink-500 py-3 rounded-full text-center font-bold text-pink-400">Book Session</a>
-    </div>
-  </div>
-
-  <!-- CARD 4 -->
-  <div class="bg-black/60 border border-pink-500/40 rounded-2xl p-5 card-hover">
-    <img src="images/image04.jpg" class="w-40 h-40 rounded-full mx-auto object-cover" />
-    <h2 class="text-center text-2xl mt-4 font-semibold">Jade Aurora</h2>
-    <p class="text-center text-white/60">Bryanston • Tantric Goddess</p>
-
-    <div class="mt-4 flex flex-col gap-3">
-      <a href="Therapist_Profile.html" class="bg-pink-600 py-3 rounded-full text-center font-bold">View Profile</a>
-      <a href="Book_Therapist.html" class="border border-pink-500 py-3 rounded-full text-center font-bold text-pink-400">Book Session</a>
-    </div>
-  </div>
-
-  <!-- CARD 5 -->
-  <div class="bg-black/60 border border-pink-500/40 rounded-2xl p-5 card-hover">
-    <img src="images/image06.jpg" class="w-40 h-40 rounded-full mx-auto object-cover" />
-    <h2 class="text-center text-2xl mt-4 font-semibold">Nala Storm</h2>
-    <p class="text-center text-white/60">Midrand • Sensual Healing</p>
-
-    <div class="mt-4 flex flex-col gap-3">
-      <a href="Therapist_Profile.html" class="bg-pink-600 py-3 rounded-full text-center font-bold">View Profile</a>
-      <a href="Book_Therapist.html" class="border border-pink-500 py-3 rounded-full text-center font-bold text-pink-400">Book Session</a>
-    </div>
-  </div>
-
-  <!-- CARD 6 -->
-  <div class="bg-black/60 border border-pink-500/40 rounded-2xl p-5 card-hover">
-    <img src="images/image08.jpg" class="w-40 h-40 rounded-full mx-auto object-cover" />
-    <h2 class="text-center text-2xl mt-4 font-semibold">Raven Noir</h2>
-    <p class="text-center text-white/60">Sandton • Private Muse</p>
-
-    <div class="mt-4 flex flex-col gap-3">
-      <a href="Therapist_Profile.html" class="bg-pink-600 py-3 rounded-full text-center font-bold">View Profile</a>
-      <a href="Book_Therapist.html" class="border border-pink-500 py-3 rounded-full text-center font-bold text-pink-400">Book Session</a>
-    </div>
-  </div>
-
-</div>
 
 <!-- ================================================================================= -->
 <!--                                      FOOTER                                        -->
@@ -164,29 +242,24 @@
 </footer>
 
 <!-- ================================================================================= -->
-<!--                                        JS                                           -->
+<!--                                      SCRIPTS                                       -->
 <!-- ================================================================================= -->
 
 <script>
-  /* Fade header after 3 seconds */
+  // Fade header background after 3 seconds
   const header = document.getElementById("mainHeader");
   setTimeout(() => {
     header.classList.remove("bg-black/50", "backdrop-blur-md", "border-white/10");
     header.classList.add("bg-transparent", "border-transparent");
   }, 3000);
 
-  /* Mobile menu toggle */
+  // Mobile Menu
   const menuBtn = document.getElementById("menuBtn");
   const mobileMenu = document.getElementById("mobileMenu");
   const menuLinks = document.querySelectorAll(".menu-link");
 
-  menuBtn.onclick = () => {
-    mobileMenu.classList.toggle("hidden");
-  };
-
-  menuLinks.forEach(link => {
-    link.onclick = () => mobileMenu.classList.add("hidden");
-  });
+  menuBtn.onclick = () => mobileMenu.classList.toggle("hidden");
+  menuLinks.forEach(link => link.onclick = () => mobileMenu.classList.add("hidden"));
 </script>
 
 </body>
