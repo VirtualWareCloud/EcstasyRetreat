@@ -6,116 +6,138 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 <title>Lerato – Ecstasy Retreat Therapist Profile</title>
 
-<!-- Tailwind -->
 <script src="https://cdn.tailwindcss.com"></script>
 
-<!-- Font Awesome -->
 <link rel="stylesheet"
       href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
 
 <style>
 /* ========================================================= */
-/*                         HEADER FADE                        */
+/* HEADER FADE                        */
 /* ========================================================= */
 #mainHeader {
-    background: rgba(0,0,0,0.65);
-    backdrop-filter: blur(8px);
-    transition: background-color 1.5s ease-in-out;
+    /* Slightly more subtle initial background */
+    background: rgba(0,0,0,0.8);
+    backdrop-filter: blur(12px);
+    transition: background-color 1.5s ease-in-out, border-color 1.5s ease-in-out;
 }
-#mainHeader.fade-bg { background: transparent; }
+#mainHeader.fade-bg { 
+    background: transparent; 
+    border-color: transparent;
+}
 
 /* ========================================================= */
-/*                     PROFILE IMAGE GLOW                     */
+/* PROFILE IMAGE GLOW                     */
 /* ========================================================= */
 .profile-frame {
     border-radius: 999px;
     padding: 6px;
-    border: 3px solid rgba(255,20,147,0.7);
-    box-shadow: 0 0 45px rgba(255,20,147,0.9);
+    /* More defined, slightly less aggressive glow */
+    border: 4px solid rgba(255, 0, 128, 0.7);
+    box-shadow: 0 0 50px rgba(255, 0, 128, 0.5), inset 0 0 20px rgba(255, 0, 128, 0.2);
     position: relative;
-}
-
-/* ========================================================= */
-/*                     GLASS CARD SECTIONS                    */
-/* ========================================================= */
-.card-glass {
-    background: rgba(18, 18, 18, 0.75);
-    border: 1px solid rgba(255, 0, 128, 0.35);
-    backdrop-filter: blur(10px);
-    border-radius: 20px;
-    box-shadow:
-        0 0 25px rgba(255,0,128,0.25),
-        inset 0 0 18px rgba(255,0,128,0.18);
-    padding: 22px;
+    /* Added subtle hover effect */
     transition: all 0.4s ease;
 }
-.card-glass:hover {
-    transform: translateY(-4px);
-    box-shadow:
-        0 0 40px rgba(255,0,128,0.35),
-        inset 0 0 20px rgba(255,0,128,0.25);
+.profile-frame:hover {
+    box-shadow: 0 0 60px rgba(255, 0, 128, 0.8), inset 0 0 25px rgba(255, 0, 128, 0.3);
 }
 
 /* ========================================================= */
-/*                         CTA BUTTONS                        */
+/* GLASS CARD SECTIONS (IMPROVED)         */
+/* ========================================================= */
+.card-glass {
+    /* Slightly lighter background for depth */
+    background: rgba(24, 24, 24, 0.85);
+    /* Crisper border */
+    border: 1px solid rgba(255, 0, 128, 0.2);
+    backdrop-filter: blur(15px);
+    border-radius: 24px; /* More rounded */
+    /* Cleaner shadow */
+    box-shadow:
+        0 4px 30px rgba(0, 0, 0, 0.5),
+        0 0 30px rgba(255, 0, 128, 0.1);
+    padding: 28px; /* More internal padding */
+    transition: all 0.4s cubic-bezier(0.25, 0.8, 0.25, 1);
+}
+.card-glass:hover {
+    transform: translateY(-5px);
+    box-shadow:
+        0 8px 45px rgba(0, 0, 0, 0.6),
+        0 0 50px rgba(255, 0, 128, 0.35);
+}
+
+/* ========================================================= */
+/* CTA BUTTONS (IMPROVED)             */
 /* ========================================================= */
 .primary-btn {
-    background: #ff1493;
+    background: #ff1493; /* Deep Pink */
     color: #fff;
-    padding: 14px;
-    border-radius: 999px;
-    font-weight: 700;
-    font-size: 1rem;
+    padding: 16px; /* Larger tap area */
+    border-radius: 16px; /* Match card radius */
+    font-weight: 800; /* Bolder text */
+    font-size: 1.125rem; /* Larger text */
     width: 100%;
-    box-shadow: 0 0 20px rgba(255,20,147,0.6);
+    box-shadow: 0 5px 25px rgba(255,20,147,0.7);
     display: flex;
     justify-content: center;
     align-items: center;
-    transition: 0.25s;
+    transition: 0.3s ease;
 }
 .primary-btn:hover {
-    background: #ff2aa3;
-    box-shadow: 0 0 30px rgba(255,20,147,0.8);
+    background: #ff33a3;
+    box-shadow: 0 8px 35px rgba(255,20,147,0.9);
+    transform: translateY(-2px);
+}
+.primary-btn:active {
+    transform: scale(0.98);
 }
 
 .outline-btn {
-    padding: 12px;
-    border-radius: 999px;
+    padding: 14px;
+    border-radius: 16px;
     border: 2px solid #ff1493;
     color: #ff1493;
     width: 100%;
-    font-weight: 600;
+    font-weight: 700;
+    font-size: 1rem;
     display: flex;
     justify-content: center;
     align-items: center;
-    transition: 0.25s;
+    transition: 0.3s ease;
 }
 .outline-btn:hover {
-    background: rgba(255,20,147,0.15);
+    background: rgba(255,20,147,0.1);
+    color: #fff;
+}
+.outline-btn:active {
+    transform: scale(0.98);
 }
 
 /* ========================================================= */
-/*                       GALLERY HOVER                        */
+/* GALLERY HOVER                        */
 /* ========================================================= */
 .gallery-item {
     overflow: hidden;
     cursor: pointer;
-    border-radius: 14px;
-    transition: transform 0.35s ease, box-shadow 0.35s ease;
+    border-radius: 18px; /* Larger radius for modern look */
+    transition: transform 0.4s cubic-bezier(0.25, 0.8, 0.25, 1), box-shadow 0.4s ease;
 }
 .gallery-item:hover {
-    transform: scale(1.06);
-    box-shadow: 0 10px 40px rgba(255,0,128,0.35);
+    transform: scale(1.05);
+    box-shadow: 0 15px 45px rgba(255,0,128,0.45);
 }
 
 /* ========================================================= */
-/*                       BOTTOM NAV BAR                       */
+/* BOTTOM NAV BAR                       */
 /* ========================================================= */
 .bottom-nav {
     position: fixed;
     bottom: 0; left: 0;
     width: 100%;
-    background: #000;
+    /* Use a clear background with blur for a modern app feel */
+    background: rgba(0, 0, 0, 0.9);
+    backdrop-filter: blur(15px);
     border-top: 1px solid #222;
     display: flex;
     z-index: 50;
@@ -123,13 +145,17 @@
 .bottom-nav a {
     flex: 1;
     text-align: center;
-    padding: 10px 0;
+    padding: 12px 0; /* Increased padding */
     color: #fff;
     font-size: 13px;
+    transition: color 0.3s ease;
+}
+.bottom-nav a:hover {
+    color: #ff69b4;
 }
 .bottom-nav a i {
     display: block;
-    font-size: 18px;
+    font-size: 20px; /* Larger icons */
     margin-bottom: 3px;
 }
 </style>
@@ -138,9 +164,6 @@
 
 <body class="bg-black text-white pb-24">
 
-<!-- ========================================================= -->
-<!--                          HEADER                            -->
-<!-- ========================================================= -->
 <header id="mainHeader"
         class="fixed top-0 left-0 w-full flex items-center justify-between px-5 py-4 z-[999] border-b border-white/10">
 
@@ -151,7 +174,6 @@
     <button id="menuBtn" class="text-white text-3xl">&#9776;</button>
 </header>
 
-<!-- MOBILE MENU -->
 <nav id="mobileMenu"
      class="hidden fixed top-16 right-4 bg-black/90 backdrop-blur-xl p-6 rounded-xl 
             border border-pink-500/40 w-64 z-[999]">
@@ -167,134 +189,131 @@
 </nav>
 
 
-<!-- ========================================================= -->
-<!--                           PROFILE                          -->
-<!-- ========================================================= -->
-<main class="pt-32 px-6">
-
-    <!-- Profile Image -->
-    <div class="flex justify-center">
-        <div class="profile-frame w-44 h-44 md:w-52 md:h-52 overflow-hidden">
+<main class="pt-28 md:pt-32 px-5 md:px-10 max-w-4xl mx-auto"> <div class="flex justify-center">
+        <div class="profile-frame w-48 h-48 md:w-56 md:h-56 overflow-hidden">
             <img src="images/lerato_image01.jpg"
                  class="w-full h-full object-cover rounded-full">
         </div>
     </div>
 
-    <!-- Name -->
     <div class="text-center mt-8">
-        <h1 class="text-4xl font-extrabold text-pink-500">Lerato ✨</h1>
-        <p class="mt-2 text-gray-300 text-lg italic">
-            Tantric Specialist • Rosebank
+        <h1 class="text-5xl md:text-6xl font-black text-pink-500 tracking-tighter leading-none">
+            Lerato
+        </h1>
+        <p class="mt-3 text-gray-300 text-xl font-light italic">
+            <span class="font-normal text-pink-300">Tantric Specialist</span> • Rosebank
         </p>
     </div>
 
-    <!-- Availability -->
-    <div class="mt-5 flex justify-center">
-        <div class="bg-green-500 px-6 py-2 rounded-full shadow-lg shadow-green-500/40 flex items-center gap-2">
+    <div class="mt-6 flex justify-center">
+        <div class="bg-green-600 px-8 py-3 rounded-full shadow-lg shadow-green-500/50 flex items-center gap-2">
             <span class="w-3 h-3 rounded-full bg-white animate-pulse"></span>
-            <span class="font-semibold text-sm">Available Now</span>
+            <span class="font-extrabold text-white uppercase text-sm tracking-wider">Available Now</span>
         </div>
     </div>
 
-    <!-- CTA Buttons -->
-    <div class="mt-10 space-y-4">
-        <a href="booking.html" class="primary-btn">
-            <i class="fa-solid fa-calendar-check mr-2"></i> Book a Session
+    <div class="mt-12 space-y-4 md:flex md:gap-4 md:space-y-0">
+        <a href="booking.html" class="primary-btn md:flex-1">
+            <i class="fa-solid fa-calendar-check mr-3 text-xl"></i> Book a Session
         </a>
 
         <a href="https://wa.me/27500204011?text=Hi%20I%20want%20to%20book%20a%20session%20with%20Lerato."
-           class="outline-btn">
-            <i class="fa-brands fa-whatsapp mr-2"></i> Chat on WhatsApp
-        </a>
-
-        <a href="image_gallery.html" class="outline-btn">
-            <i class="fa-solid fa-camera mr-2"></i> View Full Gallery
+           target="_blank"
+           class="outline-btn md:flex-1">
+            <i class="fa-brands fa-whatsapp mr-3 text-xl"></i> Chat on WhatsApp
         </a>
     </div>
 
-    <!-- About -->
-    <section class="card-glass mt-10">
-        <h2 class="text-2xl text-pink-400 font-bold mb-3">About Lerato</h2>
-        <p class="text-gray-200 leading-relaxed">
-            Lerato specialises in soulful tantric experiences designed to awaken deep sensual energy.
-            Her sessions blend breathwork, intuitive touch, and emotional grounding, leaving clients
-            feeling recharged and centered.
+    <section class="card-glass mt-12">
+        <h2 class="text-2xl text-pink-400 font-extrabold mb-4 border-b border-pink-500/20 pb-2">
+            <i class="fa-solid fa-sparkles mr-2"></i> Experience & Philosophy
+        </h2>
+        <p class="text-gray-300 text-lg leading-relaxed">
+            Lerato specialises in **soulful tantric experiences** designed to awaken deep sensual energy and promote holistic wellness. 
+            Her philosophy is rooted in **mindfulness and connection**, blending breathwork, intuitive touch, and emotional grounding. 
+            Clients often report feeling profoundly **recharged, centered, and harmonized** after a session with her.
         </p>
     </section>
 
-    <!-- Rates -->
-    <section class="card-glass mt-10">
-        <h2 class="text-2xl font-bold text-pink-500 mb-5 flex items-center">
-            <i class="fa-solid fa-tags mr-2"></i> Rates
+    <section class="card-glass mt-8">
+        <h2 class="text-2xl font-extrabold text-pink-500 mb-5 flex items-center">
+            <i class="fa-solid fa-wallet mr-2"></i> Investment in Wellness
         </h2>
 
-        <ul class="space-y-4 text-white/80 text-lg">
-            <li class="flex justify-between border-b border-white/10 pb-2">
-                <span>60 Minutes</span>
-                <span class="text-pink-400 font-semibold">R1,200</span>
-            </li>
-            <li class="flex justify-between border-b border-white/10 pb-2">
-                <span>90 Minutes</span>
-                <span class="text-pink-400 font-semibold">R1,600</span>
-            </li>
-            <li class="flex justify-between border-b border-white/10 pb-2">
-                <span>2 Hours</span>
-                <span class="text-pink-400 font-semibold">R2,300</span>
-            </li>
-            <li class="flex justify-between pt-2">
-                <span class="font-bold">Overnight</span>
-                <span class="text-pink-400 font-bold text-xl">R6,000</span>
-            </li>
-        </ul>
+        <div class="space-y-4 text-white/90 text-lg">
+            
+            <div class="flex justify-between items-center border-b border-white/10 pb-3">
+                <span class="font-semibold">60 Minutes</span>
+                <span class="text-pink-400 font-extrabold text-xl">R1,200</span>
+            </div>
+            
+            <div class="flex justify-between items-center border-b border-white/10 pb-3">
+                <span class="font-semibold">90 Minutes (Recommended)</span>
+                <span class="text-pink-400 font-extrabold text-xl">R1,600</span>
+            </div>
+            
+            <div class="flex justify-between items-center border-b border-white/10 pb-3">
+                <span class="font-semibold">2 Hours (Deep Dive)</span>
+                <span class="text-pink-400 font-extrabold text-xl">R2,300</span>
+            </div>
+            
+            <div class="flex justify-between items-center pt-3 bg-pink-500/10 p-3 rounded-lg">
+                <span class="font-extrabold text-pink-300">Overnight Retreat (Exclusive)</span>
+                <span class="text-pink-200 font-black text-2xl">R6,000</span>
+            </div>
+        </div>
     </section>
 
-    <!-- Testimonials -->
-    <section class="card-glass mt-12">
-        <h2 class="text-2xl font-bold text-pink-500 text-center mb-6">
-            ★ Client Reviews ★
+    <section class="card-glass mt-8">
+        <h2 class="text-2xl font-extrabold text-pink-500 text-center mb-6 flex items-center justify-center">
+            <i class="fa-solid fa-star-half-stroke mr-2"></i> Client Reviews
         </h2>
 
-        <div id="testimonialWrapper">
-            <p class="italic text-white/90 text-center">
-                “The most relaxing session of my life. Her energy is unmatched.”
+        <div id="testimonialWrapper" class="bg-white/5 p-6 rounded-xl border border-white/10">
+            <i class="fa-solid fa-quote-left text-pink-500/50 text-xl block mb-3"></i>
+            <p class="italic text-white text-xl text-center leading-snug">
+                “The most relaxing and transformative session of my life. Her energy is unmatched, and I left feeling completely reborn.”
             </p>
-            <p class="text-center text-pink-300 mt-3 font-semibold">
-                – Verified Client
+            <p class="text-center text-pink-300 mt-5 font-bold text-lg">
+                – Verified Client (Johannesburg)
             </p>
         </div>
     </section>
 
-    <!-- Gallery Preview -->
-    <section class="card-glass mt-12 pb-4">
-        <h2 class="text-2xl font-bold text-pink-500 mb-6">Gallery Preview</h2>
+    <section class="card-glass mt-8 pb-4">
+        <h2 class="text-2xl font-extrabold text-pink-500 mb-6 flex items-center">
+            <i class="fa-solid fa-camera-retro mr-2"></i> Visual Gallery
+        </h2>
 
         <div class="grid grid-cols-2 md:grid-cols-4 gap-4">
 
             <div class="gallery-item">
-                <img src="images/lerato_image01.jpg" class="w-full h-36 object-cover rounded-xl">
+                <img src="images/lerato_image01.jpg" class="w-full h-40 object-cover rounded-xl border border-white/10">
             </div>
 
             <div class="gallery-item">
-                <img src="images/lerato_image02.jpg" class="w-full h-36 object-cover rounded-xl">
+                <img src="images/lerato_image02.jpg" class="w-full h-40 object-cover rounded-xl border border-white/10">
             </div>
 
             <div class="gallery-item">
-                <video src="vids/lerato_video01.mp4" class="rounded-xl w-full h-36 object-cover" muted loop></video>
+                <video src="vids/lerato_video01.mp4" class="rounded-xl w-full h-40 object-cover border border-white/10" muted autoplay loop></video>
             </div>
 
             <a href="image_gallery.html"
-               class="gallery-item flex items-center justify-center text-pink-400 font-bold border border-pink-500/40 rounded-xl">
-                + More Photos
+               class="gallery-item flex flex-col items-center justify-center text-pink-400 font-extrabold text-center border-2 border-pink-500/50 bg-pink-500/10 rounded-xl hover:bg-pink-500/20">
+                <i class="fa-solid fa-arrow-right-long text-3xl mb-2"></i> 
+                View Full Gallery
             </a>
         </div>
+        
+        <a href="image_gallery.html" 
+           class="outline-btn mt-6">
+            <i class="fa-solid fa-photo-film mr-2"></i> View All Photos and Videos
+        </a>
     </section>
 
 </main>
 
-
-<!-- ========================================================= -->
-<!--                         FOOTERS                           -->
-<!-- ========================================================= -->
 
 <footer class="mt-16 mb-6 text-center text-gray-400 text-sm">
     © 2025 Ecstasy Retreat • Sensual Luxury Experience
@@ -302,16 +321,16 @@
 
 <footer class="bg-black/70 border-t border-white/5 text-center py-6 text-white/70 mb-24">
     <div class="flex justify-center gap-8 text-xl mb-4">
-        <a href="https://instagram.com/EcstasyRetreatSpa" class="hover:text-pink-400">
+        <a href="https://instagram.com/EcstasyRetreatSpa" target="_blank" class="hover:text-pink-400">
             <i class="fa-brands fa-instagram"></i>
         </a>
-        <a href="https://x.com/EcstasyRetreat" class="hover:text-pink-400">
+        <a href="https://x.com/EcstasyRetreat" target="_blank" class="hover:text-pink-400">
             <i class="fa-brands fa-x-twitter"></i>
         </a>
-        <a href="https://wa.me/27500204011" class="hover:text-pink-400">
+        <a href="https://wa.me/27500204011" target="_blank" class="hover:text-pink-400">
             <i class="fa-brands fa-whatsapp"></i>
         </a>
-        <a href="https://facebook.com/EcstasyRetreatSpa" class="hover:text-pink-400">
+        <a href="https://facebook.com/EcstasyRetreatSpa" target="_blank" class="hover:text-pink-400">
             <i class="fa-brands fa-facebook"></i>
         </a>
         <a href="mailto:diggdeepmakeusplash@gmail.com" class="hover:text-pink-400">
