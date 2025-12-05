@@ -6,51 +6,81 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 <title>Join as Therapist – Ecstasy Retreat</title>
 
+<!-- Tailwind -->
 <script src="https://cdn.tailwindcss.com"></script>
 
+<!-- Font Awesome -->
 <link rel="stylesheet"
       href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
 
 <style>
-    /* HEADER */
+    /* ================= HEADER ================= */
     #headerWrapper {
         background-color: rgba(0,0,0,0.6);
         transition: background-color 1.5s ease-in-out;
     }
-    #headerWrapper.fade-bg { background-color: transparent; }
-
-    /* GLASS CARDS */
-    .card-glass {
-        background: rgba(18,18,18,0.75);
-        border: 1px solid rgba(255,0,128,0.15);
-        backdrop-filter: blur(8px);
-        border-radius: 20px;
-        box-shadow: 0 4px 60px rgba(255,0,128,0.05);
-        padding: 20px;
+    #headerWrapper.fade-bg { 
+        background-color: transparent !important;
+        backdrop-filter: blur(0) !important;
+        border-color: transparent !important;
     }
 
-    /* BUTTONS */
+    /* ================= 3D GLASS CARDS ================= */
+    .card-glass {
+        background: linear-gradient(145deg, rgba(0,0,0,0.35), rgba(0,0,0,0.75));
+        border: 1px solid rgba(255, 20, 147, 0.3);
+        border-radius: 22px;
+        padding: 24px;
+        backdrop-filter: blur(12px);
+        box-shadow:
+            0 8px 25px rgba(255, 20, 147, 0.25),
+            inset 0 0 20px rgba(255, 20, 147, 0.15);
+        transition: all .3s ease-in-out;
+    }
+    .card-glass:hover {
+        transform: translateY(-6px);
+        box-shadow:
+            0 16px 40px rgba(255, 20, 147, 0.35),
+            inset 0 0 25px rgba(255, 20, 147, 0.25);
+    }
+
+    /* ================= INPUTS ================= */
+    .input-box {
+        background: rgba(0,0,0,0.55);
+        border: 1px solid rgba(255, 20, 147, 0.4);
+        padding: 14px;
+        border-radius: 14px;
+        width: 100%;
+        box-shadow: inset 0 0 12px rgba(255, 20, 147, 0.25);
+    }
+
+    /* ================= BUTTONS ================= */
     .primary-btn {
         background: #ff1493;
         color: #fff;
-        padding: 14px;
+        padding: 16px;
         border-radius: 999px;
+        width: 100%;
         font-weight: 700;
         text-align: center;
-        display: block;
-        box-shadow: 0 0 20px rgba(255,20,147,0.6);
-    }
-    .outline-btn {
-        border: 2px solid #ff1493;
-        color: #ff1493;
-        padding: 12px;
-        border-radius: 999px;
-        font-weight: 600;
-        text-align: center;
-        display: block;
+        box-shadow: 0 0 22px rgba(255, 20, 147, 0.6);
     }
 
-    /* BOTTOM NAV */
+    .google-btn {
+        background: #fff;
+        color: #000;
+        padding: 14px;
+        border-radius: 999px;
+        width: 100%;
+        font-weight: 600;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        gap: 10px;
+        box-shadow: 0 0 20px rgba(255,255,255,0.4);
+    }
+
+    /* ================= FOOTER NAV ================= */
     .bottom-nav {
         position: fixed;
         bottom: 0; left: 0;
@@ -69,111 +99,69 @@
     .bottom-nav a i {
         display: block;
         font-size: 18px;
-        margin-bottom: 3px;
     }
 </style>
 </head>
 
-<body class="bg-black text-white pb-24">
+<body class="bg-black text-white pb-28">
 
 <!-- ================= HEADER ================= -->
 <header id="headerWrapper"
-        class="fixed top-0 left-0 w-full z-40 py-3 px-4 flex items-center justify-between">
+    class="fixed top-0 left-0 w-full z-[999] px-5 py-4 flex justify-between items-center
+           bg-black/50 backdrop-blur-md border-b border-white/10">
 
-    <img src="images/logo.png" class="w-14">
+    <a href="index.html">
+        <img src="logo.png" class="w-32">
+    </a>
 
-    <div class="flex items-center space-x-4">
-        <i class="fa-solid fa-ghost text-pink-500 text-2xl"></i>
-
-        <button id="menuBtn" class="text-pink-500 text-3xl">
-            <i class="fa-solid fa-bars"></i>
-        </button>
-    </div>
+    <button id="menuBtn" class="text-white text-3xl">
+        <i class="fa-solid fa-bars"></i>
+    </button>
 </header>
 
-<!-- ================= MOBILE MENU (UNCHANGED) ================= -->
-<div id="mobileMenu"
-     class="hidden fixed top-0 right-0 w-72 h-full bg-black/90 backdrop-blur-xl p-6 z-50 rounded-l-2xl">
+<!-- ================= MOBILE MENU ================= -->
+<nav id="mobileMenu"
+     class="hidden fixed top-16 right-4 bg-black/90 backdrop-blur-xl p-6 rounded-xl 
+            border border-pink-500/40 text-lg z-[1000] w-60 shadow-xl">
 
-    <div class="flex justify-end mb-6">
-        <button id="closeMenu" class="text-pink-500 text-3xl">
-            <i class="fa-solid fa-xmark"></i>
-        </button>
-    </div>
+    <a href="index.html" class="block py-2 hover:text-pink-400 menu-link">Home</a>
+    <a href="Therapists_List.html" class="block py-2 hover:text-pink-400 menu-link">View Therapists</a>
+    <a href="login.html" class="block py-2 hover:text-pink-400 menu-link">Login / Signup</a>
+    <a href="booking.html" class="block py-2 hover:text-pink-400 menu-link">Book Session</a>
+    <a href="contact.html" class="block py-2 hover:text-pink-400 menu-link">Contact Us</a>
+</nav>
 
-    <nav class="space-y-5 text-lg">
-        <a href="index.html" class="flex items-center space-x-3">
-            <i class="fa-solid fa-house"></i><span>Home</span>
-        </a>
-
-        <a href="Therapists_List.html" class="flex items-center space-x-3">
-            <i class="fa-solid fa-users"></i><span>View Therapists</span>
-        </a>
-
-        <a href="login.html" class="flex items-center space-x-3">
-            <i class="fa-solid fa-user"></i><span>Login / Signup</span>
-        </a>
-
-        <a href="image_gallery.html" class="flex items-center space-x-3">
-            <i class="fa-solid fa-camera"></i><span>Image Gallery</span>
-        </a>
-
-        <a href="video_gallery.html" class="flex items-center space-x-3">
-            <i class="fa-solid fa-video"></i><span>Video Gallery</span>
-        </a>
-
-        <a href="join.html" class="flex items-center space-x-3 text-pink-400 font-semibold">
-            <i class="fa-solid fa-handshake"></i><span>Join as Therapist</span>
-        </a>
-
-        <a href="booking.html" class="flex items-center space-x-3">
-            <i class="fa-solid fa-calendar-check"></i><span>Book Session</span>
-        </a>
-
-        <a href="contact.html" class="flex items-center space-x-3">
-            <i class="fa-solid fa-envelope"></i><span>Contact Us</span>
-        </a>
-    </nav>
-</div>
-
-<div class="pt-32 px-6">
+<div class="pt-36 px-6 max-w-xl mx-auto">
 
     <h1 class="text-4xl font-bold text-center text-pink-500 mb-8">
         Become an Ecstasy Retreat Therapist
     </h1>
 
-    <!-- ================= HEADSHOT ================= -->
+    <!-- ================= HEADSHOT UPLOAD ================= -->
     <div class="card-glass mb-8">
-        <label class="block font-semibold mb-2">Upload Headshot (Required)</label>
-        <input type="file" accept="image/*" capture="camera"
-               class="w-full bg-black/40 border border-pink-500/40 rounded-lg p-3">
+        <label class="block font-semibold mb-2 text-pink-300">Upload Headshot *</label>
+        <input type="file" accept="image/*" capture="camera" class="input-box">
     </div>
 
     <!-- ================= BASIC INFO ================= -->
     <div class="card-glass mb-8">
-        <label class="block mb-1">Full Name*</label>
-        <input type="text" required
-               class="w-full bg-black/40 border border-pink-500/40 rounded-lg p-3 mb-4">
+        <label class="block mb-1">Full Name *</label>
+        <input type="text" class="input-box mb-4">
 
-        <label class="block mb-1">WhatsApp Number* (+27…)</label>
-        <input type="tel" required
-               class="w-full bg-black/40 border border-pink-500/40 rounded-lg p-3 mb-4">
+        <label class="block mb-1">WhatsApp Number *</label>
+        <input type="tel" class="input-box mb-4" placeholder="+27…">
 
-        <label class="block mb-1">Email Address*</label>
-        <input type="email" required
-               class="w-full bg-black/40 border border-pink-500/40 rounded-lg p-3 mb-4">
+        <label class="block mb-1">Email Address *</label>
+        <input type="email" class="input-box mb-4">
 
-        <label class="block mb-1">Area / Suburb*</label>
-        <input type="text" required
-               class="w-full bg-black/40 border border-pink-500/40 rounded-lg p-3 mb-4">
+        <label class="block mb-1">Area / Suburb *</label>
+        <input type="text" class="input-box mb-4">
 
         <label class="block mb-1">Age (Optional)</label>
-        <input type="number"
-               class="w-full bg-black/40 border border-pink-500/40 rounded-lg p-3 mb-4">
+        <input type="number" class="input-box mb-4">
 
         <label class="block mb-1">Languages (Optional)</label>
-        <input type="text"
-               class="w-full bg-black/40 border border-pink-500/40 rounded-lg p-3">
+        <input type="text" class="input-box">
     </div>
 
     <!-- ================= SERVICES ================= -->
@@ -182,7 +170,6 @@
 
         <div class="grid grid-cols-1 gap-3">
 
-            <!-- CHECKBOX TEMPLATE -->
             <label class="flex items-start space-x-3">
                 <input type="checkbox" value="tantric" class="service-box">
                 <span>Tantric Massage</span>
@@ -232,6 +219,7 @@
                 <input type="checkbox" value="sensual" class="service-box">
                 <span>Full Body Sensual Massage</span>
             </label>
+
         </div>
     </div>
 
@@ -239,12 +227,18 @@
     <div class="card-glass mb-8">
         <h2 class="text-xl font-bold text-pink-400 mb-3">Auto-Generated Bio</h2>
         <textarea id="bioOutput"
-                  class="w-full h-40 bg-black/40 border border-pink-500/40 rounded-lg p-3"
-                  placeholder="Your bio will appear here automatically…"></textarea>
+                  class="input-box h-40"
+                  placeholder="Your bio will be generated here…"></textarea>
     </div>
 
+    <!-- ================= GOOGLE SIGNUP ================= -->
+    <button class="google-btn mb-6">
+        <img src="https://www.svgrepo.com/show/475656/google-color.svg" width="22" />
+        Sign up with Google
+    </button>
+
     <!-- ================= SUBMIT ================= -->
-    <a class="primary-btn mt-10">Submit Application</a>
+    <a class="primary-btn mb-12">Submit Application</a>
 
 </div>
 
@@ -253,7 +247,7 @@
     © 2025 Ecstasy Retreat • Sensual Luxury Experience
 </footer>
 
-<!-- ================= EXTENDED SOCIAL FOOTER ================= -->
+<!-- ================= EXTENDED FOOTER ================= -->
 <footer class="bg-black/70 border-t border-white/5 text-center py-6 text-white/70 mb-24">
     <div class="flex justify-center gap-8 text-2xl mb-4">
         <a href="https://instagram.com/EcstasyRetreatSpa" class="hover:text-pink-400"><i class="fa-brands fa-instagram"></i></a>
@@ -262,14 +256,10 @@
         <a href="https://facebook.com/EcstasyRetreatSpa" class="hover:text-pink-400"><i class="fa-brands fa-facebook"></i></a>
         <a href="mailto:diggdeepmakeusplash@gmail.com" class="hover:text-pink-400"><i class="fa-solid fa-envelope"></i></a>
     </div>
-    <div class="space-y-1 text-sm">
-        <a href="#">Privacy Policy</a>
-        <a href="#">Terms of Service</a>
-    </div>
-    <p class="text-xs mt-3">© 2025 Ecstasy Retreat — Elite Companionship.</p>
+    <p class="text-xs">© 2025 Ecstasy Retreat — Elite Companionship.</p>
 </footer>
 
-<!-- ================= BOTTOM NAV ================= -->
+<!-- ================= NAVIGATION FOOTER ================= -->
 <nav class="bottom-nav flex justify-between">
     <a href="index.html"><i class="fa-solid fa-house"></i>Home</a>
     <a href="Therapists_List.html"><i class="fa-solid fa-users"></i>Therapists</a>
@@ -285,34 +275,35 @@ setTimeout(() => {
 
 /* MENU */
 document.getElementById("menuBtn").onclick = () =>
-    document.getElementById("mobileMenu").classList.remove("hidden");
-document.getElementById("closeMenu").onclick = () =>
-    document.getElementById("mobileMenu").classList.add("hidden");
+    document.getElementById("mobileMenu").classList.toggle("hidden");
+
+document.querySelectorAll(".menu-link").forEach(link =>
+    link.onclick = () => document.getElementById("mobileMenu").classList.add("hidden")
+);
 
 /* AUTO BIO GENERATION */
 const serviceDescriptions = {
-    tantric: "Specialising in ancient Tantric techniques that awaken sensual energy through breath, slow connection and mindful erotic touch.",
-    nuru: "Offering intimate Japanese Nuru body-to-body experiences that heighten full-body arousal and sensual awareness.",
-    lingam: "Expert in Lingam massage focusing on prolonged pleasure, breath control and sacred masculine energy.",
-    yoni: "Providing honouring Yoni healing work designed to release emotional tension and enhance feminine sensitivity.",
-    prostate: "Skilled in sacred prostate stimulation for deep physical and emotional release.",
-    fourhands: "Delivering luxurious Duo/Four-Hands erotic sessions with synchronized sensual touch.",
-    happy: "Offering tailored Happy Ending massage experiences designed for intense release and relaxation.",
-    soapy: "Fun, immersive Soapy massage sessions with slippery sensual body contact.",
-    eslen: "Combining sensual Eslen-style touch therapy with aromatherapy and intimate relaxation.",
-    sensual: "Providing full-body sensual massage exploring every erogenous zone with deep intuitive connection."
+    tantric: "Specialising in deep sensual Tantric rituals that heighten erotic energy and body awareness.",
+    nuru: "Expert in intimate Japanese Nuru body-glide massage for full-body sensual connection.",
+    lingam: "Offering advanced Lingam massage with focus on prolonged pleasure and sacred masculine energy.",
+    yoni: "Providing honouring Yoni healing designed to enhance feminine sensuality and emotional release.",
+    prostate: "Experienced in prostate stimulation for deep relaxation and whole-body pleasure waves.",
+    fourhands: "Offering luxury Duo/Four-Hands erotic experiences with synchronized sensual touch.",
+    happy: "Providing tailored Happy Ending massage focused on deep relaxation and maximum pleasure.",
+    soapy: "Fun and immersive Soapy massage with silky, sensual full-body movement.",
+    eslen: "Offering soothing Eslen-style sensual therapy blended with intuitive slow touch.",
+    sensual: "Providing full-body sensual massage exploring every erogenous zone with intuitive erotic flow."
 };
 
-const checkboxes = document.querySelectorAll(".service-box");
-const bioOutput = document.getElementById("bioOutput");
+const boxes = document.querySelectorAll(".service-box");
+const bio = document.getElementById("bioOutput");
 
-checkboxes.forEach(box => {
+boxes.forEach(box => {
     box.addEventListener("change", () => {
-        let selected = [];
-        checkboxes.forEach(cb => {
-            if (cb.checked) selected.push(serviceDescriptions[cb.value]);
-        });
-        bioOutput.value = selected.join("\n\n");
+        const selected = [...boxes]
+            .filter(b => b.checked)
+            .map(b => serviceDescriptions[b.value]);
+        bio.value = selected.join("\n\n");
     });
 });
 </script>
