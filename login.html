@@ -9,71 +9,58 @@
     <!-- Tailwind -->
     <script src="https://cdn.tailwindcss.com"></script>
 
+    <!-- Supabase -->
+    <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+
     <!-- Font Awesome -->
     <link rel="stylesheet"
-          href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+          href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" />
 
     <style>
-        /* HEADER FADE BACKGROUND */
+        /* HEADER */
         #headerWrapper {
             background-color: rgba(0, 0, 0, 0.6);
-            transition: background-color 1.5s ease-in-out;
+            transition: background-color 1.2s ease-in-out;
         }
         #headerWrapper.fade-bg {
             background-color: transparent;
         }
 
-        /* GLASS CARD */
-        .glass-card {
-            background: rgba(255, 255, 255, 0.04);
-            border: 1px solid rgba(255, 20, 147, 0.25);
-            border-radius: 20px;
-            backdrop-filter: blur(10px);
-            box-shadow: 0 0 30px rgba(255, 20, 147, 0.15);
-            transition: 0.3s ease;
-        }
-
-        .glass-card:hover {
-            transform: translateY(-3px);
-            box-shadow: 0 0 40px rgba(255, 20, 147, 0.3);
-        }
-
-        /* INPUTS */
-        .input-field {
-            background: rgba(255, 255, 255, 0.06);
-            border: 1px solid rgba(255, 255, 255, 0.15);
+        /* Inputs */
+        .input-box {
+            background: #00000070;
+            border: 1px solid #ff149370;
             padding: 14px;
-            border-radius: 10px;
-            color: white;
+            border-radius: 12px;
             width: 100%;
         }
 
-        .input-field:focus {
-            outline: none;
-            border-color: #ff1493;
-            box-shadow: 0 0 8px rgba(255, 20, 147, 0.5);
+        /* Buttons */
+        .primary-btn {
+            background: #ff1493;
+            width: 100%;
+            padding: 14px;
+            border-radius: 999px;
+            text-align: center;
+            font-weight: 700;
+            margin-top: 10px;
+            box-shadow: 0 0 20px rgba(255, 20, 147, 0.6);
         }
 
-        /* GOOGLE BUTTON */
         .google-btn {
             background: #ffffff;
-            color: #444;
-            border-radius: 999px;
+            color: #000;
+            width: 100%;
             padding: 12px;
-            font-weight: bold;
+            border-radius: 999px;
+            font-weight: 600;
             display: flex;
             justify-content: center;
             align-items: center;
             gap: 10px;
-            cursor: pointer;
-            transition: 0.3s ease;
         }
 
-        .google-btn:hover {
-            background: #f2f2f2;
-        }
-
-        /* BOTTOM NAV */
+        /* Bottom Navigation */
         .bottom-nav {
             position: fixed;
             bottom: 0;
@@ -85,39 +72,36 @@
         }
         .bottom-nav a {
             flex: 1;
-            text-align: center;
             padding: 10px 0;
-            color: #ffffff;
+            text-align: center;
+            color: #fff;
             font-size: 13px;
         }
         .bottom-nav a i {
             display: block;
             font-size: 18px;
-            margin-bottom: 3px;
         }
     </style>
 </head>
 
-<body class="bg-black text-white pb-28">
+<body class="bg-black text-white pb-24">
 
     <!-- ================= HEADER ================= -->
     <header id="headerWrapper"
-            class="fixed top-0 left-0 w-full z-40 py-3 px-4 flex items-center justify-between">
+        class="fixed top-0 left-0 px-5 py-4 w-full flex justify-between items-center z-40">
 
-        <img src="images/logo.png" alt="Ecstasy Retreat Logo" class="w-14">
+        <a href="index.html">
+            <img src="logo.png" class="w-14">
+        </a>
 
-        <div class="flex items-center space-x-4">
-            <i class="fa-solid fa-ghost text-pink-500 text-2xl"></i>
-
-            <button id="menuBtn" class="text-pink-500 text-3xl">
-                <i class="fa-solid fa-bars"></i>
-            </button>
-        </div>
+        <button id="menuBtn" class="text-pink-500 text-3xl">
+            <i class="fa-solid fa-bars"></i>
+        </button>
     </header>
 
     <!-- ================= MOBILE MENU ================= -->
     <div id="mobileMenu"
-         class="hidden fixed top-0 right-0 w-72 h-full bg-black/90 backdrop-blur-xl p-6 z-50 rounded-l-2xl">
+        class="hidden fixed top-0 right-0 w-72 h-full bg-black/90 backdrop-blur-xl p-6 rounded-l-xl z-50">
 
         <div class="flex justify-end mb-6">
             <button id="closeMenu" class="text-pink-500 text-3xl">
@@ -126,84 +110,51 @@
         </div>
 
         <nav class="space-y-5 text-lg">
-            <a href="index.html" class="flex items-center space-x-3">
-                <i class="fa-solid fa-house"></i><span>Home</span>
-            </a>
-
-            <a href="therapists.html" class="flex items-center space-x-3">
-                <i class="fa-solid fa-users"></i><span>View Therapists</span>
-            </a>
-
-            <a href="login.html" class="flex items-center space-x-3 text-pink-400 font-semibold">
-                <i class="fa-solid fa-unlock"></i><span>Login</span>
-            </a>
-
-            <a href="join.html" class="flex items-center space-x-3">
-                <i class="fa-solid fa-handshake"></i><span>Join as Therapist</span>
-            </a>
-
-            <a href="booking.html" class="flex items-center space-x-3">
-                <i class="fa-solid fa-calendar-check"></i><span>Book Session</span>
-            </a>
-
-            <a href="contact.html" class="flex items-center space-x-3">
-                <i class="fa-solid fa-envelope"></i><span>Contact Us</span>
-            </a>
+            <a href="index.html" class="flex items-center space-x-3"><i class="fa-solid fa-house"></i> <span>Home</span></a>
+            <a href="Therapists_List.html" class="flex items-center space-x-3"><i class="fa-solid fa-users"></i> <span>Therapists</span></a>
+            <a href="booking.html" class="flex items-center space-x-3"><i class="fa-solid fa-calendar-check"></i> <span>Book Session</span></a>
+            <a href="login.html" class="flex items-center space-x-3 text-pink-400"><i class="fa-solid fa-user"></i> <span>Login</span></a>
         </nav>
     </div>
 
-    <!-- ================= MAIN ================= -->
-    <main class="pt-32 px-6">
+    <!-- ================= CONTENT ================= -->
+    <main class="px-6 pt-28">
 
-        <h1 class="text-4xl font-extrabold text-center text-pink-500 mb-8">Welcome Back</h1>
+        <h1 class="text-center text-4xl font-bold text-pink-500 mb-2">Welcome Back</h1>
+        <p class="text-center text-gray-400 mb-10">Login to your Ecstasy Retreat account</p>
 
-        <div class="glass-card max-w-md mx-auto p-8">
+        <!-- LOGIN FORM -->
+        <form id="loginForm" class="space-y-5">
 
-            <h2 class="text-xl text-white/90 font-semibold mb-6 text-center">
-                Login to Your Account
-            </h2>
+            <input type="email" id="email" required placeholder="Email"
+                   class="input-box">
 
-            <!-- Email field -->
-            <input type="email" class="input-field mb-4"
-                   placeholder="Email Address">
+            <input type="password" id="password" required placeholder="Password"
+                   class="input-box">
 
-            <!-- Password field -->
-            <input type="password" class="input-field mb-4"
-                   placeholder="Password">
+            <button type="submit" class="primary-btn">Login</button>
+        </form>
 
-            <!-- Login button -->
-            <button class="w-full py-3 rounded-full bg-pink-600 hover:bg-pink-700 transition font-bold shadow-lg shadow-pink-500/30">
-                Login
-            </button>
-
-            <!-- Divider -->
-            <div class="flex items-center my-6">
-                <div class="flex-1 h-[1px] bg-white/20"></div>
-                <span class="px-3 text-white/40 text-sm">OR</span>
-                <div class="flex-1 h-[1px] bg-white/20"></div>
-            </div>
-
-            <!-- GOOGLE LOGIN BUTTON -->
-            <button class="google-btn w-full mb-3">
-                <!-- Google SVG ICON -->
-                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 48 48">
-                    <path fill="#EA4335"
-                          d="M24 9.5c3.54 0 6.71 1.22 9.21 3.6l6.85-6.85C35.9 2.09 30.47 0 24 0 14.62 0 6.51 5.38 2.56 13.22l7.98 6.19C12.43 13.37 17.74 9.5 24 9.5z"/>
-                    <path fill="#4285F4"
-                          d="M46.1 24.55c0-1.57-.15-3.09-.43-4.55H24v9.02h12.55c-.54 2.87-2.19 5.31-4.66 6.97l7.58 5.88C43.69 37.35 46.1 31.32 46.1 24.55z"/>
-                    <path fill="#FBBC05"
-                          d="M10.54 28.41A14.52 14.52 0 0 1 9.5 24c0-1.53.26-3.01.74-4.41l-7.98-6.19A23.89 23.89 0 0 0 0 24c0 3.91.93 7.61 2.56 10.88l7.98-6.19z"/>
-                    <path fill="#34A853"
-                          d="M24 48c6.48 0 11.94-2.13 15.92-5.78l-7.58-5.88c-2.1 1.41-4.79 2.23-8.34 2.23-6.26 0-11.57-3.87-13.46-9.39l-7.98 6.19C6.51 42.62 14.62 48 24 48z"/>
-                </svg>
+        <!-- GOOGLE LOGIN -->
+        <div class="mt-6">
+            <button id="googleLogin" class="google-btn">
+                <img src="https://www.svgrepo.com/show/475656/google-color.svg" width="22">
                 Sign in with Google
             </button>
+        </div>
 
-            <!-- Small text -->
-            <p class="text-center text-white/50 text-sm mt-4">
-                Don't have an account?
-                <a href="join.html" class="text-pink-400 hover:text-pink-300 font-semibold">Join us</a>
-            </p>
+        <!-- REGISTRATION OPTIONS -->
+        <div class="mt-10 text-center space-y-3">
+            <p class="text-gray-400">New here?</p>
+
+            <a href="signup_user.html" class="text-pink-400 underline block">Sign up as Client</a>
+
+            <a href="join.html" class="text-pink-400 underline block">Sign up as Therapist</a>
+
+            <button id="googleSignup" class="google-btn mt-4">
+                <img src="https://www.svgrepo.com/show/475656/google-color.svg" width="22">
+                Sign up with Google
+            </button>
         </div>
 
     </main>
@@ -213,30 +164,14 @@
         © 2025 Ecstasy Retreat • Sensual Luxury Experience
     </footer>
 
-    <!-- ================= EXTENDED SOCIAL FOOTER ================= -->
+    <!-- ================= SOCIAL FOOTER ================= -->
     <footer class="bg-black/70 border-t border-white/5 text-center py-6 text-white/70 mb-24">
-
         <div class="flex justify-center gap-8 text-2xl mb-4">
-            <a href="https://instagram.com/EcstasyRetreatSpa" target="_blank" class="hover:text-pink-400 transition">
-                <i class="fa-brands fa-instagram"></i>
-            </a>
-            <a href="https://x.com/EcstasyRetreat" target="_blank" class="hover:text-pink-400 transition">
-                <i class="fa-brands fa-x-twitter"></i>
-            </a>
-            <a href="https://wa.me/27500204011" target="_blank" class="hover:text-pink-400 transition">
-                <i class="fa-brands fa-whatsapp"></i>
-            </a>
-            <a href="https://facebook.com/EcstasyRetreatSpa" target="_blank" class="hover:text-pink-400 transition">
-                <i class="fa-brands fa-facebook"></i>
-            </a>
-            <a href="mailto:diggdeepmakeusplash@gmail.com" class="hover:text-pink-400 transition">
-                <i class="fa-solid fa-envelope"></i>
-            </a>
-        </div>
-
-        <div class="space-y-1 text-sm">
-            <a href="#" class="hover:text-pink-400 transition block">Privacy Policy</a>
-            <a href="#" class="hover:text-pink-400 transition block">Terms of Service</a>
+            <a href="https://instagram.com/EcstasyRetreatSpa" class="hover:text-pink-400"><i class="fa-brands fa-instagram"></i></a>
+            <a href="https://x.com/EcstasyRetreat" class="hover:text-pink-400"><i class="fa-brands fa-x-twitter"></i></a>
+            <a href="https://wa.me/27500204011" class="hover:text-pink-400"><i class="fa-brands fa-whatsapp"></i></a>
+            <a href="https://facebook.com/EcstasyRetreatSpa" class="hover:text-pink-400"><i class="fa-brands fa-facebook"></i></a>
+            <a href="mailto:diggdeepmakeusplash@gmail.com" class="hover:text-pink-400"><i class="fa-solid fa-envelope"></i></a>
         </div>
 
         <p class="text-xs mt-3">© 2025 Ecstasy Retreat — Elite Companionship.</p>
@@ -245,26 +180,45 @@
     <!-- ================= BOTTOM NAV ================= -->
     <nav class="bottom-nav flex justify-between">
         <a href="index.html"><i class="fa-solid fa-house"></i>Home</a>
-        <a href="therapists.html"><i class="fa-solid fa-users"></i>Therapists</a>
-        <a href="login.html" class="text-pink-400"><i class="fa-solid fa-unlock"></i>Login</a>
+        <a href="Therapists_List.html"><i class="fa-solid fa-users"></i>Therapists</a>
         <a href="booking.html"><i class="fa-solid fa-calendar-check"></i>Book</a>
         <a href="contact.html"><i class="fa-solid fa-envelope"></i>Contact</a>
+        <a href="login.html" class="text-pink-400"><i class="fa-solid fa-user"></i>Login</a>
     </nav>
 
-    <!-- ================= SCRIPTS ================= -->
+    <!-- ================= JS ================= -->
     <script>
-        // Header fade effect
+        /* HEADER FADE */
         setTimeout(() => {
-            document.getElementById("headerWrapper")?.classList.add("fade-bg");
+            document.getElementById("headerWrapper").classList.add("fade-bg");
         }, 3000);
 
-        // Mobile menu
-        const menuBtn = document.getElementById("menuBtn");
-        const mobileMenu = document.getElementById("mobileMenu");
-        const closeMenu = document.getElementById("closeMenu");
+        /* MENU OPEN/CLOSE */
+        document.getElementById("menuBtn").onclick = () =>
+            document.getElementById("mobileMenu").classList.remove("hidden");
 
-        menuBtn.addEventListener("click", () => mobileMenu.classList.remove("hidden"));
-        closeMenu.addEventListener("click", () => mobileMenu.classList.add("hidden"));
+        document.getElementById("closeMenu").onclick = () =>
+            document.getElementById("mobileMenu").classList.add("hidden");
+    </script>
+
+    <!-- Supabase / Auth Integration -->
+    <script type="module">
+        import { loginWithEmail, loginWithGoogle, signupWithGoogle } from "./js/auth.js";
+
+        document.getElementById("loginForm").onsubmit = async (e) => {
+            e.preventDefault();
+            const email = document.getElementById("email").value.trim();
+            const password = document.getElementById("password").value.trim();
+            await loginWithEmail(email, password);
+        };
+
+        document.getElementById("googleLogin").onclick = async () => {
+            await loginWithGoogle();
+        };
+
+        document.getElementById("googleSignup").onclick = async () => {
+            await signupWithGoogle();
+        };
     </script>
 
 </body>
