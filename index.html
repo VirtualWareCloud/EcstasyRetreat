@@ -15,6 +15,7 @@
 /* WHITE MILKY GLASS HEADER WITH GOLD SHIMMER ANIMATION */
 /* ========================================================= */
 #mainHeader {
+    /* Retaining fixed header styles for professional consistency */
     background: rgba(255, 255, 255, 0.12);
     backdrop-filter: blur(20px) saturate(200%);
     -webkit-backdrop-filter: blur(20px) saturate(200%);
@@ -51,9 +52,17 @@
 /* ========================================================= */
 .fade-seq {
     animation: fadeCycle 4s ease-in-out infinite;
+    transition: transform 0.3s ease; /* Added transition for hover effect */
+}
+.fade-seq:hover {
+    transform: scale(1.05);
 }
 .fade-seq-2 {
     animation: fadeCycle 4s ease-in-out infinite 2s;
+    transition: transform 0.3s ease;
+}
+.fade-seq-2:hover {
+    transform: scale(1.05);
 }
 
 @keyframes fadeCycle {
@@ -84,6 +93,10 @@
     text-align: center;
     font-size: 14px;
     text-decoration: none;
+    transition: color 0.3s ease;
+}
+.bottom-nav a:hover {
+    color: #ff1493; /* Pink hover effect */
 }
 .bottom-nav a i {
     display: block;
@@ -91,20 +104,30 @@
     margin-bottom: 3px;
 }
 
-/* REMOVE EXCESS SPACE UNDER FEATURED SECTION */
-.reduce-space {
-    margin-bottom: 0 !important;
-    padding-bottom: 0 !important;
+/* ========================================================= */
+/* UI CLEANUP: REMOVED EXCESSIVE SPACING */
+/* ========================================================= */
+.safe-area-header {
+    /* Adjusted to only push content down by header height */
+    height: 60px; /* Reduced from 75px */
+}
+.section-tighter-margin {
+    /* Reduced margin-top for featured section */
+    margin-top: 40px; /* Reduced from 128px (mt-32) */
+    padding-bottom: 20px; /* Added small padding to section bottom */
+}
+.social-footer-tighter {
+    /* Reduced margin above footer */
+    margin-bottom: 70px; /* Space above fixed bottom nav */
+    padding-top: 15px; /* Reduced padding-top */
+    padding-bottom: 15px; /* Reduced padding-bottom */
 }
 </style>
 </head>
 
 <body class="bg-black text-white overflow-x-hidden pb-24">
 
-<!-- ========================================================= -->
-<!-- HEADER -->
-<!-- ========================================================= -->
-<header id="mainHeader" class="flex justify-between items-center px-4 py-3 relative">
+<header id="mainHeader" class="flex justify-between items-center px-4 py-3">
     <div class="header-shimmer"></div>
 
     <a href="index.html" class="flex items-center relative z-[5]">
@@ -116,11 +139,8 @@
     </button>
 </header>
 
-<div style="height:75px;"></div>
+<div class="safe-area-header"></div>
 
-<!-- ========================================================= -->
-<!-- MOBILE MENU -->
-<!-- ========================================================= -->
 <nav id="mobileMenu"
   class="hidden fixed top-16 right-4 bg-black/95 backdrop-blur-xl p-6 rounded-xl 
      border border-pink-500/40 text-lg z-[1000] w-60 shadow-xl">
@@ -135,20 +155,23 @@
   <a href="contact.html" class="block py-2 hover:text-pink-400">Contact Us</a>
 </nav>
 
-<!-- ========================================================= -->
-<!-- SLIDER -->
-<!-- ========================================================= -->
-<div id="slider" class="relative w-full h-[65vh] min-h-[480px] overflow-hidden">
-  <img src="images/image01.jpg" class="absolute inset-0 w-full h-full object-cover brightness-[.6] fade-image opacity-100" />
+<div id="slider" class="relative w-full h-[65vh] min-h-[480px] overflow-hidden -mt-[60px]"> <img src="images/image01.jpg" class="absolute inset-0 w-full h-full object-cover brightness-[.6] fade-image opacity-100" />
   <img src="images/image02.jpg" class="absolute inset-0 w-full h-full object-cover brightness-[.6] fade-image opacity-0" />
   <img src="images/image03.jpg" class="absolute inset-0 w-full h-full object-cover brightness-[.6] fade-image opacity-0" />
   <img src="images/image04.jpg" class="absolute inset-0 w-full h-full object-cover brightness-[.6] fade-image opacity-0" />
 </div>
 
-<!-- ========================================================= -->
-<!-- CTA BUTTONS -->
-<!-- ========================================================= -->
-<div class="absolute top-[63vh] left-0 right-0 z-40 flex flex-col gap-4 w-11/12 max-w-sm mx-auto">
+<div class="absolute top-[150px] left-0 right-0 z-40 text-center px-6">
+    <img src="logo_icon.png" class="w-20 h-20 mx-auto mb-2 drop-shadow-lg" alt="Ecstasy Retreat Logo Icon">
+    <h1 class="text-5xl md:text-7xl font-extrabold text-white tracking-tight leading-snug drop-shadow-lg">
+        <span class="text-pink-400">Ecstasy</span> Retreat
+    </h1>
+    <p class="text-xl md:text-2xl font-light text-white/90 mt-2 drop-shadow-md">
+        Where Sensual Healing Meets Luxury
+    </p>
+</div>
+
+<div class="absolute bottom-[20vh] left-0 right-0 z-40 flex flex-col gap-3 w-11/12 max-w-sm mx-auto">
 
   <a href="Therapists_List.html"
      class="bg-pink-600 text-white px-10 py-4 rounded-xl text-xl font-extrabold text-center 
@@ -163,10 +186,7 @@
   </a>
 </div>
 
-<!-- ========================================================= -->
-<!-- FEATURED SECTION -->
-<!-- ========================================================= -->
-<section class="relative z-40 px-5 md:px-10 mt-32 reduce-space">
+<section class="relative z-40 px-5 md:px-10 section-tighter-margin">
   <div class="flex items-center justify-between mb-2">
     <h2 class="text-3xl font-extrabold text-pink-400 flex items-center">
       <i class="fa-solid fa-heart-circle-bolt mr-2 text-pink-500"></i> Featured Therapists
@@ -183,10 +203,7 @@
   <div id="therapistPreview" class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 md:gap-8"></div>
 </section>
 
-<!-- ========================================================= -->
-<!-- SOCIAL FOOTER -->
-<!-- ========================================================= -->
-<footer class="bg-black/70 border-t border-white/5 text-center py-4 text-white/70 mb-20">
+<footer class="bg-black/70 border-t border-white/5 text-center social-footer-tighter">
     <div class="flex justify-center gap-8 text-2xl mb-3">
         <a href="https://instagram.com/EcstasyRetreatSpa" target="_blank"><i class="fa-brands fa-instagram"></i></a>
         <a href="https://x.com/EcstasyRetreat" target="_blank"><i class="fa-brands fa-x-twitter"></i></a>
@@ -198,9 +215,6 @@
     <p class="text-xs">© 2025 Ecstasy Retreat — Elite Companionship.</p>
 </footer>
 
-<!-- ========================================================= -->
-<!-- RESTORED ORIGINAL NAVIGATION FOOTER (BOTTOM OF SCREEN) -->
-<!-- ========================================================= -->
 <nav class="bottom-nav">
     <a href="index.html">
         <i class="fa-solid fa-house"></i>
