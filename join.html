@@ -13,15 +13,22 @@
 <link rel="stylesheet"
       href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" />
 
+<!-- Supabase JS -->
+<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+
 <style>
+/* =================================================== */
 /* HEADER */
+/* =================================================== */
 #headerWrapper {
     background-color: rgba(0,0,0,0.6);
     transition: background-color 1.5s ease-in-out;
 }
 #headerWrapper.fade-bg { background-color: transparent; }
 
+/* =================================================== */
 /* NEON GLASS CARD */
+/* =================================================== */
 .card-glass {
     background: rgba(18,18,18,0.75);
     border: 1px solid rgba(255,0,128,0.25);
@@ -31,7 +38,9 @@
     box-shadow: 0 0 25px rgba(255,20,147,0.18), inset 0 0 15px rgba(255,20,147,0.12);
 }
 
+/* =================================================== */
 /* INPUTS */
+/* =================================================== */
 .input-box {
     width: 100%;
     padding: 14px;
@@ -42,7 +51,9 @@
     margin-bottom: 14px;
 }
 
+/* =================================================== */
 /* BUTTONS */
+/* =================================================== */
 .primary-btn {
     background: #ff1493;
     padding: 15px;
@@ -52,7 +63,6 @@
     box-shadow: 0 0 20px rgba(255,20,147,0.6);
     width: 100%;
 }
-
 .google-btn {
     background: white;
     color: black;
@@ -66,7 +76,9 @@
     gap: 12px;
 }
 
+/* =================================================== */
 /* BOTTOM NAV */
+/* =================================================== */
 .bottom-nav {
     position: fixed;
     bottom: 0; left: 0;
@@ -92,178 +104,215 @@
 
 <body class="bg-black text-white pb-28">
 
-<!-- ================= HEADER ================= -->
+<!-- =================================================== -->
+<!-- HEADER -->
+<!-- =================================================== -->
 <header id="headerWrapper"
         class="fixed top-0 left-0 w-full z-40 py-3 px-4 flex items-center justify-between">
-
     <a href="index.html">
         <img src="logo.png" class="w-14">
     </a>
-
     <button id="menuBtn" class="text-white text-3xl">
         <i class="fa-solid fa-bars"></i>
     </button>
 </header>
 
-<!-- ================= MOBILE MENU ================= -->
+<!-- =================================================== -->
+<!-- MOBILE MENU -->
+<!-- =================================================== -->
 <div id="mobileMenu"
      class="hidden fixed top-16 right-4 w-64 bg-black/95 backdrop-blur-xl p-6 z-50 rounded-xl
             border border-pink-500/40 shadow-xl">
-
     <nav class="space-y-4 text-lg">
         <a href="index.html" class="block hover:text-pink-400">Home</a>
         <a href="Therapists_List.html" class="block hover:text-pink-400">View Therapists</a>
         <a href="login.html" class="block hover:text-pink-400">Login / Signup</a>
-        <a href="image_gallery.html" class="block hover:text-pink-400">Image Gallery</a>
-        <a href="video_gallery.html" class="block hover:text-pink-400">Video Gallery</a>
         <a href="join.html" class="block text-pink-400 font-semibold">Join as Therapist</a>
-        <a href="booking.html" class="block hover:text-pink-400">Book Session</a>
-        <a href="contact.html" class="block hover:text-pink-400">Contact Us</a>
     </nav>
 </div>
 
+<!-- =================================================== -->
+<!-- MAIN CONTENT -->
+<!-- =================================================== -->
 <div class="pt-32 px-6 max-w-xl mx-auto">
-
     <h1 class="text-4xl font-bold text-center text-pink-500 mb-8">
         Become an Ecstasy Retreat Therapist
     </h1>
 
-    <!-- ================= HEADSHOT ================= -->
-    <div class="card-glass mb-8">
-        <label class="block font-semibold mb-2">Upload Headshot (Required)</label>
-        <input type="file" accept="image/*" capture="camera"
-               class="input-box">
-    </div>
+    <!-- APPLICATION FORM -->
+    <form id="joinForm" class="space-y-8">
 
-    <!-- ================= BASIC INFO ================= -->
-    <div class="card-glass mb-8">
-        <label>Full Name*</label>
-        <input type="text" class="input-box" required>
-
-        <label>WhatsApp Number* (+27…)</label>
-        <input type="tel" class="input-box" required>
-
-        <label>Email Address*</label>
-        <input type="email" class="input-box" required>
-
-        <label>Area / Suburb*</label>
-        <input type="text" class="input-box" required>
-
-        <label>Age (Optional)</label>
-        <input type="number" class="input-box">
-
-        <label>Languages (Optional)</label>
-        <input type="text" class="input-box">
-    </div>
-
-    <!-- ================= SERVICES ================= -->
-    <div class="card-glass mb-8">
-        <h2 class="text-xl font-bold text-pink-400 mb-4">Select Your Services</h2>
-
-        <div class="grid gap-3">
-
-            <!-- Services List -->
-            <label class="flex items-start space-x-3"><input type="checkbox" value="tantric" class="service-box"><span>Tantric Massage</span></label>
-            <label class="flex items-start space-x-3"><input type="checkbox" value="nuru" class="service-box"><span>Nuru (Body-to-Body) Massage</span></label>
-            <label class="flex items-start space-x-3"><input type="checkbox" value="lingam" class="service-box"><span>Lingam Massage</span></label>
-            <label class="flex items-start space-x-3"><input type="checkbox" value="yoni" class="service-box"><span>Yoni Massage</span></label>
-            <label class="flex items-start space-x-3"><input type="checkbox" value="prostate" class="service-box"><span>Prostate Massage</span></label>
-            <label class="flex items-start space-x-3"><input type="checkbox" value="fourhands" class="service-box"><span>Duo / Four-Hands Massage</span></label>
-            <label class="flex items-start space-x-3"><input type="checkbox" value="happy" class="service-box"><span>Happy Ending Massage</span></label>
-            <label class="flex items-start space-x-3"><input type="checkbox" value="soapy" class="service-box"><span>Soapy Massage</span></label>
-            <label class="flex items-start space-x-3"><input type="checkbox" value="eslen" class="service-box"><span>Eslen Massage</span></label>
-            <label class="flex items-start space-x-3"><input type="checkbox" value="sensual" class="service-box"><span>Full Body Sensual Massage</span></label>
-
+        <!-- HEADSHOT -->
+        <div class="card-glass">
+            <label class="block font-semibold mb-2">Upload Headshot (Required)</label>
+            <input type="file" id="headshot" accept="image/*" capture="camera" class="input-box" required />
         </div>
-    </div>
 
-    <!-- ================= BIO ================= -->
-    <div class="card-glass mb-8">
-        <h2 class="text-xl font-bold text-pink-400 mb-3">Auto-Generated Bio</h2>
-        <textarea id="bioOutput"
-                  class="w-full h-40 bg-black/40 border border-pink-500/40 rounded-lg p-3"
-                  placeholder="Your bio will be generated here…"></textarea>
-    </div>
+        <!-- BASIC INFO -->
+        <div class="card-glass">
+            <input type="text" id="fullName" placeholder="Full Name*" class="input-box" required>
+            <input type="tel" id="whatsapp" placeholder="WhatsApp Number (+27…)" class="input-box" required>
+            <input type="email" id="email" placeholder="Email Address*" class="input-box" required>
+            <input type="password" id="password" placeholder="Password*" class="input-box" required>
+            <input type="text" id="area" placeholder="Area / Suburb*" class="input-box" required>
+            <input type="number" id="age" placeholder="Age (Optional)" class="input-box">
+            <input type="text" id="languages" placeholder="Languages (Optional)" class="input-box">
+        </div>
 
-    <!-- ================= BUTTONS ================= -->
-    <div class="mt-10 space-y-4 text-center">
+        <!-- SERVICES -->
+        <div class="card-glass">
+            <h2 class="text-xl font-bold text-pink-400 mb-4">Select Your Services</h2>
+            <div class="grid gap-3">
+                <label><input type="checkbox" value="tantric" class="service-box"> Tantric Massage</label>
+                <label><input type="checkbox" value="nuru" class="service-box"> Nuru Massage</label>
+                <label><input type="checkbox" value="sensual" class="service-box"> Full Body Sensual Massage</label>
+            </div>
+        </div>
 
-        <!-- Submit -->
-        <button class="primary-btn">
-            Submit Application
-        </button>
+        <!-- BIO -->
+        <div class="card-glass">
+            <h2 class="text-xl font-bold text-pink-400 mb-3">Auto-Generated Bio</h2>
+            <textarea id="bioOutput" class="w-full h-40 bg-black/40 border border-pink-500/40 rounded-lg p-3"
+                      placeholder="Your bio will be generated here…" readonly></textarea>
+        </div>
 
-        <!-- Google Signup -->
-        <button class="google-btn">
+        <!-- BUTTONS -->
+        <button type="submit" class="primary-btn">Submit Application</button>
+        <button type="button" id="googleSignup" class="google-btn">
             <img src="https://www.svgrepo.com/show/475656/google-color.svg" width="22">
             Sign up with Google
         </button>
-
-    </div>
-
+    </form>
 </div>
 
-<!-- ================= ORIGINAL FOOTER ================= -->
+<!-- =================================================== -->
+<!-- FOOTER -->
+<!-- =================================================== -->
 <footer class="mt-16 mb-6 text-center text-gray-400 text-sm">
     © 2025 Ecstasy Retreat • Sensual Luxury Experience
 </footer>
 
-<!-- ================= EXTENDED FOOTER ================= -->
-<footer class="bg-black/70 border-t border-white/5 text-center py-6 text-white/70 mb-24">
-    <div class="flex justify-center gap-8 text-2xl mb-4">
-        <a href="https://instagram.com/EcstasyRetreatSpa" class="hover:text-pink-400"><i class="fa-brands fa-instagram"></i></a>
-        <a href="https://x.com/EcstasyRetreat" class="hover:text-pink-400"><i class="fa-brands fa-x-twitter"></i></a>
-        <a href="https://wa.me/27500204011" class="hover:text-pink-400"><i class="fa-brands fa-whatsapp"></i></a>
-        <a href="https://facebook.com/EcstasyRetreatSpa" class="hover:text-pink-400"><i class="fa-brands fa-facebook"></i></a>
-        <a href="mailto:diggdeepmakeusplash@gmail.com" class="hover:text-pink-400"><i class="fa-solid fa-envelope"></i></a>
-    </div>
-    <p class="text-xs mt-3">© 2025 Ecstasy Retreat — Elite Companionship.</p>
-</footer>
+<!-- =================================================== -->
+<!-- SUPABASE SCRIPT -->
+<!-- =================================================== -->
+<script type="module">
+import { createClient } from "https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2/+esm";
 
-<!-- ================= BOTTOM NAV ================= -->
-<nav class="bottom-nav flex justify-between">
-    <a href="index.html"><i class="fa-solid fa-house"></i>Home</a>
-    <a href="Therapists_List.html"><i class="fa-solid fa-users"></i>Therapists</a>
-    <a href="booking.html"><i class="fa-solid fa-calendar-check"></i>Book</a>
-    <a href="login.html"><i class="fa-solid fa-user"></i>Profile</a>
-</nav>
+// ✅ Supabase Configuration
+const SUPABASE_URL = "https://jeregnymrknddwbbbvrm.supabase.co";
+const SUPABASE_KEY =
+  "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6ImplcmVnbnltcmtuZGR3YmJidnJtIiwicm9sZSI6ImFub24iLCJpYXQiOjE3NjQ3NjE1NjYsImV4cCI6MjA...";
+const supabase = createClient(SUPABASE_URL, SUPABASE_KEY);
 
-<!-- ================= SCRIPTS ================= -->
-<script>
-/* HEADER FADE */
-setTimeout(() => {
-    document.getElementById("headerWrapper").classList.add("fade-bg");
-}, 3000);
-
-/* MOBILE MENU */
-document.getElementById("menuBtn").onclick = () =>
-    document.getElementById("mobileMenu").classList.toggle("hidden");
-
-/* AUTO-BIO */
+// ====================== AUTO BIO ======================
 const serviceDescriptions = {
-    tantric: "Specialising in ancient Tantric techniques that awaken sensual energy.",
-    nuru: "Offering intimate Nuru body-to-body experiences for heightened arousal.",
-    lingam: "Expert in Lingam massage focused on breath control and masculine energy.",
-    yoni: "Providing Yoni healing designed to enhance feminine sensitivity.",
-    prostate: "Skilled in sacred prostate stimulation for deep release.",
-    fourhands: "Delivering synchronized Duo / Four-Hands sensual experiences.",
-    happy: "Offering tailored Happy Ending massage experiences.",
-    soapy: "Fun and immersive Soapy massage sessions.",
-    eslen: "Combining sensual Eslen-style touch therapy.",
-    sensual: "Full-body sensual massage exploring every erogenous zone."
+  tantric: "Specialising in ancient Tantric techniques that awaken sensual energy.",
+  nuru: "Offering intimate Nuru body-to-body experiences for heightened arousal.",
+  sensual: "Full-body sensual massage exploring every erogenous zone."
 };
 
 const boxes = document.querySelectorAll(".service-box");
 const bio = document.getElementById("bioOutput");
-
 boxes.forEach(box => {
-    box.addEventListener("change", () => {
-        const selected = Array.from(boxes)
-            .filter(b => b.checked)
-            .map(b => serviceDescriptions[b.value]);
-        bio.value = selected.join("\n\n");
-    });
+  box.addEventListener("change", () => {
+    const selected = Array.from(boxes)
+      .filter(b => b.checked)
+      .map(b => serviceDescriptions[b.value]);
+    bio.value = selected.join("\\n\\n");
+  });
 });
+
+// ====================== NORMAL SIGNUP ======================
+document.getElementById("joinForm").addEventListener("submit", async (e) => {
+  e.preventDefault();
+
+  const fullName = document.getElementById("fullName").value.trim();
+  const whatsapp = document.getElementById("whatsapp").value.trim();
+  const email = document.getElementById("email").value.trim();
+  const password = document.getElementById("password").value;
+  const area = document.getElementById("area").value.trim();
+  const age = document.getElementById("age").value;
+  const languages = document.getElementById("languages").value;
+  const bioText = document.getElementById("bioOutput").value;
+  const headshot = document.getElementById("headshot").files[0];
+
+  if (!fullName || !email || !password || !area || !headshot) {
+    alert("Please complete all required fields.");
+    return;
+  }
+
+  const { data: signupData, error: signupError } = await supabase.auth.signUp({
+    email,
+    password,
+    options: { data: { fullName, whatsapp, area } },
+  });
+  if (signupError) return alert(signupError.message);
+
+  const userId = signupData.user.id;
+  const fileName = `therapists/${userId}_${Date.now()}.jpg`;
+  const { error: uploadError } = await supabase.storage.from("headshots").upload(fileName, headshot);
+  if (uploadError) return alert("Upload failed: " + uploadError.message);
+
+  const { error: insertError } = await supabase.from("therapists").insert([
+    { user_id: userId, full_name: fullName, whatsapp, email, area, age, languages, bio: bioText, headshot_path: fileName }
+  ]);
+  if (insertError) return alert(insertError.message);
+
+  alert("Application submitted successfully!");
+  window.location.href = "thankyou.html";
+});
+
+// ====================== GOOGLE SIGNUP ======================
+document.getElementById("googleSignup").onclick = async () => {
+  const { data, error } = await supabase.auth.signInWithOAuth({
+    provider: "google",
+    options: { redirectTo: window.location.origin + "/join.html#googleReturn" }
+  });
+  if (error) alert(error.message);
+};
+
+// ====================== GOOGLE RETURN ======================
+(async () => {
+  const { data: { session } } = await supabase.auth.getSession();
+  if (session && window.location.hash.includes("googleReturn")) {
+    const user = session.user;
+    if (!user) return;
+
+    const { data: existing } = await supabase
+      .from("therapists")
+      .select("user_id")
+      .eq("user_id", user.id)
+      .single();
+
+    if (!existing) {
+      await supabase.from("therapists").insert([
+        {
+          user_id: user.id,
+          full_name: user.user_metadata.fullName || user.email.split("@")[0],
+          email: user.email,
+          whatsapp: "",
+          area: "",
+          bio: "New Google-verified therapist profile.",
+          headshot_path: ""
+        }
+      ]);
+    }
+
+    window.location.href = "thankyou.html";
+  }
+})();
+</script>
+
+<!-- =================================================== -->
+<!-- MENU SCRIPT -->
+<!-- =================================================== -->
+<script>
+setTimeout(() => {
+    document.getElementById("headerWrapper").classList.add("fade-bg");
+}, 3000);
+
+document.getElementById("menuBtn").onclick = () =>
+  document.getElementById("mobileMenu").classList.toggle("hidden");
 </script>
 
 </body>
