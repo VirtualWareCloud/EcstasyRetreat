@@ -8,7 +8,7 @@
 <!-- Tailwind (CDN) -->
 <script src="https://cdn.tailwindcss.com"></script>
 
-<!-- Supabase JS (ADDED AS REQUIRED) -->
+<!-- Supabase JS (GLOBAL) -->
 <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
 
 <!-- Font Awesome (Required for footers + nav icons) -->
@@ -42,6 +42,38 @@
       font-size: 18px;
       margin-bottom: 3px;
   }
+
+  /* Featured therapists cards */
+  .card-glass {
+      background: rgba(18, 18, 18, 0.75);
+      border: 1px solid rgba(255, 0, 128, 0.15);
+      backdrop-filter: blur(8px);
+      border-radius: 20px;
+      box-shadow: 0 4px 40px rgba(255, 0, 128, 0.2);
+      transition: all 0.4s ease;
+  }
+  .card-glass:hover {
+      transform: translateY(-4px);
+      box-shadow: 0 12px 45px rgba(255, 0, 128, 0.4);
+  }
+
+  /* Home toast for booking updates */
+  #homeToast {
+    position: fixed;
+    bottom: 90px;
+    left: 50%;
+    transform: translateX(-50%);
+    background: rgba(255, 20, 147, 0.92);
+    padding: 10px 22px;
+    border-radius: 999px;
+    color: white;
+    font-weight: 600;
+    font-size: 14px;
+    display: none;
+    z-index: 9999;
+    text-align: center;
+    max-width: 280px;
+  }
 </style>
 </head>
 
@@ -74,7 +106,7 @@
   
   <a href="index.html" class="block py-2 hover:text-pink-400 menu-link">Home</a>
   <a href="Therapists_List.html" class="block py-2 hover:text-pink-400 menu-link">View Therapists</a>
-  <a href="login.html" class="block py-2 hover:text-pink-400 menu-link">Login / Signup</a>
+  <a href="login.html" class="block py-2 hover:text-pink-400 menu-link menu-profile-link">Login / Signup</a>
   <a href="image_gallery.html" class="block py-2 hover:text-pink-400 menu-link">Image Gallery</a>
   <a href="video_gallery.html" class="block py-2 hover:text-pink-400 menu-link">Video Gallery</a>
   <a href="join.html" class="block py-2 hover:text-pink-400 menu-link">Join as Therapist</a>
@@ -109,6 +141,7 @@
     View Therapists
   </a>
 
+  <!-- Note: filename kept as provided originally -->
   <a href="Join_Therapist.html"
      class="bg-black/60 border border-pink-500 text-pink-400 px-10 py-4 rounded-full text-lg font-bold text-center
             transition transform hover:scale-105 hover:shadow-pink-500/50">
@@ -124,6 +157,30 @@
 <div class="relative mt-[550px] mb-10 z-40">
   <div class="w-full h-[2px] bg-pink-600/40"></div>
 </div>
+
+<!-- ================================================================================= -->
+<!--                       FEATURED THERAPISTS PREVIEW SECTION                          -->
+<!-- ================================================================================= -->
+
+<section class="relative z-40 px-6 mb-20">
+  <div class="flex items-center justify-between mb-3">
+    <h2 class="text-2xl font-bold text-pink-400">Featured Therapists</h2>
+    <a href="Therapists_List.html" class="text-sm text-pink-300 hover:text-pink-100">
+      View All &rarr;
+    </a>
+  </div>
+
+  <p id="featuredSubtitle" class="text-xs text-white/60 mb-4">
+    Discover some of our most highly-rated sensual therapists in Johannesburg.
+  </p>
+
+  <div id="therapistPreview" class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4">
+    <!-- Cards injected by JS -->
+  </div>
+</section>
+
+<!-- Toast for user booking updates -->
+<div id="homeToast">Your booking has been updated.</div>
 
 <!-- ================================================================================= -->
 <!--                             STANDARD FOOTER SET                                    -->
@@ -175,7 +232,7 @@
     <p class="text-xs mt-3">© 2025 Ecstasy Retreat — Elite Companionship.</p>
 </footer>
 
-<!-- 3️⃣ NAVIGATION FOOTER (UPDATED WITH PROFILE ICON) -->
+<!-- 3️⃣ NAVIGATION FOOTER (UPDATED WITH PROFILE ICON + LOGIC HOOK) -->
 <nav class="bottom-nav flex justify-between">
     <a href="index.html">
         <i class="fa-solid fa-house"></i>
@@ -193,14 +250,14 @@
         <i class="fa-solid fa-envelope"></i>
         Contact
     </a>
-    <a href="login.html">
+    <a href="login.html" class="nav-profile-link">
         <i class="fa-solid fa-user"></i>
         Profile
     </a>
 </nav>
 
 <!-- ================================================================================= -->
-<!--                                      SCRIPTS                                        -->
+<!--                            EXISTING UI/ANIMATION SCRIPTS                           -->
 <!-- ================================================================================= -->
 
 <script>
@@ -235,9 +292,221 @@
   }, 3000);
 </script>
 
-<!-- ======================================= -->
-<!--   YOUR APP SCRIPTS (ES MODULES)         -->
-<!-- ======================================= -->
+<!-- ================================================================================= -->
+<!--                     APP LOGIC + SUPABASE / NAV / PREVIEW / PUSH                    -->
+<!-- ================================================================================= -->
+
+<script type="module">
+import { supabase } from "./js/supabase.js";
+
+/* ==================== BASIC USER HELPERS ==================== */
+
+async function getCurrentUser() {
+  try {
+    const { data, error } = await supabase.auth.getUser();
+    if (error || !data?.user) return null;
+    return data.user;
+  } catch (e) {
+    console.error("getCurrentUser error", e);
+    return null;
+  }
+}
+
+function getStoredRole() {
+  return localStorage.getItem("ecstasy_role");
+}
+
+function storeRole(role) {
+  if (role) {
+    localStorage.setItem("ecstasy_role", role);
+  }
+}
+
+/* ==================== ROLE-BASED REDIRECT ON LOAD ==================== */
+/* Admin -> admin_dashboard.html
+   Therapist -> therapist_dashboard.html
+   Normal users stay on home for now                      */
+
+async function handleRoleRedirectOnLoad() {
+  const user = await getCurrentUser();
+  if (!user) return;
+
+  let role = user.user_metadata?.role || getStoredRole();
+
+  // Fallback: treat main owner email as admin if not explicitly set
+  if (!role && user.email === "diggdeepmakeusplash@gmail.com") {
+    role = "admin";
+  }
+
+  if (role) storeRole(role);
+
+  if (role === "admin") {
+    window.location.href = "admin_dashboard.html";
+  } else if (role === "therapist") {
+    window.location.href = "therapist_dashboard.html";
+  } else {
+    // normal app users remain on index.html
+  }
+}
+
+/* ==================== PROFILE NAV BEHAVIOUR ==================== */
+/* - If not logged in -> login.html
+   - If admin -> admin_dashboard.html
+   - If therapist -> therapist_dashboard.html
+   - If normal user -> user_profile.html                       */
+
+function setupProfileLinks() {
+  const links = document.querySelectorAll(".nav-profile-link, .menu-profile-link");
+
+  links.forEach(link => {
+    link.addEventListener("click", async (e) => {
+      e.preventDefault();
+
+      const user = await getCurrentUser();
+      if (!user) {
+        window.location.href = "login.html";
+        return;
+      }
+
+      let role = localStorage.getItem("ecstasy_role") || user.user_metadata?.role;
+
+      if (!role && user.email === "diggdeepmakeusplash@gmail.com") {
+        role = "admin";
+      }
+
+      if (role === "admin") {
+        window.location.href = "admin_dashboard.html";
+      } else if (role === "therapist") {
+        window.location.href = "therapist_dashboard.html";
+      } else {
+        window.location.href = "user_profile.html";
+      }
+    });
+  });
+}
+
+/* ==================== FEATURED THERAPISTS PREVIEW ==================== */
+
+async function loadFeaturedTherapists() {
+  const container = document.getElementById("therapistPreview");
+  if (!container) return;
+
+  try {
+    const { data, error } = await supabase
+      .from("therapists")
+      .select("id, full_name, area, profile_image, rating, review_count, is_available")
+      .order("rating", { ascending: false })
+      .limit(3);
+
+    if (error) {
+      console.error("loadFeaturedTherapists error", error);
+      container.innerHTML =
+        '<p class="text-sm text-red-400">Unable to load therapists right now.</p>';
+      return;
+    }
+
+    container.innerHTML = "";
+
+    if (!data || data.length === 0) {
+      container.innerHTML =
+        '<p class="text-sm text-white/70">Therapist profiles coming soon.</p>';
+      return;
+    }
+
+    data.forEach(t => {
+      const card = document.createElement("article");
+      card.className = "card-glass p-4 flex gap-4 items-center";
+
+      const imgSrc = t.profile_image || "images/placeholder_profile.jpg";
+
+      card.innerHTML = `
+        <div class="w-16 h-16 rounded-full overflow-hidden border border-pink-500/60 flex-shrink-0">
+          <img src="${imgSrc}" alt="${t.full_name}"
+               class="w-full h-full object-cover" />
+        </div>
+        <div class="flex-1">
+          <h3 class="text-lg font-bold text-pink-300">${t.full_name}</h3>
+          <p class="text-xs text-white/60 mb-1">${t.area || "Location on request"}</p>
+          <div class="flex items-center justify-between">
+            <span class="text-xs text-yellow-300">
+              ⭐ ${(t.rating ?? 5.0).toFixed(1)} 
+              <span class="text-[10px] text-white/50">
+                (${t.review_count || 0} reviews)
+              </span>
+            </span>
+            <span class="text-[11px] ${
+              t.is_available ? "text-green-400" : "text-white/40"
+            }">
+              ${t.is_available ? "Available now" : "Offline"}
+            </span>
+          </div>
+        </div>
+        <a href="Therapists_List.html"
+           class="ml-2 text-pink-300 text-xs font-semibold hover:text-pink-100">
+          View
+        </a>
+      `;
+
+      container.appendChild(card);
+    });
+  } catch (e) {
+    console.error("loadFeaturedTherapists exception", e);
+    container.innerHTML =
+      '<p class="text-sm text-red-400">Unexpected error loading therapists.</p>';
+  }
+}
+
+/* ==================== USER BOOKING REALTIME TOAST ==================== */
+/* Listens for changes to bookings belonging to the logged-in user
+   and shows a toast when something changes (status / new booking).      */
+
+function showHomeToast(message) {
+  const toast = document.getElementById("homeToast");
+  if (!toast) return;
+  toast.textContent = message;
+  toast.style.display = "block";
+  setTimeout(() => {
+    toast.style.display = "none";
+  }, 4000);
+}
+
+async function setupBookingRealtime() {
+  const user = await getCurrentUser();
+  if (!user) return;
+
+  // Subscribe to INSERT/UPDATE/DELETE for this user's bookings
+  supabase
+    .channel("user-booking-updates")
+    .on(
+      "postgres_changes",
+      {
+        event: "*",
+        schema: "public",
+        table: "bookings",
+        filter: `user_id=eq.${user.id}`
+      },
+      payload => {
+        const newStatus = payload.new?.status || "updated";
+        showHomeToast(`Your booking has been ${newStatus}.`);
+      }
+    )
+    .subscribe();
+}
+
+/* ==================== BOOTSTRAP HOMEPAGE BEHAVIOUR ==================== */
+
+document.addEventListener("DOMContentLoaded", () => {
+  setupProfileLinks();
+  loadFeaturedTherapists();
+  setupBookingRealtime();
+  handleRoleRedirectOnLoad();
+});
+</script>
+
+<!-- ================================================================================= -->
+<!--   YOUR EXISTING ES MODULE APP SCRIPTS (KEEPING STRUCTURE FOR THE REST OF APP)     -->
+<!-- ================================================================================= -->
+
 <script type="module" src="js/supabase.js"></script>
 <script type="module" src="js/auth.js"></script>
 <script type="module" src="js/therapists.js"></script>
