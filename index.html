@@ -98,15 +98,16 @@
 
 <body class="bg-black text-white overflow-x-hidden pb-24">
 
+<!-- UPDATED HEADER (logo + menu positioned higher + resized) -->
 <header id="mainHeader"
-  class="fixed top-0 left-0 w-full z-[999] flex justify-between items-center px-5 py-4
+  class="fixed top-0 left-0 w-full z-[999] flex justify-between items-center px-4 py-3
          bg-black/50 backdrop-blur-md border-b border-white/10">
 
-  <a href="index.html">
-    <img src="logo.png" class="w-32" alt="Ecstasy Retreat Logo"> 
+  <a href="index.html" class="flex items-center">
+    <img src="logo.png" class="w-28 md:w-32 mt-[-6px]" alt="Ecstasy Retreat Logo">
   </a>
 
-  <button id="menuBtn" class="text-white text-3xl z-[1001]">
+  <button id="menuBtn" class="text-white text-3xl mt-[-6px] mr-1 z-[1001]">
     &#9776;
   </button>
 </header>
@@ -125,10 +126,10 @@
   <a href="contact.html" class="block py-2 hover:text-pink-400 menu-link">Contact Us</a>
 </nav>
 
-<!-- FIXED SPACING BELOW HEADER -->
-<div class="pt-[100px]"></div>
+<!-- UPDATED SPACING BELOW HEADER -->
+<div class="pt-[85px]"></div>
 
-<!-- CLEAN SLIDER (NO NEGATIVE MARGIN) -->
+<!-- CLEAN SLIDER -->
 <div id="slider" class="relative w-full h-[60vh] min-h-[450px] overflow-hidden">
 
   <img src="images/image01.jpg" class="absolute inset-0 w-full h-full object-cover brightness-[.6] fade-image opacity-100" />
