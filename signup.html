@@ -1,0 +1,211 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Signup | Ecstasy Retreat</title>
+
+<!-- Tailwind -->
+<script src="https://cdn.tailwindcss.com"></script>
+
+<!-- Font Awesome -->
+<link rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+
+<style>
+  /* Bottom navigation */
+  .bottom-nav {
+      position: fixed;
+      bottom: 0;
+      left: 0;
+      width: 100%;
+      background: #000;
+      border-top: 1px solid #333;
+      z-index: 50;
+  }
+  .bottom-nav a {
+      flex: 1;
+      text-align: center;
+      padding: 10px 0;
+      color: #ffffff;
+      font-size: 13px;
+  }
+  .bottom-nav a i {
+      display: block;
+      font-size: 18px;
+      margin-bottom: 3px;
+  }
+</style>
+</head>
+
+<body class="bg-black text-white min-h-screen pb-32">
+
+<!-- ================================================================================= -->
+<!--                                      HEADER                                        -->
+<!-- ================================================================================= -->
+
+<header class="fixed top-0 left-0 w-full z-50 flex justify-between items-center px-5 py-4
+         bg-black/60 backdrop-blur-md border-b border-white/10">
+
+  <a href="index.html">
+    <img src="logo.png" class="w-28" alt="Ecstasy Retreat Logo">
+  </a>
+
+  <a href="login.html" class="text-pink-400 font-bold">Login</a>
+</header>
+
+<div class="pt-28"></div>
+
+<!-- ================================================================================= -->
+<!--                                SIGNUP FORM                                         -->
+<!-- ================================================================================= -->
+
+<section class="px-6">
+  <h1 class="text-3xl font-bold text-center text-pink-500 mb-8">
+    Create Your Account
+  </h1>
+
+  <form id="signupForm"
+        class="bg-white/10 p-6 rounded-xl border border-pink-500/30 shadow-xl space-y-6">
+
+    <!-- Email -->
+    <div>
+      <label class="block mb-1 text-sm text-pink-300">Email</label>
+      <input type="email" id="email"
+             class="w-full bg-black/40 border border-pink-500/40 rounded-lg p-3 text-white"
+             placeholder="you@example.com" required>
+    </div>
+
+    <!-- Password -->
+    <div>
+      <label class="block mb-1 text-sm text-pink-300">Password</label>
+      <input type="password" id="password"
+             class="w-full bg-black/40 border border-pink-500/40 rounded-lg p-3 text-white"
+             placeholder="********" required>
+    </div>
+
+    <!-- WhatsApp (optional now) -->
+    <div>
+      <label class="block mb-1 text-sm text-pink-300">Your WhatsApp (optional)</label>
+      <input type="text" id="whatsapp"
+             class="w-full bg-black/40 border border-pink-500/40 rounded-lg p-3 text-white"
+             placeholder="+27 65 123 4567">
+    </div>
+
+    <!-- Sign Up Button -->
+    <button type="submit"
+            class="w-full bg-pink-600 hover:bg-pink-500 transition p-4 rounded-full text-lg font-bold">
+      Create Account
+    </button>
+
+    <!-- Google Signup -->
+    <button id="googleSignupBtn" type="button"
+            class="w-full bg-white text-black p-3 rounded-full flex items-center justify-center gap-3 font-semibold hover:bg-gray-200 transition">
+      <img src="https://www.svgrepo.com/show/475656/google-color.svg" class="w-6 h-6" alt="Google">
+      Sign Up with Google
+    </button>
+
+  </form>
+
+  <!-- Success Message -->
+  <p id="successMsg"
+     class="hidden text-green-400 font-bold text-center mt-6">
+     ✔ Account created successfully!
+  </p>
+
+</section>
+
+
+<!-- ================================================================================= -->
+<!--                         FULL STANDARD FOOTER SET                                   -->
+<!-- ================================================================================= -->
+
+<!-- 1️⃣ ORIGINAL FOOTER -->
+<footer class="mt-16 mb-6 text-center text-gray-400 text-sm">
+  © 2025 Ecstasy Retreat • Sensual Luxury Experience
+</footer>
+
+<!-- 2️⃣ SOCIAL FOOTER -->
+<footer class="bg-black/70 border-t border-white/5 text-center py-6 text-white/70 mb-24">
+
+  <div class="flex justify-center gap-8 text-2xl mb-4">
+
+      <a href="https://instagram.com/EcstasyRetreatSpa" target="_blank"
+         class="hover:text-pink-400 transition">
+         <i class="fa-brands fa-instagram"></i>
+      </a>
+
+      <a href="https://x.com/EcstasyRetreat" target="_blank"
+         class="hover:text-pink-400 transition">
+         <i class="fa-brands fa-x-twitter"></i>
+      </a>
+
+      <a href="https://wa.me/27500204011?text=Hi%20I%20want%20to%20signup"
+         target="_blank"
+         class="hover:text-pink-400 transition">
+         <i class="fa-brands fa-whatsapp"></i>
+      </a>
+
+      <a href="https://facebook.com/EcstasyRetreatSpa" target="_blank"
+         class="hover:text-pink-400 transition">
+         <i class="fa-brands fa-facebook"></i>
+      </a>
+
+      <a href="mailto:diggdeepmakeusplash@gmail.com"
+         class="hover:text-pink-400 transition">
+         <i class="fa-solid fa-envelope"></i>
+      </a>
+
+  </div>
+
+  <div class="space-y-1 text-sm">
+      <a href="#" class="hover:text-pink-400 transition block">Privacy Policy</a>
+      <a href="#" class="hover:text-pink-400 transition block">Terms of Service</a>
+  </div>
+
+  <p class="text-xs mt-3">© 2025 Ecstasy Retreat — Elite Companionship.</p>
+</footer>
+
+<!-- 3️⃣ NAV FOOTER -->
+<nav class="bottom-nav flex justify-between">
+    <a href="index.html"><i class="fa-solid fa-house"></i>Home</a>
+    <a href="Therapists_List.html"><i class="fa-solid fa-users"></i>Therapists</a>
+    <a href="booking.html"><i class="fa-solid fa-calendar-check"></i>Book</a>
+    <a href="contact.html"><i class="fa-solid fa-envelope"></i>Contact</a>
+    <a href="login.html"><i class="fa-solid fa-user"></i>Profile</a>
+</nav>
+
+
+<!-- ================================================================================= -->
+<!--                               JS MODULE LOGIC                                      -->
+<!-- ================================================================================= -->
+
+<script type="module">
+  import { signupEmailPassword, signupWithGoogle } from "./js/auth.js";
+
+  const form = document.getElementById("signupForm");
+  const googleBtn = document.getElementById("googleSignupBtn");
+  const success = document.getElementById("successMsg");
+
+  form.addEventListener("submit", async (e) => {
+    e.preventDefault();
+
+    const email = document.getElementById("email").value;
+    const password = document.getElementById("password").value;
+    const whatsapp = document.getElementById("whatsapp").value;
+
+    const result = await signupEmailPassword(email, password, whatsapp);
+
+    if (result) {
+      success.classList.remove("hidden");
+      setTimeout(() => window.location.href = "user_profile.html", 1200);
+    }
+  });
+
+  googleBtn.addEventListener("click", async () => {
+    await signupWithGoogle();
+  });
+</script>
+
+</body>
+</html>
