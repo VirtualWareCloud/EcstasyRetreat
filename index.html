@@ -8,6 +8,9 @@
 <!-- Tailwind (CDN) -->
 <script src="https://cdn.tailwindcss.com"></script>
 
+<!-- Supabase JS (ADDED AS REQUIRED) -->
+<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+
 <!-- Font Awesome (Required for footers + nav icons) -->
 <link rel="stylesheet"
       href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" />
@@ -231,6 +234,15 @@
     slides[current].style.opacity = 1;
   }, 3000);
 </script>
+
+<!-- ======================================= -->
+<!--   YOUR APP SCRIPTS (ES MODULES)         -->
+<!-- ======================================= -->
+<script type="module" src="js/supabase.js"></script>
+<script type="module" src="js/auth.js"></script>
+<script type="module" src="js/therapists.js"></script>
+<script type="module" src="js/bookings.js"></script>
+<script type="module" src="js/main.js"></script>
 
 </body>
 </html>
