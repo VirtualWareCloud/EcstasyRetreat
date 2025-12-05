@@ -1,3 +1,4 @@
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -12,22 +13,60 @@
 
 <style>
 /* ========================================================= */
-/* GLASS HEADER */
+/* WHITE MILKY GLASS HEADER WITH GOLD SHIMMER ANIMATION */
 /* ========================================================= */
 #mainHeader {
-    background: rgba(0, 0, 0, 0.85); /* Darker, cleaner background */
-    backdrop-filter: blur(12px);
-    -webkit-backdrop-filter: blur(12px);
-    border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+    background: rgba(255, 255, 255, 0.12);
+    backdrop-filter: blur(20px) saturate(200%);
+    -webkit-backdrop-filter: blur(20px) saturate(200%);
+    border-bottom: 1px solid rgba(255, 255, 255, 0.25);
+    box-shadow: 0 4px 25px rgba(255, 255, 255, 0.15);
     position: fixed;
     top: 0; left: 0;
     width: 100%;
     z-index: 999;
-    height: 70px; /* Fixed height for consistency */
+    overflow: hidden;
+}
+
+.header-shimmer {
+    position: absolute;
+    top: 0; left: -120%;
+    width: 80%;
+    height: 100%;
+    background: linear-gradient(
+        120deg,
+        rgba(255,230,150,0) 0%,
+        rgba(255,220,120,0.35) 50%,
+        rgba(255,200,80,0) 100%
+    );
+    animation: sweep 4s linear infinite;
+}
+
+@keyframes sweep {
+    0% { left: -100%; }
+    100% { left: 120%; }
 }
 
 /* ========================================================= */
-/* BOTTOM NAV (FIXED) */
+/* SLIDER BUTTON FADE SEQUENCE */
+/* ========================================================= */
+.fade-seq {
+    animation: fadeCycle 4s ease-in-out infinite;
+}
+.fade-seq-2 {
+    animation: fadeCycle 4s ease-in-out infinite 2s;
+}
+
+@keyframes fadeCycle {
+    0% { opacity: 0; transform: translateY(10px); }
+    20% { opacity: 1; transform: translateY(0); }
+    60% { opacity: 1; transform: translateY(0); }
+    80% { opacity: 0; transform: translateY(5px); }
+    100% { opacity: 0; }
+}
+
+/* ========================================================= */
+/* BOTTOM FOOTER NAVIGATION — RESTORED EXACTLY LIKE ORIGINAL */
 /* ========================================================= */
 .bottom-nav {
     position: fixed;
@@ -38,127 +77,133 @@
     display: flex;
     justify-content: space-around;
     align-items: center;
-    padding: 10px 0;
+    padding: 8px 0;
     z-index: 99999;
 }
 .bottom-nav a {
-    color: #9ca3af; /* Gray text */
+    color: #ffffff;
     text-align: center;
-    font-size: 11px;
+    font-size: 14px;
     text-decoration: none;
-    transition: color 0.3s;
-}
-.bottom-nav a.active, .bottom-nav a:hover {
-    color: #ec4899; /* Pink active/hover */
 }
 .bottom-nav a i {
     display: block;
-    font-size: 20px;
-    margin-bottom: 4px;
-    color: #ffffff;
+    font-size: 22px;
+    margin-bottom: 3px;
 }
 
-/* ========================================================= */
-/* UTILITIES */
-/* ========================================================= */
-.fade-image {
-    transition: opacity 1.5s ease-in-out;
-}
-
-/* Button Pulse Animation */
-.btn-pulse {
-    animation: pulse-pink 2s infinite;
-}
-@keyframes pulse-pink {
-    0% { box-shadow: 0 0 0 0 rgba(236, 72, 153, 0.7); }
-    70% { box-shadow: 0 0 0 10px rgba(236, 72, 153, 0); }
-    100% { box-shadow: 0 0 0 0 rgba(236, 72, 153, 0); }
+/* REMOVE EXCESS SPACE UNDER FEATURED SECTION */
+.reduce-space {
+    margin-bottom: 0 !important;
+    padding-bottom: 0 !important;
 }
 </style>
 </head>
 
-<body class="bg-black text-white overflow-x-hidden pb-20">
+<body class="bg-black text-white overflow-x-hidden pb-24">
 
-<header id="mainHeader" class="flex justify-between items-center px-5">
-    <a href="index.html" class="flex items-center">
-      <img src="logo.png" class="w-28 object-contain" alt="Ecstasy Retreat Logo">
+<!-- ========================================================= -->
+<!-- HEADER -->
+<!-- ========================================================= -->
+<header id="mainHeader" class="flex justify-between items-center px-4 py-3 relative">
+    <div class="header-shimmer"></div>
+
+    <a href="index.html" class="flex items-center relative z-[5]">
+      <img src="logo.png" class="w-28 md:w-32" alt="Ecstasy Retreat Logo">
     </a>
 
-    <button id="menuBtn" class="text-white text-2xl focus:outline-none">
-      <i class="fa-solid fa-bars"></i>
+    <button id="menuBtn" class="text-white text-3xl mr-1 relative z-[5]">
+      &#9776;
     </button>
 </header>
 
-<div style="height: 70px;"></div>
+<div style="height:75px;"></div>
 
+<!-- ========================================================= -->
+<!-- MOBILE MENU -->
+<!-- ========================================================= -->
 <nav id="mobileMenu"
-  class="hidden fixed top-[75px] right-4 bg-zinc-900 border border-zinc-800 p-5 rounded-lg text-base z-[1000] w-56 shadow-2xl">
-  <a href="index.html" class="block py-2 text-pink-500 font-bold border-b border-zinc-800">Home</a>
-  <a href="Therapists_List.html" class="block py-2 hover:text-pink-400 border-b border-zinc-800">View Therapists</a>
-  <a href="booking.html" class="block py-2 hover:text-pink-400 border-b border-zinc-800">Book Session</a>
-  <a href="join.html" class="block py-2 hover:text-pink-400 border-b border-zinc-800">Join Team</a>
+  class="hidden fixed top-16 right-4 bg-black/95 backdrop-blur-xl p-6 rounded-xl 
+     border border-pink-500/40 text-lg z-[1000] w-60 shadow-xl">
+
+  <a href="index.html" class="block py-2 text-pink-400 font-bold">Home</a>
+  <a href="Therapists_List.html" class="block py-2 hover:text-pink-400">View Therapists</a>
+  <a href="login.html" class="block py-2 hover:text-pink-400">Login / Signup</a>
+  <a href="image_gallery.html" class="block py-2 hover:text-pink-400">Image Gallery</a>
+  <a href="video_gallery.html" class="block py-2 hover:text-pink-400">Video Gallery</a>
+  <a href="join.html" class="block py-2 hover:text-pink-400">Join as Therapist</a>
+  <a href="booking.html" class="block py-2 hover:text-pink-400">Book Session</a>
   <a href="contact.html" class="block py-2 hover:text-pink-400">Contact Us</a>
 </nav>
 
-<section class="relative w-full h-[65vh] min-h-[500px] flex flex-col justify-end pb-8">
-    
-    <div id="slider" class="absolute inset-0 w-full h-full overflow-hidden z-0">
-        <img src="images/image01.jpg" class="absolute inset-0 w-full h-full object-cover brightness-[0.5] fade-image opacity-100" />
-        <img src="images/image02.jpg" class="absolute inset-0 w-full h-full object-cover brightness-[0.5] fade-image opacity-0" />
-        <img src="images/image03.jpg" class="absolute inset-0 w-full h-full object-cover brightness-[0.5] fade-image opacity-0" />
-    </div>
+<!-- ========================================================= -->
+<!-- SLIDER -->
+<!-- ========================================================= -->
+<div id="slider" class="relative w-full h-[65vh] min-h-[480px] overflow-hidden">
+  <img src="images/image01.jpg" class="absolute inset-0 w-full h-full object-cover brightness-[.6] fade-image opacity-100" />
+  <img src="images/image02.jpg" class="absolute inset-0 w-full h-full object-cover brightness-[.6] fade-image opacity-0" />
+  <img src="images/image03.jpg" class="absolute inset-0 w-full h-full object-cover brightness-[.6] fade-image opacity-0" />
+  <img src="images/image04.jpg" class="absolute inset-0 w-full h-full object-cover brightness-[.6] fade-image opacity-0" />
+</div>
 
-    <div class="relative z-10 text-center px-4 w-full mb-auto mt-auto flex flex-col items-center justify-center h-full">
-        <h1 class="text-5xl md:text-6xl font-bold text-white tracking-tight drop-shadow-lg">
-            <span class="text-pink-500">Ecstasy</span> Retreat
-        </h1>
-        <p class="text-lg text-gray-200 mt-2 font-light tracking-wide">
-            Where Sensual Healing Meets Luxury
-        </p>
-    </div>
+<!-- ========================================================= -->
+<!-- CTA BUTTONS -->
+<!-- ========================================================= -->
+<div class="absolute top-[63vh] left-0 right-0 z-40 flex flex-col gap-4 w-11/12 max-w-sm mx-auto">
 
-    <div class="relative z-20 flex flex-col gap-3 w-full max-w-xs mx-auto mb-4">
-        <a href="Therapists_List.html"
-           class="bg-pink-600 hover:bg-pink-700 text-white py-3.5 rounded-full text-lg font-bold text-center shadow-lg btn-pulse transition-transform transform hover:scale-105">
-            <i class="fa-solid fa-users mr-2"></i> Find Your Therapist
-        </a>
+  <a href="Therapists_List.html"
+     class="bg-pink-600 text-white px-10 py-4 rounded-xl text-xl font-extrabold text-center 
+            shadow-2xl shadow-pink-500/50 fade-seq">
+    <i class="fa-solid fa-users mr-2"></i> Find Your Therapist
+  </a>
 
-        <a href="Join_Therapist.html"
-           class="bg-black/50 hover:bg-black/70 border border-pink-500 text-pink-400 py-3.5 rounded-full text-lg font-bold text-center backdrop-blur-sm transition-transform transform hover:scale-105">
-            <i class="fa-solid fa-hand-holding-heart mr-2"></i> Join Our Team
-        </a>
-    </div>
+  <a href="Join_Therapist.html"
+     class="bg-black/60 border-2 border-pink-500 text-pink-400 px-10 py-3 rounded-xl text-lg 
+            font-bold text-center fade-seq-2">
+    <i class="fa-solid fa-hand-holding-heart mr-2"></i> Join Our Team
+  </a>
+</div>
+
+<!-- ========================================================= -->
+<!-- FEATURED SECTION -->
+<!-- ========================================================= -->
+<section class="relative z-40 px-5 md:px-10 mt-32 reduce-space">
+  <div class="flex items-center justify-between mb-2">
+    <h2 class="text-3xl font-extrabold text-pink-400 flex items-center">
+      <i class="fa-solid fa-heart-circle-bolt mr-2 text-pink-500"></i> Featured Therapists
+    </h2>
+    <a href="Therapists_List.html" class="text-base text-pink-300 font-semibold hover:text-pink-100 transition flex items-center">
+      View All Profiles <i class="fa-solid fa-arrow-right ml-2"></i>
+    </a>
+  </div>
+
+  <p class="text-sm text-white/70 mb-4 max-w-lg">
+    Meet some of our most highly-rated, professional, and sought-after sensual therapists in the region.
+  </p>
+
+  <div id="therapistPreview" class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 md:gap-8"></div>
 </section>
 
-<section class="px-5 py-6 bg-black"> <div class="flex items-center justify-between mb-4">
-        <h2 class="text-2xl font-bold text-white flex items-center">
-            Featured <span class="text-pink-500 ml-2">Therapists</span>
-        </h2>
-        <a href="Therapists_List.html" class="text-sm text-pink-400 font-medium hover:text-pink-300">
-            View All <i class="fa-solid fa-arrow-right ml-1"></i>
-        </a>
+<!-- ========================================================= -->
+<!-- SOCIAL FOOTER -->
+<!-- ========================================================= -->
+<footer class="bg-black/70 border-t border-white/5 text-center py-4 text-white/70 mb-20">
+    <div class="flex justify-center gap-8 text-2xl mb-3">
+        <a href="https://instagram.com/EcstasyRetreatSpa" target="_blank"><i class="fa-brands fa-instagram"></i></a>
+        <a href="https://x.com/EcstasyRetreat" target="_blank"><i class="fa-brands fa-x-twitter"></i></a>
+        <a href="https://wa.me/27500204011" target="_blank"><i class="fa-brands fa-whatsapp"></i></a>
+        <a href="https://facebook.com/EcstasyRetreatSpa" target="_blank"><i class="fa-brands fa-facebook"></i></a>
+        <a href="mailto:diggdeepmakeusplash@gmail.com"><i class="fa-solid fa-envelope"></i></a>
     </div>
 
-    <p class="text-sm text-gray-400 mb-6 leading-relaxed">
-        Meet our highest-rated professional therapists selected for you.
-    </p>
-
-    <div id="therapistPreview" class="grid grid-cols-1 sm:grid-cols-2 gap-4">
-        </div>
-
-</section>
-
-<footer class="bg-zinc-900 border-t border-zinc-800 text-center py-6 mb-12">
-    <div class="flex justify-center gap-6 text-xl mb-3 text-gray-400">
-        <a href="#" class="hover:text-pink-500"><i class="fa-brands fa-instagram"></i></a>
-        <a href="#" class="hover:text-pink-500"><i class="fa-brands fa-twitter"></i></a>
-        <a href="#" class="hover:text-pink-500"><i class="fa-brands fa-whatsapp"></i></a>
-    </div>
-    <p class="text-xs text-gray-600">© 2025 Ecstasy Retreat.</p>
+    <p class="text-xs">© 2025 Ecstasy Retreat — Elite Companionship.</p>
 </footer>
 
+<!-- ========================================================= -->
+<!-- RESTORED ORIGINAL NAVIGATION FOOTER (BOTTOM OF SCREEN) -->
+<!-- ========================================================= -->
 <nav class="bottom-nav">
-    <a href="index.html" class="active">
+    <a href="index.html">
         <i class="fa-solid fa-house"></i>
         Home
     </a>
@@ -181,20 +226,19 @@
 </nav>
 
 <script>
-    // Menu Toggle
-    document.getElementById("menuBtn").onclick = () => {
-        const menu = document.getElementById("mobileMenu");
-        menu.classList.toggle("hidden");
-    };
+/* MOBILE MENU */
+document.getElementById("menuBtn").onclick = () =>
+    document.getElementById("mobileMenu").classList.toggle("hidden");
 
-    // Slider Logic
-    const slides = document.querySelectorAll("#slider img");
-    let current = 0;
-    setInterval(() => {
-        slides[current].style.opacity = 0;
-        current = (current + 1) % slides.length;
-        slides[current].style.opacity = 1;
-    }, 4000);
+/* SLIDER FADE FUNCTION */
+const slides = document.querySelectorAll("#slider img");
+let current = 0;
+
+setInterval(() => {
+  slides[current].style.opacity = 0;
+  current = (current + 1) % slides.length;
+  slides[current].style.opacity = 1;
+}, 3500);
 </script>
 
 </body>
