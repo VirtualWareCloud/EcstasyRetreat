@@ -11,9 +11,10 @@
 
     <!-- Font Awesome Icons -->
     <link rel="stylesheet"
-          href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" />
+          href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
 
     <style>
+
         /* ================================= HEADER ================================= */
         #mainHeader {
             transition: background-color 1.5s ease-in-out;
@@ -24,28 +25,40 @@
             border-color: transparent !important;
         }
 
-        /* ========================= CARD BOX ========================= */
+        /* ================================= 3D LUXURY CARD ================================= */
         .section-box {
-            border: 1px solid rgba(255,255,255,0.18);
-            border-radius: 20px;
-            padding: 22px;
-            background: rgba(0,0,0,0.55);
-            backdrop-filter: blur(4px);
+            border: 1px solid rgba(255, 20, 147, 0.35);
+            background: linear-gradient(145deg, rgba(0,0,0,0.4), rgba(0,0,0,0.75));
+            padding: 26px;
+            border-radius: 22px;
+            backdrop-filter: blur(12px);
+            box-shadow:
+                0 10px 25px rgba(0,0,0,0.6),
+                0 0 22px rgba(255, 20, 147, 0.25),
+                inset 0 0 20px rgba(255, 20, 147, 0.18);
+            transition: transform .3s ease, box-shadow .3s ease;
+        }
+        .section-box:hover {
+            transform: translateY(-6px);
+            box-shadow:
+                0 18px 35px rgba(0,0,0,0.7),
+                0 0 28px rgba(255, 20, 147, 0.35),
+                inset 0 0 22px rgba(255, 20, 147, 0.25);
         }
 
-        /* ========================= BUTTONS ========================= */
+        /* ================================= BUTTONS ================================= */
         .whatsapp-btn {
             background: #25D366;
             color: white;
             padding: 14px;
             border-radius: 999px;
+            width: 100%;
             font-weight: 700;
             font-size: 1rem;
-            width: 100%;
-            display: inline-flex;
+            box-shadow: 0 0 20px rgba(37,211,102,0.4);
+            display: flex;
             justify-content: center;
             align-items: center;
-            box-shadow: 0 0 18px rgba(37,211,102,0.55);
         }
 
         .telegram-btn {
@@ -53,13 +66,13 @@
             color: white;
             padding: 14px;
             border-radius: 999px;
+            width: 100%;
             font-weight: 700;
             font-size: 1rem;
-            width: 100%;
-            display: inline-flex;
+            box-shadow: 0 0 20px rgba(0,136,204,0.4);
+            display: flex;
             justify-content: center;
             align-items: center;
-            box-shadow: 0 0 18px rgba(0,136,204,0.55);
         }
 
         .whatsapp-btn i,
@@ -67,38 +80,37 @@
             margin-right: 8px;
         }
 
-        /* ========================= BOTTOM NAV ========================= */
+        /* ================================= BOTTOM NAV ================================= */
         .bottom-nav {
             position: fixed;
             bottom: 0;
-            left: 0;
             width: 100%;
+            left: 0;
             background: #000;
             border-top: 1px solid #333;
             z-index: 50;
         }
-
         .bottom-nav a {
             flex: 1;
             text-align: center;
             padding: 10px 0;
-            color: #ffffff;
+            color: #fff;
             font-size: 13px;
         }
         .bottom-nav a i {
             display: block;
             font-size: 18px;
-            margin-bottom: 4px;
+            margin-bottom: 3px;
         }
+
     </style>
 </head>
 
 <body class="bg-black text-white pb-24">
 
 <!-- ================================================================================= -->
-<!--                                      HEADER                                        -->
+<!--                                       HEADER                                       -->
 <!-- ================================================================================= -->
-
 <header id="mainHeader"
     class="fixed top-0 left-0 w-full z-[999] flex justify-between items-center px-5 py-4
            bg-black/50 backdrop-blur-md border-b border-white/10">
@@ -107,13 +119,10 @@
         <img src="logo.png" class="w-32" alt="Ecstasy Retreat Logo">
     </a>
 
-    <button id="menuBtn" class="text-white text-3xl z-[1001]">
-        &#9776;
-    </button>
+    <button id="menuBtn" class="text-white text-3xl z-[1001]">&#9776;</button>
 </header>
 
-<!-- ========================= MOBILE MENU ========================= -->
-
+<!-- MOBILE MENU -->
 <nav id="mobileMenu"
      class="hidden fixed top-16 right-4 bg-black/95 backdrop-blur-xl p-6 rounded-xl 
             border border-pink-500/40 text-lg z-[1000] w-60 shadow-xl">
@@ -121,9 +130,6 @@
     <a href="index.html" class="block py-2 hover:text-pink-400 menu-link">Home</a>
     <a href="Therapists_List.html" class="block py-2 hover:text-pink-400 menu-link">View Therapists</a>
     <a href="login.html" class="block py-2 hover:text-pink-400 menu-link">Login / Signup</a>
-    <a href="image_gallery.html" class="block py-2 hover:text-pink-400 menu-link">Image Gallery</a>
-    <a href="video_gallery.html" class="block py-2 hover:text-pink-400 menu-link">Video Gallery</a>
-    <a href="join.html" class="block py-2 hover:text-pink-400 menu-link">Join as Therapist</a>
     <a href="booking.html" class="block py-2 hover:text-pink-400 menu-link">Book Session</a>
     <a href="contact.html" class="block py-2 text-pink-400 font-bold menu-link">Contact Us</a>
 </nav>
@@ -131,25 +137,22 @@
 <div class="pt-40"></div>
 
 <!-- ================================================================================= -->
-<!--                                   MAIN CONTENT                                     -->
+<!--                                 MAIN CONTENT                                       -->
 <!-- ================================================================================= -->
-
 <main class="px-6">
 
-    <h1 class="text-center text-4xl font-bold text-white mb-6">
-        Contact Us
-    </h1>
+    <h1 class="text-center text-4xl font-bold text-pink-500 mb-6">Contact Us</h1>
 
-    <p class="text-center text-white/70 mb-10 text-lg">
+    <p class="text-center text-gray-300 mb-10 text-lg">
         We're here to help with bookings, inquiries, or special arrangements.
     </p>
 
     <section class="section-box space-y-6">
 
-        <h2 class="text-2xl font-bold text-white mb-3">Get in Touch</h2>
+        <h2 class="text-2xl font-bold text-pink-400 mb-2">Get in Touch</h2>
 
         <!-- WhatsApp -->
-        <a href="https://wa.me/27500204011?text=Hello,%20I%20am%20interested%20in%20your%20therapists."
+        <a href="https://wa.me/27500204011?text=Hello%2C%20I%27m%20interested%20in%20your%20therapists."
            class="whatsapp-btn">
             <i class="fa-brands fa-whatsapp"></i>
             Contact on WhatsApp
@@ -162,33 +165,31 @@
             Contact on Telegram
         </a>
 
-        <p class="text-white/60 text-sm text-center">
+        <p class="text-gray-400 text-sm text-center">
             Our response time is usually under 10 minutes.
         </p>
 
     </section>
+
 </main>
 
 <!-- ================================================================================= -->
-<!--                                FOOTER SET                                           -->
+<!--                              FOOTER SET                                            -->
 <!-- ================================================================================= -->
 
+<!-- ORIGINAL FOOTER -->
 <footer class="mt-16 mb-6 text-center text-gray-400 text-sm">
     © 2025 Ecstasy Retreat • Sensual Luxury Experience
 </footer>
 
+<!-- EXTENDED SOCIAL FOOTER -->
 <footer class="bg-black/70 border-t border-white/5 text-center py-6 text-white/70 mb-24">
     <div class="flex justify-center gap-8 text-2xl mb-4">
-        <a href="https://instagram.com/EcstasyRetreatSpa" class="hover:text-pink-400 transition">
-            <i class="fa-brands fa-instagram"></i></a>
-        <a href="https://x.com/EcstasyRetreat" class="hover:text-pink-400 transition">
-            <i class="fa-brands fa-x-twitter"></i></a>
-        <a href="https://wa.me/27500204011" class="hover:text-pink-400 transition">
-            <i class="fa-brands fa-whatsapp"></i></a>
-        <a href="https://facebook.com/EcstasyRetreatSpa" class="hover:text-pink-400 transition">
-            <i class="fa-brands fa-facebook"></i></a>
-        <a href="mailto:diggdeepmakeusplash@gmail.com" class="hover:text-pink-400 transition">
-            <i class="fa-solid fa-envelope"></i></a>
+        <a href="https://instagram.com/EcstasyRetreatSpa" target="_blank" class="hover:text-pink-400 transition"><i class="fa-brands fa-instagram"></i></a>
+        <a href="https://x.com/EcstasyRetreat" target="_blank" class="hover:text-pink-400 transition"><i class="fa-brands fa-x-twitter"></i></a>
+        <a href="https://wa.me/27500204011" target="_blank" class="hover:text-pink-400 transition"><i class="fa-brands fa-whatsapp"></i></a>
+        <a href="https://facebook.com/EcstasyRetreatSpa" target="_blank" class="hover:text-pink-400 transition"><i class="fa-brands fa-facebook"></i></a>
+        <a href="mailto:diggdeepmakeusplash@gmail.com" class="hover:text-pink-400 transition"><i class="fa-solid fa-envelope"></i></a>
     </div>
     <p class="text-xs mt-3">© 2025 Ecstasy Retreat — Elite Companionship.</p>
 </footer>
@@ -202,13 +203,15 @@
 </nav>
 
 <!-- ================================================================================= -->
-<!--                                 SCRIPT (HEADER FADE + MENU)                         -->
+<!--                                    JS LOGIC                                        -->
 <!-- ================================================================================= -->
 <script>
+    /* HEADER FADE */
     setTimeout(() => {
         document.getElementById("mainHeader").classList.add("fade-out");
     }, 3000);
 
+    /* MENU BEHAVIOR */
     const menuBtn = document.getElementById("menuBtn");
     const mobileMenu = document.getElementById("mobileMenu");
     const menuLinks = document.querySelectorAll(".menu-link");
