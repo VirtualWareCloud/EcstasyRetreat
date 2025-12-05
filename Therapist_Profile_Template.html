@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
 <meta charset="UTF-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1.0" />
@@ -11,172 +12,193 @@
 
 <style>
 /* ========================================================= */
-/* HEADER FADE                        */
+/* HEADER FADE-IN BACKGROUND */
 /* ========================================================= */
 #mainHeader {
-    background: rgba(0,0,0,0.8);
-    backdrop-filter: blur(12px);
-    transition: background-color 1.5s ease-in-out, border-color 1.5s ease-in-out;
+    background: rgba(0,0,0,0.85);
+    border-bottom: 1px solid rgba(255,255,255,0.1);
+    backdrop-filter: blur(14px);
+    transition: background 1.8s ease-in-out, border-color 1.8s ease-in-out;
 }
-#mainHeader.fade-bg { 
-    background: transparent; 
+#mainHeader.fade-bg {
+    background: transparent;
     border-color: transparent;
 }
 
 /* ========================================================= */
-/* PROFILE IMAGE GLOW                     */
+/* PROFILE IMAGE RING + GLOW */
 /* ========================================================= */
 .profile-frame {
     border-radius: 999px;
     padding: 6px;
     border: 4px solid rgba(255, 0, 128, 0.7);
-    box-shadow: 0 0 50px rgba(255, 0, 128, 0.5), inset 0 0 20px rgba(255, 0, 128, 0.2);
-    position: relative;
+    box-shadow:
+        0 0 45px rgba(255,0,128,0.5),
+        inset 0 0 20px rgba(255,0,128,0.2);
     transition: all 0.4s ease;
 }
 .profile-frame:hover {
-    box-shadow: 0 0 60px rgba(255, 0, 128, 0.8), inset 0 0 25px rgba(255, 0, 128, 0.3);
+    box-shadow:
+        0 0 65px rgba(255,0,128,0.85),
+        inset 0 0 30px rgba(255,0,128,0.3);
 }
 
 /* ========================================================= */
-/* GLASS CARDS */
+/* 3D GLASS CARDS */
 /* ========================================================= */
 .card-glass {
-    background: rgba(24, 24, 24, 0.85);
-    border: 1px solid rgba(255, 0, 128, 0.2);
+    background: rgba(20, 20, 20, 0.85);
+    border: 1px solid rgba(255,0,128,0.25);
     backdrop-filter: blur(15px);
-    border-radius: 24px;
+    border-radius: 26px;
+    padding: 30px;
     box-shadow:
-        0 4px 30px rgba(0, 0, 0, 0.5),
-        0 0 30px rgba(255, 0, 128, 0.1);
-    padding: 28px;
-    transition: all 0.4s cubic-bezier(0.25, 0.8, 0.25, 1);
+        0 5px 35px rgba(0,0,0,0.55),
+        0 0 40px rgba(255,0,128,0.15);
+    transition: all 0.4s cubic-bezier(.25,.8,.25,1);
 }
 .card-glass:hover {
-    transform: translateY(-5px);
+    transform: translateY(-6px);
     box-shadow:
-        0 8px 45px rgba(0, 0, 0, 0.6),
-        0 0 50px rgba(255, 0, 128, 0.35);
+        0 10px 55px rgba(0,0,0,0.8),
+        0 0 60px rgba(255,0,128,0.35);
 }
 
 /* ========================================================= */
-/* CTA BUTTONS */
+/* PRIMARY CTA BUTTON */
 /* ========================================================= */
 .primary-btn {
     background: #ff1493;
     color: #fff;
     padding: 16px;
-    border-radius: 16px;
-    font-weight: 800;
-    font-size: 1.125rem;
+    border-radius: 18px;
     width: 100%;
-    box-shadow: 0 5px 25px rgba(255,20,147,0.7);
+    font-weight: 800;
+    font-size: 1.2rem;
     display: flex;
     justify-content: center;
+    gap: 12px;
     align-items: center;
+    box-shadow: 0 5px 30px rgba(255,20,147,0.7);
     transition: 0.3s ease;
 }
 .primary-btn:hover {
     background: #ff33a3;
-    box-shadow: 0 8px 35px rgba(255,20,147,0.9);
     transform: translateY(-2px);
+    box-shadow: 0 10px 40px rgba(255,20,147,0.85);
 }
+
+/* ========================================================= */
+/* OUTLINE BUTTON */
+/* ========================================================= */
 .outline-btn {
     padding: 14px;
-    border-radius: 16px;
+    border-radius: 18px;
     border: 2px solid #ff1493;
     color: #ff1493;
     width: 100%;
     font-weight: 700;
-    font-size: 1rem;
+    font-size: 1.05rem;
     display: flex;
     justify-content: center;
+    gap: 12px;
     align-items: center;
-    transition: 0.3s;
+    transition: 0.3s ease;
 }
 .outline-btn:hover {
-    background: rgba(255,20,147,0.1);
-    color: #fff;
+    background: rgba(255,20,147,0.12);
+    color: white;
 }
 
 /* ========================================================= */
-/* GALLERY */
+/* HOVER GALLERY */
 /* ========================================================= */
 .gallery-item {
     overflow: hidden;
-    cursor: pointer;
     border-radius: 18px;
-    transition: transform 0.4s, box-shadow 0.4s;
+    transition: transform .35s ease, box-shadow .35s ease;
 }
 .gallery-item:hover {
     transform: scale(1.05);
-    box-shadow: 0 15px 45px rgba(255,0,128,0.45);
+    box-shadow: 0 12px 45px rgba(255,0,128,0.45);
 }
 
 /* ========================================================= */
-/* BOTTOM NAV */
+/* BOTTOM NAVIGATION BAR */
 /* ========================================================= */
 .bottom-nav {
     position: fixed;
     bottom: 0; left: 0;
     width: 100%;
     background: rgba(0,0,0,0.9);
-    backdrop-filter: blur(15px);
-    border-top: 1px solid #222;
+    backdrop-filter: blur(14px);
+    border-top: 1px solid rgba(255,255,255,0.08);
     display: flex;
-    z-index: 50;
+    z-index: 999;
 }
 .bottom-nav a {
     flex: 1;
-    text-align: center;
     padding: 12px 0;
-    color: #fff;
-    font-size: 13px;
+    text-align: center;
+    color: white;
+    transition: color .3s ease;
 }
 .bottom-nav a i {
-    display: block;
     font-size: 20px;
+    display: block;
+    margin-bottom: 2px;
+}
+.bottom-nav a:hover {
+    color: #ff69b4;
 }
 </style>
 </head>
 
-<body class="bg-black text-white pb-24">
+<body class="bg-black text-white pb-28">
 
 <!-- HEADER -->
 <header id="mainHeader"
-        class="fixed top-0 left-0 w-full flex justify-between px-5 py-4 z-[999] border-b border-white/10">
-    <a href="index.html"><img src="logo.png" class="w-28"></a>
+        class="fixed top-0 left-0 w-full flex justify-between px-6 py-4 z-[999]">
+    <a href="index.html">
+        <img src="logo.png" class="w-28">
+    </a>
     <button id="menuBtn" class="text-white text-3xl">&#9776;</button>
 </header>
 
 <!-- MOBILE MENU -->
 <nav id="mobileMenu"
-     class="hidden fixed top-16 right-4 bg-black/90 backdrop-blur-xl p-6 rounded-xl 
-            border border-pink-500/40 w-64 z-[999]"></nav>
+     class="hidden fixed top-16 right-4 bg-black/90 backdrop-blur-xl p-6 rounded-xl border border-pink-500/40 w-64 z-[999]">
+    <a href="index.html" class="block py-2 hover:text-pink-400">Home</a>
+    <a href="Therapists_List.html" class="block py-2 hover:text-pink-400">Therapists</a>
+    <a href="booking.html" class="block py-2 hover:text-pink-400">Book Session</a>
+    <a href="contact.html" class="block py-2 hover:text-pink-400">Contact</a>
+</nav>
 
 <!-- MAIN CONTENT -->
-<main class="pt-28 md:pt-32 px-5 md:px-10 max-w-4xl mx-auto">
+<main class="pt-32 px-6 max-w-4xl mx-auto">
 
     <!-- PROFILE IMAGE -->
     <div class="flex justify-center">
-        <div class="profile-frame w-48 h-48 md:w-56 md:h-56 overflow-hidden">
+        <div class="profile-frame w-48 h-48 md:w-60 md:h-60 overflow-hidden">
             <img id="profileImage"
-                 src="placeholder.jpg"
+                 src="images/default.jpg"
                  class="w-full h-full object-cover rounded-full">
         </div>
     </div>
 
-    <!-- NAME -->
+    <!-- NAME + SUBTITLE -->
     <div class="text-center mt-8">
-        <h1 id="therapistName" class="text-5xl md:text-6xl font-black text-pink-500">
+        <h1 id="therapistName"
+            class="text-5xl md:text-6xl font-black text-pink-500 tracking-tight">
             Therapist Name
         </h1>
-        <p id="therapistSubtitle" class="mt-3 text-gray-300 text-xl italic">
+        <p id="therapistSubtitle"
+           class="mt-3 text-gray-300 text-xl italic">
             Speciality • Location
         </p>
     </div>
 
-    <!-- AVAILABILITY -->
+    <!-- AVAILABILITY BADGE -->
     <div class="mt-6 flex justify-center">
         <div id="availabilityBadge"
              class="bg-green-600 px-8 py-3 rounded-full shadow-lg shadow-green-500/50 flex items-center gap-2">
@@ -186,4 +208,121 @@
     </div>
 
     <!-- CTA BUTTONS -->
-    <div class="mt-12 space-y-4 md
+    <div class="mt-12 space-y-4 md:flex md:gap-4 md:space-y-0">
+        <a href="booking.html" class="primary-btn md:flex-1">
+            <i class="fa-solid fa-calendar-check"></i> Book a Session
+        </a>
+
+        <a id="whatsappLink"
+           href="#"
+           target="_blank"
+           class="outline-btn md:flex-1">
+            <i class="fa-brands fa-whatsapp"></i> Chat on WhatsApp
+        </a>
+    </div>
+
+    <!-- BIO -->
+    <section class="card-glass mt-14">
+        <h2 class="text-2xl text-pink-400 font-extrabold mb-4">
+            Experience & Philosophy
+        </h2>
+        <p id="therapistBio" class="text-gray-300 text-lg leading-relaxed">
+            Therapist biography will be displayed here.
+        </p>
+    </section>
+
+    <!-- RATES -->
+    <section class="card-glass mt-10">
+        <h2 class="text-2xl text-pink-500 font-extrabold mb-5">
+            Investment in Wellness
+        </h2>
+
+        <div id="ratesContainer" class="space-y-4 text-white/90">
+            <!-- Rates dynamically inserted -->
+        </div>
+    </section>
+
+    <!-- GALLERY -->
+    <section class="card-glass mt-10 pb-4">
+        <h2 class="text-2xl text-pink-500 font-extrabold mb-6">
+            Visual Gallery
+        </h2>
+
+        <div id="galleryGrid" class="grid grid-cols-2 md:grid-cols-4 gap-4">
+            <!-- Dynamic Gallery -->
+        </div>
+    </section>
+
+</main>
+
+<!-- FOOTER -->
+<footer class="mt-20 mb-6 text-center text-gray-400 text-sm">
+    © 2025 Ecstasy Retreat • Sensual Luxury Experience
+</footer>
+
+<footer class="bg-black/70 border-t border-white/10 text-center py-6 text-white/60 mb-28">
+    <p class="text-xs">© 2025 Ecstasy Retreat — Elite Companionship.</p>
+</footer>
+
+<!-- BOTTOM NAV -->
+<nav class="bottom-nav">
+    <a href="index.html"><i class="fa-solid fa-house"></i>Home</a>
+    <a href="Therapists_List.html"><i class="fa-solid fa-users"></i>Therapists</a>
+    <a class="text-pink-400"><i class="fa-solid fa-user"></i>Profile</a>
+    <a href="booking.html"><i class="fa-solid fa-calendar-check"></i>Book</a>
+    <a href="contact.html"><i class="fa-solid fa-envelope"></i>Contact</a>
+</nav>
+
+<!-- JAVASCRIPT FOR DYNAMIC DATA -->
+<script>
+// HEADER FADE
+setTimeout(() => {
+    document.getElementById("mainHeader").classList.add("fade-bg");
+}, 3500);
+
+// MENU TOGGLE
+document.getElementById("menuBtn").onclick = () =>
+    document.getElementById("mobileMenu").classList.toggle("hidden");
+
+/* ========================================================= */
+/* LOAD THERAPIST PROFILE DATA FROM localStorage */
+/* ========================================================= */
+async function loadTherapist() {
+    const therapist = JSON.parse(localStorage.getItem("selectedTherapist"));
+    if (!therapist) return;
+
+    document.getElementById("pageTitle").innerText = `${therapist.name} – Ecstasy Retreat`;
+    document.getElementById("therapistName").innerText = therapist.name;
+    document.getElementById("therapistSubtitle").innerText =
+        `${therapist.speciality} • ${therapist.location}`;
+    document.getElementById("therapistBio").innerText = therapist.bio;
+    document.getElementById("profileImage").src = therapist.profile_image;
+
+    document.getElementById("whatsappLink").href =
+        `https://wa.me/${therapist.whatsapp}?text=Hi, I'd like to book a session with ${therapist.name}.`;
+
+    /* ------------------------- RATES ------------------------- */
+    const ratesBox = document.getElementById("ratesContainer");
+    therapist.rates.forEach(rate => {
+        ratesBox.innerHTML += `
+            <div class="flex justify-between items-center border-b border-white/10 pb-3">
+                <span class="font-semibold">${rate.label}</span>
+                <span class="text-pink-400 font-extrabold text-xl">${rate.price}</span>
+            </div>`;
+    });
+
+    /* ------------------------- GALLERY ------------------------- */
+    const galleryBox = document.getElementById("galleryGrid");
+    therapist.gallery.forEach(img => {
+        galleryBox.innerHTML += `
+            <div class="gallery-item">
+                <img src="${img}" class="w-full h-40 object-cover rounded-xl border border-white/10">
+            </div>`;
+    });
+}
+
+loadTherapist();
+</script>
+
+</body>
+</html>
