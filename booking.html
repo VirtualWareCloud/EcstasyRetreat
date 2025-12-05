@@ -425,7 +425,7 @@
       document.getElementById("successMsg").textContent = "✔ Booking created successfully!";
       successContainer.classList.remove("hidden");
 
-      // Trigger Supabase Edge Function for email notifications
+      // Trigger Supabase Edge Function for email notification
       await sendEmailNotification({
         booking: created,
         therapist,
