@@ -154,7 +154,57 @@
             <input type="tel" id="whatsapp" placeholder="WhatsApp Number (+27…)" class="input-box" required>
             <input type="email" id="email" placeholder="Email Address*" class="input-box" required>
             <input type="password" id="password" placeholder="Password*" class="input-box" required>
-            <input type="text" id="area" placeholder="Area / Suburb*" class="input-box" required>
+
+            <!-- TOWN DROPDOWN -->
+            <label>Town*</label>
+            <select id="town" class="input-box" required>
+              <option value="">Select your town</option>
+              <option value="Johannesburg">Johannesburg</option>
+              <option value="Pretoria">Pretoria</option>
+              <option value="Cape Town">Cape Town</option>
+              <option value="Durban">Durban</option>
+              <option value="Port Elizabeth">Port Elizabeth</option>
+              <option value="Bloemfontein">Bloemfontein</option>
+              <option value="Polokwane">Polokwane</option>
+              <option value="Nelspruit">Nelspruit</option>
+              <option value="Rustenburg">Rustenburg</option>
+              <option value="Kimberley">Kimberley</option>
+              <option value="East London">East London</option>
+              <option value="George">George</option>
+              <option value="Pietermaritzburg">Pietermaritzburg</option>
+              <option value="Welkom">Welkom</option>
+              <option value="Mthatha">Mthatha</option>
+              <option value="Potchefstroom">Potchefstroom</option>
+              <option value="Klerksdorp">Klerksdorp</option>
+              <option value="Vereeniging">Vereeniging</option>
+              <option value="Benoni">Benoni</option>
+              <option value="Boksburg">Boksburg</option>
+              <option value="Kempton Park">Kempton Park</option>
+              <option value="Krugersdorp">Krugersdorp</option>
+              <option value="Centurion">Centurion</option>
+              <option value="Midrand">Midrand</option>
+              <option value="Soweto">Soweto</option>
+              <option value="Randburg">Randburg</option>
+              <option value="Roodepoort">Roodepoort</option>
+              <option value="Stellenbosch">Stellenbosch</option>
+              <option value="Somerset West">Somerset West</option>
+              <option value="Paarl">Paarl</option>
+              <option value="Mossel Bay">Mossel Bay</option>
+              <option value="Hermanus">Hermanus</option>
+              <option value="Ballito">Ballito</option>
+              <option value="Umhlanga">Umhlanga</option>
+              <option value="Richards Bay">Richards Bay</option>
+              <option value="Secunda">Secunda</option>
+              <option value="Bethlehem">Bethlehem</option>
+              <option value="Phalaborwa">Phalaborwa</option>
+              <option value="Tzaneen">Tzaneen</option>
+              <option value="Thohoyandou">Thohoyandou</option>
+              <option value="Giyani">Giyani</option>
+              <option value="Mahikeng">Mahikeng</option>
+              <option value="Upington">Upington</option>
+              <option value="Other">Other (please contact us)</option>
+            </select>
+
             <input type="number" id="age" placeholder="Age (Optional)" class="input-box">
             <input type="text" id="languages" placeholder="Languages (Optional)" class="input-box">
         </div>
@@ -200,8 +250,7 @@ import { createClient } from "https://cdn.jsdelivr.net/npm/@supabase/supabase-js
 
 // ✅ Supabase Configuration
 const SUPABASE_URL = "https://jeregnymrknddwbbbvrm.supabase.co";
-const SUPABASE_KEY =
-  "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6ImplcmVnbnltcmtuZGR3YmJidnJtIiwicm9sZSI6ImFub24iLCJpYXQiOjE3NjQ3NjE1NjYsImV4cCI6MjA...";
+const SUPABASE_KEY = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6ImplcmVnbnltcmtuZGR3YmJidnJtIiwicm9sZSI6ImFub24iLCJpYXQiOjE3NjQ3NjE1NjYsImV4cCI6MjA...";
 const supabase = createClient(SUPABASE_URL, SUPABASE_KEY);
 
 // ====================== AUTO BIO ======================
@@ -218,7 +267,7 @@ boxes.forEach(box => {
     const selected = Array.from(boxes)
       .filter(b => b.checked)
       .map(b => serviceDescriptions[b.value]);
-    bio.value = selected.join("\\n\\n");
+    bio.value = selected.join("\n\n");
   });
 });
 
@@ -230,13 +279,13 @@ document.getElementById("joinForm").addEventListener("submit", async (e) => {
   const whatsapp = document.getElementById("whatsapp").value.trim();
   const email = document.getElementById("email").value.trim();
   const password = document.getElementById("password").value;
-  const area = document.getElementById("area").value.trim();
+  const town = document.getElementById("town").value;
   const age = document.getElementById("age").value;
   const languages = document.getElementById("languages").value;
   const bioText = document.getElementById("bioOutput").value;
   const headshot = document.getElementById("headshot").files[0];
 
-  if (!fullName || !email || !password || !area || !headshot) {
+  if (!fullName || !email || !password || !town || !headshot) {
     alert("Please complete all required fields.");
     return;
   }
@@ -244,7 +293,7 @@ document.getElementById("joinForm").addEventListener("submit", async (e) => {
   const { data: signupData, error: signupError } = await supabase.auth.signUp({
     email,
     password,
-    options: { data: { fullName, whatsapp, area } },
+    options: { data: { fullName, whatsapp, town } },
   });
   if (signupError) return alert(signupError.message);
 
@@ -254,7 +303,7 @@ document.getElementById("joinForm").addEventListener("submit", async (e) => {
   if (uploadError) return alert("Upload failed: " + uploadError.message);
 
   const { error: insertError } = await supabase.from("therapists").insert([
-    { user_id: userId, full_name: fullName, whatsapp, email, area, age, languages, bio: bioText, headshot_path: fileName }
+    { auth_id: userId, display_name: fullName, whatsapp, email, town, age, languages, bio: bioText, main_photo: fileName }
   ]);
   if (insertError) return alert(insertError.message);
 
@@ -280,20 +329,20 @@ document.getElementById("googleSignup").onclick = async () => {
 
     const { data: existing } = await supabase
       .from("therapists")
-      .select("user_id")
-      .eq("user_id", user.id)
+      .select("auth_id")
+      .eq("auth_id", user.id)
       .single();
 
     if (!existing) {
       await supabase.from("therapists").insert([
         {
-          user_id: user.id,
-          full_name: user.user_metadata.fullName || user.email.split("@")[0],
+          auth_id: user.id,
+          display_name: user.user_metadata.fullName || user.email.split("@")[0],
           email: user.email,
           whatsapp: "",
-          area: "",
+          town: "",
           bio: "New Google-verified therapist profile.",
-          headshot_path: ""
+          main_photo: ""
         }
       ]);
     }
