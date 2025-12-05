@@ -9,6 +9,10 @@
 <!-- Tailwind -->
 <script src="https://cdn.tailwindcss.com"></script>
 
+<!-- Font Awesome (for matching footer & nav icons) -->
+<link rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" />
+
 <style>
   .card {
     background: rgba(255, 255, 255, 0.03);
@@ -17,20 +21,45 @@
     border-radius: 20px;
     transition: 0.3s ease;
   }
-  .card:hover { transform: translateY(-4px); }
+  .card:hover {
+    transform: translateY(-4px);
+  }
 
   .fade-in {
     animation: fadeIn 0.8s ease forwards;
   }
   @keyframes fadeIn {
     from { opacity: 0; transform: translateY(15px); }
-    to { opacity: 1; transform: translateY(0); }
+    to   { opacity: 1; transform: translateY(0); }
+  }
+
+  /* ================= BOTTOM NAV (SAME AS LERATO_PROFILE) ================= */
+  .bottom-nav {
+      position: fixed;
+      bottom: 0;
+      left: 0;
+      width: 100%;
+      background: #000;
+      border-top: 1px solid #333;
+      z-index: 50;
+  }
+  .bottom-nav a {
+      flex: 1;
+      text-align: center;
+      padding: 10px 0;
+      color: #ffffff;
+      font-size: 13px;
+  }
+  .bottom-nav a i {
+      display: block;
+      font-size: 18px;
+      margin-bottom: 3px;
   }
 </style>
 
 </head>
 
-<body class="bg-black text-white">
+<body class="bg-black text-white pb-24">
 
 <!-- ================================================================================= -->
 <!--                                      HEADER                                        -->
@@ -48,28 +77,41 @@
 </header>
 
 <!-- ================================================================================= -->
-<!--                            UPDATED NAV MENU (MATCH LERATO PAGE)                    -->
+<!--                     UPDATED NAV MENU (MATCHES LERATO_PROFILE.html)                -->
 <!-- ================================================================================= -->
 
 <nav id="mobileMenu"
   class="hidden fixed top-16 right-4 bg-black/95 backdrop-blur-xl p-6 rounded-xl 
          border border-pink-500/40 text-lg z-[1000] w-60 shadow-xl">
-
   <a href="index.html" class="block py-2 hover:text-pink-400 menu-link">Home</a>
 
-  <a href="Therapists_List.html" class="block py-2 hover:text-pink-400 menu-link">View Therapists</a>
+  <a href="Therapists_List.html" class="block py-2 hover:text-pink-400 menu-link">
+    View Therapists
+  </a>
 
-  <a href="Lerato_Profile.html" class="block py-2 hover:text-pink-400 menu-link">Lerato Profile</a>
+  <a href="Lerato_Profile.html" class="block py-2 hover:text-pink-400 menu-link">
+    Lerato Profile
+  </a>
 
-  <a href="image_gallery.html" class="block py-2 hover:text-pink-400 menu-link">Image Gallery</a>
+  <a href="image_gallery.html" class="block py-2 hover:text-pink-400 menu-link">
+    Image Gallery
+  </a>
 
-  <a href="video_gallery.html" class="block py-2 hover:text-pink-400 menu-link">Video Gallery</a>
+  <a href="video_gallery.html" class="block py-2 hover:text-pink-400 menu-link">
+    Video Gallery
+  </a>
 
-  <a href="join.html" class="block py-2 hover:text-pink-400 menu-link">Join as Therapist</a>
+  <a href="join.html" class="block py-2 hover:text-pink-400 menu-link">
+    Join as Therapist
+  </a>
 
-  <a href="booking.html" class="block py-2 hover:text-pink-400 menu-link">Book Session</a>
+  <a href="booking.html" class="block py-2 hover:text-pink-400 menu-link">
+    Book Session
+  </a>
 
-  <a href="contact.html" class="block py-2 hover:text-pink-400 menu-link">Contact Us</a>
+  <a href="contact.html" class="block py-2 hover:text-pink-400 menu-link">
+    Contact Us
+  </a>
 </nav>
 
 <div class="pt-36"></div>
@@ -111,7 +153,7 @@
       </div>
     </div>
 
-    <!-- SAMPLE CARDS BELOW -->
+    <!-- SAMPLE THERAPIST 2 -->
     <div class="card p-5 flex gap-5 items-center">
       <img src="images/image01.jpg" class="w-28 h-28 rounded-full object-cover" />
 
@@ -137,6 +179,7 @@
       </div>
     </div>
 
+    <!-- SAMPLE THERAPIST 3 -->
     <div class="card p-5 flex gap-5 items-center">
       <img src="images/image02.jpg" class="w-28 h-28 rounded-full object-cover" />
       <div class="flex-1">
@@ -158,6 +201,7 @@
       </div>
     </div>
 
+    <!-- SAMPLE THERAPIST 4 -->
     <div class="card p-5 flex gap-5 items-center">
       <img src="images/image03.png" class="w-28 h-28 rounded-full object-cover" />
       <div class="flex-1">
@@ -179,6 +223,7 @@
       </div>
     </div>
 
+    <!-- SAMPLE THERAPIST 5 -->
     <div class="card p-5 flex gap-5 items-center">
       <img src="images/image04.png" class="w-28 h-28 rounded-full object-cover" />
       <div class="flex-1">
@@ -200,6 +245,7 @@
       </div>
     </div>
 
+    <!-- SAMPLE THERAPIST 6 -->
     <div class="card p-5 flex gap-5 items-center">
       <img src="images/image06.jpg" class="w-28 h-28 rounded-full object-cover" />
       <div class="flex-1">
@@ -225,36 +271,45 @@
 </section>
 
 <!-- ================================================================================= -->
-<!--                           STANDARD FOOTERS (3-LAYER SYSTEM)                        -->
+<!--                             STANDARD 3-FOOTER STACK                               -->
 <!-- ================================================================================= -->
 
-<!-- 1️⃣ ORIGINAL FOOTER -->
+<!-- 1️⃣ ORIGINAL FOOTER (TEXT ONLY) -->
 <footer class="mt-16 mb-6 text-center text-gray-400 text-sm">
     © 2025 Ecstasy Retreat • Sensual Luxury Experience
 </footer>
 
-<!-- 2️⃣ EXTENDED SOCIAL FOOTER -->
+<!-- 2️⃣ EXTENDED SOCIAL FOOTER (ICONS + LINKS) -->
 <footer class="bg-black/70 border-t border-white/5 text-center py-6 text-white/70 mb-24">
 
     <div class="flex justify-center gap-8 text-2xl mb-4">
-
-        <a href="https://instagram.com/EcstasyRetreatSpa" target="_blank" class="hover:text-pink-400 transition">
+        <!-- Instagram -->
+        <a href="https://instagram.com/EcstasyRetreatSpa" target="_blank"
+           class="hover:text-pink-400 transition" aria-label="Instagram">
             <i class="fa-brands fa-instagram"></i>
         </a>
 
-        <a href="https://x.com/EcstasyRetreat" target="_blank" class="hover:text-pink-400 transition">
+        <!-- X / Twitter -->
+        <a href="https://x.com/EcstasyRetreat" target="_blank"
+           class="hover:text-pink-400 transition" aria-label="Twitter / X">
             <i class="fa-brands fa-x-twitter"></i>
         </a>
 
-        <a href="https://wa.me/27500204011" target="_blank" class="hover:text-pink-400 transition">
+        <!-- WhatsApp -->
+        <a href="https://wa.me/27500204011" target="_blank"
+           class="hover:text-pink-400 transition" aria-label="WhatsApp">
             <i class="fa-brands fa-whatsapp"></i>
         </a>
 
-        <a href="https://facebook.com/EcstasyRetreatSpa" target="_blank" class="hover:text-pink-400 transition">
+        <!-- Facebook -->
+        <a href="https://facebook.com/EcstasyRetreatSpa" target="_blank"
+           class="hover:text-pink-400 transition" aria-label="Facebook">
             <i class="fa-brands fa-facebook"></i>
         </a>
 
-        <a href="mailto:diggdeepmakeusplash@gmail.com" class="hover:text-pink-400 transition">
+        <!-- Email -->
+        <a href="mailto:diggdeepmakeusplash@gmail.com"
+           class="hover:text-pink-400 transition" aria-label="Email">
             <i class="fa-solid fa-envelope"></i>
         </a>
     </div>
@@ -267,25 +322,22 @@
     <p class="text-xs mt-3">© 2025 Ecstasy Retreat — Elite Companionship.</p>
 </footer>
 
-<!-- 3️⃣ NAVIGATION FOOTER -->
-<nav class="fixed bottom-0 left-0 w-full bg-black border-t border-white/10 text-white z-50 flex justify-around py-3 text-sm">
-    <a href="index.html" class="flex flex-col items-center">
-        <i class="fa-solid fa-house text-lg"></i>
+<!-- 3️⃣ NAVIGATION FOOTER (FIXED BOTTOM NAV, SAME AS LERATO_PROFILE) -->
+<nav class="bottom-nav flex justify-between">
+    <a href="index.html">
+        <i class="fa-solid fa-house"></i>
         Home
     </a>
-
-    <a href="Therapists_List.html" class="flex flex-col items-center">
-        <i class="fa-solid fa-users text-lg"></i>
+    <a href="Therapists_List.html" class="text-pink-400">
+        <i class="fa-solid fa-users"></i>
         Therapists
     </a>
-
-    <a href="booking.html" class="flex flex-col items-center">
-        <i class="fa-solid fa-calendar-check text-lg"></i>
+    <a href="booking.html">
+        <i class="fa-solid fa-calendar-check"></i>
         Book
     </a>
-
-    <a href="contact.html" class="flex flex-col items-center">
-        <i class="fa-solid fa-envelope text-lg"></i>
+    <a href="contact.html">
+        <i class="fa-solid fa-envelope"></i>
         Contact
     </a>
 </nav>
@@ -302,8 +354,8 @@
     header.classList.add("bg-transparent", "border-transparent");
   }, 3000);
 
-  // Mobile Menu logic
-  const menuBtn = document.getElementById("menuBtn");
+  // Mobile Menu
+  const menuBtn   = document.getElementById("menuBtn");
   const mobileMenu = document.getElementById("mobileMenu");
   const menuLinks = document.querySelectorAll(".menu-link");
 
