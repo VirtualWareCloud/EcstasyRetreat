@@ -1,0 +1,182 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Book a Session | Ecstasy Retreat</title>
+
+<!-- Tailwind -->
+<script src="https://cdn.tailwindcss.com"></script>
+
+<!-- Font Awesome -->
+<link rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" />
+
+</head>
+
+<body class="bg-black text-white min-h-screen pb-32">
+
+<!-- ================================================================================= -->
+<!--                                      HEADER                                        -->
+<!-- ================================================================================= -->
+
+<header class="fixed top-0 left-0 w-full z-50 flex justify-between items-center px-5 py-4
+         bg-black/60 backdrop-blur-md border-b border-white/10">
+
+  <a href="index.html">
+    <img src="logo.png" class="w-28" alt="Ecstasy Retreat Logo" />
+  </a>
+
+  <a href="login.html" class="text-pink-400 font-bold">Profile</a>
+</header>
+
+<div class="pt-28"></div>
+
+<!-- ================================================================================= -->
+<!--                                BOOKING FORM                                        -->
+<!-- ================================================================================= -->
+
+<section class="px-6">
+  <h1 class="text-3xl font-bold text-center text-pink-500 mb-8">
+    Book a Sensual Experience
+  </h1>
+
+  <form id="bookingForm"
+        class="bg-white/10 p-6 rounded-xl border border-pink-500/30 shadow-xl 
+               space-y-6">
+
+    <!-- Therapist -->
+    <div>
+      <label class="block mb-1 text-sm text-pink-300">Select Therapist</label>
+      <select id="therapistSelect"
+              class="w-full bg-black/40 border border-pink-500/40 rounded-lg p-3 text-white">
+        <option value="">Loading...</option>
+      </select>
+    </div>
+
+    <!-- Date -->
+    <div>
+      <label class="block mb-1 text-sm text-pink-300">Booking Date</label>
+      <input type="date" id="bookingDate"
+             class="w-full bg-black/40 border border-pink-500/40 rounded-lg p-3 text-white" required />
+    </div>
+
+    <!-- Time -->
+    <div>
+      <label class="block mb-1 text-sm text-pink-300">Booking Time</label>
+      <input type="time" id="bookingTime"
+             class="w-full bg-black/40 border border-pink-500/40 rounded-lg p-3 text-white" required />
+    </div>
+
+    <!-- Duration -->
+    <div>
+      <label class="block mb-1 text-sm text-pink-300">Duration</label>
+      <select id="durationSelect"
+              class="w-full bg-black/40 border border-pink-500/40 rounded-lg p-3 text-white" required>
+        <option value="30 minutes">30 minutes</option>
+        <option value="60 minutes">60 minutes</option>
+        <option value="90 minutes">90 minutes</option>
+        <option value="120 minutes">120 minutes</option>
+      </select>
+    </div>
+
+    <!-- Notes -->
+    <div>
+      <label class="block mb-1 text-sm text-pink-300">Notes (Optional)</label>
+      <textarea id="notes"
+                class="w-full bg-black/40 border border-pink-500/40 rounded-lg p-3 text-white h-28"
+                placeholder="Add special requests, preferences..."></textarea>
+    </div>
+
+    <!-- Button -->
+    <button type="submit"
+            class="w-full bg-pink-600 hover:bg-pink-500 transition p-4 rounded-full text-lg font-bold">
+      Confirm Booking
+    </button>
+
+  </form>
+
+  <!-- Success Message -->
+  <p id="successMsg"
+     class="hidden text-green-400 font-bold text-center mt-6">
+     ✔ Booking created successfully!
+  </p>
+
+</section>
+
+
+<!-- ================================================================================= -->
+<!--                          BOTTOM NAVIGATION (STANDARD)                              -->
+<!-- ================================================================================= -->
+
+<nav class="fixed bottom-0 left-0 w-full bg-black border-t border-white/10 flex justify-between text-center z-50">
+    <a href="index.html" class="flex-1 py-3 text-white text-sm"><i class="fa-solid fa-house text-lg block"></i>Home</a>
+    <a href="Therapists_List.html" class="flex-1 py-3 text-white text-sm"><i class="fa-solid fa-users text-lg block"></i>Therapists</a>
+    <a href="booking.html" class="flex-1 py-3 text-pink-400 text-sm"><i class="fa-solid fa-calendar-check text-lg block"></i>Book</a>
+    <a href="contact.html" class="flex-1 py-3 text-white text-sm"><i class="fa-solid fa-envelope text-lg block"></i>Contact</a>
+    <a href="login.html" class="flex-1 py-3 text-white text-sm"><i class="fa-solid fa-user text-lg block"></i>Profile</a>
+</nav>
+
+
+<!-- ================================================================================= -->
+<!--                                  JAVASCRIPT                                        -->
+<!-- ================================================================================= -->
+
+<script type="module">
+  import { getUser } from "./js/auth.js";
+  import { getTherapists } from "./js/therapists.js";
+  import { createBooking } from "./js/bookings.js";
+
+  /* ========================= LOAD THERAPISTS ========================= */
+  async function loadTherapists() {
+    const select = document.getElementById("therapistSelect");
+    const therapists = await getTherapists();
+
+    select.innerHTML = ""; // Clear loading text
+
+    therapists.forEach(t => {
+      const opt = document.createElement("option");
+      opt.value = t.id;
+      opt.textContent = t.full_name;
+      select.appendChild(opt);
+    });
+  }
+
+  /* ========================= FORM SUBMISSION ========================= */
+  document.getElementById("bookingForm").addEventListener("submit", async (e) => {
+    e.preventDefault();
+
+    const user = await getUser();
+    if (!user) {
+      alert("You must be logged in to book.");
+      window.location.href = "login.html";
+      return;
+    }
+
+    const therapist_id = document.getElementById("therapistSelect").value;
+    const booking_date = document.getElementById("bookingDate").value;
+    const booking_time = document.getElementById("bookingTime").value;
+    const duration = document.getElementById("durationSelect").value;
+    const notes = document.getElementById("notes").value;
+
+    const booking = await createBooking({
+      user_id: user.id,
+      therapist_id,
+      service_id: null, // optional for now
+      booking_date,
+      booking_time,
+      duration,
+      notes,
+    });
+
+    if (booking) {
+      document.getElementById("successMsg").classList.remove("hidden");
+      e.target.reset();
+    }
+  });
+
+  loadTherapists();
+</script>
+
+</body>
+</html>
