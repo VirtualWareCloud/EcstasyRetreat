@@ -1,34 +1,81 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<meta charset="UTF-8" />
-<meta name="viewport" content="width=device-width, initial-scale=1.0" />
-<title>Book a Session | Ecstasy Retreat</title>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Book a Session | Ecstasy Retreat</title>
 
-<!-- Tailwind -->
-<script src="https://cdn.tailwindcss.com"></script>
+  <!-- Tailwind -->
+  <script src="https://cdn.tailwindcss.com"></script>
 
-<!-- Font Awesome -->
-<link rel="stylesheet"
-      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" />
+  <!-- Font Awesome -->
+  <link rel="stylesheet"
+        href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" />
 
+  <style>
+    .fade-image {
+      transition: opacity 1.5s ease-in-out;
+    }
+
+    /* Bottom navigation (standard footer #3) */
+    .bottom-nav {
+      position: fixed;
+      bottom: 0;
+      left: 0;
+      width: 100%;
+      background: #000;
+      border-top: 1px solid #333;
+      z-index: 50;
+    }
+    .bottom-nav a {
+      flex: 1;
+      text-align: center;
+      padding: 10px 0;
+      color: #ffffff;
+      font-size: 13px;
+    }
+    .bottom-nav a i {
+      display: block;
+      font-size: 18px;
+      margin-bottom: 3px;
+    }
+  </style>
 </head>
 
-<body class="bg-black text-white min-h-screen pb-32">
+<body class="bg-black text-white min-h-screen pb-32 overflow-x-hidden">
 
 <!-- ================================================================================= -->
-<!--                                      HEADER                                        -->
+<!--                                      HEADER (STANDARD)                            -->
 <!-- ================================================================================= -->
 
-<header class="fixed top-0 left-0 w-full z-50 flex justify-between items-center px-5 py-4
-         bg-black/60 backdrop-blur-md border-b border-white/10">
+<header id="mainHeader"
+  class="fixed top-0 left-0 w-full z-[999] flex justify-between items-center px-5 py-4
+         bg-black/50 backdrop-blur-md border-b border-white/10 transition-all duration-1000">
 
   <a href="index.html">
-    <img src="logo.png" class="w-28" alt="Ecstasy Retreat Logo" />
+    <img src="logo.png" class="w-32" alt="Ecstasy Retreat Logo">
   </a>
 
-  <a href="login.html" class="text-pink-400 font-bold">Profile</a>
+  <button id="menuBtn" class="text-white text-3xl z-[1001]">
+    &#9776;
+  </button>
 </header>
+
+<!-- ================= MOBILE MENU (STANDARD) ================= -->
+
+<nav id="mobileMenu"
+  class="hidden fixed top-16 right-4 bg-black/95 backdrop-blur-xl p-6 rounded-xl 
+         border border-pink-500/40 text-lg z-[1000] w-60 shadow-xl">
+  
+  <a href="index.html" class="block py-2 hover:text-pink-400 menu-link">Home</a>
+  <a href="Therapists_List.html" class="block py-2 hover:text-pink-400 menu-link">View Therapists</a>
+  <a href="login.html" class="block py-2 hover:text-pink-400 menu-link">Login / Signup</a>
+  <a href="image_gallery.html" class="block py-2 hover:text-pink-400 menu-link">Image Gallery</a>
+  <a href="video_gallery.html" class="block py-2 hover:text-pink-400 menu-link">Video Gallery</a>
+  <a href="join.html" class="block py-2 hover:text-pink-400 menu-link">Join as Therapist</a>
+  <a href="booking.html" class="block py-2 hover:text-pink-400 menu-link">Book Session</a>
+  <a href="contact.html" class="block py-2 hover:text-pink-400 menu-link">Contact Us</a>
+</nav>
 
 <div class="pt-28"></div>
 
@@ -36,10 +83,13 @@
 <!--                                BOOKING FORM                                        -->
 <!-- ================================================================================= -->
 
-<section class="px-6">
-  <h1 class="text-3xl font-bold text-center text-pink-500 mb-8">
+<section class="px-6 max-w-xl mx-auto pb-24">
+  <h1 class="text-3xl font-bold text-center text-pink-500 mb-2">
     Book a Sensual Experience
   </h1>
+  <p class="text-center text-white/70 text-sm mb-8">
+    Select your preferred therapist, date and time. A confirmation will be sent via email and WhatsApp.
+  </p>
 
   <form id="bookingForm"
         class="bg-white/10 p-6 rounded-xl border border-pink-500/30 shadow-xl 
@@ -49,8 +99,9 @@
     <div>
       <label class="block mb-1 text-sm text-pink-300">Select Therapist</label>
       <select id="therapistSelect"
-              class="w-full bg-black/40 border border-pink-500/40 rounded-lg p-3 text-white">
-        <option value="">Loading...</option>
+              class="w-full bg-black/40 border border-pink-500/40 rounded-lg p-3 text-white"
+              required>
+        <option value="">Loading therapists...</option>
       </select>
     </div>
 
@@ -58,21 +109,24 @@
     <div>
       <label class="block mb-1 text-sm text-pink-300">Booking Date</label>
       <input type="date" id="bookingDate"
-             class="w-full bg-black/40 border border-pink-500/40 rounded-lg p-3 text-white" required />
+             class="w-full bg-black/40 border border-pink-500/40 rounded-lg p-3 text-white"
+             required />
     </div>
 
     <!-- Time -->
     <div>
       <label class="block mb-1 text-sm text-pink-300">Booking Time</label>
       <input type="time" id="bookingTime"
-             class="w-full bg-black/40 border border-pink-500/40 rounded-lg p-3 text-white" required />
+             class="w-full bg-black/40 border border-pink-500/40 rounded-lg p-3 text-white"
+             required />
     </div>
 
     <!-- Duration -->
     <div>
       <label class="block mb-1 text-sm text-pink-300">Duration</label>
       <select id="durationSelect"
-              class="w-full bg-black/40 border border-pink-500/40 rounded-lg p-3 text-white" required>
+              class="w-full bg-black/40 border border-pink-500/40 rounded-lg p-3 text-white"
+              required>
         <option value="30 minutes">30 minutes</option>
         <option value="60 minutes">60 minutes</option>
         <option value="90 minutes">90 minutes</option>
@@ -85,11 +139,11 @@
       <label class="block mb-1 text-sm text-pink-300">Notes (Optional)</label>
       <textarea id="notes"
                 class="w-full bg-black/40 border border-pink-500/40 rounded-lg p-3 text-white h-28"
-                placeholder="Add special requests, preferences..."></textarea>
+                placeholder="Add special requests, preferences, or anything your therapist should know..."></textarea>
     </div>
 
     <!-- Button -->
-    <button type="submit"
+    <button id="submitBtn" type="submit"
             class="w-full bg-pink-600 hover:bg-pink-500 transition p-4 rounded-full text-lg font-bold">
       Confirm Booking
     </button>
@@ -97,54 +151,238 @@
   </form>
 
   <!-- Success Message -->
-  <p id="successMsg"
-     class="hidden text-green-400 font-bold text-center mt-6">
-     ✔ Booking created successfully!
-  </p>
+  <div id="successContainer" class="hidden mt-6 space-y-4 text-center">
+    <p id="successMsg" class="text-green-400 font-bold">
+      ✔ Booking created successfully!
+    </p>
+
+    <button id="whatsappBtn"
+            class="inline-flex items-center justify-center gap-2 px-5 py-3 rounded-full border border-green-400 text-green-300 text-sm font-semibold hover:bg-green-500/10 transition">
+      <i class="fa-brands fa-whatsapp text-lg"></i>
+      Send booking confirmation via WhatsApp
+    </button>
+  </div>
 
 </section>
 
-
 <!-- ================================================================================= -->
-<!--                          BOTTOM NAVIGATION (STANDARD)                              -->
+<!--                             STANDARD FOOTER SET                                    -->
 <!-- ================================================================================= -->
 
-<nav class="fixed bottom-0 left-0 w-full bg-black border-t border-white/10 flex justify-between text-center z-50">
-    <a href="index.html" class="flex-1 py-3 text-white text-sm"><i class="fa-solid fa-house text-lg block"></i>Home</a>
-    <a href="Therapists_List.html" class="flex-1 py-3 text-white text-sm"><i class="fa-solid fa-users text-lg block"></i>Therapists</a>
-    <a href="booking.html" class="flex-1 py-3 text-pink-400 text-sm"><i class="fa-solid fa-calendar-check text-lg block"></i>Book</a>
-    <a href="contact.html" class="flex-1 py-3 text-white text-sm"><i class="fa-solid fa-envelope text-lg block"></i>Contact</a>
-    <a href="login.html" class="flex-1 py-3 text-white text-sm"><i class="fa-solid fa-user text-lg block"></i>Profile</a>
+<!-- 1️⃣ ORIGINAL FOOTER -->
+<footer class="mt-4 mb-3 text-center text-gray-400 text-sm">
+  © 2025 Ecstasy Retreat • Sensual Luxury Experience
+</footer>
+
+<!-- 2️⃣ EXTENDED SOCIAL FOOTER -->
+<footer class="bg-black/70 border-t border-white/5 text-center py-6 text-white/70 mb-24">
+
+  <div class="flex justify-center gap-8 text-2xl mb-4">
+
+    <!-- Instagram -->
+    <a href="https://instagram.com/EcstasyRetreatSpa" target="_blank"
+       class="hover:text-pink-400 transition">
+       <i class="fa-brands fa-instagram"></i>
+    </a>
+
+    <!-- X -->
+    <a href="https://x.com/EcstasyRetreat" target="_blank"
+       class="hover:text-pink-400 transition">
+       <i class="fa-brands fa-x-twitter"></i>
+    </a>
+
+    <!-- WhatsApp – therapist interest / booking -->
+    <a href="https://wa.me/27500204011?text=Hi%20I%20am%20interested%20in%20your%20therapists."
+       target="_blank"
+       class="hover:text-pink-400 transition">
+       <i class="fa-brands fa-whatsapp"></i>
+    </a>
+
+    <!-- Facebook -->
+    <a href="https://facebook.com/EcstasyRetreatSpa" target="_blank"
+       class="hover:text-pink-400 transition">
+       <i class="fa-brands fa-facebook"></i>
+    </a>
+
+    <!-- Email -->
+    <a href="mailto:diggdeepmakeusplash@gmail.com"
+       class="hover:text-pink-400 transition">
+       <i class="fa-solid fa-envelope"></i>
+    </a>
+
+  </div>
+
+  <div class="space-y-1 text-sm">
+    <a href="#" class="hover:text-pink-400 transition block">Privacy Policy</a>
+    <a href="#" class="hover:text-pink-400 transition block">Terms of Service</a>
+  </div>
+
+  <p class="text-xs mt-3">© 2025 Ecstasy Retreat — Elite Companionship.</p>
+</footer>
+
+<!-- 3️⃣ NAVIGATION FOOTER (WITH PROFILE ICON) -->
+<nav class="bottom-nav flex justify-between">
+  <a href="index.html">
+      <i class="fa-solid fa-house"></i>
+      Home
+  </a>
+  <a href="Therapists_List.html">
+      <i class="fa-solid fa-users"></i>
+      Therapists
+  </a>
+  <a href="booking.html" class="text-pink-400">
+      <i class="fa-solid fa-calendar-check"></i>
+      Book
+  </a>
+  <a href="contact.html">
+      <i class="fa-solid fa-envelope"></i>
+      Contact
+  </a>
+  <a href="login.html">
+      <i class="fa-solid fa-user"></i>
+      Profile
+  </a>
 </nav>
-
 
 <!-- ================================================================================= -->
 <!--                                  JAVASCRIPT                                        -->
 <!-- ================================================================================= -->
 
+<script>
+  /* HEADER FADE (MATCH INDEX) */
+  const header = document.getElementById("mainHeader");
+  setTimeout(() => {
+    header.classList.remove("bg-black/50", "backdrop-blur-md", "border-white/10");
+    header.classList.add("bg-transparent", "backdrop-blur-0", "border-transparent");
+  }, 3000);
+
+  /* MENU */
+  const menuBtn = document.getElementById("menuBtn");
+  const mobileMenu = document.getElementById("mobileMenu");
+  const menuLinks = document.querySelectorAll(".menu-link");
+
+  menuBtn.onclick = () => {
+    mobileMenu.classList.toggle("hidden");
+  };
+
+  menuLinks.forEach(link => {
+    link.onclick = () => mobileMenu.classList.add("hidden");
+  });
+</script>
+
 <script type="module">
+  import { supabase } from "./js/supabase.js";
   import { getUser } from "./js/auth.js";
   import { getTherapists } from "./js/therapists.js";
-  import { createBooking } from "./js/bookings.js";
 
-  /* ========================= LOAD THERAPISTS ========================= */
+  let therapistsCache = [];
+  let lastCreatedBooking = null;
+  let lastTherapistForBooking = null;
+
+  // ========================= LOAD THERAPISTS =========================
   async function loadTherapists() {
     const select = document.getElementById("therapistSelect");
-    const therapists = await getTherapists();
+    select.disabled = true;
 
-    select.innerHTML = ""; // Clear loading text
+    try {
+      const therapists = await getTherapists();
+      therapistsCache = therapists || [];
 
-    therapists.forEach(t => {
-      const opt = document.createElement("option");
-      opt.value = t.id;
-      opt.textContent = t.full_name;
-      select.appendChild(opt);
-    });
+      if (!therapistsCache.length) {
+        select.innerHTML = '<option value="">No therapists available</option>';
+        return;
+      }
+
+      select.innerHTML = '<option value="">Select therapist</option>';
+      therapistsCache.forEach(t => {
+        const opt = document.createElement("option");
+        opt.value = t.id;
+        opt.textContent = t.full_name;
+        select.appendChild(opt);
+      });
+      select.disabled = false;
+    } catch (error) {
+      console.error("Error loading therapists:", error);
+      select.innerHTML = '<option value="">Error loading therapists</option>';
+    }
   }
 
-  /* ========================= FORM SUBMISSION ========================= */
+  // ========================= CREATE BOOKING IN SUPABASE =========================
+  async function createSupabaseBooking(payload) {
+    try {
+      const { data, error } = await supabase
+        .from("bookings")
+        .insert(payload)
+        .select()
+        .single();
+
+      if (error) {
+        console.error("Error creating booking:", error);
+        alert("There was an error creating your booking. Please try again.");
+        return null;
+      }
+
+      return data;
+    } catch (err) {
+      console.error("Unexpected error creating booking:", err);
+      alert("Unexpected error creating your booking.");
+      return null;
+    }
+  }
+
+  // ========================= EMAIL NOTIFICATIONS VIA EDGE FUNCTION =========================
+  async function sendEmailNotification({ booking, therapist, user }) {
+    try {
+      const body = {
+        booking_id: booking.id,
+        therapist_id: therapist?.id ?? null,
+        therapist_email: therapist?.email ?? null,
+        therapist_name: therapist?.full_name ?? null,
+        admin_email: "diggdeepmakeusplash@gmail.com",
+        client_email: user.email,
+        client_name: user.user_metadata?.full_name || user.email,
+        booking_date: booking.booking_date,
+        booking_time: booking.booking_time,
+        duration: booking.duration,
+        notes: booking.notes || ""
+      };
+
+      const { error } = await supabase.functions.invoke("send-booking-email", {
+        body
+      });
+
+      if (error) {
+        console.error("Error sending email notification:", error);
+      }
+    } catch (err) {
+      console.error("Unexpected error calling send-booking-email:", err);
+    }
+  }
+
+  // ========================= WHATSAPP CONFIRMATION =========================
+  function openWhatsAppConfirm({ therapist, booking }) {
+    const number = "27500204011"; // For now, global number for all therapists
+    const msg = encodeURIComponent(
+      `Hi, I'd like to confirm a booking at Ecstasy Retreat:\n\n` +
+      `Therapist: ${therapist?.full_name || "Any available"}\n` +
+      `Date: ${booking.booking_date}\n` +
+      `Time: ${booking.booking_time}\n` +
+      `Duration: ${booking.duration}\n` +
+      `Notes: ${booking.notes || "None"}\n\n` +
+      `Sent via Ecstasy Retreat booking page.`
+    );
+    window.open(`https://wa.me/${number}?text=${msg}`, "_blank");
+  }
+
+  // ========================= FORM SUBMISSION =========================
   document.getElementById("bookingForm").addEventListener("submit", async (e) => {
     e.preventDefault();
+
+    const submitBtn = document.getElementById("submitBtn");
+    const successContainer = document.getElementById("successContainer");
+
+    submitBtn.disabled = true;
+    submitBtn.textContent = "Processing...";
 
     const user = await getUser();
     if (!user) {
@@ -153,28 +391,68 @@
       return;
     }
 
-    const therapist_id = document.getElementById("therapistSelect").value;
+    const therapistId = document.getElementById("therapistSelect").value;
     const booking_date = document.getElementById("bookingDate").value;
     const booking_time = document.getElementById("bookingTime").value;
     const duration = document.getElementById("durationSelect").value;
-    const notes = document.getElementById("notes").value;
+    const notes = document.getElementById("notes").value.trim();
 
-    const booking = await createBooking({
+    if (!therapistId) {
+      alert("Please select a therapist.");
+      submitBtn.disabled = false;
+      submitBtn.textContent = "Confirm Booking";
+      return;
+    }
+
+    const therapist = therapistsCache.find(t => t.id === therapistId) || null;
+
+    const payload = {
       user_id: user.id,
-      therapist_id,
-      service_id: null, // optional for now
+      therapist_id: therapistId,
+      service_id: null,       // optional for now
       booking_date,
       booking_time,
       duration,
-      notes,
-    });
+      notes
+    };
 
-    if (booking) {
-      document.getElementById("successMsg").classList.remove("hidden");
+    const created = await createSupabaseBooking(payload);
+
+    if (created) {
+      lastCreatedBooking = created;
+      lastTherapistForBooking = therapist;
+
+      document.getElementById("successMsg").textContent = "✔ Booking created successfully!";
+      successContainer.classList.remove("hidden");
+
+      // Trigger Supabase Edge Function for email notifications
+      await sendEmailNotification({
+        booking: created,
+        therapist,
+        user
+      });
+
+      // Reset form
       e.target.reset();
     }
+
+    submitBtn.disabled = false;
+    submitBtn.textContent = "Confirm Booking";
   });
 
+  // ========================= WHATSAPP BUTTON CLICK =========================
+  document.getElementById("whatsappBtn").addEventListener("click", () => {
+    if (!lastCreatedBooking) {
+      alert("Please create a booking first.");
+      return;
+    }
+    openWhatsAppConfirm({
+      therapist: lastTherapistForBooking,
+      booking: lastCreatedBooking
+    });
+  });
+
+  // Init
   loadTherapists();
 </script>
 
