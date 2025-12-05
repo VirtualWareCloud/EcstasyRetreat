@@ -5,61 +5,76 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Book a Session | Ecstasy Retreat</title>
 
-  <!-- Tailwind -->
   <script src="https://cdn.tailwindcss.com"></script>
 
-  <!-- Font Awesome -->
   <link rel="stylesheet"
         href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" />
 
   <style>
 
-    /* ==================== 3D GLASS CARD STYLING ==================== */
+    /* ==================== 3D GLASS CARD STYLING (IMPROVED) ==================== */
     .glass-card {
-      border: 1px solid rgba(255, 20, 147, 0.35);
-      background: linear-gradient(145deg, rgba(0,0,0,0.35), rgba(0,0,0,0.75));
-      padding: 28px;
-      border-radius: 22px;
-      backdrop-filter: blur(14px);
+      border: 2px solid rgba(255, 0, 128, 0.4); /* Thicker, more prominent border */
+      /* More defined linear gradient for depth */
+      background: linear-gradient(135deg, rgba(20, 20, 20, 0.8), rgba(10, 10, 10, 0.9)); 
+      padding: 35px; /* Increased padding */
+      border-radius: 30px; /* More modern, softer corner radius */
+      backdrop-filter: blur(20px); /* Increased blur for depth */
+      /* Refined box shadow for a cleaner neon effect */
       box-shadow:
-        0 10px 25px rgba(0,0,0,0.6),
-        0 0 22px rgba(255, 20, 147, 0.25),
-        inset 0 0 20px rgba(255, 20, 147, 0.18);
-      transition: transform .3s ease, box-shadow .3s ease;
+        0 8px 30px rgba(0,0,0,0.7),
+        0 0 40px rgba(255, 0, 128, 0.2),
+        inset 0 0 25px rgba(255, 0, 128, 0.1);
+      transition: transform .4s cubic-bezier(0.25, 0.8, 0.25, 1), box-shadow .4s ease;
     }
     .glass-card:hover {
-      transform: translateY(-6px);
+      transform: translateY(-8px); /* More noticeable lift */
       box-shadow:
-        0 18px 35px rgba(0,0,0,0.7),
-        0 0 30px rgba(255, 20, 147, 0.35),
-        inset 0 0 22px rgba(255, 20, 147, 0.3);
+        0 18px 45px rgba(0,0,0,0.8),
+        0 0 50px rgba(255, 0, 128, 0.45), /* Stronger hover glow */
+        inset 0 0 25px rgba(255, 0, 128, 0.25);
     }
+    
+    /* Input Field Focus Glow */
+    .form-input-glow:focus {
+        outline: none;
+        border-color: #ff1493; /* Deep Pink */
+        box-shadow: 0 0 0 3px rgba(255, 20, 147, 0.5); /* Neon pink ring */
+        background-color: rgba(0, 0, 0, 0.6) !important;
+    }
+
 
     /* FIX FOR HEADER OVERLAPPING */
     .safe-top {
-      padding-top: 140px !important;
+      padding-top: 100px !important; /* Adjusted for cleaner spacing */
     }
 
-    /* Bottom navigation */
+    /* Bottom navigation (IMPROVED) */
     .bottom-nav {
       position: fixed;
       bottom: 0;
       left: 0;
       width: 100%;
-      background: #000;
-      border-top: 1px solid #333;
+      background: rgba(0, 0, 0, 0.9);
+      backdrop-filter: blur(15px);
+      border-top: 1px solid #222;
       z-index: 50;
+      display: flex; /* Ensure flex is set */
     }
     .bottom-nav a {
       flex: 1;
       text-align: center;
-      padding: 10px 0;
+      padding: 12px 0; /* Increased padding */
       color: #ffffff;
       font-size: 13px;
+      transition: color 0.3s ease;
+    }
+    .bottom-nav a:hover {
+        color: #ff69b4;
     }
     .bottom-nav a i {
       display: block;
-      font-size: 18px;
+      font-size: 20px;
       margin-bottom: 3px;
     }
 
@@ -67,10 +82,6 @@
 </head>
 
 <body class="bg-black text-white min-h-screen pb-32 overflow-x-hidden">
-
-<!-- ================================================================================= -->
-<!--                                      HEADER                                       -->
-<!-- ================================================================================= -->
 
 <header id="mainHeader"
   class="fixed top-0 left-0 w-full z-[999] flex justify-between items-center px-5 py-4
@@ -83,10 +94,6 @@
   <button id="menuBtn" class="text-white text-3xl z-[1001]">&#9776;</button>
 </header>
 
-<!-- ================================================================================= -->
-<!--                             MOBILE MENU                                           -->
-<!-- ================================================================================= -->
-
 <nav id="mobileMenu"
   class="hidden fixed top-16 right-4 bg-black/95 backdrop-blur-xl p-6 rounded-xl 
          border border-pink-500/40 text-lg z-[1000] w-60 shadow-xl">
@@ -97,102 +104,100 @@
   <a href="image_gallery.html" class="block py-2 menu-link hover:text-pink-400">Image Gallery</a>
   <a href="video_gallery.html" class="block py-2 menu-link hover:text-pink-400">Video Gallery</a>
   <a href="join.html" class="block py-2 menu-link hover:text-pink-400">Join as Therapist</a>
-  <a href="booking.html" class="block py-2 menu-link hover:text-pink-400">Book Session</a>
+  <a href="booking.html" class="block py-2 menu-link hover:text-pink-400 font-bold">Book Session</a>
   <a href="contact.html" class="block py-2 menu-link hover:text-pink-400">Contact Us</a>
 </nav>
 
-<!-- FIXED TOP SPACING -->
 <div class="safe-top"></div>
 
-<!-- ================================================================================= -->
-<!--                                  BOOKING FORM                                      -->
-<!-- ================================================================================= -->
+<section class="px-5 md:px-10 max-w-xl mx-auto pb-24">
 
-<section class="px-6 max-w-xl mx-auto pb-24">
-
-  <h1 class="text-3xl font-bold text-center text-pink-500 mb-3">
-    Book a Sensual Experience
+  <h1 class="text-4xl md:text-5xl font-extrabold text-center mb-4 leading-tight">
+    Book Your <span class="text-pink-500">Session</span>
   </h1>
 
-  <p class="text-center text-white/70 text-sm mb-10">
-    Select your preferred therapist, date and time. A confirmation will be sent via email and WhatsApp.
+  <p class="text-center text-white/60 text-base mb-12 max-w-sm mx-auto">
+    Secure your private sensual experience. Please select your preferences below.
   </p>
 
-  <form id="bookingForm" class="glass-card space-y-6">
+  <form id="bookingForm" class="glass-card space-y-7">
 
-    <!-- Therapist -->
     <div>
-      <label class="block mb-1 text-sm text-pink-300">Select Therapist</label>
+      <label class="block mb-2 text-base font-semibold text-pink-300 flex items-center gap-2">
+        <i class="fa-solid fa-user-tag"></i> Select Therapist
+      </label>
       <select id="therapistSelect"
-              class="w-full bg-black/40 border border-pink-500/40 rounded-lg p-3 text-white"
+              class="form-input-glow w-full bg-black/50 border border-pink-500/40 rounded-xl p-4 text-white text-lg transition duration-300 appearance-none cursor-pointer"
               required>
         <option value="">Loading therapists...</option>
       </select>
     </div>
 
-    <!-- Date -->
     <div>
-      <label class="block mb-1 text-sm text-pink-300">Booking Date</label>
+      <label class="block mb-2 text-base font-semibold text-pink-300 flex items-center gap-2">
+        <i class="fa-solid fa-calendar-alt"></i> Booking Date
+      </label>
       <input type="date" id="bookingDate"
-             class="w-full bg-black/40 border border-pink-500/40 rounded-lg p-3 text-white"
+             class="form-input-glow w-full bg-black/50 border border-pink-500/40 rounded-xl p-4 text-white text-lg transition duration-300"
              required />
     </div>
 
-    <!-- Time -->
     <div>
-      <label class="block mb-1 text-sm text-pink-300">Booking Time</label>
+      <label class="block mb-2 text-base font-semibold text-pink-300 flex items-center gap-2">
+        <i class="fa-solid fa-clock"></i> Booking Time
+      </label>
       <input type="time" id="bookingTime"
-             class="w-full bg-black/40 border border-pink-500/40 rounded-lg p-3 text-white"
+             class="form-input-glow w-full bg-black/50 border border-pink-500/40 rounded-xl p-4 text-white text-lg transition duration-300"
              required />
     </div>
 
-    <!-- Duration -->
     <div>
-      <label class="block mb-1 text-sm text-pink-300">Duration</label>
+      <label class="block mb-2 text-base font-semibold text-pink-300 flex items-center gap-2">
+        <i class="fa-solid fa-hourglass-half"></i> Session Duration
+      </label>
       <select id="durationSelect"
-              class="w-full bg-black/40 border border-pink-500/40 rounded-lg p-3 text-white"
+              class="form-input-glow w-full bg-black/50 border border-pink-500/40 rounded-xl p-4 text-white text-lg transition duration-300 appearance-none cursor-pointer"
               required>
-        <option value="30 minutes">30 minutes</option>
-        <option value="60 minutes">60 minutes</option>
-        <option value="90 minutes">90 minutes</option>
-        <option value="120 minutes">120 minutes</option>
+        <option value="30 minutes">30 Minutes (Quick Relief)</option>
+        <option value="60 minutes">60 Minutes (Standard)</option>
+        <option value="90 minutes">90 Minutes (Deep Relaxation)</option>
+        <option value="120 minutes">120 Minutes (Full Retreat)</option>
       </select>
     </div>
 
-    <!-- Notes -->
     <div>
-      <label class="block mb-1 text-sm text-pink-300">Notes (Optional)</label>
+      <label class="block mb-2 text-base font-semibold text-pink-300 flex items-center gap-2">
+        <i class="fa-solid fa-pencil"></i> Notes (Optional)
+      </label>
       <textarea id="notes"
-                class="w-full bg-black/40 border border-pink-500/40 rounded-lg p-3 text-white h-28"
-                placeholder="Add special requests, preferences, or anything your therapist should know..."></textarea>
+                class="form-input-glow w-full bg-black/50 border border-pink-500/40 rounded-xl p-4 text-white h-32 transition duration-300 resize-none"
+                placeholder="E.g., Special requests, preferred techniques, or any information the therapist should know prior to your session..."></textarea>
     </div>
 
-    <!-- Submit Button -->
     <button id="submitBtn" type="submit"
-            class="w-full bg-pink-600 hover:bg-pink-500 transition p-4 rounded-full text-lg font-bold">
-      Confirm Booking
+            class="w-full bg-pink-600 hover:bg-pink-500 transition-all p-5 rounded-full text-xl font-black mt-8 shadow-xl shadow-pink-500/40 active:scale-[0.99]">
+      <i class="fa-solid fa-check-circle mr-3"></i> Confirm Booking
     </button>
 
   </form>
 
-  <!-- SUCCESS MESSAGE -->
-  <div id="successContainer" class="hidden mt-8 space-y-4 text-center">
-    <p id="successMsg" class="text-green-400 font-bold text-lg">
-      ✔ Booking created successfully!
+  <div id="successContainer" class="hidden mt-12 space-y-6 p-8 bg-green-900/40 border-2 border-green-500/50 rounded-2xl text-center shadow-lg shadow-green-500/20">
+    <i class="fa-solid fa-circle-check text-5xl text-green-400"></i>
+    <p id="successMsg" class="text-green-300 font-bold text-2xl">
+      Booking Created Successfully!
+    </p>
+    <p class="text-white/80 text-lg">
+        Your therapist has been notified. You will receive an email confirmation shortly.
     </p>
 
     <button id="whatsappBtn"
-            class="inline-flex items-center justify-center gap-2 px-5 py-3 rounded-full border border-green-400 text-green-300 text-sm font-semibold hover:bg-green-500/10 transition">
-      <i class="fa-brands fa-whatsapp text-lg"></i>
-      Send booking confirmation via WhatsApp
+            class="inline-flex items-center justify-center gap-3 px-6 py-3 mt-4 rounded-full bg-green-500/10 border-2 border-green-400 text-green-300 text-base font-bold hover:bg-green-500/20 transition active:scale-[0.98]">
+      <i class="fa-brands fa-whatsapp text-xl"></i>
+      Confirm via WhatsApp
     </button>
   </div>
 
 </section>
-
-<!-- ================================================================================= -->
-<!--                               FOOTER SET                                          -->
-<!-- ================================================================================= -->
 
 <footer class="mt-4 mb-3 text-center text-gray-400 text-sm">
   © 2025 Ecstasy Retreat • Sensual Luxury Experience
@@ -218,10 +223,6 @@
   <a href="contact.html"><i class="fa-solid fa-envelope"></i>Contact</a>
   <a href="login.html"><i class="fa-solid fa-user"></i>Profile</a>
 </nav>
-
-<!-- ================================================================================= -->
-<!--                                  JAVASCRIPT                                       -->
-<!-- ================================================================================= -->
 
 <script>
   /* HEADER FADE (MATCHING INDEX) */
