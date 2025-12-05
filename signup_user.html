@@ -8,7 +8,7 @@
   <!-- Tailwind -->
   <script src="https://cdn.tailwindcss.com"></script>
 
-  <!-- Supabase JS (for authentication) -->
+  <!-- Supabase JS -->
   <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
 
   <!-- Font Awesome -->
@@ -16,9 +16,11 @@
         href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" />
 
   <style>
-    /* ================= HEADER STYLING ================= */
+    /* ================= HEADER ================= */
     #mainHeader {
       transition: background-color 1.5s ease-in-out;
+      background: rgba(0,0,0,0.6);
+      backdrop-filter: blur(12px);
     }
     #mainHeader.fade-out {
       background-color: transparent !important;
@@ -26,25 +28,23 @@
       border-color: transparent !important;
     }
 
-    /* ================= GLASS-CARD CONTAINER ================= */
+    /* ================= GLASS CARD ================= */
     .glass-card {
       border: 1px solid rgba(255, 20, 147, 0.35);
       background: linear-gradient(145deg, rgba(0,0,0,0.35), rgba(0,0,0,0.75));
       padding: 28px;
       border-radius: 22px;
       backdrop-filter: blur(14px);
-      box-shadow:
-        0 10px 25px rgba(0,0,0,0.6),
-        0 0 22px rgba(255, 20, 147, 0.25),
-        inset 0 0 20px rgba(255, 20, 147, 0.18);
+      box-shadow: 0 10px 25px rgba(0,0,0,0.6),
+                  0 0 22px rgba(255, 20, 147, 0.25),
+                  inset 0 0 20px rgba(255, 20, 147, 0.18);
       transition: transform .3s ease, box-shadow .3s ease;
     }
     .glass-card:hover {
       transform: translateY(-6px);
-      box-shadow:
-        0 18px 35px rgba(0,0,0,0.7),
-        0 0 30px rgba(255, 20, 147, 0.35),
-        inset 0 0 22px rgba(255, 20, 147, 0.3);
+      box-shadow: 0 18px 35px rgba(0,0,0,0.7),
+                  0 0 30px rgba(255, 20, 147, 0.35),
+                  inset 0 0 22px rgba(255, 20, 147, 0.3);
     }
 
     /* ================= INPUTS ================= */
@@ -55,6 +55,7 @@
       border-radius: 14px;
       width: 100%;
       box-shadow: inset 0 0 12px rgba(255, 20, 147, 0.15);
+      color: white;
     }
 
     /* ================= BUTTONS ================= */
@@ -67,7 +68,10 @@
       font-weight: 700;
       box-shadow: 0 0 20px rgba(255, 20, 147, 0.6);
     }
-
+    .primary-btn:disabled {
+      opacity: 0.5;
+      cursor: not-allowed;
+    }
     .google-btn {
       background: #ffffff;
       color: #000;
@@ -121,11 +125,10 @@
     </button>
   </header>
 
-  <!-- MOBILE MENU -->
+  <!-- ================= MOBILE MENU ================= -->
   <nav id="mobileMenu"
     class="hidden fixed top-16 right-4 bg-black/95 backdrop-blur-xl p-6 rounded-xl 
            border border-pink-500/40 text-lg z-[1000] w-60 shadow-xl">
-    
     <a href="index.html" class="block py-2 menu-link hover:text-pink-400">Home</a>
     <a href="Therapists_List.html" class="block py-2 menu-link hover:text-pink-400">View Therapists</a>
     <a href="login.html" class="block py-2 menu-link hover:text-pink-400">Login / Signup</a>
@@ -135,8 +138,8 @@
 
   <div style="padding-top: 140px;"></div>
 
+  <!-- ================= MAIN ================= -->
   <main class="px-6 max-w-md mx-auto">
-
     <h1 class="text-center text-4xl font-bold text-pink-500 mb-4">
       Create Account
     </h1>
@@ -144,13 +147,11 @@
     <div class="glass-card space-y-6">
 
       <form id="signupForm" class="space-y-5">
-
-        <input type="text" id="fullName" required placeholder="Full Name" class="input-box">
-        <input type="email" id="email" required placeholder="Email address" class="input-box">
-        <input type="password" id="password" required placeholder="Password" class="input-box">
-        <input type="password" id="passwordConfirm" required placeholder="Confirm Password" class="input-box">
-
-        <button type="submit" class="primary-btn">Sign up</button>
+        <input type="text" id="fullName" required placeholder="Full Name" class="input-box" />
+        <input type="email" id="email" required placeholder="Email address" class="input-box" />
+        <input type="password" id="password" required placeholder="Password" class="input-box" />
+        <input type="password" id="passwordConfirm" required placeholder="Confirm Password" class="input-box" />
+        <button type="submit" id="submitBtn" class="primary-btn" disabled>Sign up</button>
       </form>
 
       <button id="googleSignup" class="google-btn">
@@ -163,15 +164,13 @@
     <p class="text-center text-gray-400 mt-6">
       Already have an account? <a href="login.html" class="text-pink-400 underline">Login here</a>
     </p>
-
   </main>
 
-  <!-- ORIGINAL FOOTER -->
+  <!-- ================= FOOTER ================= -->
   <footer class="mt-16 mb-6 text-center text-gray-400 text-sm">
     © 2025 Ecstasy Retreat • Sensual Luxury Experience
   </footer>
 
-  <!-- SOCIAL & BOTTOM NAV -->
   <footer class="bg-black/70 border-t border-white/5 text-center py-6 text-white/70 mb-24">
     <div class="flex justify-center gap-8 text-2xl mb-4">
       <a href="https://instagram.com/EcstasyRetreatSpa" class="hover:text-pink-400"><i class="fa-brands fa-instagram"></i></a>
@@ -183,6 +182,7 @@
     <p class="text-xs mt-3">© 2025 Ecstasy Retreat — Elite Companionship.</p>
   </footer>
 
+  <!-- ================= BOTTOM NAV ================= -->
   <nav class="bottom-nav flex justify-between">
     <a href="index.html"><i class="fa-solid fa-house"></i>Home</a>
     <a href="Therapists_List.html"><i class="fa-solid fa-users"></i>Therapists</a>
@@ -191,13 +191,14 @@
     <a href="login.html"><i class="fa-solid fa-user"></i>Profile</a>
   </nav>
 
+  <!-- ================= SCRIPTS ================= -->
   <script>
-    /* HEADER FADE */
+    // HEADER FADE
     setTimeout(() => {
       document.getElementById("mainHeader").classList.add("fade-out");
     }, 3000);
 
-    /* Menu toggle */
+    // Menu toggle
     document.getElementById("menuBtn").onclick = () =>
       document.getElementById("mobileMenu").classList.toggle("hidden");
 
@@ -209,7 +210,22 @@
   <script type="module">
     import { signupWithEmail, signupWithGoogle } from "./js/auth.js";
 
-    document.getElementById("signupForm").onsubmit = async (e) => {
+    const form = document.getElementById("signupForm");
+    const submitBtn = document.getElementById("submitBtn");
+    const requiredFields = ["fullName", "email", "password", "passwordConfirm"];
+
+    // Real-time validation
+    document.querySelectorAll("#fullName, #email, #password, #passwordConfirm").forEach(input => {
+      input.addEventListener("input", checkFormValidity);
+    });
+
+    function checkFormValidity() {
+      const valid = requiredFields.every(id => document.getElementById(id).value.trim() !== "");
+      submitBtn.disabled = !valid;
+    }
+
+    // Handle form submission
+    form.onsubmit = async (e) => {
       e.preventDefault();
 
       const name = document.getElementById("fullName").value.trim();
@@ -222,13 +238,19 @@
         return;
       }
 
-      await signupWithEmail({ full_name: name, email, password });
+      try {
+        await signupWithEmail({ full_name: name, email, password });
+        alert("Account created successfully!");
+        window.location.href = "login.html";
+      } catch (err) {
+        alert(err.message || "Signup failed. Please try again.");
+      }
     };
 
+    // Google signup
     document.getElementById("googleSignup").onclick = async () => {
       await signupWithGoogle();
     };
   </script>
-
 </body>
 </html>
