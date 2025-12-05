@@ -1,0 +1,204 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>My Bookings | Ecstasy Retreat</title>
+
+<!-- Tailwind -->
+<script src="https://cdn.tailwindcss.com"></script>
+
+<!-- Font Awesome -->
+<link rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" />
+
+<!-- Supabase -->
+<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+<script type="module" src="./js/main.js"></script>
+
+<style>
+  .bottom-nav {
+      position: fixed;
+      bottom: 0;
+      left: 0;
+      width: 100%;
+      background: #000;
+      border-top: 1px solid #333;
+      z-index: 50;
+  }
+  .bottom-nav a {
+      flex: 1;
+      text-align: center;
+      padding: 10px 0;
+      color: #ffffff;
+      font-size: 13px;
+  }
+  .bottom-nav a i {
+      display: block;
+      font-size: 18px;
+      margin-bottom: 3px;
+  }
+</style>
+
+</head>
+
+<body class="bg-black text-white min-h-screen pb-32">
+
+<!-- ================================================================================= -->
+<!--                                      HEADER                                        -->
+<!-- ================================================================================= -->
+
+<header class="fixed top-0 left-0 w-full z-50 flex justify-between items-center px-5 py-4
+         bg-black/60 backdrop-blur-md border-b border-white/10">
+
+  <a href="index.html">
+    <img src="logo.png" class="w-28" alt="Ecstasy Retreat Logo" />
+  </a>
+
+  <a href="user_profile.html" class="text-pink-400 font-bold">Profile</a>
+</header>
+
+<div class="pt-28"></div>
+
+<!-- ================================================================================= -->
+<!--                              PAGE TITLE / HEADER                                   -->
+<!-- ================================================================================= -->
+
+<section class="px-6 mb-8">
+  <h1 class="text-3xl font-bold text-pink-500 text-center">
+    My Bookings
+  </h1>
+  <p class="text-center text-white/60 mt-2">
+    View all your confirmed and pending bookings.
+  </p>
+</section>
+
+<!-- ================================================================================= -->
+<!--                                  BOOKINGS LIST                                      -->
+<!-- ================================================================================= -->
+
+<section id="bookingsContainer" class="px-6 space-y-4">
+  <!-- JS will insert booking cards here -->
+</section>
+
+<p id="noBookingsMsg"
+   class="hidden text-center text-white/50 mt-10">
+   You have no bookings yet.
+</p>
+
+<!-- ================================================================================= -->
+<!--                             STANDARD FOOTER SET                                    -->
+<!-- ================================================================================= -->
+
+<!-- 1️⃣ ORIGINAL FOOTER -->
+<footer class="mt-16 mb-6 text-center text-gray-400 text-sm">
+  © 2025 Ecstasy Retreat • Sensual Luxury Experience
+</footer>
+
+<!-- 2️⃣ EXTENDED SOCIAL FOOTER -->
+<footer class="bg-black/70 border-t border-white/5 text-center py-6 text-white/70 mb-24">
+
+    <div class="flex justify-center gap-8 text-2xl mb-4">
+
+        <a href="https://instagram.com/EcstasyRetreatSpa" target="_blank"
+           class="hover:text-pink-400 transition"><i class="fa-brands fa-instagram"></i></a>
+
+        <a href="https://x.com/EcstasyRetreat" target="_blank"
+           class="hover:text-pink-400 transition"><i class="fa-brands fa-x-twitter"></i></a>
+
+        <a href="https://wa.me/27500204011"
+           target="_blank" class="hover:text-pink-400 transition"><i class="fa-brands fa-whatsapp"></i></a>
+
+        <a href="https://facebook.com/EcstasyRetreatSpa" target="_blank"
+           class="hover:text-pink-400 transition"><i class="fa-brands fa-facebook"></i></a>
+
+        <a href="mailto:diggdeepmakeusplash@gmail.com"
+           class="hover:text-pink-400 transition"><i class="fa-solid fa-envelope"></i></a>
+
+    </div>
+
+    <div class="space-y-1 text-sm">
+        <a href="#" class="hover:text-pink-400 transition block">Privacy Policy</a>
+        <a href="#" class="hover:text-pink-400 transition block">Terms of Service</a>
+    </div>
+
+    <p class="text-xs mt-3">© 2025 Ecstasy Retreat — Elite Companionship.</p>
+</footer>
+
+<!-- 3️⃣ NAVIGATION FOOTER -->
+<nav class="bottom-nav flex justify-between">
+    <a href="index.html">
+        <i class="fa-solid fa-house"></i>Home
+    </a>
+    <a href="Therapists_List.html">
+        <i class="fa-solid fa-users"></i>Therapists
+    </a>
+    <a href="booking.html">
+        <i class="fa-solid fa-calendar-check"></i>Book
+    </a>
+    <a href="contact.html">
+        <i class="fa-solid fa-envelope"></i>Contact
+    </a>
+    <a href="user_profile.html">
+        <i class="fa-solid fa-user"></i>Profile
+    </a>
+</nav>
+
+<!-- ================================================================================= -->
+<!--                                   JS LOGIC                                          -->
+<!-- ================================================================================= -->
+
+<script type="module">
+import { getUser } from "./js/auth.js";
+import { getUserBookings } from "./js/bookings.js";
+
+async function loadBookings() {
+  const user = await getUser();
+  if (!user) {
+    window.location.href = "login.html";
+    return;
+  }
+
+  const bookings = await getUserBookings(user.id);
+  const container = document.getElementById("bookingsContainer");
+  const emptyMsg = document.getElementById("noBookingsMsg");
+
+  if (!bookings || bookings.length === 0) {
+    emptyMsg.classList.remove("hidden");
+    return;
+  }
+
+  bookings.forEach(b => {
+    const card = document.createElement("div");
+    card.className =
+      "bg-white/10 p-4 rounded-xl border border-pink-500/40 shadow-lg";
+
+    card.innerHTML = `
+      <h2 class="text-xl font-bold text-pink-400 mb-2">
+        ${b.therapists?.full_name || "Therapist"}
+      </h2>
+
+      <p class="text-white/80"><strong>Date:</strong> ${b.booking_date}</p>
+      <p class="text-white/80"><strong>Time:</strong> ${b.booking_time}</p>
+      <p class="text-white/80"><strong>Duration:</strong> ${b.duration}</p>
+
+      ${
+        b.notes
+          ? `<p class="mt-2 text-sm text-white/70"><strong>Notes:</strong> ${b.notes}</p>`
+          : ""
+      }
+
+      <p class="mt-3 text-sm text-pink-300">
+        Status: <span class="font-bold">${b.status}</span>
+      </p>
+    `;
+
+    container.appendChild(card);
+  });
+}
+
+loadBookings();
+</script>
+
+</body>
+</html>
