@@ -14,14 +14,14 @@
 <style>
   .fade-image { transition: opacity 2s ease-in-out; }
 
-  /* 🔥 PERMANENT GLASS HEADER */
+  /* 🌟 GLOBAL PERMANENT GLASS HEADER */
   #mainHeader {
-      backdrop-filter: blur(20px) saturate(180%);
-      -webkit-backdrop-filter: blur(20px) saturate(180%);
+      background: rgba(255,255,255,0.07);
+      border-bottom: 1px solid rgba(255,255,255,0.25);
+      backdrop-filter: blur(25px) saturate(180%);
+      -webkit-backdrop-filter: blur(25px) saturate(180%);
+      box-shadow: 0 8px 32px rgba(255,255,255,0.12);
   }
-
-  /* Do NOT use this anymore; fading removed */
-  #mainHeader.transparent-bg { }
 
   .bottom-nav {
       position: fixed;
@@ -82,31 +82,26 @@
 
 <body class="bg-black text-white overflow-x-hidden pb-24">
 
-<!-- 🌟 NEW PERMANENT GLASS HEADER -->
+<!-- 🌟 UPDATED GLASSY HEADER -->
 <header id="mainHeader"
   class="fixed top-0 left-0 w-full z-[999] px-4 py-3
-         flex justify-between items-center
-         bg-white/10 backdrop-blur-2xl border-b border-white/10
-         shadow-[0_8px_32px_0_rgba(255,255,255,0.1)] relative overflow-hidden">
+         flex justify-between items-center rounded-b-xl relative overflow-hidden">
 
-    <!-- 🌟 Gloss Reflection Overlay -->
+    <!-- Gloss Highlight -->
     <div class="absolute inset-0 pointer-events-none opacity-40"
-         style="
-           background: linear-gradient(
+         style="background: linear-gradient(
              to bottom,
-             rgba(255,255,255,0.35) 0%,
-             rgba(255,255,255,0.15) 20%,
-             rgba(255,255,255,0.05) 40%,
-             rgba(255,255,255,0) 70%
-           );
-         ">
+             rgba(255,255,255,0.45) 0%,
+             rgba(255,255,255,0.15) 35%,
+             rgba(255,255,255,0) 80%
+         );">
     </div>
 
     <a href="index.html" class="flex items-center relative z-[2]">
-      <img src="logo.png" class="w-28 md:w-32 mt-[-6px]" alt="Ecstasy Retreat Logo">
+      <img src="logo.png" class="w-28 md:w-32" alt="Logo">
     </a>
 
-    <button id="menuBtn" class="text-white text-3xl mt-[-6px] mr-1 z-[2]">
+    <button id="menuBtn" class="text-white text-3xl mr-1 z-[2]">
       &#9776;
     </button>
 </header>
@@ -127,8 +122,10 @@
   <a href="contact.html" class="block py-2 hover:text-pink-400 menu-link">Contact Us</a>
 </nav>
 
+
 <!-- SPACING BELOW HEADER -->
 <div class="pt-[85px]"></div>
+
 
 <!-- SLIDER -->
 <div id="slider" class="relative w-full h-[60vh] min-h-[450px] overflow-hidden">
@@ -143,15 +140,7 @@
 </div>
 
 
-<!-- HERO TEXT -->
-<div class="absolute top-[18vh] md:top-[20vh] left-0 right-0 z-30 text-center px-6">
-    <h1 class="text-5xl md:text-7xl font-extrabold text-white tracking-tight leading-snug drop-shadow-lg">
-        <span class="text-pink-400">Ecstasy</span> Retreat
-    </h1>
-    <p class="text-xl md:text-2xl font-light text-white/90 mt-3 drop-shadow-md">
-        Where Sensual Healing Meets Luxury
-    </p>
-</div>
+<!-- ❌ TITLE REMOVED -->
 
 
 <!-- CTA BUTTONS -->
@@ -172,9 +161,13 @@
 </div>
 
 
-<div class="relative mt-20 mb-12 z-40">
+<!-- ❌ BLACK OVERLAY REMOVED -->
+
+
+<div class="mt-20 mb-12 z-40">
   <div class="w-full h-[3px] bg-pink-600/40 shadow-lg shadow-pink-600/20"></div>
 </div>
+
 
 <section class="relative z-40 px-5 md:px-10 mb-20 max-w-7xl mx-auto">
   <div class="flex items-center justify-between mb-4">
@@ -193,13 +186,14 @@
   <div id="therapistPreview" class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 md:gap-8"></div>
 </section>
 
+
 <div id="homeToast">Your booking has been updated.</div>
 
-<footer class="mt-16 mb-6 text-center text-gray-400 text-sm">
-    © 2025 Ecstasy Retreat • Sensual Luxury Experience
-</footer>
 
-<footer class="bg-black/70 border-t border-white/5 text-center py-6 text-white/70 mb-24">
+<!-- 🟣 3D FOOTER -->
+<footer class="bg-black/60 backdrop-blur-xl border-t border-white/20
+               shadow-[0_-8px_32px_rgba(255,255,255,0.15)]
+               text-center py-6 text-white/70 mb-24 rounded-t-xl">
 
     <div class="flex justify-center gap-8 text-2xl mb-4">
         <a href="https://instagram.com/EcstasyRetreatSpa" target="_blank" class="hover:text-pink-400 transition">
@@ -228,6 +222,7 @@
     <p class="text-xs mt-3">© 2025 Ecstasy Retreat — Elite Companionship.</p>
 </footer>
 
+
 <nav class="bottom-nav flex justify-between">
     <a href="index.html" class="text-pink-400"><i class="fa-solid fa-house"></i> Home</a>
     <a href="Therapists_List.html"><i class="fa-solid fa-users"></i> Therapists</a>
@@ -237,9 +232,6 @@
 </nav>
 
 <script>
-  /* ❌ REMOVED HEADER FADE — NOT USED ANYMORE */
-  // No auto-fade logic.
-
   const menuBtn = document.getElementById("menuBtn");
   const mobileMenu = document.getElementById("mobileMenu");
   const menuLinks = document.querySelectorAll(".menu-link");
@@ -247,7 +239,6 @@
   menuBtn.onclick = () => mobileMenu.classList.toggle("hidden");
   menuLinks.forEach(link => link.onclick = () => mobileMenu.classList.add("hidden"));
 
-  /* SLIDER */
   const slides = document.querySelectorAll("#slider img");
   let current = 0;
 
@@ -352,13 +343,6 @@ async function loadFeaturedTherapists() {
 
     container.appendChild(card);
   });
-}
-
-function showHomeToast(message) {
-  const toast = document.getElementById("homeToast");
-  toast.textContent = message;
-  toast.style.display = "block";
-  setTimeout(() => toast.style.display = "none", 4000);
 }
 
 async function setupBookingRealtime() {
