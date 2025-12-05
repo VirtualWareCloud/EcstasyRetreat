@@ -1,546 +1,227 @@
 <!DOCTYPE html>
 <html lang="en">
-
 <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>User Profile – Ecstasy Retreat</title>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>My Profile | Ecstasy Retreat</title>
 
-    <!-- Tailwind CSS -->
-    <script src="https://cdn.tailwindcss.com"></script>
+<!-- Tailwind -->
+<script src="https://cdn.tailwindcss.com"></script>
 
-    <!-- Font Awesome Icons -->
-    <link rel="stylesheet"
-          href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" />
+<!-- Font Awesome -->
+<link rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
 
-    <style>
-        /* ================= HEADER (FADE LIKE INDEX/THERAPISTS) ================= */
-        #mainHeader {
-            transition: background-color 1.5s ease-in-out, border-color 1.5s ease-in-out, backdrop-filter 1.5s ease-in-out;
-        }
-
-        /* ================= CARD / GLASS STYLES (MATCHING SITE) ================= */
-        .card-glass {
-            background: rgba(18, 18, 18, 0.85);
-            border: 1px solid rgba(255, 0, 128, 0.25);
-            backdrop-filter: blur(8px);
-            border-radius: 20px;
-            box-shadow: 0 4px 40px rgba(255, 0, 128, 0.15);
-        }
-
-        .section-title {
-            @apply text-xl font-semibold text-pink-400 mb-4;
-        }
-
-        .fade-in {
-            animation: fadeIn 0.7s ease forwards;
-        }
-        @keyframes fadeIn {
-            from { opacity: 0; transform: translateY(12px); }
-            to   { opacity: 1; transform: translateY(0); }
-        }
-
-        /* ================= BOTTOM NAV (STANDARD FOOTER #3) ================= */
-        .bottom-nav {
-            position: fixed;
-            bottom: 0;
-            left: 0;
-            width: 100%;
-            background: #000;
-            border-top: 1px solid #333;
-            z-index: 50;
-        }
-        .bottom-nav a {
-            flex: 1;
-            text-align: center;
-            padding: 10px 0;
-            color: #ffffff;
-            font-size: 13px;
-        }
-        .bottom-nav a i {
-            display: block;
-            font-size: 18px;
-            margin-bottom: 3px;
-        }
-
-        /* Profile photo preview styling */
-        .profile-photo-preview {
-            background-size: cover;
-            background-position: center;
-        }
-    </style>
+<style>
+  /* Bottom nav */
+  .bottom-nav {
+      position: fixed;
+      bottom: 0;
+      left: 0;
+      width: 100%;
+      background: #000;
+      border-top: 1px solid #333;
+      z-index: 50;
+  }
+  .bottom-nav a {
+      flex: 1;
+      text-align: center;
+      padding: 10px 0;
+      color: #ffffff;
+      font-size: 13px;
+  }
+  .bottom-nav a i {
+      display: block;
+      font-size: 18px;
+      margin-bottom: 3px;
+  }
+</style>
 </head>
 
-<body class="bg-black text-white pb-24 overflow-x-hidden">
+<body class="bg-black text-white min-h-screen pb-32">
 
 <!-- ================================================================================= -->
-<!--                                     HEADER                                        -->
+<!--                                      HEADER                                        -->
 <!-- ================================================================================= -->
 
-<header id="mainHeader"
-        class="fixed top-0 left-0 w-full z-[999] flex justify-between items-center px-5 py-4
-               bg-black/50 backdrop-blur-md border-b border-white/10">
+<header class="fixed top-0 left-0 w-full z-50 flex justify-between items-center px-5 py-4
+         bg-black/60 backdrop-blur-md border-b border-white/10">
 
-    <a href="index.html">
-        <img src="logo.png" class="w-32" alt="Ecstasy Retreat Logo">
-    </a>
+  <a href="index.html">
+    <img src="logo.png" class="w-28" alt="Ecstasy Retreat Logo" />
+  </a>
 
-    <button id="menuBtn" class="text-white text-3xl z-[1001]">
-        &#9776;
-    </button>
+  <button id="logoutBtn" class="text-red-400 font-bold">Logout</button>
 </header>
 
-<!-- ================= MOBILE MENU (STANDARD NAV OPTIONS) ================= -->
+<div class="pt-28"></div>
 
-<nav id="mobileMenu"
-     class="hidden fixed top-16 right-4 bg-black/95 backdrop-blur-xl p-6 rounded-xl 
-            border border-pink-500/40 text-lg z-[1000] w-60 shadow-xl">
-    <a href="index.html" class="block py-2 hover:text-pink-400 menu-link">Home</a>
-    <a href="Therapists_List.html" class="block py-2 hover:text-pink-400 menu-link">View Therapists</a>
-    <a href="login.html" class="block py-2 hover:text-pink-400 menu-link">Login / Signup</a>
-    <a href="image_gallery.html" class="block py-2 hover:text-pink-400 menu-link">Image Gallery</a>
-    <a href="video_gallery.html" class="block py-2 hover:text-pink-400 menu-link">Video Gallery</a>
-    <a href="join.html" class="block py-2 hover:text-pink-400 menu-link">Join as Therapist</a>
-    <a href="booking.html" class="block py-2 hover:text-pink-400 menu-link">Book Session</a>
-    <a href="contact.html" class="block py-2 hover:text-pink-400 menu-link">Contact Us</a>
-</nav>
-
-<div class="pt-32"></div>
 
 <!-- ================================================================================= -->
-<!--                                  USER PROFILE                                     -->
+<!--                                 PROFILE SECTION                                    -->
 <!-- ================================================================================= -->
 
-<main class="px-6 pb-32 space-y-8">
+<section class="px-6">
 
-    <!-- Greeting / Header -->
-    <section class="fade-in">
-        <p class="text-xs uppercase tracking-widest text-pink-300/80 mb-2">
-            My Ecstasy Retreat Account
-        </p>
-        <h1 class="text-3xl font-extrabold text-pink-500">
-            Welcome, <span id="greetingName">Guest User</span>
-        </h1>
-        <p class="mt-2 text-sm text-gray-300">
-            Manage your profile, quick chat options and how you connect with our therapists.
-            For now this screen is <span class="text-pink-300 font-semibold">preview-only</span> – all data is
-            stored locally in your browser until Firebase is connected.
-        </p>
-    </section>
+  <h1 class="text-3xl font-bold text-center text-pink-500 mb-8">
+    My Profile
+  </h1>
 
-    <!-- Profile Photo + Basic Info -->
-    <section class="card-glass p-5 fade-in">
-        <h2 class="text-lg font-semibold text-pink-400 mb-4 flex items-center gap-2">
-            <i class="fa-solid fa-id-card"></i>
-            Account Overview
-        </h2>
+  <div class="bg-white/10 p-6 rounded-xl border border-pink-500/30 shadow-xl space-y-4">
 
-        <!-- Profile Photo (optional, local preview only) -->
-        <div class="flex items-center gap-4 mb-6">
-            <div id="profilePhotoPreview"
-                 class="w-20 h-20 rounded-full border border-pink-500/70 bg-black/60 flex items-center justify-center profile-photo-preview">
-                <i class="fa-solid fa-user text-pink-500 text-2xl"></i>
-            </div>
-            <div class="flex-1 text-sm text-gray-300">
-                <p class="font-semibold mb-1">Profile Photo (optional)</p>
-                <input id="profilePhotoInput"
-                       type="file"
-                       accept="image/*"
-                       class="text-xs file:mr-3 file:py-1 file:px-3 file:rounded-full file:border-0
-                              file:text-xs file:bg-pink-600 file:text-white file:cursor-pointer
-                              hover:file:bg-pink-700" />
-                <p class="text-[11px] text-gray-500 mt-1 leading-snug">
-                    Preview is saved <span class="text-pink-300">only in this browser (localStorage)</span> for now.
-                    <!-- Firebase note -->
-                    <!-- TODO (Firebase):
-                         - Upload this file to Firebase Storage.
-                         - Save the download URL in the user's Firestore/Realtime DB profile document.
-                         - Replace localStorage logic with authenticated user profile loading. -->
-                </p>
-            </div>
-        </div>
+      <!-- Profile Photo (Optional) -->
+      <div class="flex justify-center mb-4">
+        <img id="profilePhoto"
+             src="images/default_user.png"
+             class="w-28 h-28 rounded-full border border-pink-400 object-cover"
+             alt="Profile Photo" />
+      </div>
 
-        <!-- Basic Details Form -->
-        <form id="profileForm" class="space-y-4 text-sm">
-            <!-- Display Name -->
-            <div>
-                <label for="displayName" class="block mb-1 text-gray-200">Display Name</label>
-                <input id="displayName"
-                       type="text"
-                       placeholder="Your name"
-                       class="w-full rounded-xl bg-black/60 border border-pink-500/40 px-4 py-2
-                              text-sm focus:outline-none focus:border-pink-400 focus:ring-1 focus:ring-pink-400" />
-                <p class="text-[11px] text-gray-500 mt-1">
-                    Default will use your <span class="text-pink-300">Google display name</span> once Firebase auth
-                    is connected.
-                    <!-- TODO (Firebase): map to user.displayName from Google sign-in. -->
-                </p>
-            </div>
+      <!-- User Email -->
+      <p class="text-lg">
+        <span class="text-pink-400 font-bold">Email:</span>
+        <span id="userEmail">Loading...</span>
+      </p>
 
-            <!-- Email -->
-            <div>
-                <label for="email" class="block mb-1 text-gray-200">Email Address</label>
-                <input id="email"
-                       type="email"
-                       placeholder="you@example.com"
-                       class="w-full rounded-xl bg-black/60 border border-pink-500/40 px-4 py-2
-                              text-sm focus:outline-none focus:border-pink-400 focus:ring-1 focus:ring-pink-400" />
-                <p class="text-[11px] text-gray-500 mt-1">
-                    Used for booking confirmations and account recovery.
-                    <!-- TODO (Firebase): save under user document (e.g. users/{uid}.email). -->
-                </p>
-            </div>
+      <!-- WhatsApp -->
+      <p class="text-lg">
+        <span class="text-pink-400 font-bold">WhatsApp:</span>
+        <span id="userWhatsapp">Loading...</span>
+      </p>
 
-            <!-- Phone / WhatsApp (optional for users, system still uses master number for chats) -->
-            <div>
-                <label for="phone" class="block mb-1 text-gray-200">Phone / WhatsApp (optional)</label>
-                <input id="phone"
-                       type="tel"
-                       placeholder="+27..."
-                       class="w-full rounded-xl bg-black/60 border border-pink-500/40 px-4 py-2
-                              text-sm focus:outline-none focus:border-pink-400 focus:ring-1 focus:ring-pink-400" />
-                <p class="text-[11px] text-gray-500 mt-1">
-                    For now, <span class="text-pink-300">all live chats use +27&nbsp;50&nbsp;020&nbsp;4011</span>.
-                    This field will be used later for personalised reminders and secure contact.
-                    <!-- TODO (Firebase): store as user.phone and validate via OTP if needed. -->
-                </p>
-            </div>
+      <!-- Total Bookings -->
+      <p class="text-lg">
+        <span class="text-pink-400 font-bold">Total Bookings:</span>
+        <span id="bookingCount">0</span>
+      </p>
+  </div>
 
-            <!-- Save Button -->
-            <div class="pt-2">
-                <button id="saveProfileBtn"
-                        class="w-full bg-pink-600 hover:bg-pink-700 text-white font-semibold py-2.5 rounded-full
-                               text-sm shadow-lg shadow-pink-500/40 transition">
-                    <i class="fa-solid fa-floppy-disk mr-2"></i>
-                    Save Profile (preview mode)
-                </button>
-                <p id="saveStatus" class="text-[11px] text-gray-400 mt-2"></p>
-            </div>
-        </form>
-    </section>
+  <h2 class="text-2xl font-bold text-pink-400 mt-10 mb-4">My Bookings</h2>
 
-    <!-- Quick Actions -->
-    <section class="card-glass p-5 fade-in">
-        <h2 class="text-lg font-semibold text-pink-400 mb-4 flex items-center gap-2">
-            <i class="fa-solid fa-bolt"></i>
-            Quick Actions
-        </h2>
+  <div id="bookingsList" class="space-y-4">
+      <p class="text-gray-400">Loading bookings...</p>
+  </div>
 
-        <div class="grid grid-cols-2 gap-3 text-xs">
-            <a href="Therapists_List.html"
-               class="flex flex-col items-center justify-center bg-pink-600/80 hover:bg-pink-700
-                      rounded-2xl py-3 px-2 text-center shadow-lg shadow-pink-500/40 transition">
-                <i class="fa-solid fa-users mb-1 text-base"></i>
-                <span>View Therapists</span>
-            </a>
+</section>
 
-            <a href="booking.html"
-               class="flex flex-col items-center justify-center bg-black/70 border border-pink-500/60
-                      hover:bg-black rounded-2xl py-3 px-2 text-center transition">
-                <i class="fa-solid fa-calendar-check mb-1 text-base"></i>
-                <span>My Bookings (future)</span>
-            </a>
-
-            <a href="#"
-               class="flex flex-col items-center justify-center bg-black/70 border border-pink-500/40
-                      rounded-2xl py-3 px-2 text-center opacity-80 cursor-default">
-                <i class="fa-solid fa-heart mb-1 text-base"></i>
-                <span>Favourite Therapists (coming soon)</span>
-            </a>
-
-            <a href="join.html"
-               class="flex flex-col items-center justify-center bg-black/70 border border-pink-500/60
-                      hover:bg-black rounded-2xl py-3 px-2 text-center transition">
-                <i class="fa-solid fa-handshake-angle mb-1 text-base"></i>
-                <span>Become a Therapist</span>
-            </a>
-        </div>
-    </section>
-
-    <!-- Chat / Contact Hub using master number -->
-    <section class="card-glass p-5 fade-in mb-4">
-        <h2 class="text-lg font-semibold text-pink-400 mb-4 flex items-center gap-2">
-            <i class="fa-solid fa-comments"></i>
-            Chat With Ecstasy Concierge
-        </h2>
-
-        <p class="text-sm text-gray-300 mb-4">
-            All live chats currently route through our main concierge number:
-            <span class="font-semibold text-pink-300">+27&nbsp;50&nbsp;020&nbsp;4011</span>.
-            User-specific messaging will be powered later via Firebase & Google Auth.
-        </p>
-
-        <div class="space-y-3 text-sm">
-            <!-- WhatsApp -->
-            <a href="https://wa.me/27500204011?text=Hi%20I%20am%20interested%20in%20your%20therapists."
-               target="_blank"
-               class="w-full inline-flex items-center justify-center gap-2 bg-green-600 hover:bg-green-700
-                      text-white font-semibold py-2.5 rounded-full shadow-lg shadow-green-500/40 transition">
-                <i class="fa-brands fa-whatsapp text-lg"></i>
-                <span>Chat on WhatsApp</span>
-            </a>
-
-            <!-- Telegram -->
-            <a href="https://t.me/+27500204011"
-               target="_blank"
-               class="w-full inline-flex items-center justify-center gap-2 bg-sky-600 hover:bg-sky-700
-                      text-white font-semibold py-2.5 rounded-full shadow-lg shadow-sky-500/40 transition">
-                <i class="fa-brands fa-telegram text-lg"></i>
-                <span>Chat on Telegram</span>
-            </a>
-
-            <!-- Call -->
-            <a href="tel:+27500204011"
-               class="w-full inline-flex items-center justify-center gap-2 bg-black/70 border border-pink-500/40
-                      hover:bg-black text-white font-semibold py-2.5 rounded-full transition">
-                <i class="fa-solid fa-phone"></i>
-                <span>Call Ecstasy Retreat</span>
-            </a>
-
-            <!-- Email -->
-            <a href="mailto:diggdeepmakeusplash@gmail.com"
-               class="w-full inline-flex items-center justify-center gap-2 bg-black/70 border border-pink-500/40
-                      hover:bg-black text-white font-semibold py-2.5 rounded-full transition">
-                <i class="fa-solid fa-envelope"></i>
-                <span>Email Us</span>
-            </a>
-
-            <!-- Google Chat (future) -->
-            <button type="button"
-                    class="w-full inline-flex items-center justify-center gap-2 bg-black/60 border border-pink-500/30
-                           text-gray-300 font-semibold py-2.5 rounded-full cursor-default">
-                <i class="fa-brands fa-google"></i>
-                <span>Google Chat (Firebase integration soon)</span>
-            </button>
-
-            <!-- TODO (Firebase / Google Chat):
-                 - Link authenticated Google account to Google Chat / Spaces.
-                 - Deep-link into chat using appropriate Google API or URL once decided. -->
-        </div>
-    </section>
-
-</main>
 
 <!-- ================================================================================= -->
-<!--                             STANDARD 3-FOOTER STACK                               -->
+<!--                         FULL STANDARD FOOTER SET                                   -->
 <!-- ================================================================================= -->
 
 <!-- 1️⃣ ORIGINAL FOOTER -->
-<footer class="mt-4 mb-2 text-center text-gray-400 text-sm">
-    © 2025 Ecstasy Retreat • Sensual Luxury Experience
+<footer class="mt-16 mb-6 text-center text-gray-400 text-sm">
+  © 2025 Ecstasy Retreat • Sensual Luxury Experience
 </footer>
 
-<!-- 2️⃣ EXTENDED SOCIAL FOOTER (STANDARD CONTACT DETAILS) -->
+<!-- 2️⃣ SOCIAL FOOTER -->
 <footer class="bg-black/70 border-t border-white/5 text-center py-6 text-white/70 mb-24">
 
-    <div class="flex justify-center gap-8 text-2xl mb-4">
-        <!-- Instagram -->
-        <a href="https://instagram.com/EcstasyRetreatSpa" target="_blank"
-           class="hover:text-pink-400 transition" aria-label="Instagram">
-            <i class="fa-brands fa-instagram"></i>
-        </a>
+  <div class="flex justify-center gap-8 text-2xl mb-4">
 
-        <!-- X / Twitter -->
-        <a href="https://x.com/EcstasyRetreat" target="_blank"
-           class="hover:text-pink-400 transition" aria-label="Twitter / X">
-            <i class="fa-brands fa-x-twitter"></i>
-        </a>
+      <a href="https://instagram.com/EcstasyRetreatSpa" target="_blank"
+         class="hover:text-pink-400 transition">
+         <i class="fa-brands fa-instagram"></i>
+      </a>
 
-        <!-- WhatsApp (standard link) -->
-        <a href="https://wa.me/27500204011" target="_blank"
-           class="hover:text-pink-400 transition" aria-label="WhatsApp">
-            <i class="fa-brands fa-whatsapp"></i>
-        </a>
+      <a href="https://x.com/EcstasyRetreat" target="_blank"
+         class="hover:text-pink-400 transition">
+         <i class="fa-brands fa-x-twitter"></i>
+      </a>
 
-        <!-- Facebook -->
-        <a href="https://facebook.com/EcstasyRetreatSpa" target="_blank"
-           class="hover:text-pink-400 transition" aria-label="Facebook">
-            <i class="fa-brands fa-facebook"></i>
-        </a>
+      <a href="https://wa.me/27500204011?text=Hi%20I%20have%20a%20profile%20question"
+         target="_blank"
+         class="hover:text-pink-400 transition">
+         <i class="fa-brands fa-whatsapp"></i>
+      </a>
 
-        <!-- Email -->
-        <a href="mailto:diggdeepmakeusplash@gmail.com"
-           class="hover:text-pink-400 transition" aria-label="Email">
-            <i class="fa-solid fa-envelope"></i>
-        </a>
-    </div>
+      <a href="https://facebook.com/EcstasyRetreatSpa" target="_blank"
+         class="hover:text-pink-400 transition">
+         <i class="fa-brands fa-facebook"></i>
+      </a>
 
-    <div class="space-y-1 text-sm">
-        <a href="#" class="hover:text-pink-400 transition block">Privacy Policy</a>
-        <a href="#" class="hover:text-pink-400 transition block">Terms of Service</a>
-    </div>
+      <a href="mailto:diggdeepmakeusplash@gmail.com"
+         class="hover:text-pink-400 transition">
+         <i class="fa-solid fa-envelope"></i>
+      </a>
 
-    <p class="text-xs mt-3">© 2025 Ecstasy Retreat — Elite Companionship.</p>
+  </div>
+
+  <div class="space-y-1 text-sm">
+      <a href="#" class="hover:text-pink-400 transition block">Privacy Policy</a>
+      <a href="#" class="hover:text-pink-400 transition block">Terms of Service</a>
+  </div>
+
+  <p class="text-xs mt-3">© 2025 Ecstasy Retreat — Elite Companionship.</p>
 </footer>
 
-<!-- 3️⃣ NAVIGATION FOOTER (WITH PROFILE TAB ACTIVE) -->
+<!-- 3️⃣ NAV FOOTER -->
 <nav class="bottom-nav flex justify-between">
-    <a href="index.html">
-        <i class="fa-solid fa-house"></i>
-        Home
-    </a>
-    <a href="Therapists_List.html">
-        <i class="fa-solid fa-users"></i>
-        Therapists
-    </a>
-    <a href="booking.html">
-        <i class="fa-solid fa-calendar-check"></i>
-        Book
-    </a>
-    <a href="contact.html">
-        <i class="fa-solid fa-envelope"></i>
-        Contact
-    </a>
-    <a href="user_profile.html" class="text-pink-400">
-        <i class="fa-solid fa-user"></i>
-        Profile
-    </a>
+    <a href="index.html"><i class="fa-solid fa-house"></i>Home</a>
+    <a href="Therapists_List.html"><i class="fa-solid fa-users"></i>Therapists</a>
+    <a href="booking.html"><i class="fa-solid fa-calendar-check"></i>Book</a>
+    <a href="contact.html"><i class="fa-solid fa-envelope"></i>Contact</a>
+    <a href="login.html"><i class="fa-solid fa-user"></i>Profile</a>
 </nav>
 
+
 <!-- ================================================================================= -->
-<!--                                      SCRIPTS                                      -->
+<!--                               JS MODULE LOGIC                                      -->
 <!-- ================================================================================= -->
 
-<script>
-    /* ================= HEADER FADE AFTER 3 SEC ================= */
-    const header = document.getElementById("mainHeader");
-    setTimeout(() => {
-        header.classList.remove("bg-black/50", "backdrop-blur-md", "border-white/10");
-        header.classList.add("bg-transparent", "border-transparent");
-    }, 3000);
+<script type="module">
+  import { getUser, logout } from "./js/auth.js";
+  import { getUserBookings } from "./js/bookings.js";
 
-    /* ================== MENU TOGGLE ================== */
-    const menuBtn = document.getElementById("menuBtn");
-    const mobileMenu = document.getElementById("mobileMenu");
-    const menuLinks = document.querySelectorAll(".menu-link");
+  /* ========================= LOAD USER PROFILE ========================= */
+  async function loadProfile() {
 
-    menuBtn.onclick = () => {
-        mobileMenu.classList.toggle("hidden");
-    };
+    const user = await getUser();
+    if (!user) {
+      window.location.href = "login.html";
+      return;
+    }
 
-    menuLinks.forEach(link => {
-        link.onclick = () => mobileMenu.classList.add("hidden");
+    // Basic user info
+    document.getElementById("userEmail").textContent = user.email ?? "N/A";
+    document.getElementById("userWhatsapp").textContent = user.whatsapp ?? "Not set";
+
+    /* ========================= LOAD BOOKINGS ========================= */
+    const bookings = await getUserBookings(user.id);
+    const list = document.getElementById("bookingsList");
+    const count = document.getElementById("bookingCount");
+
+    list.innerHTML = "";
+    count.textContent = bookings.length;
+
+    if (bookings.length === 0) {
+      list.innerHTML = `<p class="text-gray-400">You have no bookings yet.</p>`;
+      return;
+    }
+
+    bookings.forEach(b => {
+      const item = document.createElement("div");
+      item.className =
+        "p-4 bg-white/10 border border-pink-500/30 rounded-xl shadow flex flex-col";
+
+      item.innerHTML = `
+        <p><span class="text-pink-400 font-bold">Date:</span> ${b.booking_date}</p>
+        <p><span class="text-pink-400 font-bold">Time:</span> ${b.booking_time}</p>
+        <p><span class="text-pink-400 font-bold">Duration:</span> ${b.duration}</p>
+        <p><span class="text-pink-400 font-bold">Status:</span> ${b.status}</p>
+      `;
+
+      list.appendChild(item);
     });
+  }
 
-    /* ================== LOCAL PREVIEW PROFILE STATE (NO BACKEND) ================== */
+  /* ========================= LOGOUT ========================= */
+  document.getElementById("logoutBtn").addEventListener("click", async () => {
+    await logout();
+    window.location.href = "login.html";
+  });
 
-    const NAME_KEY  = "er_user_name";
-    const EMAIL_KEY = "er_user_email";
-    const PHONE_KEY = "er_user_phone";
-    const PHOTO_KEY = "er_user_profile_photo";
-
-    const displayNameInput = document.getElementById("displayName");
-    const emailInput       = document.getElementById("email");
-    const phoneInput       = document.getElementById("phone");
-    const saveBtn          = document.getElementById("saveProfileBtn");
-    const saveStatus       = document.getElementById("saveStatus");
-    const greetingName     = document.getElementById("greetingName");
-
-    const profilePhotoPreview = document.getElementById("profilePhotoPreview");
-    const profilePhotoInput   = document.getElementById("profilePhotoInput");
-
-    function applyGreeting(name) {
-        if (!greetingName) return;
-        greetingName.textContent = name && name.trim().length > 0 ? name.trim() : "Guest User";
-    }
-
-    function loadProfileFromLocal() {
-        try {
-            const storedName  = localStorage.getItem(NAME_KEY);
-            const storedEmail = localStorage.getItem(EMAIL_KEY);
-            const storedPhone = localStorage.getItem(PHONE_KEY);
-            const storedPhoto = localStorage.getItem(PHOTO_KEY);
-
-            if (storedName && displayNameInput) displayNameInput.value = storedName;
-            if (storedEmail && emailInput)      emailInput.value      = storedEmail;
-            if (storedPhone && phoneInput)      phoneInput.value      = storedPhone;
-
-            applyGreeting(storedName);
-
-            if (storedPhoto && profilePhotoPreview) {
-                profilePhotoPreview.style.backgroundImage = `url(${storedPhoto})`;
-                const icon = profilePhotoPreview.querySelector("i");
-                if (icon) icon.classList.add("hidden");
-            } else if (profilePhotoPreview) {
-                profilePhotoPreview.style.backgroundImage = "";
-                const icon = profilePhotoPreview.querySelector("i");
-                if (icon) icon.classList.remove("hidden");
-            }
-        } catch (e) {
-            console.warn("LocalStorage not available or failed to load profile preview.", e);
-        }
-
-        /* TODO (Firebase):
-           - On auth state change (onAuthStateChanged), pull user data from Firestore/Realtime DB.
-           - Replace localStorage-based loading with server-side values.
-           - Use user.displayName, user.email, and stored profile document. */
-    }
-
-    function saveProfileToLocal(event) {
-        if (event) event.preventDefault();
-        try {
-            const name  = displayNameInput?.value || "";
-            const email = emailInput?.value || "";
-            const phone = phoneInput?.value || "";
-
-            localStorage.setItem(NAME_KEY,  name);
-            localStorage.setItem(EMAIL_KEY, email);
-            localStorage.setItem(PHONE_KEY, phone);
-
-            applyGreeting(name);
-
-            if (saveStatus) {
-                saveStatus.textContent = "Profile saved locally (preview mode only). Firebase will replace this later.";
-                saveStatus.classList.remove("text-red-400");
-                saveStatus.classList.add("text-pink-300");
-                setTimeout(() => { saveStatus.textContent = ""; }, 4000);
-            }
-        } catch (e) {
-            console.warn("Failed to save local profile preview.", e);
-            if (saveStatus) {
-                saveStatus.textContent = "Could not save preview in this browser.";
-                saveStatus.classList.remove("text-pink-300");
-                saveStatus.classList.add("text-red-400");
-            }
-        }
-
-        /* TODO (Firebase):
-           - Replace this with Firestore/Realtime DB write (e.g. setDoc/updateDoc on users/{uid}).
-           - Use Firebase Security Rules to protect per-user profiles. */
-    }
-
-    function handlePhotoChange(event) {
-        const file = event.target.files?.[0];
-        if (!file) return;
-
-        const reader = new FileReader();
-        reader.onload = (e) => {
-            const dataUrl = e.target.result;
-            try {
-                localStorage.setItem(PHOTO_KEY, dataUrl);
-            } catch (err) {
-                console.warn("Failed to store photo preview in localStorage (size/quota?).", err);
-            }
-
-            if (profilePhotoPreview) {
-                profilePhotoPreview.style.backgroundImage = `url(${dataUrl})`;
-                const icon = profilePhotoPreview.querySelector("i");
-                if (icon) icon.classList.add("hidden");
-            }
-        };
-        reader.readAsDataURL(file);
-
-        /* TODO (Firebase):
-           - Instead of localStorage, upload this file to Firebase Storage.
-           - Save its download URL to user's profile document.
-           - Ensure proper security rules (only owner or admin may update). */
-    }
-
-    document.addEventListener("DOMContentLoaded", () => {
-        loadProfileFromLocal();
-        saveBtn?.addEventListener("click", saveProfileToLocal);
-        profilePhotoInput?.addEventListener("change", handlePhotoChange);
-    });
+  loadProfile();
 </script>
 
 </body>
