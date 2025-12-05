@@ -1,0 +1,258 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Therapist Dashboard | Ecstasy Retreat</title>
+
+<!-- Tailwind -->
+<script src="https://cdn.tailwindcss.com"></script>
+
+<!-- Font Awesome -->
+<link rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" />
+
+<!-- Supabase -->
+<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+<script type="module" src="./js/main.js"></script>
+
+<style>
+  .bottom-nav{
+      position:fixed;bottom:0;left:0;width:100%;
+      background:#000;border-top:1px solid #333;z-index:50;
+  }
+  .bottom-nav a{
+      flex:1;text-align:center;padding:10px 0;color:#fff;font-size:13px;
+  }
+  .bottom-nav a i{
+      display:block;font-size:18px;margin-bottom:3px;
+  }
+
+  /* PIN LOCK */
+  #pinLock{
+      position:fixed;inset:0;background:rgba(0,0,0,0.95);
+      backdrop-filter:blur(6px);z-index:9999;
+  }
+
+  /* Toast Notification */
+  #toast{
+      position:fixed;bottom:100px;left:50%;transform:translateX(-50%);
+      background:rgba(255,20,147,0.85);padding:12px 22px;border-radius:50px;
+      color:#fff;font-weight:bold;display:none;z-index:99999;
+      animation:fadeSlideUp .5s ease-out;
+  }
+  @keyframes fadeSlideUp{
+      from{transform:translate(-50%,30px);opacity:0;}
+      to{transform:translate(-50%,0);opacity:1;}
+  }
+</style>
+</head>
+
+<body class="bg-black text-white min-h-screen pb-32">
+
+<!-- ================================================================================= -->
+<!--                                  PIN LOCK                                          -->
+<!-- ================================================================================= -->
+
+<div id="pinLock" class="flex flex-col justify-center items-center text-center p-6">
+    <h2 class="text-3xl font-bold text-pink-400 mb-6">Therapist Login</h2>
+
+    <p class="text-white/70 mb-4">Enter PIN to continue</p>
+
+    <input type="password" id="pinInput"
+           class="w-40 text-center text-xl p-3 rounded-lg bg-black/40 border border-pink-500/40 mb-4"
+           placeholder="••••" maxlength="4" />
+
+    <button id="pinBtn"
+            class="bg-pink-600 px-6 py-3 rounded-full text-lg font-bold hover:bg-pink-500">
+        Unlock
+    </button>
+
+    <p id="pinError" class="text-red-400 mt-4 hidden">Incorrect PIN</p>
+</div>
+
+<div id="toast">New Booking Assigned</div>
+
+<!-- ================================================================================= -->
+<!--                                       HEADER                                      -->
+<!-- ================================================================================= -->
+
+<header class="fixed top-0 left-0 w-full z-50 flex justify-between items-center px-5 py-4
+         bg-black/60 backdrop-blur-md border-b border-white/10">
+    <a href="index.html">
+      <img src="logo.png" class="w-28" alt="Ecstasy Retreat Logo" />
+    </a>
+    <span class="text-pink-400 font-bold">Therapist Panel</span>
+</header>
+
+<div class="pt-28"></div>
+
+<!-- ================================================================================= -->
+<!--                                 PAGE TITLE                                         -->
+<!-- ================================================================================= -->
+
+<section class="px-6 mb-6">
+  <h1 class="text-3xl font-bold text-pink-500 text-center">Your Bookings</h1>
+  <p class="text-center text-white/60">Manage appointments • Approve • Decline</p>
+</section>
+
+<!-- ================================================================================= -->
+<!--                            BOOKINGS LIST FOR THIS THERAPIST                        -->
+<!-- ================================================================================= -->
+
+<section class="px-4 space-y-4">
+  <div id="therapistBookingsContainer" class="space-y-4"></div>
+
+  <p id="noBookingsMsg" class="hidden text-center text-white/50 mt-6">
+      No bookings assigned to you.
+  </p>
+</section>
+
+<!-- ================================================================================= -->
+<!--                               FOOTER (STANDARD)                                   -->
+<!-- ================================================================================= -->
+
+<footer class="mt-16 mb-6 text-center text-gray-400 text-sm">
+  © 2025 Ecstasy Retreat • Sensual Luxury Experience
+</footer>
+
+<footer class="bg-black/70 border-t border-white/5 text-center py-6 text-white/70 mb-24">
+    <div class="flex justify-center gap-8 text-2xl mb-4">
+        <a href="https://instagram.com/EcstasyRetreatSpa" class="hover:text-pink-400"><i class="fa-brands fa-instagram"></i></a>
+        <a href="https://x.com/EcstasyRetreat" class="hover:text-pink-400"><i class="fa-brands fa-x-twitter"></i></a>
+        <a href="https://wa.me/27500204011" class="hover:text-pink-400"><i class="fa-brands fa-whatsapp"></i></a>
+        <a href="https://facebook.com/EcstasyRetreatSpa" class="hover:text-pink-400"><i class="fa-brands fa-facebook"></i></a>
+        <a href="mailto:diggdeepmakeusplash@gmail.com" class="hover:text-pink-400"><i class="fa-solid fa-envelope"></i></a>
+    </div>
+    <p class="text-xs mt-3">© 2025 Ecstasy Retreat — Elite Companionship.</p>
+</footer>
+
+<nav class="bottom-nav flex justify-between">
+    <a href="index.html"><i class="fa-solid fa-house"></i>Home</a>
+    <a href="Therapists_List.html"><i class="fa-solid fa-users"></i>Therapists</a>
+    <a href="booking.html"><i class="fa-solid fa-calendar-check"></i>Book</a>
+    <a href="contact.html"><i class="fa-solid fa-envelope"></i>Contact</a>
+    <a href="therapist_dashboard.html"><i class="fa-solid fa-user-nurse"></i>Therapist</a>
+</nav>
+
+<!-- ================================================================================= -->
+<!--                                   JS LOGIC                                         -->
+<!-- ================================================================================= -->
+
+<script type="module">
+import { supabase } from "./js/supabase.js";
+
+/* ========================= PIN LOCK ========================= */
+const therapistPIN = "1978"; // each therapist can get unique later
+
+document.getElementById("pinBtn").onclick = () => {
+    const pin = document.getElementById("pinInput").value;
+    if (pin === therapistPIN) {
+        document.getElementById("pinLock").style.display = "none";
+    } else {
+        document.getElementById("pinError").classList.remove("hidden");
+    }
+};
+
+/* ========================= SHOW TOAST ========================= */
+function showToast() {
+    const toast = document.getElementById("toast");
+    toast.style.display = "block";
+    setTimeout(() => (toast.style.display = "none"), 4000);
+}
+
+/* ========================= REAL-TIME LISTENER ========================= */
+supabase
+  .channel("therapist_booking_alerts")
+  .on(
+    "postgres_changes",
+    { event: "INSERT", schema: "public", table: "bookings" },
+    payload => {
+        showToast();
+        loadTherapistBookings();
+    }
+  )
+  .subscribe();
+
+/* ========================= LOAD BOOKINGS ========================= */
+
+async function loadTherapistBookings() {
+
+    const therapistId = localStorage.getItem("therapist_id");
+    if (!therapistId) {
+        alert("Therapist not identified.");
+        return;
+    }
+
+    const { data: bookings, error } = await supabase
+      .from("bookings")
+      .select(`
+         id,
+         booking_date,
+         booking_time,
+         duration,
+         notes,
+         status,
+         users ( full_name )
+      `)
+      .eq("therapist_id", therapistId)
+      .order("booking_date", { ascending: false });
+
+    const container = document.getElementById("therapistBookingsContainer");
+    const noMsg = document.getElementById("noBookingsMsg");
+
+    container.innerHTML = "";
+
+    if (!bookings || bookings.length === 0) {
+        noMsg.classList.remove("hidden");
+        return;
+    }
+
+    bookings.forEach(b => {
+        const card = document.createElement("div");
+        card.className =
+          "bg-white/10 p-4 rounded-xl border border-pink-500/40 shadow-lg";
+
+        card.innerHTML = `
+            <h3 class="text-xl text-pink-300 font-bold mb-2">
+                Client: ${b.users?.full_name}
+            </h3>
+
+            <p class="text-sm text-white/80"><strong>Date:</strong> ${b.booking_date}</p>
+            <p class="text-sm text-white/80"><strong>Time:</strong> ${b.booking_time}</p>
+            <p class="text-sm text-white/80"><strong>Duration:</strong> ${b.duration}</p>
+
+            ${b.notes ? `<p class="text-sm text-white/70 mt-2"><strong>Notes:</strong> ${b.notes}</p>` : ""}
+
+            <p class="text-sm text-pink-300 mt-3">
+                Status: <strong>${b.status}</strong>
+            </p>
+
+            <div class="flex gap-4 mt-4">
+              <button onclick="updateStatus('${b.id}', 'approved')"
+                class="flex-1 bg-green-600 hover:bg-green-500 p-3 rounded-lg font-bold">
+                Approve
+              </button>
+
+              <button onclick="updateStatus('${b.id}', 'declined')"
+                class="flex-1 bg-red-600 hover:bg-red-500 p-3 rounded-lg font-bold">
+                Decline
+              </button>
+            </div>
+        `;
+
+        container.appendChild(card);
+    });
+}
+
+window.updateStatus = async function (bookingId, statusVal) {
+    await supabase.from("bookings").update({ status: statusVal }).eq("id", bookingId);
+    loadTherapistBookings();
+};
+
+loadTherapistBookings();
+
+</script>
+
+</body>
+</html>
