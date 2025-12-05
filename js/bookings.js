@@ -29,3 +29,18 @@ export async function getUserBookings(user_id) {
   }
   return data;
 }
+export async function updateBookingStatus(id, status) {
+  const { data, error } = await supabase
+    .from("bookings")
+    .update({ status })
+    .eq("id", id)
+    .select()
+    .single();
+
+  if (error) {
+    console.error("Status update failed:", error);
+    return null;
+  }
+
+  return data;
+}
