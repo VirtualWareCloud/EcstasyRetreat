@@ -63,6 +63,10 @@
     box-shadow: 0 0 20px rgba(255,20,147,0.6);
     width: 100%;
 }
+.primary-btn:disabled {
+    opacity: 0.5;
+    cursor: not-allowed;
+}
 .google-btn {
     background: white;
     color: black;
@@ -150,10 +154,10 @@
 
         <!-- BASIC INFO -->
         <div class="card-glass">
-            <input type="text" id="fullName" placeholder="Full Name*" class="input-box" required>
-            <input type="tel" id="whatsapp" placeholder="WhatsApp Number (+27…)" class="input-box" required>
+            <input type="text" id="fullName" placeholder="Full Name*" class="input-box">
+            <input type="tel" id="whatsapp" placeholder="WhatsApp Number (+27…)*" class="input-box" required>
             <input type="email" id="email" placeholder="Email Address*" class="input-box" required>
-            <input type="password" id="password" placeholder="Password*" class="input-box" required>
+            <input type="password" id="password" placeholder="Password*" class="input-box">
 
             <!-- TOWN DROPDOWN -->
             <label>Town*</label>
@@ -227,7 +231,7 @@
         </div>
 
         <!-- BUTTONS -->
-        <button type="submit" class="primary-btn">Submit Application</button>
+        <button type="submit" id="submitBtn" class="primary-btn" disabled>Submit Application</button>
         <button type="button" id="googleSignup" class="google-btn">
             <img src="https://www.svgrepo.com/show/475656/google-color.svg" width="22">
             Sign up with Google
@@ -271,6 +275,24 @@ boxes.forEach(box => {
   });
 });
 
+// ====================== FORM VALIDATION ======================
+const requiredFields = ["town", "headshot", "whatsapp", "email"];
+const submitBtn = document.getElementById("submitBtn");
+
+document.querySelectorAll("#town, #headshot, #whatsapp, #email").forEach(input => {
+  input.addEventListener("input", checkFormValidity);
+  input.addEventListener("change", checkFormValidity);
+});
+
+function checkFormValidity() {
+  const isValid = requiredFields.every(id => {
+    const el = document.getElementById(id);
+    if (id === "headshot") return el.files.length > 0;
+    return el.value.trim() !== "";
+  });
+  submitBtn.disabled = !isValid;
+}
+
 // ====================== NORMAL SIGNUP ======================
 document.getElementById("joinForm").addEventListener("submit", async (e) => {
   e.preventDefault();
@@ -285,8 +307,8 @@ document.getElementById("joinForm").addEventListener("submit", async (e) => {
   const bioText = document.getElementById("bioOutput").value;
   const headshot = document.getElementById("headshot").files[0];
 
-  if (!fullName || !email || !password || !town || !headshot) {
-    alert("Please complete all required fields.");
+  if (!town || !headshot || !whatsapp || !email) {
+    alert("Please complete all required fields: Town, Headshot, WhatsApp, and Email.");
     return;
   }
 
@@ -303,8 +325,19 @@ document.getElementById("joinForm").addEventListener("submit", async (e) => {
   if (uploadError) return alert("Upload failed: " + uploadError.message);
 
   const { error: insertError } = await supabase.from("therapists").insert([
-    { auth_id: userId, display_name: fullName, whatsapp, email, town, age, languages, bio: bioText, main_photo: fileName }
+    { 
+      auth_id: userId,
+      display_name: fullName,
+      whatsapp,
+      email,
+      town,
+      age,
+      languages,
+      bio: bioText,
+      main_photo: fileName
+    }
   ]);
+
   if (insertError) return alert(insertError.message);
 
   alert("Application submitted successfully!");
