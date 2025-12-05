@@ -118,8 +118,8 @@
   </p>
 
   <div class="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-3 gap-8 md:gap-10">
-    
-    <!-- EXAMPLE CARD WITH PROTECTED VIEW BUTTON -->
+
+    <!-- Example Therapist Card -->
     <div class="card flex flex-col sm:flex-row gap-5 items-start">
       <div class="shrink-0 w-full sm:w-28 flex justify-center sm:block">
         <img src="images/lerato_image01.jpg"
@@ -143,14 +143,14 @@
           </a>
           <a href="https://wa.me/27500204011?text=Hi%20I%20want%20to%20book%20Lerato."
              target="_blank"
-             class="flex-1 text-center border-2 border-pink-500 px-5 py-3 rounded-xl text-base font-bold text-pink-400 hover:bg-pink-500/20 transition-all">
+             class="flex-1 text-center border-2 border-pink-500 px-5 py-3 rounded-xl text-base font-bold text-pink-400 hover:bg-pink-500/20 transition-all book-now-btn">
              <i class="fa-brands fa-whatsapp mr-2"></i>Book Now
           </a>
         </div>
       </div>
     </div>
 
-    <!-- You can keep other therapist cards unchanged below -->
+    <!-- Repeat for other therapists -->
   </div>
 </section>
 
@@ -195,7 +195,6 @@ document.getElementById("menuBtn").onclick = () =>
 <script type="module">
 import { getCurrentUser } from "./js/auth.js";
 
-// Popup
 function showLoginPopup() {
   const popup = document.createElement("div");
   popup.innerHTML = `
@@ -204,7 +203,7 @@ function showLoginPopup() {
       <div class="bg-[#111] border border-pink-500/40 rounded-2xl p-6 w-80 text-center shadow-xl shadow-pink-500/20 animate-fadeIn">
         <h2 class="text-2xl font-bold text-pink-400 mb-4">Login Required</h2>
         <p class="text-white/70 mb-6 text-base leading-relaxed">
-          You need to be logged in to view therapist profiles.
+          Please log in to view or book with a therapist.
         </p>
         <button id="popupLoginBtn"
                 class="w-full bg-pink-600 py-3 rounded-xl font-bold hover:bg-pink-700 transition-all">
@@ -222,8 +221,8 @@ function showLoginPopup() {
   document.getElementById("popupCloseBtn").onclick = () => document.getElementById("loginPopupOverlay").remove();
 }
 
-// Protect “View Profile” buttons
-document.querySelectorAll(".view-profile-btn").forEach(btn => {
+// Protect both View Profile and Book Now buttons
+document.querySelectorAll(".view-profile-btn, .book-now-btn").forEach(btn => {
   btn.addEventListener("click", async (e) => {
     const user = await getCurrentUser();
     if (!user) {
