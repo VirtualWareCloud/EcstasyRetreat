@@ -375,5 +375,78 @@ document.getElementById("menuBtn").onclick = () =>
     document.getElementById("mobileMenu").classList.toggle("hidden");
 </script>
 
+<script>
+// ==========================================
+// LOGIN STATE CHECK (Temporary until Supabase integration)
+// ==========================================
+function isLoggedIn() {
+    // When user logs in via Supabase, you will update this value.
+    return sessionStorage.getItem("ecstasy_user_logged_in") === "true";
+}
+
+// ==========================================
+// POPUP ALERT SYSTEM (ECSTASY RETREAT THEME)
+// ==========================================
+function showLoginPopup() {
+    const popup = document.createElement("div");
+    popup.innerHTML = `
+        <div id="loginPopupOverlay"
+             class="fixed inset-0 bg-black/70 backdrop-blur-md flex justify-center items-center z-[9999]">
+
+            <div class="bg-[#111] border border-pink-500/40 rounded-2xl p-6 w-80 text-center shadow-xl shadow-pink-500/20 animate-fadeIn">
+
+                <h2 class="text-2xl font-bold text-pink-400 mb-4">Login Required</h2>
+
+                <p class="text-white/70 mb-6 text-base leading-relaxed">
+                    You need to be logged in to view therapist profiles.
+                </p>
+
+                <button id="popupLoginBtn"
+                        class="w-full bg-pink-600 py-3 rounded-xl font-bold hover:bg-pink-700 transition-all">
+                        Login Now
+                </button>
+
+                <button id="popupCloseBtn"
+                        class="w-full mt-3 border border-pink-500 py-3 rounded-xl font-bold text-pink-400 hover:bg-pink-500/20 transition-all">
+                        Cancel
+                </button>
+            </div>
+        </div>
+    `;
+
+    document.body.appendChild(popup);
+
+    document.getElementById("popupLoginBtn").onclick = () => {
+        window.location.href = "login.html";
+    };
+    document.getElementById("popupCloseBtn").onclick = () => {
+        document.getElementById("loginPopupOverlay").remove();
+    };
+}
+
+// ==========================================
+// VIEW PROFILE PROTECTION LOGIC
+// ==========================================
+document.querySelectorAll(".view-profile-btn").forEach(btn => {
+    btn.addEventListener("click", function (e) {
+        if (!isLoggedIn()) {
+            e.preventDefault();
+            showLoginPopup();
+        }
+    });
+});
+
+// Mobile Menu toggle (existing)
+document.getElementById("menuBtn").onclick = () =>
+    document.getElementById("mobileMenu").classList.toggle("hidden");
+
+// Header fade (existing)
+setTimeout(() => {
+    const header = document.getElementById("mainHeader");
+    header.classList.add("bg-transparent", "border-transparent");
+    header.classList.remove("bg-black/50");
+}, 3000);
+</script>
+
 </body>
 </html>
