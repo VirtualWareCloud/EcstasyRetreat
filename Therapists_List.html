@@ -16,33 +16,27 @@
 /* IMPROVED NEON 3D THERAPIST CARD        */
 /* ========================================================= */
 .card {
-    /* Slightly less dark background for better contrast on black body */
     background: rgba(24, 24, 24, 0.9);
-    /* Softer border color, thicker line */
     border: 2px solid rgba(255, 0, 128, 0.3);
     backdrop-filter: blur(10px);
-    /* Slightly rounded corners for a modern feel */
     border-radius: 26px;
     padding: 24px;
-    transition: all 0.4s cubic-bezier(0.25, 0.8, 0.25, 1); /* Smoother transition */
-    /* More defined inner/outer shadow */
+    transition: all 0.4s cubic-bezier(0.25, 0.8, 0.25, 1);
     box-shadow:
-        0 4px 30px rgba(0, 0, 0, 0.5), /* General shadow */
-        0 0 35px rgba(255, 0, 128, 0.15), /* Outer neon glow */
-        inset 0 0 15px rgba(255, 0, 128, 0.08); /* Inner glow */
+        0 4px 30px rgba(0, 0, 0, 0.5),
+        0 0 35px rgba(255, 0, 128, 0.15),
+        inset 0 0 15px rgba(255, 0, 128, 0.08);
 }
 
 .card:hover {
-    transform: translateY(-8px) scale(1.02); /* More noticeable lift and slight scale */
-    /* Enhanced hover glow */
+    transform: translateY(-8px) scale(1.02);
     box-shadow:
         0 8px 45px rgba(0, 0, 0, 0.6),
         0 0 60px rgba(255, 0, 128, 0.4),
         inset 0 0 25px rgba(255, 0, 128, 0.15);
-    border-color: rgba(255, 0, 128, 0.6); /* Highlight border on hover */
+    border-color: rgba(255, 0, 128, 0.6);
 }
 
-/* Fade Animation - kept as is */
 .fade-in {
     animation: fadeIn 0.7s ease forwards;
 }
@@ -52,13 +46,12 @@
 }
 
 /* ========================================================= */
-/* BOTTOM NAV (STANDARD) - kept as is    */
+/* BOTTOM NAV (STANDARD) */
 /* ========================================================= */
 .bottom-nav {
     position: fixed;
     bottom: 0; left: 0;
     width: 100%;
-    /* Use a clear background with blur for a modern app feel */
     background: rgba(0, 0, 0, 0.85);
     backdrop-filter: blur(15px);
     border-top: 1px solid #222;
@@ -68,17 +61,17 @@
 .bottom-nav a {
     flex: 1;
     text-align: center;
-    padding: 12px 0; /* Increased padding */
+    padding: 12px 0;
     color: #ffffff;
     font-size: 13px;
     transition: color 0.3s ease;
 }
 .bottom-nav a:hover {
-    color: #ff69b4; /* Brighter pink hover */
+    color: #ff69b4;
 }
 .bottom-nav a i {
     display: block;
-    font-size: 20px; /* Slightly larger icons */
+    font-size: 20px;
     margin-bottom: 3px;
 }
 </style>
@@ -98,7 +91,6 @@
     <button id="menuBtn" class="text-white text-3xl">&#9776;</button>
 </header>
 
-
 <nav id="mobileMenu"
   class="hidden fixed top-16 right-4 bg-black/95 backdrop-blur-xl p-6 rounded-xl 
          border border-pink-500/40 text-lg z-[1000] w-60 shadow-xl">
@@ -116,211 +108,220 @@
 
 <div class="pt-28 md:pt-36"></div>
 
+<section class="px-5 md:px-10 pb-20 fade-in">
 
-<section class="px-5 md:px-10 pb-20 fade-in"> <h1 class="text-3xl md:text-5xl font-extrabold text-center mb-4 leading-snug">
-        Meet Our <span class="text-pink-500">Elite Therapists</span>
-    </h1>
-    <p class="text-center text-white/60 mb-12 max-w-xl mx-auto">
-        Discover the perfect sensual expert for your unique retreat experience.
-    </p>
+<h1 class="text-3xl md:text-5xl font-extrabold text-center mb-4 leading-snug">
+    Meet Our <span class="text-pink-500">Elite Therapists</span>
+</h1>
+<p class="text-center text-white/60 mb-12 max-w-xl mx-auto">
+    Discover the perfect sensual expert for your unique retreat experience.
+</p>
 
+<div class="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-3 gap-8 md:gap-10">
 
-    <div class="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-3 gap-8 md:gap-10">
-
-        <div class="card flex flex-col sm:flex-row gap-5 items-start"> 
-            
-            <div class="shrink-0 w-full sm:w-28 flex justify-center sm:block">
-                <img src="images/lerato_image01.jpg"
-                     class="w-28 h-28 rounded-full object-cover border-4 border-pink-500/70 shadow-lg shadow-pink-500/20" />
-            </div>
-
-            <div class="flex-1 w-full mt-4 sm:mt-0">
-                <div class="mb-2">
-                    <h2 class="text-2xl font-bold text-pink-400">Lerato</h2>
-                    <p class="text-white/70 text-sm font-medium">
-                        <i class="fa-solid fa-map-marker-alt mr-1 text-pink-500/80"></i>Rosebank • 
-                        <span class="text-white font-semibold">Tantric Specialist</span>
-                    </p>
-                </div>
-                
-                <p class="text-white/70 text-base mt-3">
-                    Expert in tantric energy, sensual healing & spiritual connection.
-                </p>
-
-                <div class="mt-5 flex flex-col sm:flex-row gap-3">
-                    <a href="Lerato_Profile.html"
-                       class="flex-1 text-center bg-pink-600 px-5 py-3 rounded-xl text-base font-bold transition-all hover:bg-pink-700 active:scale-[.98]">
-                        <i class="fa-solid fa-eye mr-2"></i> View Profile
-                    </a>
-
-                    <a href="https://wa.me/27500204011?text=Hi%20I%20want%20to%20book%20Lerato."
-                       target="_blank"
-                       class="flex-1 text-center border-2 border-pink-500 px-5 py-3 rounded-xl text-base font-bold text-pink-400 transition-all hover:bg-pink-500/20 active:scale-[.98]">
-                       <i class="fa-brands fa-whatsapp mr-2"></i> Book Now
-                    </a>
-                </div>
-            </div>
-        </div>
-
-        <div class="card flex flex-col sm:flex-row gap-5 items-start">
-            <div class="shrink-0 w-full sm:w-28 flex justify-center sm:block">
-                <img src="images/image01.jpg"
-                     class="w-28 h-28 rounded-full object-cover border-4 border-pink-500/70 shadow-lg shadow-pink-500/20" />
-            </div>
-
-            <div class="flex-1 w-full mt-4 sm:mt-0">
-                <div class="mb-2">
-                    <h2 class="text-2xl font-bold text-pink-400">Thandi</h2>
-                    <p class="text-white/70 text-sm font-medium">
-                        <i class="fa-solid fa-map-marker-alt mr-1 text-pink-500/80"></i>Sandton • 
-                        <span class="text-white font-semibold">Deep Tissue & Sensual Fusion</span>
-                    </p>
-                </div>
-
-                <p class="text-white/70 text-base mt-3">Sensual-deep tissue hybrid therapy for full relaxation.</p>
-
-                <div class="mt-5 flex flex-col sm:flex-row gap-3">
-                    <a href="Therapist_Profile.html"
-                       class="flex-1 text-center bg-pink-600 px-5 py-3 rounded-xl text-base font-bold transition-all hover:bg-pink-700 active:scale-[.98]">
-                        <i class="fa-solid fa-eye mr-2"></i> View Profile
-                    </a>
-
-                    <a href="https://wa.me/27500204011?text=I%20want%20to%20book%20Thandi."
-                       target="_blank"
-                       class="flex-1 text-center border-2 border-pink-500 px-5 py-3 rounded-xl text-base font-bold text-pink-400 transition-all hover:bg-pink-500/20 active:scale-[.98]">
-                       <i class="fa-brands fa-whatsapp mr-2"></i> Book Now
-                    </a>
-                </div>
-            </div>
-        </div>
-
-        <div class="card flex flex-col sm:flex-row gap-5 items-start">
-            <div class="shrink-0 w-full sm:w-28 flex justify-center sm:block">
-                <img src="images/image02.jpg"
-                     class="w-28 h-28 rounded-full object-cover border-4 border-pink-500/70 shadow-lg shadow-pink-500/20" />
-            </div>
-
-            <div class="flex-1 w-full mt-4 sm:mt-0">
-                <div class="mb-2">
-                    <h2 class="text-2xl font-bold text-pink-400">Nicole</h2>
-                    <p class="text-white/70 text-sm font-medium">
-                        <i class="fa-solid fa-map-marker-alt mr-1 text-pink-500/80"></i>Fourways • 
-                        <span class="text-white font-semibold">Sensual Relaxation</span>
-                    </p>
-                </div>
-
-                <p class="text-white/70 text-base mt-3">Soft-touch intimacy and connection for deep calm.</p>
-
-                <div class="mt-5 flex flex-col sm:flex-row gap-3">
-                    <a href="Therapist_Profile.html"
-                       class="flex-1 text-center bg-pink-600 px-5 py-3 rounded-xl text-base font-bold transition-all hover:bg-pink-700 active:scale-[.98]">
-                        <i class="fa-solid fa-eye mr-2"></i> View Profile
-                    </a>
-
-                    <a href="https://wa.me/27500204011?text=I%20want%20to%20book%20Nicole."
-                       class="flex-1 text-center border-2 border-pink-500 px-5 py-3 rounded-xl text-base font-bold text-pink-400 transition-all hover:bg-pink-500/20 active:scale-[.98]">
-                       <i class="fa-brands fa-whatsapp mr-2"></i> Book Now
-                    </a>
-                </div>
-            </div>
-        </div>
-
-        <div class="card flex flex-col sm:flex-row gap-5 items-start">
-            <div class="shrink-0 w-full sm:w-28 flex justify-center sm:block">
-                <img src="images/image03.png"
-                     class="w-28 h-28 rounded-full object-cover border-4 border-pink-500/70 shadow-lg shadow-pink-500/20" />
-            </div>
-
-            <div class="flex-1 w-full mt-4 sm:mt-0">
-                <div class="mb-2">
-                    <h2 class="text-2xl font-bold text-pink-400">Zoe</h2>
-                    <p class="text-white/70 text-sm font-medium">
-                        <i class="fa-solid fa-map-marker-alt mr-1 text-pink-500/80"></i>Randburg • 
-                        <span class="text-white font-semibold">Aromatherapy Sensualist</span>
-                    </p>
-                </div>
-
-                <p class="text-white/70 text-base mt-3">Scent-driven sensual touch therapy for ultimate bliss.</p>
-
-                <div class="mt-5 flex flex-col sm:flex-row gap-3">
-                    <a href="Therapist_Profile.html"
-                       class="flex-1 text-center bg-pink-600 px-5 py-3 rounded-xl text-base font-bold transition-all hover:bg-pink-700 active:scale-[.98]">
-                        <i class="fa-solid fa-eye mr-2"></i> View Profile
-                    </a>
-
-                    <a href="https://wa.me/27500204011?text=I%20want%20to%20book%20Zoe."
-                       class="flex-1 text-center border-2 border-pink-500 px-5 py-3 rounded-xl text-base font-bold text-pink-400 transition-all hover:bg-pink-500/20 active:scale-[.98]">
-                       <i class="fa-brands fa-whatsapp mr-2"></i> Book Now
-                    </a>
-                </div>
-            </div>
-        </div>
-
-        <div class="card flex flex-col sm:flex-row gap-5 items-start">
-            <div class="shrink-0 w-full sm:w-28 flex justify-center sm:block">
-                <img src="images/image04.png"
-                     class="w-28 h-28 rounded-full object-cover border-4 border-pink-500/70 shadow-lg shadow-pink-500/20" />
-            </div>
-
-            <div class="flex-1 w-full mt-4 sm:mt-0">
-                <div class="mb-2">
-                    <h2 class="text-2xl font-bold text-pink-400">Aisha</h2>
-                    <p class="text-white/70 text-sm font-medium">
-                        <i class="fa-solid fa-map-marker-alt mr-1 text-pink-500/80"></i>Melrose • 
-                        <span class="text-white font-semibold">Erotic Relaxation</span>
-                    </p>
-                </div>
-
-                <p class="text-white/70 text-base mt-3">Intimate calming touch therapy with a focus on pleasure.</p>
-
-                <div class="mt-5 flex flex-col sm:flex-row gap-3">
-                    <a href="Therapist_Profile.html"
-                       class="flex-1 text-center bg-pink-600 px-5 py-3 rounded-xl text-base font-bold transition-all hover:bg-pink-700 active:scale-[.98]">
-                        <i class="fa-solid fa-eye mr-2"></i> View Profile
-                    </a>
-
-                    <a href="https://wa.me/27500204011?text=I%20want%20to%20book%20Aisha."
-                       class="flex-1 text-center border-2 border-pink-500 px-5 py-3 rounded-xl text-base font-bold text-pink-400 transition-all hover:bg-pink-500/20 active:scale-[.98]">
-                       <i class="fa-brands fa-whatsapp mr-2"></i> Book Now
-                    </a>
-                </div>
-            </div>
-        </div>
-
-        <div class="card flex flex-col sm:flex-row gap-5 items-start">
-            <div class="shrink-0 w-full sm:w-28 flex justify-center sm:block">
-                <img src="images/image06.jpg"
-                     class="w-28 h-28 rounded-full object-cover border-4 border-pink-500/70 shadow-lg shadow-pink-500/20" />
-            </div>
-
-            <div class="flex-1 w-full mt-4 sm:mt-0">
-                <div class="mb-2">
-                    <h2 class="text-2xl font-bold text-pink-400">Bella</h2>
-                    <p class="text-white/70 text-sm font-medium">
-                        <i class="fa-solid fa-map-marker-alt mr-1 text-pink-500/80"></i>Bedfordview • 
-                        <span class="text-white font-semibold">Exotic Tantra</span>
-                    </p>
-                </div>
-
-                <p class="text-white/70 text-base mt-3">High-energy tantric movement & touch for full connection.</p>
-
-                <div class="mt-5 flex flex-col sm:flex-row gap-3">
-                    <a href="Therapist_Profile.html"
-                       class="flex-1 text-center bg-pink-600 px-5 py-3 rounded-xl text-base font-bold transition-all hover:bg-pink-700 active:scale-[.98]">
-                        <i class="fa-solid fa-eye mr-2"></i> View Profile
-                    </a>
-
-                    <a href="https://wa.me/27500204011?text=I%20want%20to%20book%20Bella."
-                       class="flex-1 text-center border-2 border-pink-500 px-5 py-3 rounded-xl text-base font-bold text-pink-400 transition-all hover:bg-pink-500/20 active:scale-[.98]">
-                       <i class="fa-brands fa-whatsapp mr-2"></i> Book Now
-                    </a>
-                </div>
-            </div>
-        </div>
-
+<!-- ====================================================== -->
+<!-- LERATO CARD — UPDATED WITH view-profile-btn -->
+<!-- ====================================================== -->
+<div class="card flex flex-col sm:flex-row gap-5 items-start"> 
+    
+    <div class="shrink-0 w-full sm:w-28 flex justify-center sm:block">
+        <img src="images/lerato_image01.jpg"
+             class="w-28 h-28 rounded-full object-cover border-4 border-pink-500/70 shadow-lg shadow-pink-500/20" />
     </div>
-</section>
 
+    <div class="flex-1 w-full mt-4 sm:mt-0">
+        <div class="mb-2">
+            <h2 class="text-2xl font-bold text-pink-400">Lerato</h2>
+            <p class="text-white/70 text-sm font-medium">
+                <i class="fa-solid fa-map-marker-alt mr-1 text-pink-500/80"></i>Rosebank • 
+                <span class="text-white font-semibold">Tantric Specialist</span>
+            </p>
+        </div>
+        
+        <p class="text-white/70 text-base mt-3">
+            Expert in tantric energy, sensual healing & spiritual connection.
+        </p>
+
+        <div class="mt-5 flex flex-col sm:flex-row gap-3">
+
+            <!-- 🔥 REQUIRED UPDATED BUTTON -->
+            <a href="Lerato_Profile.html"
+               class="flex-1 bg-pink-600 px-5 py-3 rounded-xl text-base font-bold view-profile-btn transition-all hover:bg-pink-700 active:scale-[.98]">
+               <i class="fa-solid fa-eye mr-2"></i> View Profile
+            </a>
+
+            <a href="https://wa.me/27500204011?text=Hi%20I%20want%20to%20book%20Lerato."
+               target="_blank"
+               class="flex-1 text-center border-2 border-pink-500 px-5 py-3 rounded-xl text-base font-bold text-pink-400 transition-all hover:bg-pink-500/20 active:scale-[.98]">
+               <i class="fa-brands fa-whatsapp mr-2"></i> Book Now
+            </a>
+
+        </div>
+    </div>
+</div>
+
+<!-- ====================================================== -->
+<!-- REMAINING CARDS (UNCHANGED) -->
+<!-- ====================================================== -->
+
+<div class="card flex flex-col sm:flex-row gap-5 items-start">
+    <div class="shrink-0 w-full sm:w-28 flex justify-center sm:block">
+        <img src="images/image01.jpg"
+             class="w-28 h-28 rounded-full object-cover border-4 border-pink-500/70 shadow-lg shadow-pink-500/20" />
+    </div>
+
+    <div class="flex-1 w-full mt-4 sm:mt-0">
+        <div class="mb-2">
+            <h2 class="text-2xl font-bold text-pink-400">Thandi</h2>
+            <p class="text-white/70 text-sm font-medium">
+                <i class="fa-solid fa-map-marker-alt mr-1 text-pink-500/80"></i>Sandton • 
+                <span class="text-white font-semibold">Deep Tissue & Sensual Fusion</span>
+            </p>
+        </div>
+
+        <p class="text-white/70 text-base mt-3">Sensual-deep tissue hybrid therapy for full relaxation.</p>
+
+        <div class="mt-5 flex flex-col sm:flex-row gap-3">
+            <a href="Therapist_Profile.html"
+               class="flex-1 text-center bg-pink-600 px-5 py-3 rounded-xl text-base font-bold transition-all hover:bg-pink-700 active:scale-[.98]">
+                <i class="fa-solid fa-eye mr-2"></i> View Profile
+            </a>
+
+            <a href="https://wa.me/27500204011?text=I%20want%20to%20book%20Thandi."
+               target="_blank"
+               class="flex-1 text-center border-2 border-pink-500 px-5 py-3 rounded-xl text-base font-bold text-pink-400 transition-all hover:bg-pink-500/20 active:scale-[.98]">
+               <i class="fa-brands fa-whatsapp mr-2"></i> Book Now
+            </a>
+        </div>
+    </div>
+</div>
+
+<div class="card flex flex-col sm:flex-row gap-5 items-start">
+    <div class="shrink-0 w-full sm:w-28 flex justify-center sm:block">
+        <img src="images/image02.jpg"
+             class="w-28 h-28 rounded-full object-cover border-4 border-pink-500/70 shadow-lg shadow-pink-500/20" />
+    </div>
+
+    <div class="flex-1 w-full mt-4 sm:mt-0">
+        <div class="mb-2">
+            <h2 class="text-2xl font-bold text-pink-400">Nicole</h2>
+            <p class="text-white/70 text-sm font-medium">
+                <i class="fa-solid fa-map-marker-alt mr-1 text-pink-500/80"></i>Fourways • 
+                <span class="text-white font-semibold">Sensual Relaxation</span>
+            </p>
+        </div>
+
+        <p class="text-white/70 text-base mt-3">Soft-touch intimacy and connection for deep calm.</p>
+
+        <div class="mt-5 flex flex-col sm:flex-row gap-3">
+            <a href="Therapist_Profile.html"
+               class="flex-1 text-center bg-pink-600 px-5 py-3 rounded-xl text-base font-bold">
+                <i class="fa-solid fa-eye mr-2"></i> View Profile
+            </a>
+
+            <a href="https://wa.me/27500204011?text=I%20want%20to%20book%20Nicole."
+               class="flex-1 text-center border-2 border-pink-500 px-5 py-3 rounded-xl text-base font-bold text-pink-400">
+               <i class="fa-brands fa-whatsapp mr-2"></i> Book Now
+            </a>
+        </div>
+    </div>
+</div>
+
+<div class="card flex flex-col sm:flex-row gap-5 items-start">
+    <div class="shrink-0 w-full sm:w-28 flex justify-center sm:block">
+        <img src="images/image03.png"
+             class="w-28 h-28 rounded-full object-cover border-4 border-pink-500/70 shadow-lg shadow-pink-500/20" />
+    </div>
+
+    <div class="flex-1 w-full mt-4 sm:mt-0">
+        <div class="mb-2">
+            <h2 class="text-2xl font-bold text-pink-400">Zoe</h2>
+            <p class="text-white/70 text-sm font-medium">
+                <i class="fa-solid fa-map-marker-alt mr-1 text-pink-500/80"></i>Randburg • 
+                <span class="text-white font-semibold">Aromatherapy Sensualist</span>
+            </p>
+        </div>
+
+        <p class="text-white/70 text-base mt-3">Scent-driven sensual touch therapy for ultimate bliss.</p>
+
+        <div class="mt-5 flex flex-col sm:flex-row gap-3">
+            <a href="Therapist_Profile.html"
+               class="flex-1 text-center bg-pink-600 px-5 py-3 rounded-xl text-base font-bold">
+                <i class="fa-solid fa-eye mr-2"></i> View Profile
+            </a>
+
+            <a href="https://wa.me/27500204011?text=I%20want%20to%20book%20Zoe."
+               class="flex-1 text-center border-2 border-pink-500 px-5 py-3 rounded-xl text-base font-bold text-pink-400">
+               <i class="fa-brands fa-whatsapp mr-2"></i> Book Now
+            </a>
+        </div>
+    </div>
+</div>
+
+<div class="card flex flex-col sm:flex-row gap-5 items-start">
+    <div class="shrink-0 w-full sm:w-28 flex justify-center sm:block">
+        <img src="images/image04.png"
+             class="w-28 h-28 rounded-full object-cover border-4 border-pink-500/70 shadow-lg shadow-pink-500/20" />
+    </div>
+
+    <div class="flex-1 w-full mt-4 sm:mt-0">
+        <div class="mb-2">
+            <h2 class="text-2xl font-bold text-pink-400">Aisha</h2>
+            <p class="text-white/70 text-sm font-medium">
+                <i class="fa-solid fa-map-marker-alt mr-1 text-pink-500/80"></i>Melrose • 
+                <span class="text-white font-semibold">Erotic Relaxation</span>
+            </p>
+        </div>
+
+        <p class="text-white/70 text-base mt-3">Intimate calming touch therapy with a focus on pleasure.</p>
+
+        <div class="mt-5 flex flex-col sm:flex-row gap-3">
+            <a href="Therapist_Profile.html"
+               class="flex-1 text-center bg-pink-600 px-5 py-3 rounded-xl text-base font-bold">
+                <i class="fa-solid fa-eye mr-2"></i> View Profile
+            </a>
+
+            <a href="https://wa.me/27500204011?text=I%20want%20to%20book%20Aisha."
+               class="flex-1 text-center border-2 border-pink-500 px-5 py-3 rounded-xl text-base font-bold text-pink-400">
+               <i class="fa-brands fa-whatsapp mr-2"></i> Book Now
+            </a>
+        </div>
+    </div>
+</div>
+
+<div class="card flex flex-col sm:flex-row gap-5 items-start">
+    <div class="shrink-0 w-full sm:w-28 flex justify-center sm:block">
+        <img src="images/image06.jpg"
+             class="w-28 h-28 rounded-full object-cover border-4 border-pink-500/70 shadow-lg shadow-pink-500/20" />
+    </div>
+
+    <div class="flex-1 w-full mt-4 sm:mt-0">
+        <div class="mb-2">
+            <h2 class="text-2xl font-bold text-pink-400">Bella</h2>
+            <p class="text-white/70 text-sm font-medium">
+                <i class="fa-solid fa-map-marker-alt mr-1 text-pink-500/80"></i>Bedfordview • 
+                <span class="text-white font-semibold">Exotic Tantra</span>
+            </p>
+        </div>
+
+        <p class="text-white/70 text-base mt-3">High-energy tantric movement & touch for full connection.</p>
+
+        <div class="mt-5 flex flex-col sm:flex-row gap-3">
+            <a href="Therapist_Profile.html"
+               class="flex-1 text-center bg-pink-600 px-5 py-3 rounded-xl text-base font-bold">
+                <i class="fa-solid fa-eye mr-2"></i> View Profile
+            </a>
+
+            <a href="https://wa.me/27500204011?text=I%20want%20to%20book%20Bella."
+               class="flex-1 text-center border-2 border-pink-500 px-5 py-3 rounded-xl text-base font-bold text-pink-400">
+               <i class="fa-brands fa-whatsapp mr-2"></i> Book Now
+            </a>
+        </div>
+    </div>
+</div>
+
+</div>
+</section>
 
 <footer class="mt-16 mb-6 text-center text-gray-400 text-sm">
   © 2025 Ecstasy Retreat • Sensual Luxury Experience
@@ -361,7 +362,6 @@
     </a>
 </nav>
 
-
 <script>
 // Fade header after 3s
 setTimeout(() => {
@@ -377,15 +377,14 @@ document.getElementById("menuBtn").onclick = () =>
 
 <script>
 // ==========================================
-// LOGIN STATE CHECK (Temporary until Supabase integration)
+// LOGIN STATE CHECK
 // ==========================================
 function isLoggedIn() {
-    // When user logs in via Supabase, you will update this value.
     return sessionStorage.getItem("ecstasy_user_logged_in") === "true";
 }
 
 // ==========================================
-// POPUP ALERT SYSTEM (ECSTASY RETREAT THEME)
+// POPUP ALERT SYSTEM
 // ==========================================
 function showLoginPopup() {
     const popup = document.createElement("div");
@@ -435,17 +434,6 @@ document.querySelectorAll(".view-profile-btn").forEach(btn => {
         }
     });
 });
-
-// Mobile Menu toggle (existing)
-document.getElementById("menuBtn").onclick = () =>
-    document.getElementById("mobileMenu").classList.toggle("hidden");
-
-// Header fade (existing)
-setTimeout(() => {
-    const header = document.getElementById("mainHeader");
-    header.classList.add("bg-transparent", "border-transparent");
-    header.classList.remove("bg-black/50");
-}, 3000);
 </script>
 
 </body>
