@@ -8,14 +8,41 @@
 <!-- Tailwind (CDN) -->
 <script src="https://cdn.tailwindcss.com"></script>
 
+<!-- Font Awesome (Required for footers + nav icons) -->
+<link rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" />
+
 <style>
   .fade-image {
     transition: opacity 1.5s ease-in-out;
   }
+
+  /* Bottom navigation (standard footer #3) */
+  .bottom-nav {
+      position: fixed;
+      bottom: 0;
+      left: 0;
+      width: 100%;
+      background: #000;
+      border-top: 1px solid #333;
+      z-index: 50;
+  }
+  .bottom-nav a {
+      flex: 1;
+      text-align: center;
+      padding: 10px 0;
+      color: #ffffff;
+      font-size: 13px;
+  }
+  .bottom-nav a i {
+      display: block;
+      font-size: 18px;
+      margin-bottom: 3px;
+  }
 </style>
 </head>
 
-<body class="bg-black text-white overflow-x-hidden">
+<body class="bg-black text-white overflow-x-hidden pb-24">
 
 <!-- ================================================================================= -->
 <!--                                     HEADER                                        -->
@@ -34,16 +61,22 @@
   </button>
 </header>
 
-<!-- ================= MOBILE MENU ================= -->
+<!-- ================================================================================= -->
+<!--                              UPDATED MOBILE MENU                                  -->
+<!-- ================================================================================= -->
 
 <nav id="mobileMenu"
   class="hidden fixed top-16 right-4 bg-black/95 backdrop-blur-xl p-6 rounded-xl 
          border border-pink-500/40 text-lg z-[1000] w-60 shadow-xl">
+  
   <a href="index.html" class="block py-2 hover:text-pink-400 menu-link">Home</a>
   <a href="Therapists_List.html" class="block py-2 hover:text-pink-400 menu-link">View Therapists</a>
-  <a href="Join_Therapist.html" class="block py-2 hover:text-pink-400 menu-link">Join as Therapist</a>
-  <a href="Book_Therapist.html" class="block py-2 hover:text-pink-400 menu-link">Book Therapist</a>
-  <a href="Contact_Us.html" class="block py-2 hover:text-pink-400 menu-link">Contact Us</a>
+  <a href="login.html" class="block py-2 hover:text-pink-400 menu-link">Login / Signup</a>
+  <a href="image_gallery.html" class="block py-2 hover:text-pink-400 menu-link">Image Gallery</a>
+  <a href="video_gallery.html" class="block py-2 hover:text-pink-400 menu-link">Video Gallery</a>
+  <a href="join.html" class="block py-2 hover:text-pink-400 menu-link">Join as Therapist</a>
+  <a href="booking.html" class="block py-2 hover:text-pink-400 menu-link">Book Session</a>
+  <a href="contact.html" class="block py-2 hover:text-pink-400 menu-link">Contact Us</a>
 </nav>
 
 <div class="pt-40"></div>
@@ -90,35 +123,92 @@
 </div>
 
 <!-- ================================================================================= -->
-<!--                                      FOOTER                                        -->
+<!--                             STANDARD FOOTER SET                                    -->
 <!-- ================================================================================= -->
 
-<footer class="text-center py-6 text-white/70 z-40 relative">
-
-  <div class="flex justify-center gap-6 text-2xl mb-3">
-    <a href="https://facebook.com" target="_blank">📘</a>
-    <a href="https://instagram.com" target="_blank">📸</a>
-    <a href="https://twitter.com" target="_blank">🐦</a>
-    <a href="mailto:info@example.com">✉️</a>
-    <a href="https://wa.me/27829627848" target="_blank">📞</a>
-  </div>
-
-  <p class="text-xs">© 2025 Ecstasy Retreat — All rights reserved.</p>
+<!-- 1️⃣ ORIGINAL FOOTER -->
+<footer class="mt-16 mb-6 text-center text-gray-400 text-sm">
+    © 2025 Ecstasy Retreat • Sensual Luxury Experience
 </footer>
+
+<!-- 2️⃣ EXTENDED SOCIAL FOOTER -->
+<footer class="bg-black/70 border-t border-white/5 text-center py-6 text-white/70 mb-24">
+
+    <div class="flex justify-center gap-8 text-2xl mb-4">
+
+        <a href="https://instagram.com/EcstasyRetreatSpa" target="_blank"
+           class="hover:text-pink-400 transition">
+           <i class="fa-brands fa-instagram"></i>
+        </a>
+
+        <a href="https://x.com/EcstasyRetreat" target="_blank"
+           class="hover:text-pink-400 transition">
+           <i class="fa-brands fa-x-twitter"></i>
+        </a>
+
+        <a href="https://wa.me/27500204011?text=Hi%20I%20am%20interested%20in%20your%20therapists."
+           target="_blank"
+           class="hover:text-pink-400 transition">
+           <i class="fa-brands fa-whatsapp"></i>
+        </a>
+
+        <a href="https://facebook.com/EcstasyRetreatSpa" target="_blank"
+           class="hover:text-pink-400 transition">
+           <i class="fa-brands fa-facebook"></i>
+        </a>
+
+        <a href="mailto:diggdeepmakeusplash@gmail.com"
+           class="hover:text-pink-400 transition">
+           <i class="fa-solid fa-envelope"></i>
+        </a>
+
+    </div>
+
+    <div class="space-y-1 text-sm">
+        <a href="#" class="hover:text-pink-400 transition block">Privacy Policy</a>
+        <a href="#" class="hover:text-pink-400 transition block">Terms of Service</a>
+    </div>
+
+    <p class="text-xs mt-3">© 2025 Ecstasy Retreat — Elite Companionship.</p>
+</footer>
+
+<!-- 3️⃣ NAVIGATION FOOTER (UPDATED WITH PROFILE ICON) -->
+<nav class="bottom-nav flex justify-between">
+    <a href="index.html">
+        <i class="fa-solid fa-house"></i>
+        Home
+    </a>
+    <a href="Therapists_List.html">
+        <i class="fa-solid fa-users"></i>
+        Therapists
+    </a>
+    <a href="booking.html">
+        <i class="fa-solid fa-calendar-check"></i>
+        Book
+    </a>
+    <a href="contact.html">
+        <i class="fa-solid fa-envelope"></i>
+        Contact
+    </a>
+    <a href="login.html">
+        <i class="fa-solid fa-user"></i>
+        Profile
+    </a>
+</nav>
 
 <!-- ================================================================================= -->
 <!--                                      SCRIPTS                                        -->
 <!-- ================================================================================= -->
 
 <script>
-  /* ================= HEADER FADE AFTER 3 SEC ================= */
+  /* HEADER FADE */
   const header = document.getElementById("mainHeader");
   setTimeout(() => {
     header.classList.remove("bg-black/50", "backdrop-blur-md", "border-white/10");
     header.classList.add("bg-transparent", "backdrop-blur-0", "border-transparent");
   }, 3000);
 
-  /* ================== MENU TOGGLE ================== */
+  /* MENU */
   const menuBtn = document.getElementById("menuBtn");
   const mobileMenu = document.getElementById("mobileMenu");
   const menuLinks = document.querySelectorAll(".menu-link");
@@ -131,7 +221,7 @@
     link.onclick = () => mobileMenu.classList.add("hidden");
   });
 
-  /* ================== BACKGROUND SLIDER ================== */
+  /* BACKGROUND SLIDER */
   const slides = document.querySelectorAll("#slider img");
   let current = 0;
 
