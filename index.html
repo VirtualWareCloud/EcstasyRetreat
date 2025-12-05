@@ -13,22 +13,20 @@
       href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" />
 
 <style>
-  /* ==================== IMPROVED STYLING ==================== */
-  .fade-image {
-    transition: opacity 2s ease-in-out; /* Slower fade for smoother transition */
+  .fade-image { transition: opacity 2s ease-in-out; }
+
+  #mainHeader {
+      transition: background-color 1.5s ease-in-out,
+                  backdrop-filter 1.5s ease-in-out,
+                  border-color 1.5s ease-in-out;
   }
 
-  /* Header Fade/Blend Animation */
-  #mainHeader {
-      transition: background-color 1.5s ease-in-out, backdrop-filter 1.5s ease-in-out, border-color 1.5s ease-in-out;
-  }
   #mainHeader.transparent-bg {
       background-color: transparent !important;
       backdrop-filter: blur(0px) !important;
       border-color: transparent !important;
   }
 
-  /* Bottom navigation (standard footer #3) - Improved */
   .bottom-nav {
       position: fixed;
       bottom: 0;
@@ -48,34 +46,24 @@
       font-size: 13px;
       transition: color 0.3s ease;
   }
-  .bottom-nav a:hover {
-      color: #ff69b4;
-  }
-  .bottom-nav a i {
-      display: block;
-      font-size: 20px;
-      margin-bottom: 3px;
-  }
+  .bottom-nav a:hover { color: #ff69b4; }
+  .bottom-nav a i { display: block; font-size: 20px; margin-bottom: 3px; }
 
-  /* Featured therapists cards - Improved */
   .card-glass {
       background: rgba(24, 24, 24, 0.9);
       border: 2px solid rgba(255, 0, 128, 0.3);
       backdrop-filter: blur(10px);
       border-radius: 26px;
-      box-shadow:
-        0 4px 30px rgba(0, 0, 0, 0.5),
-        0 0 40px rgba(255, 0, 128, 0.15);
+      box-shadow: 0 4px 30px rgba(0, 0, 0, 0.5),
+                  0 0 40px rgba(255, 0, 128, 0.15);
       transition: all 0.4s cubic-bezier(0.25, 0.8, 0.25, 1);
   }
   .card-glass:hover {
       transform: translateY(-6px);
-      box-shadow:
-        0 8px 45px rgba(0, 0, 0, 0.6),
-        0 0 60px rgba(255, 0, 128, 0.35);
+      box-shadow: 0 8px 45px rgba(0, 0, 0, 0.6),
+                  0 0 60px rgba(255, 0, 128, 0.35);
   }
 
-  /* Home toast for booking updates - Improved */
   #homeToast {
     position: fixed;
     bottom: 90px;
@@ -98,10 +86,12 @@
 
 <body class="bg-black text-white overflow-x-hidden pb-24">
 
-<!-- UPDATED HEADER (logo + menu positioned higher + resized) -->
+<!-- 🔥 NEW GLASSY / GLOSSY / TRANSPARENT HEADER -->
 <header id="mainHeader"
-  class="fixed top-0 left-0 w-full z-[999] flex justify-between items-center px-4 py-3
-         bg-black/50 backdrop-blur-md border-b border-white/10">
+  class="fixed top-0 left-0 w-full z-[999] px-4 py-3
+         flex justify-between items-center
+         bg-white/10 backdrop-blur-2xl border-b border-white/10
+         shadow-[0_8px_32px_0_rgba(255,255,255,0.1)]">
 
   <a href="index.html" class="flex items-center">
     <img src="logo.png" class="w-28 md:w-32 mt-[-6px]" alt="Ecstasy Retreat Logo">
@@ -126,10 +116,9 @@
   <a href="contact.html" class="block py-2 hover:text-pink-400 menu-link">Contact Us</a>
 </nav>
 
-<!-- UPDATED SPACING BELOW HEADER -->
 <div class="pt-[85px]"></div>
 
-<!-- CLEAN SLIDER -->
+<!-- SLIDER -->
 <div id="slider" class="relative w-full h-[60vh] min-h-[450px] overflow-hidden">
 
   <img src="images/image01.jpg" class="absolute inset-0 w-full h-full object-cover brightness-[.6] fade-image opacity-100" />
@@ -149,6 +138,7 @@
         Where Sensual Healing Meets Luxury
     </p>
 </div>
+
 
 <div class="relative z-40 flex flex-col gap-4 w-11/12 max-w-sm mx-auto -mt-24">
 
@@ -184,8 +174,7 @@
     Meet some of our most highly-rated, professional, and sought-after sensual therapists in the region.
   </p>
 
-  <div id="therapistPreview" class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 md:gap-8">
-  </div>
+  <div id="therapistPreview" class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 md:gap-8"></div>
 </section>
 
 <div id="homeToast">Your booking has been updated.</div>
@@ -197,33 +186,21 @@
 <footer class="bg-black/70 border-t border-white/5 text-center py-6 text-white/70 mb-24">
 
     <div class="flex justify-center gap-8 text-2xl mb-4">
-
-        <a href="https://instagram.com/EcstasyRetreatSpa" target="_blank"
-           class="hover:text-pink-400 transition">
+        <a href="https://instagram.com/EcstasyRetreatSpa" target="_blank" class="hover:text-pink-400 transition">
            <i class="fa-brands fa-instagram"></i>
         </a>
-
-        <a href="https://x.com/EcstasyRetreat" target="_blank"
-           class="hover:text-pink-400 transition">
+        <a href="https://x.com/EcstasyRetreat" target="_blank" class="hover:text-pink-400 transition">
            <i class="fa-brands fa-x-twitter"></i>
         </a>
-
-        <a href="https://wa.me/27500204011?text=Hi%20I%20am%20interested%20in%20your%20therapists."
-           target="_blank"
-           class="hover:text-pink-400 transition">
+        <a href="https://wa.me/27500204011?text=Hi%20I%20am%20interested%20in%20your%20therapists." target="_blank" class="hover:text-pink-400 transition">
            <i class="fa-brands fa-whatsapp"></i>
         </a>
-
-        <a href="https://facebook.com/EcstasyRetreatSpa" target="_blank"
-           class="hover:text-pink-400 transition">
+        <a href="https://facebook.com/EcstasyRetreatSpa" target="_blank" class="hover:text-pink-400 transition">
            <i class="fa-brands fa-facebook"></i>
         </a>
-
-        <a href="mailto:diggdeepmakeusplash@gmail.com"
-           class="hover:text-pink-400 transition">
+        <a href="mailto:diggdeepmakeusplash@gmail.com" class="hover:text-pink-400 transition">
            <i class="fa-solid fa-envelope"></i>
         </a>
-
     </div>
 
     <div class="space-y-1 text-sm">
@@ -235,50 +212,26 @@
 </footer>
 
 <nav class="bottom-nav flex justify-between">
-    <a href="index.html" class="text-pink-400">
-        <i class="fa-solid fa-house"></i>
-        Home
-    </a>
-    <a href="Therapists_List.html">
-        <i class="fa-solid fa-users"></i>
-        Therapists
-    </a>
-    <a href="booking.html">
-        <i class="fa-solid fa-calendar-check"></i>
-        Book
-    </a>
-    <a href="contact.html">
-        <i class="fa-solid fa-envelope"></i>
-        Contact
-    </a>
-    <a href="login.html" class="nav-profile-link">
-        <i class="fa-solid fa-user"></i>
-        Profile
-    </a>
+    <a href="index.html" class="text-pink-400"><i class="fa-solid fa-house"></i> Home</a>
+    <a href="Therapists_List.html"><i class="fa-solid fa-users"></i> Therapists</a>
+    <a href="booking.html"><i class="fa-solid fa-calendar-check"></i> Book</a>
+    <a href="contact.html"><i class="fa-solid fa-envelope"></i> Contact</a>
+    <a href="login.html" class="nav-profile-link"><i class="fa-solid fa-user"></i> Profile</a>
 </nav>
 
 <script>
-  /* HEADER FADE */
   const header = document.getElementById("mainHeader");
   setTimeout(() => {
     header.classList.add("transparent-bg");
-    header.classList.remove("bg-black/50", "backdrop-blur-md", "border-white/10");
   }, 3000);
 
-  /* MENU */
   const menuBtn = document.getElementById("menuBtn");
   const mobileMenu = document.getElementById("mobileMenu");
   const menuLinks = document.querySelectorAll(".menu-link");
 
-  menuBtn.onclick = () => {
-    mobileMenu.classList.toggle("hidden");
-  };
+  menuBtn.onclick = () => mobileMenu.classList.toggle("hidden");
+  menuLinks.forEach(link => link.onclick = () => mobileMenu.classList.add("hidden"));
 
-  menuLinks.forEach(link => {
-    link.onclick = () => mobileMenu.classList.add("hidden");
-  });
-
-  /* BACKGROUND SLIDER */
   const slides = document.querySelectorAll("#slider img");
   let current = 0;
 
@@ -297,39 +250,22 @@ async function getCurrentUser() {
     const { data, error } = await supabase.auth.getUser();
     if (error || !data?.user) return null;
     return data.user;
-  } catch (e) {
-    console.error("getCurrentUser error", e);
-    return null;
-  }
+  } catch { return null; }
 }
 
-function getStoredRole() {
-  return localStorage.getItem("ecstasy_role");
-}
-
-function storeRole(role) {
-  if (role) {
-    localStorage.setItem("ecstasy_role", role);
-  }
-}
+function getStoredRole() { return localStorage.getItem("ecstasy_role"); }
+function storeRole(role) { if (role) localStorage.setItem("ecstasy_role", role); }
 
 async function handleRoleRedirectOnLoad() {
   const user = await getCurrentUser();
   if (!user) return;
 
   let role = user.user_metadata?.role || getStoredRole();
-
-  if (!role && user.email === "diggdeepmakeusplash@gmail.com") {
-    role = "admin";
-  }
-
+  if (!role && user.email === "diggdeepmakeusplash@gmail.com") role = "admin";
   if (role) storeRole(role);
 
-  if (role === "admin") {
-    window.location.href = "admin_dashboard.html";
-  } else if (role === "therapist") {
-    window.location.href = "therapist_dashboard.html";
-  }
+  if (role === "admin") window.location.href = "admin_dashboard.html";
+  else if (role === "therapist") window.location.href = "therapist_dashboard.html";
 }
 
 function setupProfileLinks() {
@@ -340,24 +276,14 @@ function setupProfileLinks() {
       e.preventDefault();
 
       const user = await getCurrentUser();
-      if (!user) {
-        window.location.href = "login.html";
-        return;
-      }
+      if (!user) return window.location.href = "login.html";
 
       let role = localStorage.getItem("ecstasy_role") || user.user_metadata?.role;
+      if (!role && user.email === "diggdeepmakeusplash@gmail.com") role = "admin";
 
-      if (!role && user.email === "diggdeepmakeusplash@gmail.com") {
-        role = "admin";
-      }
-
-      if (role === "admin") {
-        window.location.href = "admin_dashboard.html";
-      } else if (role === "therapist") {
-        window.location.href = "therapist_dashboard.html";
-      } else {
-        window.location.href = "user_profile.html";
-      }
+      if (role === "admin") window.location.href = "admin_dashboard.html";
+      else if (role === "therapist") window.location.href = "therapist_dashboard.html";
+      else window.location.href = "user_profile.html";
     });
   });
 }
@@ -366,82 +292,57 @@ async function loadFeaturedTherapists() {
   const container = document.getElementById("therapistPreview");
   if (!container) return;
 
-  try {
-    const { data, error } = await supabase
-      .from("therapists")
-      .select("id, full_name, area, profile_image, rating, review_count, is_available")
-      .order("rating", { ascending: false })
-      .limit(3);
+  const { data, error } = await supabase
+    .from("therapists")
+    .select("id, full_name, area, profile_image, rating, review_count, is_available")
+    .order("rating", { ascending: false })
+    .limit(3);
 
-    if (error) {
-      console.error("loadFeaturedTherapists error", error);
-      container.innerHTML =
-        '<p class="text-sm text-red-400">Unable to load therapists right now.</p>';
-      return;
-    }
-
-    container.innerHTML = "";
-
-    if (!data || data.length === 0) {
-      container.innerHTML =
-        '<p class="text-sm text-white/70">Therapist profiles coming soon.</p>';
-      return;
-    }
-
-    data.forEach(t => {
-      const card = document.createElement("article");
-      card.className = "card-glass p-5 flex flex-col items-center text-center gap-3 shadow-lg";
-
-      const imgSrc = t.profile_image || "images/placeholder_profile.jpg";
-
-      card.innerHTML = `
-        <div class="w-24 h-24 rounded-full overflow-hidden border-4 border-pink-500/70 shadow-md shadow-pink-500/20 flex-shrink-0 mb-2">
-          <img src="${imgSrc}" alt="${t.full_name}"
-               class="w-full h-full object-cover" />
-        </div>
-        <div class="flex-1">
-          <h3 class="text-xl font-extrabold text-pink-300 mb-1">${t.full_name}</h3>
-          <p class="text-sm text-white/70 mb-2 font-medium">
-            <i class="fa-solid fa-map-marker-alt text-pink-400 mr-1"></i> ${t.area || "Location on request"}
-          </p>
-          
-          <div class="flex justify-center items-center gap-3 mt-2">
-            <span class="text-sm text-yellow-300 font-bold">
-              ⭐ ${(t.rating ?? 5.0).toFixed(1)} 
-              <span class="text-xs text-white/50 font-normal">
-                (${t.review_count || 0} reviews)
-              </span>
-            </span>
-            <span class="text-xs font-semibold px-3 py-1 rounded-full ${
-              t.is_available ? "bg-green-500/20 text-green-400" : "bg-white/10 text-white/40"
-            }">
-              ${t.is_available ? "Available" : "Offline"}
-            </span>
-          </div>
-        </div>
-        <a href="Therapists_List.html"
-           class="mt-4 bg-pink-600/80 px-4 py-2 rounded-full text-sm font-bold hover:bg-pink-600 transition active:scale-[0.98]">
-          View Profile
-        </a>
-      `;
-
-      container.appendChild(card);
-    });
-  } catch (e) {
-    console.error("loadFeaturedTherapists exception", e);
-    container.innerHTML =
-      '<p class="text-sm text-red-400">Unexpected error loading therapists.</p>';
+  if (error || !data) {
+    container.innerHTML = '<p class="text-sm text-red-400">Unable to load therapists right now.</p>';
+    return;
   }
+
+  container.innerHTML = "";
+
+  data.forEach(t => {
+    const card = document.createElement("article");
+    card.className = "card-glass p-5 flex flex-col items-center text-center gap-3 shadow-lg";
+
+    const imgSrc = t.profile_image || "images/placeholder_profile.jpg";
+
+    card.innerHTML = `
+      <div class="w-24 h-24 rounded-full overflow-hidden border-4 border-pink-500/70 shadow-md shadow-pink-500/20 mb-2">
+        <img src="${imgSrc}" class="w-full h-full object-cover" />
+      </div>
+      <h3 class="text-xl font-extrabold text-pink-300">${t.full_name}</h3>
+      <p class="text-sm text-white/70">
+        <i class="fa-solid fa-map-marker-alt text-pink-400 mr-1"></i> ${t.area || "Location on request"}
+      </p>
+      <div class="flex justify-center items-center gap-3 mt-2">
+        <span class="text-sm text-yellow-300 font-bold">
+          ⭐ ${(t.rating ?? 5.0).toFixed(1)}
+          <span class="text-xs text-white/50">(${t.review_count || 0} reviews)</span>
+        </span>
+        <span class="text-xs font-semibold px-3 py-1 rounded-full ${
+          t.is_available ? "bg-green-500/20 text-green-400" : "bg-white/10 text-white/40"
+        }">${t.is_available ? "Available" : "Offline"}</span>
+      </div>
+      <a href="Therapists_List.html"
+         class="mt-4 bg-pink-600/80 px-4 py-2 rounded-full text-sm font-bold hover:bg-pink-600 transition">
+        View Profile
+      </a>
+    `;
+
+    container.appendChild(card);
+  });
 }
 
 function showHomeToast(message) {
   const toast = document.getElementById("homeToast");
-  if (!toast) return;
   toast.textContent = message;
   toast.style.display = "block";
-  setTimeout(() => {
-    toast.style.display = "none";
-  }, 4000);
+  setTimeout(() => toast.style.display = "none", 4000);
 }
 
 async function setupBookingRealtime() {
@@ -450,9 +351,7 @@ async function setupBookingRealtime() {
 
   supabase
     .channel("user-booking-updates")
-    .on(
-      "postgres_changes",
-      {
+    .on("postgres_changes", {
         event: "*",
         schema: "public",
         table: "bookings",
@@ -473,12 +372,6 @@ document.addEventListener("DOMContentLoaded", () => {
   handleRoleRedirectOnLoad();
 });
 </script>
-
-<script type="module" src="js/supabase.js"></script>
-<script type="module" src="js/auth.js"></script>
-<script type="module" src="js/therapists.js"></script>
-<script type="module" src="js/bookings.js"></script>
-<script type="module" src="js/main.js"></script>
 
 </body>
 </html>
