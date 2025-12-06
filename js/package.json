@@ -1,0 +1,11 @@
+{
+  "name": "ecstasy-retreat",
+  "version": "1.0.0",
+  "type": "module",
+  "scripts": {
+    "seed": "node js/seed_therapists.js"
+  },
+  "dependencies": {
+    "@supabase/supabase-js": "^2.45.0"
+  }
+}
