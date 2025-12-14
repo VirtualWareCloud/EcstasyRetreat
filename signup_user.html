@@ -109,6 +109,7 @@
       margin-bottom: 3px;
     }
   </style>
+  <script src="js/uiErrorHandler.js"></script>
 </head>
 
 <body class="bg-black text-white pb-24">
@@ -199,24 +200,26 @@
     }, 3000);
 
     // Menu toggle
-    document.getElementById("menuBtn").onclick = () =>
-      document.getElementById("mobileMenu").classList.toggle("hidden");
+    uiErrorHandler.safeBind(document.getElementById("menuBtn"), "click", () =>
+      document.getElementById("mobileMenu").classList.toggle("hidden"), { context: "Toggle mobile menu" }
+    );
 
     document.querySelectorAll(".menu-link").forEach(link =>
-      link.onclick = () => document.getElementById("mobileMenu").classList.add("hidden")
+      uiErrorHandler.safeBind(link, "click", () => document.getElementById("mobileMenu").classList.add("hidden"), { context: "Close menu" })
     );
   </script>
 
   <script type="module">
     import { signupWithEmail, signupWithGoogle } from "./js/auth.js";
 
+    const { safeBind, handleError, showError } = window.uiErrorHandler;
     const form = document.getElementById("signupForm");
     const submitBtn = document.getElementById("submitBtn");
     const requiredFields = ["fullName", "email", "password", "passwordConfirm"];
 
     // Real-time validation
     document.querySelectorAll("#fullName, #email, #password, #passwordConfirm").forEach(input => {
-      input.addEventListener("input", checkFormValidity);
+      safeBind(input, "input", checkFormValidity, { context: "Signup validation" });
     });
 
     function checkFormValidity() {
@@ -225,7 +228,7 @@
     }
 
     // Handle form submission
-    form.onsubmit = async (e) => {
+    safeBind(form, "submit", async (e) => {
       e.preventDefault();
 
       const name = document.getElementById("fullName").value.trim();
@@ -234,23 +237,27 @@
       const confirm = document.getElementById("passwordConfirm").value;
 
       if (password !== confirm) {
-        alert("Passwords do not match");
+        showError("Passwords do not match.");
         return;
       }
 
       try {
         await signupWithEmail({ full_name: name, email, password });
-        alert("Account created successfully!");
+        showError("Account created successfully!");
         window.location.href = "login.html";
       } catch (err) {
-        alert(err.message || "Signup failed. Please try again.");
+        handleError(err, "Email signup failed");
       }
-    };
+    }, { disableTarget: submitBtn, context: "Signup submission" });
 
     // Google signup
-    document.getElementById("googleSignup").onclick = async () => {
-      await signupWithGoogle();
-    };
+    safeBind(document.getElementById("googleSignup"), "click", async () => {
+      try {
+        await signupWithGoogle();
+      } catch (err) {
+        handleError(err, "Google signup failed");
+      }
+    }, { disableTarget: document.getElementById("googleSignup"), context: "Google signup" });
   </script>
 </body>
 </html>

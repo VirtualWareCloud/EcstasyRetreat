@@ -114,6 +114,7 @@
       margin-bottom: 3px;
     }
   </style>
+  <script src="js/uiErrorHandler.js"></script>
 </head>
 
 <body class="bg-black text-white pb-24">
@@ -201,11 +202,13 @@
       }, 3000);
 
       // MENU CONTROLS
-      document.getElementById("menuBtn").onclick = () =>
-          document.getElementById("mobileMenu").classList.toggle("hidden");
+      uiErrorHandler.safeBind(document.getElementById("menuBtn"), "click", () =>
+          document.getElementById("mobileMenu").classList.toggle("hidden"),
+          { context: "Toggle mobile menu" }
+      );
 
       document.querySelectorAll(".menu-link").forEach(link =>
-          link.onclick = () => document.getElementById("mobileMenu").classList.add("hidden")
+          uiErrorHandler.safeBind(link, "click", () => document.getElementById("mobileMenu").classList.add("hidden"), { context: "Close menu link" })
       );
   </script>
 
@@ -213,41 +216,50 @@
   <script type="module">
       import { loginWithEmail, loginWithGoogle, signupWithGoogle } from "./js/auth.js";
 
+      const { safeBind, handleError, showError } = window.uiErrorHandler;
       const emailField = document.getElementById("email");
       const passField = document.getElementById("password");
       const loginBtn = document.getElementById("loginBtn");
 
       // Enable button only when fields are filled
       [emailField, passField].forEach(input => {
-          input.addEventListener("input", () => {
+          safeBind(input, "input", () => {
               loginBtn.disabled = !(emailField.value.trim() && passField.value.trim());
-          });
+          }, { context: "Login form validation" });
       });
 
       // Handle normal login
-      document.getElementById("loginForm").onsubmit = async (e) => {
+      safeBind(document.getElementById("loginForm"), "submit", async (e) => {
           e.preventDefault();
           const email = emailField.value.trim();
           const password = passField.value.trim();
 
           try {
               await loginWithEmail(email, password);
-              alert("Login successful!");
+              showError("Login successful!");
               window.location.href = "profile.html";
           } catch (err) {
-              alert(err.message || "Login failed. Please try again.");
+              handleError(err, "Email login failed");
           }
-      };
+      }, { disableTarget: loginBtn, context: "Login submission" });
 
       // Google login
-      document.getElementById("googleLogin").onclick = async () => {
-          await loginWithGoogle();
-      };
+      safeBind(document.getElementById("googleLogin"), "click", async () => {
+          try {
+              await loginWithGoogle();
+          } catch (err) {
+              handleError(err, "Google login failed");
+          }
+      }, { disableTarget: document.getElementById("googleLogin"), context: "Google login" });
 
       // Google signup (same OAuth flow)
-      document.getElementById("googleSignup").onclick = async () => {
-          await signupWithGoogle();
-      };
+      safeBind(document.getElementById("googleSignup"), "click", async () => {
+          try {
+              await signupWithGoogle();
+          } catch (err) {
+              handleError(err, "Google signup failed");
+          }
+      }, { disableTarget: document.getElementById("googleSignup"), context: "Google signup" });
   </script>
 </body>
 </html>
