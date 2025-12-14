@@ -9,6 +9,8 @@
 <script src="https://cdn.tailwindcss.com"></script>
 <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" />
+<!-- Desktop refinement helpers to center and cap layouts without altering mobile -->
+<link rel="stylesheet" href="css/desktop-fixes.css">
 
 <style>
 /* ========================================================= */
@@ -184,14 +186,17 @@
 <!-- SOCIAL FOOTER -->
 <!-- ========================================================= -->
 <footer class="bg-black/70 border-t border-white/5 text-center py-5 text-white/70 mb-20 mt-10">
-  <div class="flex justify-center gap-8 text-2xl mb-3">
-    <a href="https://instagram.com/EcstasyRetreatSpa" target="_blank"><i class="fa-brands fa-instagram"></i></a>
-    <a href="https://x.com/EcstasyRetreat" target="_blank"><i class="fa-brands fa-x-twitter"></i></a>
-    <a href="https://wa.me/27500204011" target="_blank"><i class="fa-brands fa-whatsapp"></i></a>
-    <a href="https://facebook.com/EcstasyRetreatSpa" target="_blank"><i class="fa-brands fa-facebook"></i></a>
-    <a href="mailto:diggdeepmakeusplash@gmail.com"><i class="fa-solid fa-envelope"></i></a>
+  <!-- Desktop: align footer content with the centered shell -->
+  <div class="desktop-footer">
+    <div class="flex justify-center gap-8 text-2xl mb-3">
+      <a href="https://instagram.com/EcstasyRetreatSpa" target="_blank"><i class="fa-brands fa-instagram"></i></a>
+      <a href="https://x.com/EcstasyRetreat" target="_blank"><i class="fa-brands fa-x-twitter"></i></a>
+      <a href="https://wa.me/27500204011" target="_blank"><i class="fa-brands fa-whatsapp"></i></a>
+      <a href="https://facebook.com/EcstasyRetreatSpa" target="_blank"><i class="fa-brands fa-facebook"></i></a>
+      <a href="mailto:diggdeepmakeusplash@gmail.com"><i class="fa-solid fa-envelope"></i></a>
+    </div>
+    <p class="text-xs">© 2025 Ecstasy Retreat — Elite Companionship.</p>
   </div>
-  <p class="text-xs">© 2025 Ecstasy Retreat — Elite Companionship.</p>
 </footer>
 
 <!-- ========================================================= -->
