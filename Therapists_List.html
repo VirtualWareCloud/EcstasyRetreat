@@ -12,6 +12,9 @@
 <link rel="stylesheet"
       href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" />
 
+<!-- Desktop refinement helpers to cap layouts on larger screens -->
+<link rel="stylesheet" href="css/desktop-fixes.css">
+
 <!-- Supabase -->
 <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
 
@@ -110,7 +113,8 @@
 <div class="pt-28 md:pt-36"></div>
 
 <!-- THERAPISTS SECTION -->
-<section class="px-5 md:px-10 pb-20 fade-in">
+<!-- Desktop: constrain therapist listing width for balanced desktop reading -->
+<section class="px-5 md:px-10 pb-20 fade-in desktop-shell">
   <h1 class="text-3xl md:text-5xl font-extrabold text-center mb-4 leading-snug">
     Meet Our <span class="text-pink-500">Elite Therapists</span>
   </h1>
@@ -118,7 +122,8 @@
     Discover the perfect sensual expert for your unique retreat experience.
   </p>
 
-  <div class="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-3 gap-8 md:gap-10">
+  <!-- Desktop: keep the grid from over-stretching on ultrawide displays -->
+  <div class="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-3 gap-8 md:gap-10 desktop-grid-balanced">
 
     <!-- 1️⃣ Lerato -->
     <div class="card flex flex-col sm:flex-row gap-5 items-start">
@@ -226,14 +231,17 @@
 </footer>
 
 <footer class="bg-black/70 border-t border-white/5 text-center py-6 text-white/70 mb-24">
-  <div class="flex justify-center gap-8 text-2xl mb-4">
-    <a href="https://instagram.com/EcstasyRetreatSpa" target="_blank" class="hover:text-pink-400"><i class="fa-brands fa-instagram"></i></a>
-    <a href="https://x.com/EcstasyRetreat" target="_blank" class="hover:text-pink-400"><i class="fa-brands fa-x-twitter"></i></a>
-    <a href="https://wa.me/27500204011" target="_blank" class="hover:text-pink-400"><i class="fa-brands fa-whatsapp"></i></a>
-    <a href="https://facebook.com/EcstasyRetreatSpa" target="_blank" class="hover:text-pink-400"><i class="fa-brands fa-facebook"></i></a>
-    <a href="mailto:diggdeepmakeusplash@gmail.com" class="hover:text-pink-400"><i class="fa-solid fa-envelope"></i></a>
+  <!-- Desktop: align footer links with constrained desktop shell -->
+  <div class="desktop-footer">
+    <div class="flex justify-center gap-8 text-2xl mb-4">
+      <a href="https://instagram.com/EcstasyRetreatSpa" target="_blank" class="hover:text-pink-400"><i class="fa-brands fa-instagram"></i></a>
+      <a href="https://x.com/EcstasyRetreat" target="_blank" class="hover:text-pink-400"><i class="fa-brands fa-x-twitter"></i></a>
+      <a href="https://wa.me/27500204011" target="_blank" class="hover:text-pink-400"><i class="fa-brands fa-whatsapp"></i></a>
+      <a href="https://facebook.com/EcstasyRetreatSpa" target="_blank" class="hover:text-pink-400"><i class="fa-brands fa-facebook"></i></a>
+      <a href="mailto:diggdeepmakeusplash@gmail.com" class="hover:text-pink-400"><i class="fa-solid fa-envelope"></i></a>
+    </div>
+    <p class="text-xs mt-3">© 2025 Ecstasy Retreat — Elite Companionship.</p>
   </div>
-  <p class="text-xs mt-3">© 2025 Ecstasy Retreat — Elite Companionship.</p>
 </footer>
 
 <!-- BOTTOM NAV -->

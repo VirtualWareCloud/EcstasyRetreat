@@ -1,0 +1,72 @@
+/* ========================================================= */
+/* DESKTOP RESPONSIVE REFINEMENTS (keeps mobile as baseline) */
+/* ========================================================= */
+:root {
+  --desktop-pad: 2rem;
+  --desktop-wide: 1280px;
+  --desktop-max: 1400px;
+}
+
+/* Desktop helpers only activate on larger breakpoints to avoid mobile regressions */
+@media (min-width: 1024px) {
+  main { /* Desktop: gently cap all primary <main> containers by default */
+    max-width: var(--desktop-wide);
+    margin-left: auto;
+    margin-right: auto;
+    padding-left: var(--desktop-pad);
+    padding-right: var(--desktop-pad);
+  }
+
+  .desktop-shell { /* Desktop: centers broad page content within a luxury-width shell */
+    width: min(var(--desktop-max), 100%);
+    margin-left: auto;
+    margin-right: auto;
+    padding-left: var(--desktop-pad);
+    padding-right: var(--desktop-pad);
+  }
+
+  .desktop-narrow { /* Desktop: narrows dense forms/cards for comfortable reading */
+    width: min(1080px, 100%);
+    margin-left: auto;
+    margin-right: auto;
+    padding-left: var(--desktop-pad);
+    padding-right: var(--desktop-pad);
+  }
+
+  .desktop-form { /* Desktop: keeps authentication/contact forms balanced */
+    width: min(860px, 100%);
+    margin-left: auto;
+    margin-right: auto;
+    padding-left: var(--desktop-pad);
+    padding-right: var(--desktop-pad);
+  }
+
+  .desktop-grid-balanced { /* Desktop: limits wide grids so cards do not over-stretch */
+    width: min(var(--desktop-wide), 100%);
+    margin-left: auto;
+    margin-right: auto;
+  }
+
+  .desktop-hero { /* Desktop: centers hero/cta stacks without changing mobile feel */
+    width: min(var(--desktop-wide), 100%);
+    margin-left: auto;
+    margin-right: auto;
+    padding-left: var(--desktop-pad);
+    padding-right: var(--desktop-pad);
+  }
+
+  .desktop-footer { /* Desktop: keeps footer content aligned with the shell */
+    width: min(var(--desktop-max), 100%);
+    margin-left: auto;
+    margin-right: auto;
+    padding-left: var(--desktop-pad);
+    padding-right: var(--desktop-pad);
+  }
+}
+
+@media (min-width: 1440px) {
+  :root { /* Desktop: subtle padding lift for ultra-wide screens */
+    --desktop-pad: 3rem;
+    --desktop-max: 1440px;
+  }
+}

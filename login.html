@@ -16,6 +16,9 @@
   <link rel="stylesheet"
         href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" />
 
+  <!-- Desktop refinement helpers to cap desktop width while keeping mobile intact -->
+  <link rel="stylesheet" href="css/desktop-fixes.css">
+
   <style>
     /* ======================== HEADER ======================== */
     #mainHeader {
@@ -142,7 +145,8 @@
   <div class="pt-40"></div>
 
   <!-- ======================== MAIN CONTENT ======================== -->
-  <main class="px-6">
+  <!-- Desktop: center the auth stack within a narrow shell for readability -->
+  <main class="px-6 desktop-form">
       <h1 class="text-center text-4xl font-bold text-pink-500 mb-2">Welcome Back</h1>
       <p class="text-center text-gray-400 mb-10">Login to your Ecstasy Retreat account</p>
 
@@ -176,14 +180,17 @@
   </footer>
 
   <footer class="bg-black/70 border-t border-white/5 text-center py-6 text-white/70 mb-24">
-      <div class="flex justify-center gap-8 text-2xl mb-4">
-          <a href="https://instagram.com/EcstasyRetreatSpa" class="hover:text-pink-400"><i class="fa-brands fa-instagram"></i></a>
-          <a href="https://x.com/EcstasyRetreat" class="hover:text-pink-400"><i class="fa-brands fa-x-twitter"></i></a>
-          <a href="https://wa.me/27500204011" class="hover:text-pink-400"><i class="fa-brands fa-whatsapp"></i></a>
-          <a href="https://facebook.com/EcstasyRetreatSpa" class="hover:text-pink-400"><i class="fa-brands fa-facebook"></i></a>
-          <a href="mailto:diggdeepmakeusplash@gmail.com" class="hover:text-pink-400"><i class="fa-solid fa-envelope"></i></a>
+      <!-- Desktop: align footer content with the constrained auth shell -->
+      <div class="desktop-footer">
+        <div class="flex justify-center gap-8 text-2xl mb-4">
+            <a href="https://instagram.com/EcstasyRetreatSpa" class="hover:text-pink-400"><i class="fa-brands fa-instagram"></i></a>
+            <a href="https://x.com/EcstasyRetreat" class="hover:text-pink-400"><i class="fa-brands fa-x-twitter"></i></a>
+            <a href="https://wa.me/27500204011" class="hover:text-pink-400"><i class="fa-brands fa-whatsapp"></i></a>
+            <a href="https://facebook.com/EcstasyRetreatSpa" class="hover:text-pink-400"><i class="fa-brands fa-facebook"></i></a>
+            <a href="mailto:diggdeepmakeusplash@gmail.com" class="hover:text-pink-400"><i class="fa-solid fa-envelope"></i></a>
+        </div>
+        <p class="text-xs mt-3">© 2025 Ecstasy Retreat — Elite Companionship.</p>
       </div>
-      <p class="text-xs mt-3">© 2025 Ecstasy Retreat — Elite Companionship.</p>
   </footer>
 
   <nav class="bottom-nav flex justify-between">
