@@ -104,6 +104,7 @@
     margin-bottom: 2px;
 }
 </style>
+  <script src="js/uiErrorHandler.js"></script>
 </head>
 
 <body class="bg-black text-white pb-28">
@@ -256,6 +257,7 @@ import { createClient } from "https://cdn.jsdelivr.net/npm/@supabase/supabase-js
 const SUPABASE_URL = "https://jeregnymrknddwbbbvrm.supabase.co";
 const SUPABASE_KEY = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6ImplcmVnbnltcmtuZGR3YmJidnJtIiwicm9sZSI6ImFub24iLCJpYXQiOjE3NjQ3NjE1NjYsImV4cCI6MjA...";
 const supabase = createClient(SUPABASE_URL, SUPABASE_KEY);
+const { safeBind, handleError, showError } = window.uiErrorHandler;
 
 // ====================== AUTO BIO ======================
 const serviceDescriptions = {
@@ -267,12 +269,12 @@ const serviceDescriptions = {
 const boxes = document.querySelectorAll(".service-box");
 const bio = document.getElementById("bioOutput");
 boxes.forEach(box => {
-  box.addEventListener("change", () => {
+  safeBind(box, "change", () => {
     const selected = Array.from(boxes)
       .filter(b => b.checked)
       .map(b => serviceDescriptions[b.value]);
     bio.value = selected.join("\n\n");
-  });
+  }, { context: "Service selection" });
 });
 
 // ====================== FORM VALIDATION ======================
@@ -280,8 +282,8 @@ const requiredFields = ["town", "headshot", "whatsapp", "email"];
 const submitBtn = document.getElementById("submitBtn");
 
 document.querySelectorAll("#town, #headshot, #whatsapp, #email").forEach(input => {
-  input.addEventListener("input", checkFormValidity);
-  input.addEventListener("change", checkFormValidity);
+  safeBind(input, "input", checkFormValidity, { context: "Join form validation" });
+  safeBind(input, "change", checkFormValidity, { context: "Join form validation" });
 });
 
 function checkFormValidity() {
@@ -294,7 +296,7 @@ function checkFormValidity() {
 }
 
 // ====================== NORMAL SIGNUP ======================
-document.getElementById("joinForm").addEventListener("submit", async (e) => {
+safeBind(document.getElementById("joinForm"), "submit", async (e) => {
   e.preventDefault();
 
   const fullName = document.getElementById("fullName").value.trim();
@@ -308,81 +310,89 @@ document.getElementById("joinForm").addEventListener("submit", async (e) => {
   const headshot = document.getElementById("headshot").files[0];
 
   if (!town || !headshot || !whatsapp || !email) {
-    alert("Please complete all required fields: Town, Headshot, WhatsApp, and Email.");
+    showError("Please complete all required fields: Town, Headshot, WhatsApp, and Email.");
     return;
   }
 
-  const { data: signupData, error: signupError } = await supabase.auth.signUp({
-    email,
-    password,
-    options: { data: { fullName, whatsapp, town } },
-  });
-  if (signupError) return alert(signupError.message);
-
-  const userId = signupData.user.id;
-  const fileName = `therapists/${userId}_${Date.now()}.jpg`;
-  const { error: uploadError } = await supabase.storage.from("headshots").upload(fileName, headshot);
-  if (uploadError) return alert("Upload failed: " + uploadError.message);
-
-  const { error: insertError } = await supabase.from("therapists").insert([
-    { 
-      auth_id: userId,
-      display_name: fullName,
-      whatsapp,
+  try {
+    const { data: signupData, error: signupError } = await supabase.auth.signUp({
       email,
-      town,
-      age,
-      languages,
-      bio: bioText,
-      main_photo: fileName
-    }
-  ]);
+      password,
+      options: { data: { fullName, whatsapp, town } },
+    });
+    if (signupError) throw new Error(signupError.message);
 
-  if (insertError) return alert(insertError.message);
+    const userId = signupData.user.id;
+    const fileName = `therapists/${userId}_${Date.now()}.jpg`;
+    const { error: uploadError } = await supabase.storage.from("headshots").upload(fileName, headshot);
+    if (uploadError) throw new Error(uploadError.message || "Upload failed");
 
-  alert("Application submitted successfully!");
-  window.location.href = "thankyou.html";
-});
+    const { error: insertError } = await supabase.from("therapists").insert([
+      {
+        auth_id: userId,
+        display_name: fullName,
+        whatsapp,
+        email,
+        town,
+        age,
+        languages,
+        bio: bioText,
+        main_photo: fileName
+      }
+    ]);
+
+    if (insertError) throw new Error(insertError.message || "Profile creation failed");
+
+    showError("Application submitted successfully!");
+    window.location.href = "thankyou.html";
+  } catch (err) {
+    handleError(err, "Therapist signup failed");
+  }
+}, { disableTarget: submitBtn, context: "Therapist signup" });
 
 // ====================== GOOGLE SIGNUP ======================
-document.getElementById("googleSignup").onclick = async () => {
-  const { data, error } = await supabase.auth.signInWithOAuth({
+safeBind(document.getElementById("googleSignup"), "click", async () => {
+  const { error } = await supabase.auth.signInWithOAuth({
     provider: "google",
     options: { redirectTo: window.location.origin + "/join.html#googleReturn" }
   });
-  if (error) alert(error.message);
-};
+  if (error) handleError(error, "Google signup failed");
+}, { disableTarget: document.getElementById("googleSignup"), context: "Google signup" });
 
 // ====================== GOOGLE RETURN ======================
-(async () => {
-  const { data: { session } } = await supabase.auth.getSession();
-  if (session && window.location.hash.includes("googleReturn")) {
-    const user = session.user;
-    if (!user) return;
+safeBind(window, "load", async () => {
+  try {
+    const { data: { session } } = await supabase.auth.getSession();
+    if (session && window.location.hash.includes("googleReturn")) {
+      const user = session.user;
+      if (!user) return;
 
-    const { data: existing } = await supabase
-      .from("therapists")
-      .select("auth_id")
-      .eq("auth_id", user.id)
-      .single();
+      const { data: existing } = await supabase
+        .from("therapists")
+        .select("auth_id")
+        .eq("auth_id", user.id)
+        .single();
 
-    if (!existing) {
-      await supabase.from("therapists").insert([
-        {
-          auth_id: user.id,
-          display_name: user.user_metadata.fullName || user.email.split("@")[0],
-          email: user.email,
-          whatsapp: "",
-          town: "",
-          bio: "New Google-verified therapist profile.",
-          main_photo: ""
-        }
-      ]);
+      if (!existing) {
+        await supabase.from("therapists").insert([
+          {
+            auth_id: user.id,
+            display_name: user.user_metadata.fullName || user.email.split("@")[0],
+            email: user.email,
+            whatsapp: "",
+            town: "",
+            bio: "New Google-verified therapist profile.",
+            main_photo: ""
+          }
+        ]);
+      }
+
+      window.location.href = "thankyou.html";
     }
-
-    window.location.href = "thankyou.html";
+  } catch (err) {
+    handleError(err, "Google return handling");
   }
-})();
+});
 </script>
 
 <!-- =================================================== -->
@@ -393,8 +403,9 @@ setTimeout(() => {
     document.getElementById("headerWrapper").classList.add("fade-bg");
 }, 3000);
 
-document.getElementById("menuBtn").onclick = () =>
-  document.getElementById("mobileMenu").classList.toggle("hidden");
+uiErrorHandler.safeBind(document.getElementById("menuBtn"), "click", () =>
+  document.getElementById("mobileMenu").classList.toggle("hidden"), { context: "Toggle mobile menu" }
+);
 </script>
 
 </body>
