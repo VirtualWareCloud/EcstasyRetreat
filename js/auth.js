@@ -2,8 +2,10 @@
 // Auth module for Supabase integration
 // ============================================
 
-// Import Supabase client instance
-import { supabase } from "./supabase.js";
+// Import Supabase client instance (centralized)
+import { supabase } from "./supabaseClient.js";
+
+const OAUTH_REDIRECT = `${window.location.origin}/auth-callback.html`;
 
 // ============================================
 // EMAIL/PASSWORD SIGNUP (Generic for Users & Therapists)
@@ -37,18 +39,27 @@ export async function loginWithEmail(email, password) {
 // ============================================
 // GOOGLE SIGNUP / LOGIN
 // ============================================
-export async function signupWithGoogle() {
-  try {
-    const { error } = await supabase.auth.signInWithOAuth({
-      provider: "google",
-      options: {
-        redirectTo: window.location.origin + "/login.html#googleReturn",
-      },
-    });
-    if (error) throw error;
-  } catch (e) {
-    console.error("Google OAuth signup error:", e.message || e);
+async function startGoogleOAuth(actionLabel) {
+  const { error } = await supabase.auth.signInWithOAuth({
+    provider: "google",
+    options: {
+      // Must match Supabase dashboard redirect URL configuration (Step 7 reminder)
+      redirectTo: OAUTH_REDIRECT,
+    },
+  });
+
+  if (error) {
+    console.error(`Google OAuth ${actionLabel} error:`, error);
+    throw new Error(error.message || `Google OAuth ${actionLabel} failed`);
   }
+}
+
+export async function signupWithGoogle() {
+  return startGoogleOAuth("signup");
+}
+
+export async function loginWithGoogle() {
+  return startGoogleOAuth("login");
 }
 
 // ============================================
@@ -56,7 +67,10 @@ export async function signupWithGoogle() {
 // ============================================
 export async function logout() {
   const { error } = await supabase.auth.signOut();
-  if (error) console.error("Logout error:", error.message || error);
+  if (error) {
+    console.error("Logout error:", error);
+    throw new Error(error.message || "Logout failed");
+  }
 }
 
 // ============================================
@@ -69,7 +83,7 @@ export async function getCurrentUser() {
 }
 
 // ============================================
-// SESSION CHECK (Optional helper for persistent login)
+// SESSION CHECK (Persistent login)
 // ============================================
 export async function getSession() {
   const { data, error } = await supabase.auth.getSession();
@@ -78,4 +92,34 @@ export async function getSession() {
     return null;
   }
   return data?.session || null;
+}
+
+// Guarded session fetch that redirects when unauthenticated
+export async function requireSession({ redirectTo = "login.html", onRedirect } = {}) {
+  const { data, error } = await supabase.auth.getSession();
+  if (error) throw new Error(error.message || "Session check failed");
+
+  if (!data?.session) {
+    onRedirect?.();
+    window.location.href = redirectTo;
+    return null;
+  }
+
+  return data.session;
+}
+
+// ============================================
+// AUTH STATE LOGGER / WATCHER
+// ============================================
+export function watchAuthState({ onChange, redirectOnSignOut } = {}) {
+  const { data } = supabase.auth.onAuthStateChange((event, session) => {
+    console.info(`[Supabase Auth] ${event}`, session);
+    onChange?.(event, session);
+
+    if (!session && redirectOnSignOut) {
+      window.location.href = redirectOnSignOut;
+    }
+  });
+
+  return () => data?.subscription?.unsubscribe?.();
 }

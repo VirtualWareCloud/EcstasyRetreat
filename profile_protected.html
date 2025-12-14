@@ -15,6 +15,8 @@
   <link rel="stylesheet"
         href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" />
 
+  <script src="js/uiErrorHandler.js"></script>
+
   <style>
     /* ================= HEADER ================= */
     #mainHeader {
@@ -184,32 +186,46 @@
 
   <!-- Supabase Auth Protection -->
   <script type="module">
-    import { getCurrentUser, logout } from "./js/auth.js";
+    import { logout, requireSession, watchAuthState } from "./js/auth.js";
 
+    const { showError, handleError } = window.uiErrorHandler;
     const nameEl = document.getElementById("profileName");
     const emailEl = document.getElementById("profileEmail");
     const photoEl = document.getElementById("profilePhoto");
 
-    // Protect page: redirect if no active session
-    (async () => {
-      const user = await getCurrentUser();
-      if (!user) {
-        alert("You must be logged in to view this page.");
-        window.location.href = "login.html";
-        return;
-      }
+    // Keep the page protected and react to auth state changes (Step 5).
+    watchAuthState({
+      redirectOnSignOut: "login.html",
+      onChange: (event) => {
+        if (event === "TOKEN_REFRESHED") {
+          console.info("Token refreshed – profile remains protected.");
+        }
+      },
+    });
 
-      // Load profile info
+    // Protect page: redirect if no active session and surface UI feedback.
+    (async () => {
+      const session = await requireSession({
+        redirectTo: "login.html",
+        onRedirect: () => showError("You must be logged in to view this page."),
+      });
+      if (!session) return;
+
+      const user = session.user;
       nameEl.textContent = user.user_metadata?.full_name || "Guest User";
       emailEl.textContent = user.email;
       photoEl.src = user.user_metadata?.photo_url || "https://via.placeholder.com/150";
-    })();
+    })().catch((err) => handleError(err, "Protected profile load"));
 
     // Logout handler
     document.getElementById("logoutBtn").onclick = async () => {
-      await logout();
-      alert("You have been logged out.");
-      window.location.href = "login.html";
+      try {
+        await logout();
+        showError("You have been logged out.");
+        window.location.href = "login.html";
+      } catch (err) {
+        handleError(err, "Logout from protected profile");
+      }
     };
   </script>
 </body>
