@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Your Visit Expectations</title>
+<style>
+  body {
+    background: linear-gradient(135deg, #1a1a1a, #3a003d);
+    color: white;
+    font-family: Arial, sans-serif;
+    padding: 20px;
+  }
+  .container {
+    background: rgba(255,255,255,0.05);
+    padding: 24px;
+    border-radius: 16px;
+    box-shadow: 0 0 20px rgba(255,0,150,0.5);
+  }
+  label {
+    display: block;
+    margin: 12px 0 6px;
+  }
+  select, input[type="radio"] {
+    margin: 4px 0;
+  }
+  .hidden {
+    display: none;
+  }
+</style>
+</head>
+<body>
+
+<div class="container">
+  <h2>Before We Meet…</h2>
+  <p>Let’s make things clear so our time together is relaxed and enjoyable.</p>
+
+  <label>What is your main motivation for visiting?</label>
+  <input type="radio" name="motive" value="attraction" onclick="toggleSupport(false)" /> Genuine attraction & connection<br>
+  <input type="radio" name="motive" value="financial" onclick="toggleSupport(true)" /> Expecting financial support
+
+  <div id="support-section" class="hidden">
+    <label>If financial support is expected, what level feels fair?</label>
+    <select id="support-range">
+      <option value="500">R500</option>
+      <option value="600">R600</option>
+      <option value="700">R700</option>
+      <option value="800">R800</option>
+      <option value="900">R900</option>
+      <option value="1000">R1000</option>
+      <option value="1100">R1100</option>
+      <option value="1200">R1200</option>
+      <option value="1300">R1300</option>
+      <option value="1400">R1400</option>
+      <option value="1500">R1500</option>
+    </select>
+  </div>
+</div>
+
+<script>
+function toggleSupport(show) {
+  document.getElementById("support-section").classList.toggle("hidden", !show);
+}
+</script>
+
+</body>
+</html>
