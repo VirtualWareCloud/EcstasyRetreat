@@ -214,12 +214,30 @@
 
   <!-- Supabase Auth Integration -->
   <script type="module">
-      import { loginWithEmail, loginWithGoogle, signupWithGoogle } from "./js/auth.js";
+      import { getSession, loginWithEmail, loginWithGoogle, signupWithGoogle, watchAuthState } from "./js/auth.js";
 
       const { safeBind, handleError, showError } = window.uiErrorHandler;
       const emailField = document.getElementById("email");
       const passField = document.getElementById("password");
       const loginBtn = document.getElementById("loginBtn");
+
+      // Log auth changes and send already signed-in users to their dashboard.
+      watchAuthState({
+          onChange: (event, session) => {
+              if (event === "SIGNED_IN" && session) {
+                  showError("You're already signed in. Redirecting to your profile…");
+                  window.location.href = "profile.html";
+              }
+          }
+      });
+
+      // Detect existing sessions to prevent redundant login attempts.
+      getSession().then((session) => {
+          if (session) {
+              showError("You already have an active session.");
+              window.location.href = "profile.html";
+          }
+      });
 
       // Enable button only when fields are filled
       [emailField, passField].forEach(input => {
